@@ -5,7 +5,7 @@
 namespace event_booking.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class _1stmigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

@@ -12,8 +12,8 @@ using event_booking.Data;
 namespace event_booking.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230501015720_initial")]
-    partial class initial
+    [Migration("20230501020500_1stmigration")]
+    partial class _1stmigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

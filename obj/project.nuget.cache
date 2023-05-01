@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ARIzNi2FHw1zZHNrQefOoseH//zZJNkKbEmrvWklRBUTzsHcMZe0hnknjJK0fmRQkQYOX6hgGQOcsY8sVwId4g==",
+  "dgSpecHash": "X7SGtSHDbp9Pu18wK/CSGQS5+CVv9+kvrVW+LeOfEFXOiuhaW1p9ljbhxCvffW7w8tgj3HLuR3URRcFqSMgO5w==",
   "success": true,
   "projectFilePath": "D:\\event_booking\\event_booking.csproj",
   "expectedPackageFiles": [
@@ -50,9 +50,6 @@
     "C:\\Users\\david\\.nuget\\packages\\microsoft.sqlserver.server\\1.0.0\\microsoft.sqlserver.server.1.0.0.nupkg.sha512",
     "C:\\Users\\david\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\david\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
-    "C:\\Users\\david\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
-    "C:\\Users\\david\\.nuget\\packages\\sendgrid\\9.28.1\\sendgrid.9.28.1.nupkg.sha512",
-    "C:\\Users\\david\\.nuget\\packages\\starkbank-ecdsa\\1.3.3\\starkbank-ecdsa.1.3.3.nupkg.sha512",
     "C:\\Users\\david\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",
     "C:\\Users\\david\\.nuget\\packages\\system.configuration.configurationmanager\\6.0.1\\system.configuration.configurationmanager.6.0.1.nupkg.sha512",
     "C:\\Users\\david\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\GitHub\\event_booking\\event_booking.csproj": {}
+    "D:\\Capstone\\event_booking.csproj": {}
   },
   "projects": {
-    "D:\\GitHub\\event_booking\\event_booking.csproj": {
+    "D:\\Capstone\\event_booking.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GitHub\\event_booking\\event_booking.csproj",
+        "projectUniqueName": "D:\\Capstone\\event_booking.csproj",
         "projectName": "event_booking",
-        "projectPath": "D:\\GitHub\\event_booking\\event_booking.csproj",
+        "projectPath": "D:\\Capstone\\event_booking.csproj",
         "packagesPath": "C:\\Users\\david\\.nuget\\packages\\",
-        "outputPath": "D:\\GitHub\\event_booking\\obj\\",
+        "outputPath": "D:\\Capstone\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -68,6 +68,10 @@
             "Microsoft.EntityFrameworkCore.Tools": {
               "target": "Package",
               "version": "[7.0.5, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[7.0.6, )"
             }
           },
           "imports": [

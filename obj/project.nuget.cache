@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "X7SGtSHDbp9Pu18wK/CSGQS5+CVv9+kvrVW+LeOfEFXOiuhaW1p9ljbhxCvffW7w8tgj3HLuR3URRcFqSMgO5w==",
+  "dgSpecHash": "BymMIm9ofEFx9TAVW2hJcCXjEck3veXwviEzo2imNsHGkoNGDb7/AQRbA7c/tIVUikv4uml2Wx1H8XtZ6MhZ8w==",
   "success": true,
-  "projectFilePath": "D:\\event_booking\\event_booking.csproj",
+  "projectFilePath": "D:\\GitHub\\event_booking\\event_booking.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\david\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\david\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

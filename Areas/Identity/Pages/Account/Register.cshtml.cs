@@ -103,7 +103,7 @@ namespace event_booking.Areas.Identity.Pages.Account
             public string ConfirmPassword { get; set; }
 
             [Required]
-            [Display(Name = "")]
+            [Display(Name = "Role")]
             public string Role { get; set; }
         }
 
@@ -138,6 +138,10 @@ namespace event_booking.Areas.Identity.Pages.Account
                     {
                         await _userManager.AddToRoleAsync(user, role.Name);
                     }
+                    else {
+                        throw new NotSupportedException("Please enter a user role");
+                    }
+
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Page(
                         "/Account/ConfirmEmail",

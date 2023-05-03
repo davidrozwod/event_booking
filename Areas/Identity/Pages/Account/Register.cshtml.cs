@@ -49,6 +49,7 @@ namespace event_booking.Areas.Identity.Pages.Account
             _roleManager = roleManager;
         }
 
+
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
@@ -66,6 +67,12 @@ namespace event_booking.Areas.Identity.Pages.Account
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
         /// </summary>
+        /// 
+        public enum UserRole
+        {
+            User,
+            Promoter
+        }
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
         /// <summary>
@@ -104,7 +111,7 @@ namespace event_booking.Areas.Identity.Pages.Account
 
             [Required]
             [Display(Name = "Role")]
-            public string Role { get; set; }
+            public UserRole Role { get; set; }
         }
 
 
@@ -133,10 +140,18 @@ namespace event_booking.Areas.Identity.Pages.Account
 
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    var role = await _roleManager.FindByNameAsync(Input.Role);
+                    var role = Input.Role.ToString();
+                    if (!await _roleManager.RoleExistsAsync("User"))
+                    {
+                        await _roleManager.CreateAsync(new IdentityRole("User"));
+                    }
+                    if (!await _roleManager.RoleExistsAsync("Promoter"))
+                    {
+                        await _roleManager.CreateAsync(new IdentityRole("Promoter"));
+                    }
                     if (role != null)
                     {
-                        await _userManager.AddToRoleAsync(user, role.Name);
+                        await _userManager.AddToRoleAsync(user, role);
                     }
                     else {
                         throw new NotSupportedException("Please enter a user role");

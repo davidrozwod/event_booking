@@ -853,3 +853,6 @@ D:\GitHub\event_booking\obj\Debug\net7.0\refint\event_booking.dll
 D:\GitHub\event_booking\obj\Debug\net7.0\event_booking.pdb
 D:\GitHub\event_booking\obj\Debug\net7.0\event_booking.genruntimeconfig.cache
 D:\GitHub\event_booking\obj\Debug\net7.0\ref\event_booking.dll
+D:\GitHub\event_booking\bin\Debug\net7.0\Azure.Security.KeyVault.Secrets.dll
+D:\GitHub\event_booking\bin\Debug\net7.0\SendGrid.dll
+D:\GitHub\event_booking\bin\Debug\net7.0\StarkbankEcdsa.dll

@@ -8,7 +8,7 @@
         {
             var keyVaultUrl = "https://eventkeys.vault.azure.net";
             var secretName = "eventfulnz";
-            var credential = new DefaultAzureCredential();
+            var credential = new ManagedIdentityCredential();
             var client = new SecretClient(new Uri(keyVaultUrl), credential);
 
             KeyVaultSecret secret = client.GetSecret(secretName);

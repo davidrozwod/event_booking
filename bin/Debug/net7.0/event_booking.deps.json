@@ -10,6 +10,7 @@
         "dependencies": {
           "Azure.Identity": "1.8.2",
           "Azure.Security.KeyVault.Secrets": "4.5.0",
+          "CoreAdmin": "2.7.0",
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "7.0.5",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.5",
           "Microsoft.AspNetCore.Identity.UI": "7.0.5",
@@ -68,6 +69,18 @@
           "lib/netstandard2.0/Azure.Security.KeyVault.Secrets.dll": {
             "assemblyVersion": "4.5.0.0",
             "fileVersion": "4.500.23.16403"
+          }
+        }
+      },
+      "CoreAdmin/2.7.0": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "7.0.5",
+          "NonFactors.Grid.Core.Mvc6": "7.1.0"
+        },
+        "runtime": {
+          "lib/net7.0/DotNetEd.CoreAdmin.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
           }
         }
       },
@@ -1461,6 +1474,14 @@
           }
         }
       },
+      "NonFactors.Grid.Core.Mvc6/7.1.0": {
+        "runtime": {
+          "lib/net6.0/Mvc.Grid.Core.dll": {
+            "assemblyVersion": "7.1.0.0",
+            "fileVersion": "7.1.0.0"
+          }
+        }
+      },
       "NuGet.Common/6.3.1": {
         "dependencies": {
           "NuGet.Frameworks": "6.3.1"
@@ -2455,6 +2476,13 @@
       "path": "azure.security.keyvault.secrets/4.5.0",
       "hashPath": "azure.security.keyvault.secrets.4.5.0.nupkg.sha512"
     },
+    "CoreAdmin/2.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-qwa33DYykMuQ6JCeDoIPI3NMU91MEWI35ukK/FcMCeWtNjDxuwaWoTRS8P6+vA3cF81AkuIsxCU7CH7yzK0ofw==",
+      "path": "coreadmin/2.7.0",
+      "hashPath": "coreadmin.2.7.0.nupkg.sha512"
+    },
     "Humanizer.Core/2.14.1": {
       "type": "package",
       "serviceable": true,
@@ -2986,6 +3014,13 @@
       "sha512": "sha512-ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
       "path": "newtonsoft.json/13.0.1",
       "hashPath": "newtonsoft.json.13.0.1.nupkg.sha512"
+    },
+    "NonFactors.Grid.Core.Mvc6/7.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-rvPZICY/Gyca1vEuQmxRXR1PHxlxYmw7JzBjAF6wdQy+bXyikT5aq2kWO+4V0wl62uV6u0fFtL6nVnl9IKniXg==",
+      "path": "nonfactors.grid.core.mvc6/7.1.0",
+      "hashPath": "nonfactors.grid.core.mvc6.7.1.0.nupkg.sha512"
     },
     "NuGet.Common/6.3.1": {
       "type": "package",

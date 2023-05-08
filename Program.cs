@@ -26,6 +26,7 @@ namespace event_booking
 
             builder.Services.AddTransient<IEmailSender, EmailSender>();
             builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
+            builder.Services.AddCoreAdmin("Promoter");
 
             var app = builder.Build();
 

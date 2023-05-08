@@ -38,10 +38,13 @@ public class EmailSender : IEmailSender
         var client = new SendGridClient(apiKey);
         var msg = new SendGridMessage()
         {
-            From = new EmailAddress("support@eventfulnz.com", "Password Recovery"),
+            From = new EmailAddress("support@eventfulnz.com", "Support Eventful NZ"),
             Subject = subject,
             PlainTextContent = message,
-            HtmlContent = message
+            HtmlContent = message  + "<br/><br/>" +
+                    "To unsubscribe from future emails, " +
+                    "<a href='https://eventfulnz.com/unsubscribe'>click here</a>."
+        
         };
         msg.AddTo(new EmailAddress(toEmail));
 

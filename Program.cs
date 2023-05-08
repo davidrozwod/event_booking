@@ -1,6 +1,9 @@
 using event_booking.Data;
+using event_booking.Services;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace event_booking
 {
@@ -20,6 +23,9 @@ namespace event_booking
                 .AddRoles<IdentityRole>()  
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddTransient<IEmailSender, EmailSender>();
+            builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
 
             var app = builder.Build();
 

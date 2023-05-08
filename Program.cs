@@ -1,5 +1,8 @@
+using DotNetEd.CoreAdmin;
 using event_booking.Data;
+using event_booking.Data.Migrations;
 using event_booking.Services;
+using Microsoft.AspNetCore.Components.Web.Virtualization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
@@ -27,6 +30,7 @@ namespace event_booking
             builder.Services.AddTransient<IEmailSender, EmailSender>();
             builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
             builder.Services.AddCoreAdmin("Promoter");
+            builder.Services.AddCoreAdmin(new CoreAdminOptions() { IgnoreEntityTypes = new List<Type>() { typeof(IdentityUser) } });
 
             var app = builder.Build();
 
@@ -53,6 +57,7 @@ namespace event_booking
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();
+            app.UseCoreAdminCustomTitle("Promoter Area");
 
             app.Run();
         }

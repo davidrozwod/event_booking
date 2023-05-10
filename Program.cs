@@ -40,7 +40,8 @@ namespace event_booking
               typeof(IdentityUserRole<string>),
               typeof(IdentityUserClaim<string>),
               typeof(IdentityUserLogin<string>),
-              typeof(IdentityUserToken<string>) } 
+              typeof(IdentityUserToken<string>),
+              typeof(IdentityRoleClaim<string>)} 
             
             });
 
@@ -71,7 +72,7 @@ namespace event_booking
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();
             app.UseCoreAdminCustomTitle("Promoter Area");
-            app.UseCoreAdminCustomUrl("promoterarea");
+            app.UseCoreAdminCustomUrl("PromoterArea");
 
             app.Run();
         }

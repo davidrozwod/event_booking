@@ -28,8 +28,9 @@
                         <li class="nav-item">
                             @if (User.IsInRole("Promoter"))
                             {
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="PromoterArea">Promoter Area</a>
+                                <a class="nav-link text-dark" href="/CoreAdmin">Promoter Area</a>
                             }
+
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />

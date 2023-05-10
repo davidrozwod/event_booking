@@ -66,13 +66,13 @@ namespace event_booking
             app.UseRouting();
 
             app.UseAuthorization();
-
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-            app.MapRazorPages();
+
             app.UseCoreAdminCustomTitle("Promoter Area");
-            app.UseCoreAdminCustomUrl("PromoterArea");
+            app.MapRazorPages();
+
 
             app.Run();
         }

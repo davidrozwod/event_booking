@@ -13,7 +13,7 @@ namespace event_booking.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20230515205425_dbupdate")]
-    partial class dbupdate
+    partial class Dbupdate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

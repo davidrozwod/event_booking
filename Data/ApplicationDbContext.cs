@@ -278,8 +278,6 @@ namespace event_booking.Data
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_VIP_Events");
             });
-
-            OnModelCreating(modelBuilder);
         }
     }
 }

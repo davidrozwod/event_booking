@@ -1,0 +1,216 @@
+﻿
+@{
+    ViewData["Title"] = "View Ticket";
+}
+
+<div id="progress">
+    <div id="progress-bar"></div>
+    <ul id="progress-num">
+        <li class="step active">1</li>
+        <li class="step">2</li>
+        <li class="step">3</li>
+        <li class="step">4</li>
+    </ul>
+</div>
+<button id="progress-next" class="btn"><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Ticket2">Next</a></button>
+
+
+<script>
+    const progressBar = document.getElementById("progress-bar");
+    const progressNext = document.getElementById("progress-next");
+    const progressPrev = document.getElementById("progress-prev");
+    const steps = document.querySelectorAll(".step");
+    let active = 1;
+
+    progressNext.addEventListener("click", () => {
+        active++;
+        if (active > steps.length) {
+            active = steps.length;
+        }
+        updateProgress();
+    });
+
+    progressPrev.addEventListener("click", () => {
+        active--;
+        if (active < 1) {
+            active = 1;
+        }
+        updateProgress();
+    });
+
+    const updateProgress = () => {
+        // toggle active class on list items
+        steps.forEach((step, i) => {
+            if (i < active) {
+                step.classList.add("active");
+            } else {
+                step.classList.remove("active");
+            }
+        });
+        // set progress bar width
+        progressBar.style.width =
+            ((active - 1) / (steps.length - 1)) * 100 + "%";
+        // enable disable prev and next buttons
+        if (active === 1) {
+            progressPrev.disabled = true;
+        } else if (active === steps.length) {
+            progressNext.disabled = true;
+        } else {
+            progressPrev.disabled = false;
+            progressNext.disabled = false;
+        }
+    };
+</script>
+
+<style>
+    #progress {
+        position: relative;
+        margin-bottom: 30px;
+        margin-top: -255px;
+    }
+
+    #progress-bar {
+        position: absolute;
+        background: lightseagreen;
+        height: 5px;
+        width: 0%;
+        top: 50%;
+        left: 0;
+    }
+
+    #progress-num {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+    }
+
+        #progress-num::before {
+            content: "";
+            background-color: lightgray;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            height: 5px;
+            width: 100%;
+            z-index: -1;
+        }
+
+        #progress-num .step {
+            border: 3px solid lightgray;
+            border-radius: 100%;
+            width: 25px;
+            height: 25px;
+            line-height: 25px;
+            text-align: center;
+            background-color: #fff;
+            font-family: sans-serif;
+            font-size: 14px;
+            position: relative;
+            z-index: 1;
+        }
+
+        #progress-num .step.active {
+                border-color: lightseagreen;
+                background-color: lightseagreen;
+                color: #fff;
+        }
+
+    .table-container {
+        overflow-y: auto;
+        max-height: 400px; 
+    }
+
+    table {
+        width: 100%;
+        table-layout: fixed;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border: 1px solid #dddddd;
+        white-space: nowrap; 
+    }
+
+    .data-list-input {
+        width: 100%;
+    }
+
+</style>
+
+
+<div>
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>Tickets</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Sub-Total</th>
+            </tr>
+            <tr>
+                <td>Adult Ticket</td>
+                <td>$0</td>
+                <td>
+                    <div class="data-list-input">
+                        <select class="data-list-input">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>
+                </td>
+                <td>$0.00</td>
+            </tr>
+            <tr>
+                <td>Child Ticket</td>
+                <td>$0</td>
+                <td>
+                    <div class="data-list-input">
+                        <select class="data-list-input">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>
+                </td>
+                <td>$0.00</td>
+            </tr>
+            <tr>
+                <td>Under 6 Ticket</td>
+                <td>$0</td>
+                <td>
+                    <div class="data-list-input">
+                        <select class="data-list-input">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>
+                </td>
+                <td>$0.00</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+
+
+
+

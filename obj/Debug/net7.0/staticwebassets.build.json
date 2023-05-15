@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "YD8EdO+NHpYyXlbswlAgqvzhBTBd4r2fwdNmqTWwAtg=",
+  "Hash": "ugkMaBjKNA8zHjDkbeVMmXiIaPrHh/89Ny6PQHMrVDs=",
   "Source": "event_booking",
   "BasePath": "_content/event_booking",
   "Mode": "Default",
@@ -1071,12 +1071,12 @@
       "OriginalItemSpec": "C:\\Users\\User\\Desktop\\New folder\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\event_booking.bundle.scp.css"
     },
     {
-      "Identity": "C:\\Users\\User\\Desktop\\New folder\\wwwroot\\css\\evo-calendar.midnight-blue.min.css",
+      "Identity": "C:\\Users\\User\\Desktop\\New folder\\wwwroot\\css\\evo-calendar.css",
       "SourceId": "event_booking",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\User\\Desktop\\New folder\\wwwroot\\",
       "BasePath": "_content/event_booking",
-      "RelativePath": "css/evo-calendar.midnight-blue.min.css",
+      "RelativePath": "css/evo-calendar.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1085,15 +1085,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\evo-calendar.midnight-blue.min.css"
+      "OriginalItemSpec": "wwwroot\\css\\evo-calendar.css"
     },
     {
-      "Identity": "C:\\Users\\User\\Desktop\\New folder\\wwwroot\\css\\evo-calendar.min.css",
+      "Identity": "C:\\Users\\User\\Desktop\\New folder\\wwwroot\\css\\evo-calendar.midnight-blue.css",
       "SourceId": "event_booking",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\User\\Desktop\\New folder\\wwwroot\\",
       "BasePath": "_content/event_booking",
-      "RelativePath": "css/evo-calendar.min.css",
+      "RelativePath": "css/evo-calendar.midnight-blue.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1102,7 +1102,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\evo-calendar.min.css"
+      "OriginalItemSpec": "wwwroot\\css\\evo-calendar.midnight-blue.css"
     },
     {
       "Identity": "C:\\Users\\User\\Desktop\\New folder\\wwwroot\\css\\site.css",
@@ -1139,12 +1139,12 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
-      "Identity": "C:\\Users\\User\\Desktop\\New folder\\wwwroot\\js\\evo-calendar.min.js",
+      "Identity": "C:\\Users\\User\\Desktop\\New folder\\wwwroot\\js\\evo-calendar.js",
       "SourceId": "event_booking",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\User\\Desktop\\New folder\\wwwroot\\",
       "BasePath": "_content/event_booking",
-      "RelativePath": "js/evo-calendar.min.js",
+      "RelativePath": "js/evo-calendar.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1153,7 +1153,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\evo-calendar.min.js"
+      "OriginalItemSpec": "wwwroot\\js\\evo-calendar.js"
     },
     {
       "Identity": "C:\\Users\\User\\Desktop\\New folder\\wwwroot\\js\\site.js",

@@ -5,12 +5,12 @@
       "PackagePath": "staticwebassets\\event_booking.bundle.scp.css"
     },
     {
-      "Id": "C:\\Users\\User\\Desktop\\New folder\\wwwroot\\css\\evo-calendar.midnight-blue.min.css",
-      "PackagePath": "staticwebassets\\css\\evo-calendar.midnight-blue.min.css"
+      "Id": "C:\\Users\\User\\Desktop\\New folder\\wwwroot\\css\\evo-calendar.css",
+      "PackagePath": "staticwebassets\\css\\evo-calendar.css"
     },
     {
-      "Id": "C:\\Users\\User\\Desktop\\New folder\\wwwroot\\css\\evo-calendar.min.css",
-      "PackagePath": "staticwebassets\\css\\evo-calendar.min.css"
+      "Id": "C:\\Users\\User\\Desktop\\New folder\\wwwroot\\css\\evo-calendar.midnight-blue.css",
+      "PackagePath": "staticwebassets\\css\\evo-calendar.midnight-blue.css"
     },
     {
       "Id": "C:\\Users\\User\\Desktop\\New folder\\wwwroot\\css\\site.css",
@@ -21,8 +21,8 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "C:\\Users\\User\\Desktop\\New folder\\wwwroot\\js\\evo-calendar.min.js",
-      "PackagePath": "staticwebassets\\js\\evo-calendar.min.js"
+      "Id": "C:\\Users\\User\\Desktop\\New folder\\wwwroot\\js\\evo-calendar.js",
+      "PackagePath": "staticwebassets\\js\\evo-calendar.js"
     },
     {
       "Id": "C:\\Users\\User\\Desktop\\New folder\\wwwroot\\js\\site.js",

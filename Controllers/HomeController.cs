@@ -28,6 +28,11 @@ namespace event_booking.Controllers
             return View();
         }
 
+        public IActionResult UserExclusiveFeatures()
+        {
+            return View();
+        }
+
         public IActionResult Ticket()
         {
             return View();

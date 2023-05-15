@@ -39,15 +39,40 @@ button.accept-policy {
   line-height: inherit;
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    min-height: calc(100vh - 60px - 60px); /* Adjust the height to account for header and footer height */
+    display: flex;
+    align-items: center;
+}
+
+.container {
+    flex-grow: 1;
+    padding: 20px;
+}
+
 .footer {
-    position: absolute;
-    bottom: 0;
     width: 100%;
-    white-space: nowrap;
-    line-height: 60px;
-    position: relative;
+    height: 60px;
     bottom: 0;
-    width: 100%;
-    white-space: nowrap;
     line-height: 30px;
+    white-space: nowrap;
+    margin-top: auto;
+}
+
+header {
+    padding: 20px;
+}
+
+footer {
+    padding: 20px;
+}
+
+.content {
+    padding: 20px;
 }

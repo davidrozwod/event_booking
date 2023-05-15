@@ -66,6 +66,7 @@
     #progress {
         position: relative;
         margin-bottom: 30px;
+        margin-top: -255px;
     }
 
     #progress-bar {
@@ -110,89 +111,104 @@
             z-index: 1;
         }
 
-            #progress-num .step.active {
+        #progress-num .step.active {
                 border-color: lightseagreen;
                 background-color: lightseagreen;
                 color: #fff;
-            }
-</style>
+        }
 
+    .table-container {
+        overflow-y: auto;
+        max-height: 400px; 
+    }
 
-<style>
     table {
-        font-family: arial, sans-serif;
+        width: 100%;
+        table-layout: fixed;
         border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border: 1px solid #dddddd;
+        white-space: nowrap; 
+    }
+
+    .data-list-input {
         width: 100%;
     }
 
-    td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-    }
-
-    tr:nth-child(even) {
-        background-color: #dddddd;
-    }
 </style>
-<table>
-    <tr>
-        <th>Tickets</th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Sub-Total</th>
 
-    </tr>
-    <tr>
-        <td>Adult Ticket</td>
-        <td>$0</td>
-        <td>
-            <div class="data-list-input" style="width:190px;">
-                <select class="data-list-input" style="width:190px;">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                </select>
-            </div></td>
-        <th>$0.00</th>
-    </tr>
-    <tr>
-        <td>Child Ticket</td>
-        <td>$0</td>
-        <td><div class="data-list-input" style="width:190px;">
-                <select class="data-list-input" style="width:190px;">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                </select>
-            </div></td>
-        <th>$0.00</th>
-    </tr>
-    <tr>
-        <td>Under 6 Ticket</td>
-        <td>$0</td>
-        <td><div class="data-list-input" style="width:190px;">
-                <select class="data-list-input" style="width:190px;">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                </select>
-            </div></td>
-        <th>$0.00</th>
-    </tr>
-</table>
+
+<div>
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>Tickets</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Sub-Total</th>
+            </tr>
+            <tr>
+                <td>Adult Ticket</td>
+                <td>$0</td>
+                <td>
+                    <div class="data-list-input">
+                        <select class="data-list-input">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>
+                </td>
+                <td>$0.00</td>
+            </tr>
+            <tr>
+                <td>Child Ticket</td>
+                <td>$0</td>
+                <td>
+                    <div class="data-list-input">
+                        <select class="data-list-input">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>
+                </td>
+                <td>$0.00</td>
+            </tr>
+            <tr>
+                <td>Under 6 Ticket</td>
+                <td>$0</td>
+                <td>
+                    <div class="data-list-input">
+                        <select class="data-list-input">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>
+                </td>
+                <td>$0.00</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
 
 
 

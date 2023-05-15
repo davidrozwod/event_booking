@@ -67,6 +67,7 @@
     #progress {
         position: relative;
         margin-bottom: 30px;
+        margin-top: -170px;
     }
 
     #progress-bar {
@@ -116,54 +117,99 @@
                 background-color: lightseagreen;
                 color: #fff;
             }
+
+    .table-container {
+        overflow-y: auto;
+        max-height: 400px;
+    }
+
+    table {
+        width: 100%;
+        table-layout: fixed;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border: 1px solid #dddddd;
+        white-space: nowrap;
+    }
+
+    .data-list-input {
+        width: 100%;
+    }
 </style>
 
 <div class="text-center">
     <h1 class="display-4">Review your order</h1>
 </div>
 
-<style>
-    table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-    }
+<div>
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>Tickets</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Sub-Total</th>
+            </tr>
+            <tr>
+                <td>Adult Ticket</td>
+                <td>$0</td>
+                <td>
+                    <div class="data-list-input">
+                        <select class="data-list-input">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>
+                </td>
+                <td>$0.00</td>
+            </tr>
+            <tr>
+                <td>Child Ticket</td>
+                <td>$0</td>
+                <td>
+                    <div class="data-list-input">
+                        <select class="data-list-input">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>
+                </td>
+                <td>$0.00</td>
+            </tr>
+            <tr>
+                <td>Under 6 Ticket</td>
+                <td>$0</td>
+                <td>
+                    <div class="data-list-input">
+                        <select class="data-list-input">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>
+                </td>
+                <td>$0.00</td>
+            </tr>
+        </table>
+    </div>
+</div>
 
-    td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-    }
-
-    tr:nth-child(even) {
-        background-color: #dddddd;
-    }
-</style>
-<table>
-    <tr>
-        <th>Tickets</th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Sub-Total</th>
-
-    </tr>
-    <tr>
-        <td>Adult Ticket</td>
-        <td>$0</td>
-        <td>0</td>
-        <th>$0.00</th>
-    </tr>
-    <tr>
-        <td>Child Ticket</td>
-        <td>$0</td>
-        <td>0</td>
-        <th>$0.00</th>
-    </tr>
-    <tr>
-        <td>Under 6 Ticket</td>
-        <td>$0</td>
-        <td>0</td>
-        <th>$0.00</th>
-    </tr>
-</table>
 

@@ -14,7 +14,9 @@
             </div>
             <hr />
             <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+            
             <div class="row g-2">
+                <!-- Name values not in the database
                 <div class="col-md">
                     <div class="form-floating">
                         <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
@@ -29,6 +31,7 @@
                         <span asp-validation-for="Input.Email" class="text-danger"></span>
                     </div>
                 </div>
+                -->
             </div>
             <p></p>
             <div class="form-floating mb-3">
@@ -52,27 +55,6 @@
                     <option value="@UserRole.User">User</option>
                     <option value="@UserRole.Promoter">Promoter</option>
                 </select>
-            </div>
-            <div class="row g-2">
-                <div class="col-md">
-                    <div class="form-floating">
-                        <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example">
-                            <option selected>Pick your Location</option>
-                            <option value="1">This Place</option>
-                            <option value="2">That Place</option>
-                            <option value="3">That other area</option>
-                        </select>
-                        <label for="floatingSelectGrid">City of Residence</label>
-                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-md">
-                    <div class="form-floating">
-                        <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
-                        <label for="floatingInputGrid">Postal Code</label>
-                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-                    </div>
-                </div>
             </div>
             <p></p>
             <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>

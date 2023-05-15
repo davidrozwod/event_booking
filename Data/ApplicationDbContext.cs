@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace event_booking.Data
 {
-    public partial class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -279,9 +279,7 @@ namespace event_booking.Data
                     .HasConstraintName("FK_VIP_Events");
             });
 
-            OnModelCreatingPartial(modelBuilder);
+            OnModelCreating(modelBuilder);
         }
-
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }

@@ -11,3 +11,4 @@ namespace event_booking.Data
         {
         }
     }
+}

@@ -10,9 +10,9 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark shadow-inner">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                <a class="navbar-brand nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">
                     <img src="https://i.ibb.co/fYKrRZZ/jamie-Logo.png" alt="Logo">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -22,22 +22,34 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Ticket">Book a Ticket</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Ticket">Book a Ticket</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="UserExclusiveFeatures">Subscribe</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="UserExclusiveFeatures">Subscribe</a>
                         </li>
                         <li class="nav-item">
                             @if (User.IsInRole("Promoter"))
                             {
                                 <a class="nav-link text-dark" href="/CoreAdmin">Promoter Area</a>
                             }
+                        </li>
+                        <li class="nav-item">
+                            <form class="d-flex input-group w-auto">
+                                <input type="search"
+                                       class="form-control rounded"
+                                       placeholder="Search"
+                                       aria-label="Search"
+                                       aria-describedby="search-addon" />
+                                <span class="input-group-text border-0" id="search-addon">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                            </form>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />

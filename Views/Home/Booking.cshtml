@@ -1,0 +1,255 @@
+﻿
+@{
+    ViewData["Title"] = "Booking";
+}
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        list-style: none;
+        font-family: 'Josefin Sans', sans-serif;
+    }
+
+    body {
+        background-color: #f3f5f9;
+    }
+
+    .wrapper {
+        display: flex;
+        position: relative;
+    }
+
+        .wrapper .sidebar {
+            width: 200px;
+            height: 100%;
+            background: #4b4276;
+            padding: 30px 0px;
+            position: absolute;
+            float: right;
+        }
+
+            .wrapper .sidebar h2 {
+                color: #fff;
+                text-transform: uppercase;
+                text-align: center;
+                margin-bottom: 30px;
+            }
+
+            .wrapper .sidebar ul li {
+                padding: 15px;
+                border-bottom: 1px solid #bdb8d7;
+                border-bottom: 1px solid rgba(0,0,0,0.05);
+                border-top: 1px solid rgba(255,255,255,0.05);
+                text-decoration: none
+            }
+
+                .wrapper .sidebar ul li a {
+                    color: #bdb8d7;
+                    display: block;
+                    text-decoration: none
+                }
+
+                    .wrapper .sidebar ul li a .fas {
+                        width: 25px;
+                        text-decoration: none
+                    }
+
+                .wrapper .sidebar ul li:hover {
+                    background-color: #594f8d;
+                    text-decoration: none
+                }
+
+                    .wrapper .sidebar ul li:hover a {
+                        color: #fff;
+                        text-decoration: none
+                    }
+
+        .wrapper .main_content {
+            width: 100%;
+            margin-left: 200px;
+        }
+
+            .wrapper .main_content .header {
+                padding: 20px;
+                background: #fff;
+                color: #717171;
+                border-bottom: 1px solid #e0e4e8;
+            }
+
+            .wrapper .main_content .info {
+                margin: 20px;
+                color: #717171;
+                line-height: 25px;
+            }
+
+                .wrapper .main_content .info div {
+                    margin-bottom: 20px;
+                }
+
+    img {
+        float: left;
+        width: 25px;
+        display: inline-block;
+        margin: 0px 6px 4px;
+    }
+</style>
+
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 40px;
+    }
+
+    button {
+        border: none;
+        cursor: pointer;
+        appearance: none;
+        background-color: inherit;
+        transition: transform .7s ease-in-out;
+        margin-left: 10px;
+    }
+
+    img1 {
+        width: 70px;
+        height: 70px;
+    }
+</style>
+
+<body>
+
+    <div class="wrapper">
+        <div class="sidebar">
+            <h2>Eventful</h2>
+            <ul>
+                <li><img src="https://icon-library.com/images/dashboard-icon-vector/dashboard-icon-vector-2.jpg" /> <a asp-controller="Home" asp-action="AdminDashboard"> Dashboard</a></li>
+                <li><img src="https://www.freeiconspng.com/thumbs/profile-icon-png/profile-icon-person-user-19.png" /> <a asp-controller="Home" asp-action="Notification"> Profile</a></li>
+                <li><img src="https://img.uxwing.com/wp-content/themes/uxwing/download/seo-marketing/announcement-icon.png" /> <a asp-controller="Home" asp-action="Events"> Events</a></li>
+                <li><img src="https://cdn-icons-png.flaticon.com/512/55/55281.png" /> <a asp-controller="Home" asp-action="Booking"> Bookings</a></li>
+                <li><img src="https://cdn.onlinewebfonts.com/svg/img_387338.png" /> <a asp-controller="Home" asp-action="Reviews"> Reviews</a></li>
+                <li><img src="https://cdn-icons-png.flaticon.com/512/3239/3239958.png" /> <a asp-controller="Home" asp-action="Notification"> Notifications</a></li>
+                <li><img src="https://cdn.icon-icons.com/icons2/2518/PNG/512/logout_icon_151219.png" /> <a asp-area="Identity" asp-page="/Account/Logout"> Logout</a></li>
+            </ul>
+        </div>
+        <div class="main_content">
+            <div class="header">Welcome to the Admin Dashboard</div>
+            <div class="info">
+                <div>
+                    <table>
+                        <tr>
+                            <th>Event Title</th>
+                            <th>Event Type</th>
+                            <th>Event Location</th>
+                            <th>Event Organiser</th>
+                            <th>Event Start Date </th>
+                            <th>Event End Date</th>
+                            <th>Event Expiry Date<th>
+                            <th>Actions<th>
+                        </tr>
+                        <tr>
+                            <td>Alfreds Futterkiste</td>
+                            <td>Maria Anders</td>
+                            <td>Germany</td>
+                            <td>Jonny Smith</td>
+                            <td>31/4/23</td>
+                            <td>29/5/23</td>
+                            <td>29/5/23</td>
+                            <td>
+                                <div>
+                                    <button>
+                                        <img1 src="https://www.vhv.rs/dpng/d/489-4892542_eyes-eye-sight-icon-png-transparent-png.png" alt="buttonpng" border="0" />
+                                    </button>
+                                </div>
+                                <div>
+                                    <button>
+                                        <img1 src="https://cdn-icons-png.flaticon.com/512/266/266146.png" alt="buttonpng" border="0" />
+                                    </button>
+                                </div>
+                                <div>
+                                    <button>
+                                        <img1 src="https://cdn-icons-png.flaticon.com/512/1345/1345874.png" alt="buttonpng" border="0" />
+                                    </button>
+                                </div>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>Centro comercial Moctezuma</td>
+                            <td>Francisco Chang</td>
+                            <td>Mexico</td>
+                            <td>Jonny Smith</td>
+                            <td>31/4/23</td>
+                            <td>29/5/23</td>
+                            <td>29/5/23</td>
+                        </tr>
+                        <tr>
+                            <td>Ernst Handel</td>
+                            <td>Roland Mendel</td>
+                            <td>Austria</td>
+                            <td>Jonny Smith</td>
+                            <td>31/4/23</td>
+                            <td>29/5/23</td>
+                            <td>29/5/23</td>
+                        </tr>
+                        <tr>
+                            <td>Island Trading</td>
+                            <td>Helen Bennett</td>
+                            <td>UK</td>
+                            <td>Jonny Smith</td>
+                            <td>31/4/23</td>
+                            <td>29/5/23</td>
+                            <td>29/5/23</td>
+                        </tr>
+                        <tr>
+                            <td>Laughing Bacchus Winecellars</td>
+                            <td>Yoshi Tannamuri</td>
+                            <td>Canada</td>
+                            <td>Jonny Smith</td>
+                            <td>31/4/23</td>
+                            <td>29/5/23</td>
+                            <td>29/5/23</td>
+                        </tr>
+                        <tr>
+                            <td>Magazzini Alimentari Riuniti</td>
+                            <td>Giovanni Rovelli</td>
+                            <td>Italy</td>
+                            <td>Jonny Smith</td>
+                            <td>31/4/23</td>
+                            <td>29/5/23</td>
+                            <td>29/5/23</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+

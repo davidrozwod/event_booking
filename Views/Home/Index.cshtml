@@ -1,11 +1,10 @@
 ﻿<style>
          body{
-         background: rgb(242, 252, 252);
+         background: rgb(232, 252, 252);
          margin: 0px;
          padding: 0px;
      }
 </style>
-
 <html>
 <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
     <div class="carousel-inner">
@@ -30,16 +29,30 @@
 </div>
 <center><H1>Popular Events</H1></center>
 <style>
-    body {
-        color: #333;
-        font-family: 'Open Sans', sans-serif;
-        font-weight: 300;
-    }
+.hover12 figure {
+        background: #dc2f2f;
+}
+.hover12 figure img {
+	opacity: 1;
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+.hover12 figure:hover img {
+	opacity: .5;
+}
+
+/* Flashing */
+.hover13 figure:hover img {
+	opacity: 1;
+	-webkit-animation: flash 1.5s;
+	animation: flash 1.5s;
+}
 
     h1,
     h1 + p {
-        margin: 30px 15px 0;
+        margin: 5px 15px 0;
         font-weight: 300;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
     }
 
         h1 + p a {
@@ -51,9 +64,10 @@
             }
 
     h2 {
-        margin: 60px 15px 0;
+        margin: 5px 15px 0;
         padding: 0;
         font-weight: 300;
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
     }
 
         h2 span {
@@ -62,181 +76,173 @@
             font-size: 85%;
         }
 
-    .column {
-        margin: 15px 15px 0;
+    h3 {
+        margin: 5px 15px 0;
         padding: 0;
+        font-weight: 300;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
     }
 
-        .column:last-child {
-            padding-bottom: 60px;
+        h3 span {
+            margin-left: 1em;
+            color: #aaa;
+            font-size: 85%;
         }
 
-        .column::after {
-            content: '';
-            clear: both;
-            display: block;
-        }
-
-        .column div {
-            position: relative;
-            float: left;
-            width: 300px;
-            height: 200px;
-            margin: 0 0 0 0px;
-            padding: 0;
-        }
-
-            .column div:first-child {
-                margin-left: 0;
-            }
-
-            .column div span {
-                position: absolute;
-                bottom: -20px;
-                left: 0;
-                z-index: -1;
-                display: block;
-                width: 300px;
-                margin: 0;
-                padding: 0;
-                color: #444;
-                font-size: 18px;
-                text-decoration: none;
-                text-align: center;
-                -webkit-transition: .3s ease-in-out;
-                transition: .3s ease-in-out;
-                opacity: 0;
-            }
-
-    figure {
-        width: 300px;
-        height: 200px;
-        margin: 0;
+    h4 {
+        margin: 5px 5px 0;
+        margin-top: -10px;
         padding: 0;
-        background: #fff;
-        overflow: hidden;
+        font-weight: 300;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
     }
 
-        figure:hover + span {
-            bottom: -36px;
-            opacity: 1;
+        h4 span {
+            margin-left: 1em;
+            color: #aaa;
+            font-size: 85%;
+        }
+    h6 {
+        margin: 5px 5px 0;
+        padding: 0;
+        font-weight: 300;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    }
+
+        h6 span {
+            margin-left: 1em;
+            color: #aaa;
+            font-size: 50%;
+        }
+    h5 {
+        margin-top: 75px
+        padding: 0;
+        font-weight: 300;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    }
+
+        h5 span {
+            margin-left: 1em;
+            color: #aaa;
+            font-size: 20%;
         }
 
-    .hover01 figure img {
-        -webkit-transform: scale(1);
-        transform: scale(1);
-        -webkit-transition: .3s ease-in-out;
-        transition: .3s ease-in-out;
+    p {
+        margin-top: -15px;
+        padding: 0;
+        font-weight: 300;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
     }
 
-    .hover01 figure:hover img {
-        -webkit-transform: scale(1.3);
-        transform: scale(1.3);
-    }
+        p span {
+            margin-left: 1em;
+            color: #aaa;
+            font-size: 85%;
+        }
+    .example {
+  position: relative;
+  padding: 0;
+  width: 300px;
+  display: block;
+  cursor: pointer;
+  overflow: hidden;
+}
 </style>
 <div class="row">
-    <div class="hover01 col-3">
+    <div class="hover12 col-3">
         <div>
-            <figure><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQomIyCZiFfASH2t_mg_B7zxSodZhIYoCtgBJU7uqQaYQ&s" width="100%" "/></figure>
-            <p class="text-muted">Event Category</p>
-            <center><h4>Event/Artist Name</h4></center>
+            <figure><img src="https://www.udiscovermusic.com/wp-content/uploads/2022/06/Denzel_Curry_11.jpg" class="rounded-6" height="197px" width="293px" /></figure>
+            <p class="text-muted">Performances & Nightlife </p>
+            <center><h4>Denzel Curry</h4></center>
         </div>
     </div>
-    <div class="hover01 col-3">
+    <div class="hover12 col-3">
         <div>
-            <figure><img src=" "</figure>
-            <p class="text-muted">Event Category</p>
-            <p class="text-muted">Event Category</p>
-            <center><h4>Event/Artist Name</h4></center>
+            <figure><img src="https://scenestr.com.au/media/k2/items/cache/57730bf7a9bf93c0495a1f10b3667005_XL.jpg" class="rounded-6" height="197px" width="293px" /></figure>
+            <p class="text-muted">Performances & Nightlife</p>
+            <center><h4>Vacations</h4></center>
         </div>
     </div>
-    <div class="hover01 col-3">
+    <div class="hover12 col-3">
         <div>
-            <figure><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQomIyCZiFfASH2t_mg_B7zxSodZhIYoCtgBJU7uqQaYQ&s"  /></figure>
-            <p class="text-muted">Event Category</p>
-            <center><h4>Event/Artist Name</h4></center>
+            <figure><img src="https://thetowerlight.com/wp-content/uploads/2018/12/1319_FOB_Mix_Anderson_Paak_A.jpg" class="rounded-6" height="197px" width="293px" /></figure>
+            <p class="text-muted">Performances & Nightlife</p>
+            <center><h4>Anderson.Paak</h4></center>
         </div>
     </div>
-    <div class="hover01 col-3">
+    <div class="hover12 col-3">
         <div>
-            <figure><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQomIyCZiFfASH2t_mg_B7zxSodZhIYoCtgBJU7uqQaYQ&s" width="00px" height="300px" /></figure>
-            <p class="text-muted">Event Category</p>
-            <center><h4>Event/Artist Name</h4></center>
+            <figure><img src="https://www.rollingstone.com/wp-content/uploads/2020/04/thundercat-by-the1point8.jpg" class="rounded-6" height="197px" width="293px" /></figure>
+            <p class="text-muted">Performances & Nightlife</p>
+            <center><h4>Thundercat</h4></center>
         </div>
     </div>
     <p></p>
 </div>
-<div class="container-fluid">
-    <div class="row">
-        <div class="carousel-inner">
-            <div class="row">
-                <div class="border-dark col-4 ">
-                    .
-                    <Center><h2> Latest Events </h2></Center>
-                    <Center>
-                        <div class="col-12">
-                            <img src=" https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQomIyCZiFfASH2t_mg_B7zxSodZhIYoCtgBJU7uqQaYQ&s" width="300px" height="200px" />
-                            <p class="text-muted">Event Category</p>
-                            <center><h4>Event/Artist Name</h4></center>
-                            <p></p>
-                            <img src=" https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQomIyCZiFfASH2t_mg_B7zxSodZhIYoCtgBJU7uqQaYQ&s" width="300px" height="200px" />
-                            <p class="text-muted">Event Category</p>
-                            <center><h4>Event/Artist Name</h4></center>
-                            <p></p>
-                            <img src=" https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQomIyCZiFfASH2t_mg_B7zxSodZhIYoCtgBJU7uqQaYQ&s" width="300px" height="200px" />
-                            <p class="text-muted">Event Category</p>
-                            <center><h4>Event/Artist Name</h4></center>
-                            <p></p>
-                        </div>
-                    </Center>
-
-                </div>
-                <div class="col-8">
-                    <Center><h2> Discover Events </h2></Center>
-                    <div class="row">
-                        <div class="col-6">
-                            <img src=" https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQomIyCZiFfASH2t_mg_B7zxSodZhIYoCtgBJU7uqQaYQ&s" width="400px" height="250px" />
-                            <p class="text-muted">Event Category</p>
-                            <center><h4>Event/Artist Name</h4></center>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-                            <strong><p><a href="#" class="text-dark">Dark link</a></p></strong>
-                        </div>
-                        <div class="col-6">
-                            <img src=" https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQomIyCZiFfASH2t_mg_B7zxSodZhIYoCtgBJU7uqQaYQ&s" width="400px" height="250px" />
-                            <p class="text-muted">Event Category</p>
-                            <center><h4>Event/Artist Name</h4></center>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-                            <strong><p><a href="#" class="text-dark">Dark link</a></p></strong>
-                        </div>
+ <div class="row">
+        <div class="container border border-dark col-4 ">
+            <Center><h2> Latest Events </h2></Center>
+            <Center>
+                <div class="col-12 ">
+                    <div class="hover12">
+                    <figure><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQomIyCZiFfASH2t_mg_B7zxSodZhIYoCtgBJU7uqQaYQ&s" class="rounded-6" width="100%" /></figure>
+                        <p class="text-muted">Event Category</p>
+                        <center><h4>Event/Artist Name</h4></center>
+                        <p></p>
                     </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <img src=" https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQomIyCZiFfASH2t_mg_B7zxSodZhIYoCtgBJU7uqQaYQ&s" width="400px" height="250px" />
-                            <p class="text-muted">Event Category</p>
-                            <center><h4>Event/Artist Name</h4></center>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-                            <strong><p><a href="#" class="text-dark">Dark link</a></p></strong>
-                        </div>
-                        <div class="col-6">
-                            <img src=" https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQomIyCZiFfASH2t_mg_B7zxSodZhIYoCtgBJU7uqQaYQ&s" width="400px" height="250px" />
-                            <p class="text-muted">Event Category</p>
-                            <center><h4>Event/Artist Name</h4></center>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-                            <strong><p><a href="#" class="text-dark">Dark link</a></p></strong>
-                        </div>
+                    <div class="hover12">
+                    <figure><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQomIyCZiFfASH2t_mg_B7zxSodZhIYoCtgBJU7uqQaYQ&s" class="rounded-6"  width="100%" /></figure>
+                        <p class="text-muted">Event Category</p>
+                        <center><h4>Event/Artist Name</h4></center>
+                        <p></p>
                     </div>
-                    <div class="p-3 mb-2 bg-dark bg-gradient text-white">
-                        <div class="row">
-                            <div class="col-6">
-                                <h3>Create an Event</h3>
-                            </div>
-                            <div class="col-6">
-                                <button type="button" class="btn btn-light">Create</button>
-                            </div>
-                        </div>
+                    <div class="hover12">
+                    <figure><img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQomIyCZiFfASH2t_mg_B7zxSodZhIYoCtgBJU7uqQaYQ&s" class="rounded-6" width="100%" /></figure>
+                        <p class="text-muted">Event Category</p>
+                        <center><h4>Event/Artist Name</h4></center>
+                        <p></p>
                     </div>
-                </div>
-                <p></p>
-            </div>
+            </Center>
         </div>
+        <div class="col-8">
+            <Center><h2> Discover Events </h2></Center>
+            <div class="row">
+                <div class="col-6 hover12">
+                    <figure><img src=" https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQomIyCZiFfASH2t_mg_B7zxSodZhIYoCtgBJU7uqQaYQ&s" width="100%" /></figure>
+                    <p class="text-muted">Event Category</p>
+                    <center><h4>Event/Artist Name</h4></center>
+                    <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</h6>
+                    <strong><h5><a href="#" class="text-primary">Find Tickets</a></h5></strong>
+                </div>
+                <div class="col-6 hover12">
+                    <figure><img src=" https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQomIyCZiFfASH2t_mg_B7zxSodZhIYoCtgBJU7uqQaYQ&s" width="100%" /></figure>
+                    <p class="text-muted">Event Category</p>
+                    <center><h4>Event/Artist Name</h4></center>
+                    <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</h6>
+                    <strong><h5><a href="#" class="text-primary">Find Tickets</a></h5></strong>
+                </div>
+
+                <div class="row">
+                    <div class="col-6 hover12">
+                        <figure><img src=" https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQomIyCZiFfASH2t_mg_B7zxSodZhIYoCtgBJU7uqQaYQ&s" width="100%" /></figure>
+                        <p class="text-muted">Event Category</p>
+                        <center><h4>Event/Artist Name</h4></center>
+                        <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</h6>
+                        <strong><h5><a href="#" class="text-primary">Find Tickets</a></h5></strong>
+                    </div>
+                    <div class="col-6 hover12">
+
+                        <figure><img src=" https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQomIyCZiFfASH2t_mg_B7zxSodZhIYoCtgBJU7uqQaYQ&s" width="100%" /></figure>
+                        <p class="text-muted">Event Category</p>
+                        <center><h4>Event/Artist Name</h4></center>
+                        <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</h6>
+                        <strong><h5><a href="#" class="text-primary">Find Tickets</a></h5></strong>                  
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+<div class="row">
+    <center><h1>weed</h1></center>
+</div>
 </html>

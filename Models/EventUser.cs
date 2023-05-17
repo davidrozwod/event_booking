@@ -11,6 +11,7 @@ public partial class EventUser
 {
     [Key]
     [Column("EventUserID")]
+    [ForeignKey("IdentityUser")]
     public string EventUserId { get; set; } = null!;
 
     public int? FirstName { get; set; }

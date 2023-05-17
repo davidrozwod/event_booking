@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace event_booking.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public partial class ApplicationDbContext : IdentityDbContext
     {
         public ApplicationDbContext()
         {

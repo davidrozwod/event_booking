@@ -94,9 +94,12 @@
         display: inline-block;
         margin: 0px 6px 4px;
     }
+
+    h8{
+        font-weight: bold;
+    }
 </style>
        
-<body>
 
     <div class="wrapper">
         <div class="sidebar">
@@ -114,12 +117,311 @@
         <div class="main_content">
             <div class="header">Welcome to the Admin Dashboard</div>
             <div class="info">
-                <div>Lorem ipsum dolor sit, amet consectetur adipisicing elit. A sed nobis ut exercitationem atque accusamus sit natus officiis totam blanditiis at eum nemo, nulla et quae eius culpa eveniet voluptatibus repellat illum tenetur, facilis porro. Quae fuga odio perferendis itaque alias sint, beatae non maiores magnam ad, veniam tenetur atque ea exercitationem earum eveniet totam ipsam magni tempora aliquid ullam possimus? Tempora nobis facere porro, praesentium magnam provident accusamus temporibus! Repellendus harum veritatis itaque molestias repudiandae ea corporis maiores non obcaecati libero, unde ipsum consequuntur aut consectetur culpa magni omnis vero odio suscipit vitae dolor quod dignissimos perferendis eos? Consequuntur!</div>
-                <div>Lorem ipsum dolor sit, amet consectetur adipisicing elit. A sed nobis ut exercitationem atque accusamus sit natus officiis totam blanditiis at eum nemo, nulla et quae eius culpa eveniet voluptatibus repellat illum tenetur, facilis porro. Quae fuga odio perferendis itaque alias sint, beatae non maiores magnam ad, veniam tenetur atque ea exercitationem earum eveniet totam ipsam magni tempora aliquid ullam possimus? Tempora nobis facere porro, praesentium magnam provident accusamus temporibus! Repellendus harum veritatis itaque molestias repudiandae ea corporis maiores non obcaecati libero, unde ipsum consequuntur aut consectetur culpa magni omnis vero odio suscipit vitae dolor quod dignissimos perferendis eos? Consequuntur!</div>
-                <div>Lorem ipsum dolor sit, amet consectetur adipisicing elit. A sed nobis ut exercitationem atque accusamus sit natus officiis totam blanditiis at eum nemo, nulla et quae eius culpa eveniet voluptatibus repellat illum tenetur, facilis porro. Quae fuga odio perferendis itaque alias sint, beatae non maiores magnam ad, veniam tenetur atque ea exercitationem earum eveniet totam ipsam magni tempora aliquid ullam possimus? Tempora nobis facere porro, praesentium magnam provident accusamus temporibus! Repellendus harum veritatis itaque molestias repudiandae ea corporis maiores non obcaecati libero, unde ipsum consequuntur aut consectetur culpa magni omnis vero odio suscipit vitae dolor quod dignissimos perferendis eos? Consequuntur!</div>
+                <div class="row">
+                    <div class="container border col-4 ">
+                        <h4> Upcoming Events </h4>
+                        <div class="col-12">
+                            <h8>UFC Fight Night: Felder Vs Hooker</h8>
+                                <p class="text-muted">January 28 Tuesday | 8pm - 1AM </p>
+
+                            <h8>Ricky Gervais: Armageddon</h8>
+                                <p class="text-muted">January 28 Tuesday | 8pm - 1AM </p>
+
+                            <h8>Coachella 2023</h8>
+                                <p class="text-muted">January 28 Tuesday | 8pm - 1AM </p>
+                        <h8>UFC Fight Night: Felder Vs Hooker</h8>
+                        <p class="text-muted">January 28 Tuesday | 8pm - 1AM </p>
+
+                        <h8>Ricky Gervais: Armageddon</h8>
+                        <p class="text-muted">January 28 Tuesday | 8pm - 1AM </p>
+
+                        <h8>Coachella 2023</h8>
+                        <p class="text-muted">January 28 Tuesday | 8pm - 1AM </p>
+                        <h8>Ricky Gervais: Armageddon</h8>
+                        <p class="text-muted">January 28 Tuesday | 8pm - 1AM </p>
+
+                        <h8>Coachella 2023</h8>
+                        <p class="text-muted">January 28 Tuesday | 8pm - 1AM </p>
+                            
+                        </div>     
+                    </div>
+                    <div class="col-8">
+                        <Center><h2> Discover Events </h2></Center>
+                        <div class="row">
+                            <div class="col-6">
+                            <link rel='stylesheet' href='style.css' type='text/css' />
+                            <div class="phppot-container">
+                                <center><h4>Sales Overview</h4></center>
+                                <div>
+                                    <canvas id="line-chart"></canvas>
+                                </div>
+                            </div>
+                            <script src="https://cdn.jsdelivr.net/npm/chart.js@4.0.1/dist/chart.umd.min.js"></script>
+                            <script>
+                                new Chart(
+                                    document.getElementById("line-chart"),
+                                    {
+                                        type: 'line',
+                                        data: {
+                                            labels: ["January", "February", "March", "April", "May",
+                                                "June", "July", "August", "September", "October", "November", "December"],
+                                            datasets: [
+                                                {
+                                                    data: [186, 205, 132, 151,
+                                                        210, 219, 313, 322,
+                                                        478, 547, 190, 263],
+                                                    label: "Tickets Available",
+                                                    borderColor: "#3cba9f",
+                                                    fill: false
+                                                },
+                                                {
+                                                    data: [128, 135, 241,
+                                                        250, 263, 280, 394,
+                                                        440, 370, 526, 423, 665],
+                                                    label: "Tickets Sold",
+                                                    borderColor: "#e43202",
+                                                    fill: false
+                                                },]
+                                        },
+                                        options: {
+                                            title: {
+                                                display: true,
+                                                text: 'Chart JS Gridlines - Line Chart Example'
+                                            },
+                                            scales: {
+                                                x: {
+                                                    grid: {
+                                                        display: true,
+                                                        color: "#0046ff",
+                                                        lineWidth: 3
+                                                    }
+                                                },
+                                                y: {
+                                                    grid: {
+                                                        display: true,
+                                                        color: "#0046ff"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    });
+                            </script>
+                            </div>
+                            <div class="col-6">
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+                                <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+                                <script>
+                                    var xValues = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+                                    var yValues = [55, 49, 44, 24, 15];
+                                    var barColors = ["red", "green", "blue", "orange", "brown", "yellow", "purple"];
+
+                                    new Chart("myChart", {
+                                        type: "bar",
+                                        data: {
+                                            labels: xValues,
+                                            datasets: [{
+                                                backgroundColor: barColors,
+                                                data: yValues
+                                            }]
+                                        },
+                                        options: {
+                                            legend: { display: false },
+                                            title: {
+                                                display: true,
+                                                text: "Ticket Sales (This Week)"
+                                            }
+                                        }
+                                    });
+                                </script>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                <style>
+                                    * {
+                                        box-sizing: border-box
+                                    }
+
+                                    .container1 {
+                                        width: 100%;
+                                        background-color: #ddd;
+                                    }
+
+                                    .skills {
+                                        text-align: right;
+                                        padding-top: 5px;
+                                        padding-bottom: 5px;
+                                        color: white;
+                                    }
+
+                                    .html {
+                                        width: 90%;
+                                        background-color: #04AA6D;
+                                    }
+
+                                    .css {
+                                        width: 80%;
+                                        background-color: #2196F3;
+                                    }
+
+                                    .js {
+                                        width: 65%;
+                                        background-color: #f44336;
+                                    }
+
+                                    .php {
+                                        width: 60%;
+                                        background-color: #808080;
+                                    }
+                                </style>
+
+                                    <h6>Goals</h6>
+                                    <div class="container1">
+                                    <div class="skills html">Events Hosted 90%</div>
+                                    </div>
+                                    <div class="container1">
+                                        <div class="skills css">Revenue 80%</div>
+                                    </div>
+                                    <div class="container1">
+                                    <div class="skills js">Tickets Sold 70%</div>
+                                    </div>
+                                    <div class="container1">
+                                    <div class="skills php">Events That Earned 60%</div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <style>
+                                        * {box-sizing: border-box;}
+                                        ul {list-style-type: none;}
+                                        body {font-family: Verdana, sans-serif;}
+
+                                        .month {
+                                          padding: 20px 20px;
+                                          width: 100%;
+                                          background: #1abc9c;
+                                          text-align: center;
+                                        }
+
+                                        .month ul {
+                                          margin: 0;
+                                          padding: 0;
+                                        }
+
+                                        .month ul li {
+                                          color: white;
+                                          font-size: 20px;
+                                          text-transform: uppercase;
+                                          letter-spacing: 2px;
+                                        }
+
+                                        .month .prev {
+                                          float: left;
+                                          padding-top: 10px;
+                                        }
+
+                                        .month .next {
+                                          float: right;
+                                          padding-top: 10px;
+                                        }
+
+                                        .weekdays {
+                                          margin: 0;
+                                          padding: 5px 0;
+                                          background-color: #ddd;
+                                        }
+
+                                        .weekdays li {
+                                          display: inline-block;
+                                          width: 10.6%;
+                                          color: #666;
+                                          text-align: center;
+                                        }
+
+                                        .days {
+                                          padding: 7px 0;
+                                          background: #eee;
+                                          margin: 0;
+                                        }
+
+                                        .days li {
+                                          list-style-type: none;
+                                          display: inline-block;
+                                          width: 10.6%;
+                                          text-align: center;
+                                          margin-bottom: 5px;
+                                          font-size:12px;
+                                          color: #777;
+                                        }
+
+                                        .days li .active {
+                                          padding: 5px;
+                                          background: #1abc9c;
+                                          color: white !important
+                                        }
+
+                                        </style>
+
+
+                                        <div class="month">      
+                                          <ul>
+                                            <li class="prev">&#10094;</li>
+                                            <li class="next">&#10095;</li>
+                                            <li>
+                                              May<br>
+                                              <span style="font-size:18px">2023</span>
+                                            </li>
+                                          </ul>
+                                        </div>
+
+                                        <ul class="weekdays">
+                                          <li>Mo</li>
+                                          <li>Tu</li>
+                                          <li>We</li>
+                                          <li>Th</li>
+                                          <li>Fr</li>
+                                          <li>Sa</li>
+                                          <li>Su</li>
+                                        </ul>
+
+                                        <ul class="days">  
+                                          <li>1</li>
+                                          <li>2</li>
+                                          <li>3</li>
+                                          <li>4</li>
+                                          <li>5</li>
+                                          <li>6</li>
+                                          <li>7</li>
+                                          <li>8</li>
+                                          <li>9</li>
+                                          <li><span class="active">10</span></li>
+                                          <li>11</li>
+                                          <li>12</li>
+                                          <li>13</li>
+                                          <li>14</li>
+                                          <li>15</li>
+                                          <li>16</li>
+                                          <li>17</li>
+                                          <li>18</li>
+                                          <li>19</li>
+                                          <li>20</li>
+                                          <li>21</li>
+                                          <li>22</li>
+                                          <li>23</li>
+                                          <li>24</li>
+                                          <li>25</li>
+                                          <li>26</li>
+                                          <li>27</li>
+                                          <li>28</li>
+                                          <li>29</li>
+                                          <li>30</li>
+                                          <li>31</li>
+                                        </ul>
+                                    </div>     
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
-</body>
 

@@ -1,24 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
-
-namespace event_booking.Models;
-
-[Table("Section", Schema = "evnt")]
-public partial class Section
+﻿namespace event_booking.Models
 {
-    [Key]
-    [Column("SectionID")]
-    public int SectionId { get; set; }
+    public class Section
+    {
+        public int SectionId { get; set; }
+        public string? SectionName { get; set; }
+        public decimal PriceMultiplier { get; set; }
+    }
 
-    [StringLength(50)]
-    [Unicode(false)]
-    public string? SectionName { get; set; }
-
-    public int? PriceMultiplier { get; set; }
-
-    [InverseProperty("Section")]
-    public virtual ICollection<Seat> Seats { get; set; } = new List<Seat>();
 }

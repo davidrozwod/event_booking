@@ -1,83 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Net.Sockets;
 
-namespace event_booking.Models;
-
-/// <summary>
-/// Event Tickets
-/// </summary>
-[Table("Tickets", Schema = "evnt")]
-[Index("EventId", "SeatId", Name = "Ticket_Unique_Index", IsUnique = true)]
-public partial class Ticket
+namespace event_booking.Models
 {
-    [Key]
-    [Column("TicketID")]
-    public int TicketId { get; set; }
+    public class Ticket
+    {
+        public int TicketId { get; set; }
+        public int EventId { get; set; }
+        public int VenueId { get; set; }
+        public int SeatId { get; set; }
+        public string? Id { get; set; } // Foreign key to ApplicationUser (nullable)
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
+        public int? DiscountId { get; set; } // Foreign key (nullable)
+        public int? TicketTypeId { get; set; } // Foreign key (nullable)
+        public int? PurchaseId { get; set; } // Foreign key (nullable)
+        public decimal BasePrice { get; set; }
+        public decimal? TicketPrice { get; set; }
 
-    [Column("EventID")]
-    public int EventId { get; set; }
+        // Navigation properties
+        public virtual ApplicationUser? ApplicationUser { get; set; }
+        public virtual Event? Event { get; set; }
+        public virtual Venue? Venue { get; set; }
+        public virtual Seat? Seat { get; set; }
+        public virtual Discount? Discount { get; set; } // Nullable relationship
+        public virtual TicketType? TicketType { get; set; } // Nullable relationship
+        public virtual Purchase? Purchase { get; set; } // Nullable relationship
 
-    [Column("VenueID")]
-    public int VenueId { get; set; }
 
-    [Column("SeatID")]
-    public int SeatId { get; set; }
+    }
 
-    [StringLength(450)]
-    public string? Id { get; set; }
-
-    [StringLength(50)]
-    public string? FirstName { get; set; }
-
-    [StringLength(50)]
-    [Unicode(false)]
-    public string? LastName { get; set; }
-
-    [Column("DiscountID")]
-    public int? DiscountId { get; set; }
-
-    [Column("TicketTypeID")]
-    public int? TicketTypeId { get; set; }
-
-    [Column("PurchaseID")]
-    public int? PurchaseId { get; set; }
-
-    public int BasePrice { get; set; }
-
-    public int? TicketPrice { get; set; }
-
-    [ForeignKey("DiscountId")]
-    [InverseProperty("Tickets")]
-    public virtual Discount? Discount { get; set; }
-
-    [ForeignKey("EventId")]
-    [InverseProperty("Tickets")]
-    public virtual Event Event { get; set; } = null!;
-
-    [ForeignKey("Id")]
-    [InverseProperty("Tickets")]
-    public virtual AspNetUser? IdNavigation { get; set; }
-
-    [ForeignKey("PurchaseId")]
-    [InverseProperty("Tickets")]
-    public virtual Purchase? Purchase { get; set; }
-
-    [ForeignKey("SeatId")]
-    [InverseProperty("Tickets")]
-    public virtual Seat Seat { get; set; } = null!;
-
-    [ForeignKey("TicketTypeId")]
-    [InverseProperty("Tickets")]
-    public virtual TicketType? TicketType { get; set; }
-
-    [ForeignKey("VenueId")]
-    [InverseProperty("Tickets")]
-    public virtual Venue Venue { get; set; } = null!;
-
-    [ForeignKey("TicketId")]
-    [InverseProperty("Tickets")]
-    public virtual ICollection<Vip> Vips { get; set; } = new List<Vip>();
 }

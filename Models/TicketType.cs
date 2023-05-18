@@ -1,24 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
-
-namespace event_booking.Models;
-
-[Table("TicketType", Schema = "evnt")]
-public partial class TicketType
+﻿namespace event_booking.Models
 {
-    [Key]
-    [Column("TicketTypeID")]
-    public int TicketTypeId { get; set; }
+    public class TicketType
+    {
+        public int TicketTypeId { get; set; }
+        public string? TypeName { get; set; }
+        public decimal PriceMultiplier { get; set; }
+    }
 
-    [StringLength(50)]
-    [Unicode(false)]
-    public string TypeName { get; set; } = null!;
-
-    public int PriceMultiplier { get; set; }
-
-    [InverseProperty("TicketType")]
-    public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
 }

@@ -1,57 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
-
-namespace event_booking.Models;
-
-[Table("Events", Schema = "evnt")]
-public partial class Event
+﻿namespace event_booking.Models
 {
-    [Key]
-    [Column("EventID")]
-    public int EventId { get; set; }
+    public class Event
+    {
+        public int EventId { get; set; }
+        public string? Name { get; set; }
+        public string? Description { get; set; }
+        public string? Location { get; set; }
+        public DateTime StartDateTime { get; set; }
+        public DateTime EndDateTime { get; set; }
+        public string? Image { get; set; }
+        public DateTime EarlyBirdCutoff { get; set; }
 
-    [Column("OrganizerID")]
-    public int OrganizerId { get; set; }
+        // Foreign key
+        public int EventCategoryId { get; set; }
+        public int VenueId { get; set; }
+        public int OrganizerId { get; set; }
 
-    [Column("EventCategoryID")]
-    public int EventCategoryId { get; set; }
-
-    [StringLength(50)]
-    public string Name { get; set; } = null!;
-
-    [StringLength(250)]
-    public string? Description { get; set; }
-
-    [Column(TypeName = "date")]
-    public DateTime StartDateTime { get; set; }
-
-    [Column(TypeName = "date")]
-    public DateTime EndDateTime { get; set; }
-
-    [StringLength(100)]
-    public string? Image { get; set; }
-
-    [Column(TypeName = "date")]
-    public DateTime? EarlyBirdCutoff { get; set; }
-
-    [ForeignKey("EventCategoryId")]
-    [InverseProperty("Events")]
-    public virtual EventCategory EventCategory { get; set; } = null!;
-
-    [ForeignKey("OrganizerId")]
-    [InverseProperty("Events")]
-    public virtual Organizer Organizer { get; set; } = null!;
-
-    [InverseProperty("Event")]
-    public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
-
-    [InverseProperty("Event")]
-    public virtual ICollection<Vip> Vips { get; set; } = new List<Vip>();
-
-    [ForeignKey("EventId")]
-    [InverseProperty("Events")]
-    public virtual ICollection<AspNetUser> Ids { get; set; } = new List<AspNetUser>();
+        // Navigation properties
+        public virtual EventCategory? EventCategory { get; set; }
+        public virtual Venue? Venue { get; set; }
+        public virtual Organizer? Organizer { get; set; }
+    }
 }

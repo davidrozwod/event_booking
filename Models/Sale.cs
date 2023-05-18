@@ -1,34 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
-
-namespace event_booking.Models;
-
-[Table("Sales", Schema = "evnt")]
-public partial class Sale
+﻿namespace event_booking.Models
 {
-    [Key]
-    [Column("SaleID")]
-    public int SaleId { get; set; }
+    public class Sale
+    {
+        public int SaleId { get; set; }
+        public int PurchaseId { get; set; } // Foreign key to Purchase model
+        public string? Id { get; set; } // Foreign key to ApplicationUser
+        public DateTime SaleDate { get; set; }
+        public decimal SalePrice { get; set; }
 
-    [StringLength(450)]
-    public string? Id { get; set; }
+        // Navigation properties
+        public virtual Purchase? Purchase { get; set; }
+        public virtual ApplicationUser? ApplicationUser { get; set; }
+    }
 
-    [Column("PurchaseID")]
-    public int? PurchaseId { get; set; }
-
-    [Column(TypeName = "date")]
-    public DateTime? SaleDate { get; set; }
-
-    public int? SalePrice { get; set; }
-
-    [ForeignKey("Id")]
-    [InverseProperty("Sales")]
-    public virtual AspNetUser? IdNavigation { get; set; }
-
-    [ForeignKey("PurchaseId")]
-    [InverseProperty("Sales")]
-    public virtual Purchase? Purchase { get; set; }
 }

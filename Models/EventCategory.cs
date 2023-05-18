@@ -1,22 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
-
-namespace event_booking.Models;
-
-[Table("EventCategories", Schema = "evnt")]
-public partial class EventCategory
+﻿namespace event_booking.Models
 {
-    [Key]
-    [Column("EventCategoryID")]
-    public int EventCategoryId { get; set; }
+    public class EventCategory
+    {
+        public int EventCategoryId { get; set; }
+        public string? CategoryName { get; set; }
+    }
 
-    [StringLength(50)]
-    [Unicode(false)]
-    public string CategoryName { get; set; } = null!;
-
-    [InverseProperty("EventCategory")]
-    public virtual ICollection<Event> Events { get; set; } = new List<Event>();
 }

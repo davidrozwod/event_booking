@@ -1,24 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
-
-namespace event_booking.Models;
-
-[Table("Purchase", Schema = "evnt")]
-public partial class Purchase
+﻿namespace event_booking.Models
 {
-    [Key]
-    [Column("PurchaseID")]
-    public int PurchaseId { get; set; }
+    public class Purchase
+    {
+        public int PurchaseId { get; set; }
+        public DateTime SaleDate { get; set; }
+        public decimal SalePrice { get; set; }
+    }
 
-    [InverseProperty("Purchase")]
-    public virtual ICollection<Sale> Sales { get; set; } = new List<Sale>();
-
-    [InverseProperty("Purchase")]
-    public virtual ICollection<TicketGroup> TicketGroups { get; set; } = new List<TicketGroup>();
-
-    [InverseProperty("Purchase")]
-    public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
 }

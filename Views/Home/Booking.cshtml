@@ -94,62 +94,22 @@
         display: inline-block;
         margin: 0px 6px 4px;
     }
-</style>
 
-<style>
-    table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
+    p {
+        font-size: 12px;
     }
 
-    td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-    }
-
-    tr:nth-child(even) {
-        background-color: #dddddd;
+    h4 {
+        font-weight: bold;
     }
 </style>
-
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-    }
-
-    div {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 40px;
-    }
-
-    button {
-        border: none;
-        cursor: pointer;
-        appearance: none;
-        background-color: inherit;
-        transition: transform .7s ease-in-out;
-        margin-left: 10px;
-    }
-
-    img1 {
-        width: 70px;
-        height: 70px;
-    }
-</style>
-
-<body>
 
     <div class="wrapper">
         <div class="sidebar">
             <h2>Eventful</h2>
             <ul>
                 <li><img src="https://icon-library.com/images/dashboard-icon-vector/dashboard-icon-vector-2.jpg" /> <a asp-controller="Home" asp-action="AdminDashboard"> Dashboard</a></li>
-                <li><img src="https://www.freeiconspng.com/thumbs/profile-icon-png/profile-icon-person-user-19.png" /> <a asp-controller="Home" asp-action="Notification"> Profile</a></li>
+                <li><img src="https://www.freeiconspng.com/thumbs/profile-icon-png/profile-icon-person-user-19.png" /> <a asp-controller="Home" asp-action="Profile"> Profile</a></li>
                 <li><img src="https://img.uxwing.com/wp-content/themes/uxwing/download/seo-marketing/announcement-icon.png" /> <a asp-controller="Home" asp-action="Events"> Events</a></li>
                 <li><img src="https://cdn-icons-png.flaticon.com/512/55/55281.png" /> <a asp-controller="Home" asp-action="Booking"> Bookings</a></li>
                 <li><img src="https://cdn.onlinewebfonts.com/svg/img_387338.png" /> <a asp-controller="Home" asp-action="Review"> Reviews</a></li>
@@ -160,96 +120,174 @@
         <div class="main_content">
             <div class="header">Welcome to the Admin Dashboard</div>
             <div class="info">
-                <div>
-                    <table>
-                        <tr>
-                            <th>Event Title</th>
-                            <th>Event Type</th>
-                            <th>Event Location</th>
-                            <th>Event Organiser</th>
-                            <th>Event Start Date </th>
-                            <th>Event End Date</th>
-                            <th>Event Expiry Date<th>
-                            <th>Actions<th>
-                        </tr>
-                        <tr>
-                            <td>Alfreds Futterkiste</td>
-                            <td>Maria Anders</td>
-                            <td>Germany</td>
-                            <td>Jonny Smith</td>
-                            <td>31/4/23</td>
-                            <td>29/5/23</td>
-                            <td>29/5/23</td>
-                            <td>
-                                <div>
-                                    <button>
-                                        <img1 src="https://www.vhv.rs/dpng/d/489-4892542_eyes-eye-sight-icon-png-transparent-png.png" alt="buttonpng" border="0" />
-                                    </button>
-                                </div>
-                                <div>
-                                    <button>
-                                        <img1 src="https://cdn-icons-png.flaticon.com/512/266/266146.png" alt="buttonpng" border="0" />
-                                    </button>
-                                </div>
-                                <div>
-                                    <button>
-                                        <img1 src="https://cdn-icons-png.flaticon.com/512/1345/1345874.png" alt="buttonpng" border="0" />
-                                    </button>
-                                </div>
-                            </td>
+            <div class="row">
+                <div class="col">
+                    <div class="border">
+                        <p>Gross Sales</p>
+                        <h4>$2439</h4>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="border">
+                        <p>Online Sales</p>
+                        <h4>$7830</h4>
+                    </div>
+                </div>
 
-                        </tr>
-                        <tr>
-                            <td>Centro comercial Moctezuma</td>
-                            <td>Francisco Chang</td>
-                            <td>Mexico</td>
-                            <td>Jonny Smith</td>
-                            <td>31/4/23</td>
-                            <td>29/5/23</td>
-                            <td>29/5/23</td>
-                        </tr>
-                        <tr>
-                            <td>Ernst Handel</td>
-                            <td>Roland Mendel</td>
-                            <td>Austria</td>
-                            <td>Jonny Smith</td>
-                            <td>31/4/23</td>
-                            <td>29/5/23</td>
-                            <td>29/5/23</td>
-                        </tr>
-                        <tr>
-                            <td>Island Trading</td>
-                            <td>Helen Bennett</td>
-                            <td>UK</td>
-                            <td>Jonny Smith</td>
-                            <td>31/4/23</td>
-                            <td>29/5/23</td>
-                            <td>29/5/23</td>
-                        </tr>
-                        <tr>
-                            <td>Laughing Bacchus Winecellars</td>
-                            <td>Yoshi Tannamuri</td>
-                            <td>Canada</td>
-                            <td>Jonny Smith</td>
-                            <td>31/4/23</td>
-                            <td>29/5/23</td>
-                            <td>29/5/23</td>
-                        </tr>
-                        <tr>
-                            <td>Magazzini Alimentari Riuniti</td>
-                            <td>Giovanni Rovelli</td>
-                            <td>Italy</td>
-                            <td>Jonny Smith</td>
-                            <td>31/4/23</td>
-                            <td>29/5/23</td>
-                            <td>29/5/23</td>
-                        </tr>
-                    </table>
+                <div class="col">
+                    <div class="border">
+                        <p>Registered User Tickets Sold</p>
+                        <h4>3927 Tickets</h4>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="border">
+                        <p>Unregistered User Tickets Sold</p>
+                        <h4>2042 Tickets</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="border">
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+                            <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+                            <script>
+                                var xValues = ["Gross", "Online"];
+                                var yValues = [24, 85];
+                                var barColors = [
+                                    "#e8c3b9",
+                                    "#1e7145"
+                                ];
+
+                                new Chart("myChart", {
+                                    type: "doughnut",
+                                    data: {
+                                        labels: xValues,
+                                        datasets: [{
+                                            backgroundColor: barColors,
+                                            data: yValues
+                                        }]
+                                    },
+                                    options: {
+                                        title: {
+                                            display: true,
+                                            text: "Eary Bird Tickets"
+                                        }
+                                    }
+                                });
+                            </script>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="border">
+
+                            <script src="https://cdnjs.cloudf	lare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+                            <canvas id="theChart" style="width:100%;max-width:600px"></canvas>
+                            <script>
+                                var xGoals = ["Event Goals", "Sold Seats"];
+                                var yGoals = [50, 78];
+                                var barColors = [
+                                    "#00aba9",
+                                    "#2b5797",
+                                ];
+
+                                new Chart("theChart", {
+                                    type: "doughnut",
+                                    data: {
+                                        labels: xGoals,
+                                        datasets: [{
+                                            backgroundColor: barColors,
+                                            data: yGoals
+                                        }]
+                                    },
+                                    options: {
+                                        title: {
+                                            display: true,
+                                            text: "Event Goals"
+                                        }
+                                    }
+                                });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="border">
+                            <link rel='stylesheet' href='style.css' type='text/css' />
+                            <div class="phppot-container">
+                            <center><h4>Ticket Sales Trends</h4></center>
+                                <div>
+                                    <canvas id="line-chart"></canvas>
+                                </div>
+                            </div>
+                            <script src="https://cdn.jsdelivr.net/npm/chart.js@4.0.1/dist/chart.umd.min.js"></script>
+                            <script>
+                                new Chart(
+                                    document.getElementById("line-chart"),
+                                    {
+                                        type: 'line',
+                                        data: {
+                                            labels: ["January", "February", "March", "April", "May",
+                                                "June", "July", "August", "September", "October", "November", "December"],
+                                            datasets: [
+                                                {
+                                                    data: [186, 205, 132, 151,
+                                                        210, 219, 313, 322,
+                                                        478, 547, 190, 263],
+                                                    label: "Past 24 Hours",
+                                                    borderColor: "#3cba9f",
+                                                    fill: false
+                                                },
+                                                {
+                                                    data: [128, 135, 241,
+                                                        250, 263, 280, 394,
+                                                        440, 370, 526, 423, 665],
+                                                    label: "Past 7 Days",
+                                                    borderColor: "#e43202",
+                                                    fill: false
+                                                },
+                                                {
+                                                    data: [283, 250, 311,
+                                                        502, 535, 209, 447,
+                                                        402, 613, 267, 218, 169],
+                                                    label: "Past 30 Days",
+                                                    borderColor: "#006400",
+                                                    fill: false
+                                                }]
+                                        },
+                                        options: {
+                                            title: {
+                                                display: true,
+                                                text: 'Chart JS Gridlines - Line Chart Example'
+                                            },
+                                            scales: {
+                                                x: {
+                                                    grid: {
+                                                        display: true,
+                                                        color: "#0046ff",
+                                                        lineWidth: 3
+                                                    }
+                                                },
+                                                y: {
+                                                    grid: {
+                                                        display: true,
+                                                        color: "#0046ff"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    });
+                            </script>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-</body>
-</html>
 

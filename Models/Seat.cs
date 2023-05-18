@@ -7,7 +7,6 @@ namespace event_booking.Models
 {
     public partial class Seat
     {
-        [Key]
         public int SeatId { get; set; }
         public int VenueId { get; set; }
         public int SectionId { get; set; }

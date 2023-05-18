@@ -6,7 +6,7 @@ namespace event_booking.Models
 {
     public partial class Section
     {
-        [Key]
+        
         public int SectionId { get; set; }
 
         [StringLength(50)]

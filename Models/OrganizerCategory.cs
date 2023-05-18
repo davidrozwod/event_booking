@@ -8,7 +8,6 @@ namespace event_booking.Models
     public partial class OrganizerCategory
     {
 
-        [Key]
         public int OrganizerCategoryId { get; set; }
 
         [StringLength(50)]

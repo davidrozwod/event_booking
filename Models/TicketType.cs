@@ -6,7 +6,6 @@ namespace event_booking.Models
 {
     public partial class TicketType
     {
-        [Key]
         public int TicketTypeId { get; set; }
         [StringLength(50)]
         [Unicode(false)]

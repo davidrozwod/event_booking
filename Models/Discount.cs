@@ -6,7 +6,6 @@ namespace event_booking.Models
 {
     public partial class Discount
     {
-        [Key]
         public int DiscountId { get; set; }
 
         [StringLength(50)]

@@ -7,7 +7,6 @@ namespace event_booking.Models
 {
     public partial class Sale
     {
-        [Key]
         public int SaleId { get; set; }
         public int PurchaseId { get; set; }
         public string? Id { get; set; }

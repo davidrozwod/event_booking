@@ -8,7 +8,7 @@ namespace event_booking.Models
 {
     public partial class TicketGroup
     {
-        [Key]
+        
         public int TicketGroupId { get; set; }
 
         public int? PurchaseId { get; set; }

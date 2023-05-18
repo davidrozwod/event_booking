@@ -28,6 +28,9 @@ namespace event_booking.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<ApplicationUser>()
+               .ToTable("AspNetUsers"); // Set the table name if necessary
+
             modelBuilder.Entity<Ticket>()
                 .HasIndex(t => new { t.EventId, t.SeatId })
                 .IsUnique()

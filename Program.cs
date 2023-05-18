@@ -23,7 +23,7 @@ namespace event_booking
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()  
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
@@ -34,7 +34,7 @@ namespace event_booking
             builder.Services.AddCoreAdmin(new CoreAdminOptions() 
             { IgnoreEntityTypes = new List<Type>() { 
         
-              typeof(IdentityUser),
+              typeof(ApplicationUser),
               typeof(IdentityRole),
               typeof(UserRole),
               typeof(IdentityUserRole<string>),

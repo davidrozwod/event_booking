@@ -38,6 +38,8 @@ namespace event_booking.Data
 
         public virtual DbSet<Vip> Vips { get; set; }
 
+        public DbSet<JunctionTicketVip> JunctionTicketVips { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
@@ -224,24 +226,7 @@ namespace event_booking.Data
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Tickets_Venue_1");
 
-                entity.HasMany(d => d.Vips).WithMany(p => p.Tickets)
-                    .UsingEntity<Dictionary<int, object>>(
-                        "JunctionTicketVip",
-                        r => r.HasOne<Vip>().WithMany()
-                            .HasForeignKey("VipId")
-                            .OnDelete(DeleteBehavior.ClientSetNull)
-                            .HasConstraintName("FK_Junction_Ticket_VIP_VIP"),
-                        l => l.HasOne<Ticket>().WithMany()
-                            .HasForeignKey("TicketId")
-                            .OnDelete(DeleteBehavior.ClientSetNull)
-                            .HasConstraintName("FK_Junction_Ticket_VIP_Tickets"),
-                        j =>
-                        {
-                            j.HasKey("TicketId", "VipId");
-                            j.ToTable("Junction_Ticket_VIP");
-                            j.IndexerProperty<int>("TicketId").HasColumnName("TicketID");
-                            j.IndexerProperty<int>("VipId").HasColumnName("VIP_ID");
-                        });
+
             });
 
             modelBuilder.Entity<TicketGroup>(entity =>
@@ -276,6 +261,23 @@ namespace event_booking.Data
                 entity.HasOne(d => d.Event).WithMany(p => p.Vips)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_VIP_Events");
+            });
+
+            modelBuilder.Entity<JunctionTicketVip>(entity =>
+            {
+                entity.HasKey(jtv => new { jtv.TicketId, jtv.VipId });
+
+                entity.HasOne(jtv => jtv.Ticket)
+                    .WithMany(t => t.JunctionTicketVips)
+                    .HasForeignKey(jtv => jtv.TicketId)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_JunctionTicketVip_Tickets");
+
+                entity.HasOne(jtv => jtv.Vip)
+                    .WithMany(v => v.JunctionTicketVips)
+                    .HasForeignKey(jtv => jtv.VipId)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_JunctionTicketVip_Vips");
             });
 
 

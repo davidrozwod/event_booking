@@ -6,6 +6,7 @@ namespace event_booking.Models
 {
     public partial class Venue
     {
+        [Key]
         public int VenueId { get; set; }
         [StringLength(50)]
         [Unicode(false)]

@@ -8,6 +8,7 @@ namespace event_booking.Models
     [Index("EventId", "SeatId", Name = "Ticket_Unique_Index", IsUnique = true)]
     public partial class Ticket
     {
+        [Key]
         public int TicketId { get; set; }
         public int EventId { get; set; }
         public int VenueId { get; set; }
@@ -57,6 +58,9 @@ namespace event_booking.Models
         [ForeignKey("TicketId")]
         [InverseProperty("Tickets")]
         public virtual ICollection<Vip> Vips { get; set; } = new List<Vip>();
+
+        [InverseProperty("Ticket")]
+        public virtual ICollection<JunctionTicketVip> JunctionTicketVips { get; set; } = new List<JunctionTicketVip>();
 
 
     }

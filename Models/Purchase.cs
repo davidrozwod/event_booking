@@ -1,10 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace event_booking.Models
 {
     public partial class Purchase
     {
+        [Key]
         public int PurchaseId { get; set; }
         [InverseProperty("Purchase")]
         public virtual ICollection<Sale> Sales { get; set; } = new List<Sale>();

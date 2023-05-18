@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using static System.Collections.Specialized.BitVector32;
 
@@ -6,6 +7,7 @@ namespace event_booking.Models
 {
     public partial class Seat
     {
+        [Key]
         public int SeatId { get; set; }
         public int VenueId { get; set; }
         public int SectionId { get; set; }

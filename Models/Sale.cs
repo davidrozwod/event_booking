@@ -1,11 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace event_booking.Models
 {
     public partial class Sale
     {
+        [Key]
         public int SaleId { get; set; }
         public int PurchaseId { get; set; }
         public string? Id { get; set; }

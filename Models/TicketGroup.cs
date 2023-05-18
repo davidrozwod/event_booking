@@ -9,13 +9,10 @@ namespace event_booking.Models
     public partial class TicketGroup
     {
         [Key]
-        [Column("TicketGroupID")]
         public int TicketGroupId { get; set; }
 
-        [Column("PurchaseID")]
         public int? PurchaseId { get; set; }
 
-        [Column("GroupDiscountID")]
         public int? GroupDiscountId { get; set; }
 
         [ForeignKey("GroupDiscountId")]

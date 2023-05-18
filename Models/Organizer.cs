@@ -6,6 +6,7 @@ namespace event_booking.Models
 {
     public partial class Organizer
     {
+        [Key]
         public int OrganizerId { get; set; }
 
         [StringLength(50)]

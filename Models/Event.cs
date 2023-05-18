@@ -6,6 +6,7 @@ namespace event_booking.Models
 {
     public partial class Event
     {
+        [Key]
         public int EventId { get; set; }
 
         public int EventCategoryId { get; set; }

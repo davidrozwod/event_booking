@@ -25,10 +25,13 @@
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Event_Category">Categories</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Ticket">Book a Ticket</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="UserExclusiveFeatures">Subscribe</a>
@@ -36,7 +39,7 @@
                         <li class="nav-item">
                             @if (User.IsInRole("Promoter"))
                             {
-                                <a class="nav-link text-light" href="/CoreAdmin">Promoter Area</a>
+                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="PromoterArea">Create Event</a>
                             }
                         </li>
                         <li class="nav-item">
@@ -102,7 +105,10 @@
                     <br>
                     <a class="text" asp-area="" asp-controller="Home" asp-action="Policy">Terms and Conditions</a>
                     <br>
-                        <a class="text" href="/CoreAdmin">Create an Event</a>
+                        @if (User.IsInRole("Promoter"))
+                        {
+                            <a class="text" asp-area="" asp-controller="Home" asp-action="PromoterArea">Create Event</a>
+                        }
                 </div>
             </div>
             <hr>

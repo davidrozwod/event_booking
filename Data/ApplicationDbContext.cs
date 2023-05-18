@@ -56,7 +56,7 @@ namespace event_booking.Data
             {
                 entity.HasKey(e => e.DiscountId).HasName("PK_TicketPricing");
 
-                entity.ToTable("Discount", "evnt", tb => tb.HasComment("Ticket Pricing Information"));
+                entity.ToTable("Discount", tb => tb.HasComment("Ticket Pricing Information"));
 
                 entity.Property(e => e.DiscountId).ValueGeneratedNever();
             });
@@ -95,7 +95,7 @@ namespace event_booking.Data
                         j =>
                         {
                             j.HasKey("Id", "EventId");
-                            j.ToTable("User_Event_Follow", "evnt");
+                            j.ToTable("User_Event_Follow");
                             j.IndexerProperty<string>("Id").HasColumnName("Id");
                             j.IndexerProperty<int>("EventId").HasColumnName("EventID");
                         });
@@ -114,7 +114,7 @@ namespace event_booking.Data
                         j =>
                         {
                             j.HasKey("Id", "OrganizerId");
-                            j.ToTable("User_Organizer_Follow", "evnt");
+                            j.ToTable("User_Organizer_Follow");
                             j.IndexerProperty<string>("Id").HasColumnName("Id");
                             j.IndexerProperty<int>("OrganizerId").HasColumnName("OrganizerID");
                         });
@@ -133,7 +133,7 @@ namespace event_booking.Data
                         j =>
                         {
                             j.HasKey("Id", "VenueId");
-                            j.ToTable("User_Venue_Follow", "evnt");
+                            j.ToTable("User_Venue_Follow");
                             j.IndexerProperty<string>("Id").HasColumnName("Id");
                             j.IndexerProperty<int>("VenueId").HasColumnName("VenueID");
                         });
@@ -141,7 +141,7 @@ namespace event_booking.Data
 
             modelBuilder.Entity<GroupDiscount>(entity =>
             {
-                entity.ToTable("GroupDiscounts", "evnt", tb => tb.HasComment("Discounts on groups"));
+                entity.ToTable("GroupDiscounts", tb => tb.HasComment("Discounts on groups"));
 
                 entity.Property(e => e.GroupDiscountId).ValueGeneratedNever();
             });
@@ -202,7 +202,7 @@ namespace event_booking.Data
 
             modelBuilder.Entity<Ticket>(entity =>
             {
-                entity.ToTable("Tickets", "evnt", tb => tb.HasComment("Event Tickets"));
+                entity.ToTable("Tickets", tb => tb.HasComment("Event Tickets"));
 
                 entity.Property(e => e.TicketId).ValueGeneratedNever();
 
@@ -254,7 +254,7 @@ namespace event_booking.Data
             {
                 entity.HasKey(e => e.VipId).HasName("PK_VIPAccess");
 
-                entity.ToTable("VIP", "evnt", tb => tb.HasComment("VIP Area"));
+                entity.ToTable("VIP", tb => tb.HasComment("VIP Area"));
 
                 entity.Property(e => e.VipId).ValueGeneratedNever();
 

@@ -29,14 +29,13 @@ namespace event_booking.Data
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<ApplicationUser>()
-               .ToTable("AspNetUsers"); // Set the table name if necessary
+               .ToTable("AspNetUsers");
 
             modelBuilder.Entity<Ticket>()
                 .HasIndex(t => new { t.EventId, t.SeatId })
                 .IsUnique()
                 .HasDatabaseName("IX_EventId_SeatId");
 
-            // Configure foreign key relationships
             modelBuilder.Entity<Sale>()
                 .HasOne(s => s.Purchase)
                 .WithMany()
@@ -80,14 +79,13 @@ namespace event_booking.Data
                 .OnDelete(DeleteBehavior.Restrict);
 
 
-            // Configure foreign key relationship
+
             modelBuilder.Entity<Loyalty>()
                 .HasOne(l => l.ApplicationUser)
                 .WithOne()
                 .HasForeignKey<Loyalty>(l => l.Id)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            // Configure foreign key relationships
             modelBuilder.Entity<Ticket>()
                 .HasOne(t => t.ApplicationUser)
                 .WithMany()
@@ -162,7 +160,6 @@ namespace event_booking.Data
                 .Property(tt => tt.PriceMultiplier)
                 .HasColumnType("decimal(18,2)");
 
-            // Configure other relationships, constraints, and entity configurations here
         }
     }
 }

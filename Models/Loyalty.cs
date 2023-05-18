@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-
-namespace event_booking.Models
+﻿namespace event_booking.Models
 {
     public class Loyalty
     {
@@ -10,7 +7,6 @@ namespace event_booking.Models
         public int TicketCount { get; set; }
         public decimal PriceMultiplier { get; set; }
 
-        // Navigation property
         public virtual ApplicationUser? ApplicationUser { get; set; }
     }
 

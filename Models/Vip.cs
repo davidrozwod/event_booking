@@ -10,7 +10,6 @@ namespace event_booking.Models
     [Index("VipId", "EventId", Name = "VIP_Unique_Index", IsUnique = true)]
     public partial class Vip
     {
-        [Key]
         public int VipId { get; set; }
 
         public int EventId { get; set; }

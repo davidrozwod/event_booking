@@ -127,6 +127,38 @@ namespace event_booking.Data
                 .HasForeignKey(t => t.PurchaseId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            modelBuilder.Entity<Discount>()
+        .Property(d => d.PriceMultiplier)
+        .HasColumnType("decimal(18,2)");
+
+            modelBuilder.Entity<Loyalty>()
+                .Property(l => l.PriceMultiplier)
+                .HasColumnType("decimal(18,2)");
+
+            modelBuilder.Entity<Purchase>()
+                .Property(p => p.SalePrice)
+                .HasColumnType("decimal(18,2)");
+
+            modelBuilder.Entity<Sale>()
+                .Property(s => s.SalePrice)
+                .HasColumnType("decimal(18,2)");
+
+            modelBuilder.Entity<Section>()
+                .Property(s => s.PriceMultiplier)
+                .HasColumnType("decimal(18,2)");
+
+            modelBuilder.Entity<Ticket>()
+                .Property(t => t.BasePrice)
+                .HasColumnType("decimal(18,2)");
+
+            modelBuilder.Entity<Ticket>()
+                .Property(t => t.TicketPrice)
+                .HasColumnType("decimal(18,2)");
+
+            modelBuilder.Entity<TicketType>()
+                .Property(tt => tt.PriceMultiplier)
+                .HasColumnType("decimal(18,2)");
+
             // Configure other relationships, constraints, and entity configurations here
         }
     }

@@ -1,9 +1,18 @@
-﻿namespace event_booking.Models
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace event_booking.Models
 {
-    public class EventCategory
+    public partial class EventCategory
     {
         public int EventCategoryId { get; set; }
-        public string? CategoryName { get; set; }
+        [StringLength(50)]
+        [Unicode(false)]
+        public string? CategoryName { get; set; } = null!;
+
+        [InverseProperty("EventCategory")]
+        public virtual ICollection<Event> Events { get; set; } = new List<Event>();
     }
 
 }

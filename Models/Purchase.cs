@@ -1,10 +1,19 @@
-﻿namespace event_booking.Models
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace event_booking.Models
 {
-    public class Purchase
+    public partial class Purchase
     {
         public int PurchaseId { get; set; }
-        public DateTime SaleDate { get; set; }
-        public decimal SalePrice { get; set; }
+        [InverseProperty("Purchase")]
+        public virtual ICollection<Sale> Sales { get; set; } = new List<Sale>();
+
+        [InverseProperty("Purchase")]
+        public virtual ICollection<TicketGroup> TicketGroups { get; set; } = new List<TicketGroup>();
+
+        [InverseProperty("Purchase")]
+        public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
     }
 
 }

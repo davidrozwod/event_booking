@@ -1,13 +1,17 @@
-﻿namespace event_booking.Models
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace event_booking.Models
 {
-    public class Loyalty
+    public partial class Loyalty
     {
-        public string? LoyaltyID { get; set; }
-        public string? Id { get; set; }
+        public string? Id { get; set; } = null!;
         public int TicketCount { get; set; }
         public decimal PriceMultiplier { get; set; }
 
-        public virtual ApplicationUser? ApplicationUser { get; set; }
+        [ForeignKey("Id")]
+        [InverseProperty("Loyalty")]
+        public virtual ApplicationUser? ApplicationUser { get; set; } = null!;
     }
 
 }

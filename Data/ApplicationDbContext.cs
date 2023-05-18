@@ -6,18 +6,37 @@ namespace event_booking.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public DbSet<Event> Events { get; set; }
-        public DbSet<Organizer> Organizers { get; set; }
-        public DbSet<Venue> Venues { get; set; }
-        public DbSet<Section> Sections { get; set; }
-        public DbSet<Seat> Seats { get; set; }
-        public DbSet<Ticket> Tickets { get; set; }
-        public DbSet<Discount> Discounts { get; set; }
-        public DbSet<TicketType> TicketTypes { get; set; }
-        public DbSet<Loyalty> Loyalties { get; set; }
-        public DbSet<Sale> Sales { get; set; }
-        public DbSet<Purchase> Purchases { get; set; }
-        public DbSet<EventCategory> EventCategories { get; set; }
+        public virtual DbSet<Discount> Discounts { get; set; }
+
+        public virtual DbSet<Event> Events { get; set; }
+
+        public virtual DbSet<EventCategory> EventCategories { get; set; }
+
+        public virtual DbSet<GroupDiscount> GroupDiscounts { get; set; }
+
+        public virtual DbSet<Loyalty> Loyalties { get; set; }
+
+        public virtual DbSet<Organizer> Organizers { get; set; }
+
+        public virtual DbSet<OrganizerCategory> OrganizerCategories { get; set; }
+
+        public virtual DbSet<Purchase> Purchases { get; set; }
+
+        public virtual DbSet<Sale> Sales { get; set; }
+
+        public virtual DbSet<Seat> Seats { get; set; }
+
+        public virtual DbSet<Section> Sections { get; set; }
+
+        public virtual DbSet<Ticket> Tickets { get; set; }
+
+        public virtual DbSet<TicketGroup> TicketGroups { get; set; }
+
+        public virtual DbSet<TicketType> TicketTypes { get; set; }
+
+        public virtual DbSet<Venue> Venues { get; set; }
+
+        public virtual DbSet<Vip> Vips { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -31,102 +50,234 @@ namespace event_booking.Data
             modelBuilder.Entity<ApplicationUser>()
                .ToTable("AspNetUsers");
 
-            modelBuilder.Entity<Ticket>()
-                .HasIndex(t => new { t.EventId, t.SeatId })
-                .IsUnique()
-                .HasDatabaseName("IX_EventId_SeatId");
+            modelBuilder.Entity<Discount>(entity =>
+            {
+                entity.HasKey(e => e.DiscountId).HasName("PK_TicketPricing");
 
-            modelBuilder.Entity<Sale>()
-                .HasOne(s => s.Purchase)
-                .WithMany()
-                .HasForeignKey(s => s.PurchaseId)
-                .OnDelete(DeleteBehavior.Restrict);
+                entity.ToTable("Discount", "evnt", tb => tb.HasComment("Ticket Pricing Information"));
 
-            modelBuilder.Entity<Sale>()
-                .HasOne(s => s.ApplicationUser)
-                .WithMany()
-                .HasForeignKey(s => s.Id)
-                .OnDelete(DeleteBehavior.Restrict);
+                entity.Property(e => e.DiscountId).ValueGeneratedNever();
+            });
 
-            modelBuilder.Entity<Seat>()
-            .HasOne(s => s.Venue)
-            .WithMany()
-            .HasForeignKey(s => s.VenueId)
-            .OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<Event>(entity =>
+            {
+                entity.Property(e => e.EventId).ValueGeneratedNever();
 
-            modelBuilder.Entity<Seat>()
-                .HasOne(s => s.Section)
-                .WithMany()
-                .HasForeignKey(s => s.SectionId)
-                .OnDelete(DeleteBehavior.Restrict);
+                entity.HasOne(d => d.EventCategory).WithMany(p => p.Events)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Events_EventCategories");
 
-            modelBuilder.Entity<Event>()
-            .HasOne(e => e.EventCategory)
-            .WithMany()
-            .HasForeignKey(e => e.EventCategoryId)
-            .OnDelete(DeleteBehavior.Restrict);
+                entity.HasOne(d => d.Organizer).WithMany(p => p.Events)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Events_Organizers");
+            });
 
-            modelBuilder.Entity<Event>()
-                .HasOne(e => e.Venue)
-                .WithMany()
-                .HasForeignKey(e => e.VenueId)
-                .OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<EventCategory>(entity =>
+            {
+                entity.Property(e => e.EventCategoryId).ValueGeneratedNever();
+            });
 
-            modelBuilder.Entity<Event>()
-                .HasOne(e => e.Organizer)
-                .WithMany()
-                .HasForeignKey(e => e.OrganizerId)
-                .OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<ApplicationUser>(entity =>
+            {
+                entity.HasMany(d => d.Events).WithMany(p => p.ApplicationUsers)
+                    .UsingEntity<Dictionary<string, object>>(
+                        "UserEventFollow",
+                        r => r.HasOne<Event>().WithMany()
+                            .HasForeignKey("EventId")
+                            .OnDelete(DeleteBehavior.ClientSetNull)
+                            .HasConstraintName("FK_User_Event_Follow_Events_1"),
+                        l => l.HasOne<ApplicationUser>().WithMany()
+                            .HasForeignKey("Id")
+                            .OnDelete(DeleteBehavior.ClientSetNull)
+                            .HasConstraintName("FK_User_Event_Follow_ApplicationUser"),
+                        j =>
+                        {
+                            j.HasKey("Id", "EventId");
+                            j.ToTable("User_Event_Follow", "evnt");
+                            j.IndexerProperty<string>("Id").HasColumnName("Id");
+                            j.IndexerProperty<int>("EventId").HasColumnName("EventID");
+                        });
 
+                entity.HasMany(d => d.Organizers).WithMany(p => p.ApplicationUsers)
+                    .UsingEntity<Dictionary<string, object>>(
+                        "UserOrganizerFollow",
+                        r => r.HasOne<Organizer>().WithMany()
+                            .HasForeignKey("OrganizerId")
+                            .OnDelete(DeleteBehavior.ClientSetNull)
+                            .HasConstraintName("FK_User_Organizer_Follow_Organizers_1"),
+                        l => l.HasOne<ApplicationUser>().WithMany()
+                            .HasForeignKey("Id")
+                            .OnDelete(DeleteBehavior.ClientSetNull)
+                            .HasConstraintName("FK_User_Organizer_Follow_ApplicationUser"),
+                        j =>
+                        {
+                            j.HasKey("Id", "OrganizerId");
+                            j.ToTable("User_Organizer_Follow", "evnt");
+                            j.IndexerProperty<string>("Id").HasColumnName("Id");
+                            j.IndexerProperty<int>("OrganizerId").HasColumnName("OrganizerID");
+                        });
 
+                entity.HasMany(d => d.Venues).WithMany(p => p.ApplicationUsers)
+                    .UsingEntity<Dictionary<string, object>>(
+                        "UserVenueFollow",
+                        r => r.HasOne<Venue>().WithMany()
+                            .HasForeignKey("VenueId")
+                            .OnDelete(DeleteBehavior.ClientSetNull)
+                            .HasConstraintName("FK_User_Venue_Follow_Venue_1"),
+                        l => l.HasOne<ApplicationUser>().WithMany()
+                            .HasForeignKey("Id")
+                            .OnDelete(DeleteBehavior.ClientSetNull)
+                            .HasConstraintName("FK_User_Venue_Follow_ApplicationUser"),
+                        j =>
+                        {
+                            j.HasKey("Id", "VenueId");
+                            j.ToTable("User_Venue_Follow", "evnt");
+                            j.IndexerProperty<string>("Id").HasColumnName("Id");
+                            j.IndexerProperty<int>("VenueId").HasColumnName("VenueID");
+                        });
+            });
 
-            modelBuilder.Entity<Loyalty>()
-                .HasOne(l => l.ApplicationUser)
-                .WithOne()
-                .HasForeignKey<Loyalty>(l => l.Id)
-                .OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<GroupDiscount>(entity =>
+            {
+                entity.ToTable("GroupDiscounts", "evnt", tb => tb.HasComment("Discounts on groups"));
 
-            modelBuilder.Entity<Ticket>()
-                .HasOne(t => t.ApplicationUser)
-                .WithMany()
-                .HasForeignKey(t => t.Id)
-                .OnDelete(DeleteBehavior.Restrict);
+                entity.Property(e => e.GroupDiscountId).ValueGeneratedNever();
+            });
 
-            modelBuilder.Entity<Ticket>()
-                .HasOne(t => t.Event)
-                .WithMany()
-                .HasForeignKey(t => t.EventId)
-                .OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<Loyalty>(entity =>
+            {
+                entity.HasOne(d => d.ApplicationUser).WithOne(p => p.Loyalty)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Loyalty_ApplicationUser");
+            });
 
-            modelBuilder.Entity<Ticket>()
-                .HasOne(t => t.Venue)
-                .WithMany()
-                .HasForeignKey(t => t.VenueId)
-                .OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<Organizer>(entity =>
+            {
+                entity.HasKey(e => e.OrganizerId).HasName("PK_HostsOrganizers");
 
-            modelBuilder.Entity<Ticket>()
-                .HasOne(t => t.Seat)
-                .WithMany()
-                .HasForeignKey(t => t.SeatId)
-                .OnDelete(DeleteBehavior.Restrict);
+                entity.Property(e => e.OrganizerId).ValueGeneratedNever();
 
-            modelBuilder.Entity<Ticket>()
-                .HasOne(t => t.Discount)
-                .WithMany()
-                .HasForeignKey(t => t.DiscountId)
-                .OnDelete(DeleteBehavior.Restrict);
+                entity.HasOne(d => d.OrganizerCategory).WithMany(p => p.Organizers)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Organizers_OrganizerCategories");
+            });
 
-            modelBuilder.Entity<Ticket>()
-                .HasOne(t => t.TicketType)
-                .WithMany()
-                .HasForeignKey(t => t.TicketTypeId)
-                .OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<OrganizerCategory>(entity =>
+            {
+                entity.HasKey(e => e.OrganizerCategoryId).HasName("PK_HostOrganizerCategories");
 
-            modelBuilder.Entity<Ticket>()
-                .HasOne(t => t.Purchase)
-                .WithMany()
-                .HasForeignKey(t => t.PurchaseId)
-                .OnDelete(DeleteBehavior.Restrict);
+                entity.Property(e => e.OrganizerCategoryId).ValueGeneratedNever();
+            });
+
+            modelBuilder.Entity<Purchase>(entity =>
+            {
+                entity.Property(e => e.PurchaseId).ValueGeneratedNever();
+            });
+
+            modelBuilder.Entity<Sale>(entity =>
+            {
+                entity.Property(e => e.SaleId).ValueGeneratedNever();
+
+                entity.HasOne(d => d.ApplicationUser).WithMany(p => p.Sales).HasConstraintName("FK_Sales_Application");
+
+                entity.HasOne(d => d.Purchase).WithMany(p => p.Sales).HasConstraintName("FK_Sales_Purchase_1");
+            });
+
+            modelBuilder.Entity<Seat>(entity =>
+            {
+                entity.Property(e => e.SeatId).ValueGeneratedNever();
+                entity.Property(e => e.VenueId).HasComment("Seats Information");
+
+                entity.HasOne(d => d.Section).WithMany(p => p.Seats).HasConstraintName("FK_Seats_Section");
+
+                entity.HasOne(d => d.Venue).WithMany(p => p.Seats).HasConstraintName("FK_Seats_Venue");
+            });
+
+            modelBuilder.Entity<Section>(entity =>
+            {
+                entity.Property(e => e.SectionId).ValueGeneratedNever();
+            });
+
+            modelBuilder.Entity<Ticket>(entity =>
+            {
+                entity.ToTable("Tickets", "evnt", tb => tb.HasComment("Event Tickets"));
+
+                entity.Property(e => e.TicketId).ValueGeneratedNever();
+
+                entity.HasOne(d => d.Discount).WithMany(p => p.Tickets).HasConstraintName("FK_Tickets_Discount_4");
+
+                entity.HasOne(d => d.Event).WithMany(p => p.Tickets)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Tickets_Events");
+
+                entity.HasOne(d => d.ApplicationUser).WithMany(p => p.Tickets).HasConstraintName("FK_Tickets_ApplicationUser_3");
+
+                entity.HasOne(d => d.Purchase).WithMany(p => p.Tickets).HasConstraintName("FK_Tickets_Purchase_6");
+
+                entity.HasOne(d => d.Seat).WithMany(p => p.Tickets)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Tickets_Seats_2");
+
+                entity.HasOne(d => d.TicketType).WithMany(p => p.Tickets).HasConstraintName("FK_Tickets_TicketType_5");
+
+                entity.HasOne(d => d.Venue).WithMany(p => p.Tickets)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Tickets_Venue_1");
+
+                entity.HasMany(d => d.Vips).WithMany(p => p.Tickets)
+                    .UsingEntity<Dictionary<int, object>>(
+                        "JunctionTicketVip",
+                        r => r.HasOne<Vip>().WithMany()
+                            .HasForeignKey("VipId")
+                            .OnDelete(DeleteBehavior.ClientSetNull)
+                            .HasConstraintName("FK_Junction_Ticket_VIP_VIP"),
+                        l => l.HasOne<Ticket>().WithMany()
+                            .HasForeignKey("TicketId")
+                            .OnDelete(DeleteBehavior.ClientSetNull)
+                            .HasConstraintName("FK_Junction_Ticket_VIP_Tickets"),
+                        j =>
+                        {
+                            j.HasKey("TicketId", "VipId");
+                            j.ToTable("Junction_Ticket_VIP");
+                            j.IndexerProperty<int>("TicketId").HasColumnName("TicketID");
+                            j.IndexerProperty<int>("VipId").HasColumnName("VIP_ID");
+                        });
+            });
+
+            modelBuilder.Entity<TicketGroup>(entity =>
+            {
+                entity.Property(e => e.TicketGroupId).ValueGeneratedNever();
+
+                entity.HasOne(d => d.GroupDiscount).WithMany(p => p.TicketGroups).HasConstraintName("FK_TicketGroup_GroupDiscounts_1");
+
+                entity.HasOne(d => d.Purchase).WithMany(p => p.TicketGroups).HasConstraintName("FK_TicketGroup_Purchase");
+            });
+
+            modelBuilder.Entity<TicketType>(entity =>
+            {
+                entity.HasKey(e => e.TicketTypeId).HasName("PK_UserFollows");
+
+                entity.Property(e => e.TicketTypeId).ValueGeneratedNever();
+            });
+
+            modelBuilder.Entity<Venue>(entity =>
+            {
+                entity.Property(e => e.VenueId).ValueGeneratedNever();
+            });
+
+            modelBuilder.Entity<Vip>(entity =>
+            {
+                entity.HasKey(e => e.VipId).HasName("PK_VIPAccess");
+
+                entity.ToTable("VIP", "evnt", tb => tb.HasComment("VIP Area"));
+
+                entity.Property(e => e.VipId).ValueGeneratedNever();
+
+                entity.HasOne(d => d.Event).WithMany(p => p.Vips)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_VIP_Events");
+            });
+
 
             modelBuilder.Entity<Discount>()
         .Property(d => d.PriceMultiplier)
@@ -134,10 +285,6 @@ namespace event_booking.Data
 
             modelBuilder.Entity<Loyalty>()
                 .Property(l => l.PriceMultiplier)
-                .HasColumnType("decimal(18,2)");
-
-            modelBuilder.Entity<Purchase>()
-                .Property(p => p.SalePrice)
                 .HasColumnType("decimal(18,2)");
 
             modelBuilder.Entity<Sale>()

@@ -1,14 +1,12 @@
 ﻿using event_booking.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace event_booking.Data
 {
-    public partial class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     {
-        public ApplicationDbContext()
-        {
-        }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
@@ -19,7 +17,7 @@ namespace event_booking.Data
 
         public virtual DbSet<EventCategory> EventCategories { get; set; }
 
-        public virtual DbSet<EventUser> EventUsers { get; set; }
+        public virtual DbSet<EventUser> EventUsers { get; set; } //The change of reference from table to cfs identityuser (referes to the same table)
 
         public virtual DbSet<GroupDiscount> GroupDiscounts { get; set; }
 
@@ -52,6 +50,8 @@ namespace event_booking.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder); // This ensures the base identity mappings are added
+
             modelBuilder.Entity<Discount>(entity =>
             {
                 entity.HasKey(e => e.DiscountId).HasName("PK_TicketPricing");
@@ -81,6 +81,13 @@ namespace event_booking.Data
 
             modelBuilder.Entity<EventUser>(entity =>
             {
+                //Because I didnt download the original aspnetuser table this relationship wasnt added
+                //Changed target from aspnetuser table to useridentity
+                modelBuilder.Entity<EventUser>()
+                    .HasOne(eu => eu.IdentityUser)
+                    .WithOne()
+                    .HasForeignKey<EventUser>(eu => eu.EventUserId);
+
                 entity.HasMany(d => d.Events).WithMany(p => p.EventUsers)
                     .UsingEntity<Dictionary<string, object>>(
                         "UserEventFollow",
@@ -280,9 +287,6 @@ namespace event_booking.Data
                     .HasConstraintName("FK_VIP_Events");
             });
 
-            OnModelCreatingPartial(modelBuilder);
         }
-
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }

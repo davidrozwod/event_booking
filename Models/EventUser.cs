@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace event_booking.Models;
@@ -23,6 +24,8 @@ public partial class EventUser
     public int? Picture { get; set; }
 
     public int? Document { get; set; }
+
+    public virtual IdentityUser? IdentityUser { get; set; }
 
     [InverseProperty("EventUser")]
     public virtual Loyalty? Loyalty { get; set; }

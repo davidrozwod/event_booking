@@ -23,11 +23,22 @@ namespace event_booking.Controllers
             return View();
         }
 
-        public IActionResult EventCategory()
+        public IActionResult PerformancesAndNightlife()
         {
             return View();
         }
-
+        public IActionResult SportsAndOutdoors()
+        {
+            return View();
+        }
+        public IActionResult TheaterAndArts()
+        {
+            return View();
+        }
+        public IActionResult FamilyAndEducation()
+        {
+            return View();
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

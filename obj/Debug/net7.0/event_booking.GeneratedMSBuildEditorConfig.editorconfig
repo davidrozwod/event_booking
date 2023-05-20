@@ -56,16 +56,28 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/GitHub stuff/Event-Booking/Views/Home/EventCategory.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFdmVudENhdGVnb3J5LmNzaHRtbA==
+[D:/GitHub stuff/Event-Booking/Views/Home/FamilyAndEducation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxGYW1pbHlBbmRFZHVjYXRpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/GitHub stuff/Event-Booking/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/GitHub stuff/Event-Booking/Views/Home/PerformancesAndNightlife.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQZXJmb3JtYW5jZXNBbmROaWdodGxpZmUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/GitHub stuff/Event-Booking/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub stuff/Event-Booking/Views/Home/SportsAndOutdoors.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTcG9ydHNBbmRPdXRkb29ycy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub stuff/Event-Booking/Views/Home/TheaterAndArts.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxUaGVhdGVyQW5kQXJ0cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/GitHub stuff/Event-Booking/Views/Shared/Error.cshtml]

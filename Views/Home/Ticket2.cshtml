@@ -1,167 +1,80 @@
 ﻿
+@{
+    ViewData["Title"] = "Ticket5";
+}
 
-<div id="progress">
-    <div id="progress-bar"></div>
-    <ul id="progress-num">
-        <li class="step active">1</li>
-        <li class="step active">2</li>
-        <li class="step">3</li>
-        <li class="step">4</li>
-    </ul>
+<h1>Order Successful!</h1>
+<hr />
+<h5>Receipt</h5>
+<div class="row">
+    <div class="col">
+        <p>19th May 2023</p>
+        <p>Order No: SL397826</p>
+    </div>
+    <div class="col">
+        <strong><p>Billed To</p></strong>
+        <p>Mr Jones Smith</p>
+        <p>119 Queen Street,</p>
+        <p>Auckland,</p>
+        <p>New Zealand</p>
+        <p>0612</p>
+    </div>
 </div>
-<button id="progress-prev" class="btn"><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Ticket">Prev</a></button>
-<button id="progress-next" class="btn"><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Ticket3">Next</a></button>
-
-
-<script>
-    const progressBar = document.getElementById("progress-bar");
-    const progressNext = document.getElementById("progress-next");
-    const progressPrev = document.getElementById("progress-prev");
-    const steps = document.querySelectorAll(".step");
-    let active = 2;
-
-    progressNext.addEventListener("click", () => {
-        active++;
-        if (active > steps.length) {
-            active = steps.length;
-        }
-        updateProgress();
-    });
-
-    progressPrev.addEventListener("click", () => {
-        active--;
-        if (active < 1) {
-            active = 1;
-        }
-        updateProgress();
-    });
-
-    const updateProgress = () => {
-        // toggle active class on list items
-        steps.forEach((step, i) => {
-            if (i < active) {
-                step.classList.add("active");
-            } else {
-                step.classList.remove("active");
-            }
-        });
-        // set progress bar width
-        progressBar.style.width =
-            ((active - 1) / (steps.length - 1)) * 100 + "%";
-        // enable disable prev and next buttons
-        if (active === 1) {
-            progressPrev.disabled = true;
-        } else if (active === steps.length) {
-            progressNext.disabled = true;
-        } else {
-            progressPrev.disabled = false;
-            progressNext.disabled = false;
-        }
-    };
-</script>
-
 <style>
-    #progress {
-        position: relative;
-        margin-bottom: 30px;
-    }
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
 
-    #progress-bar {
-        position: absolute;
-        background: lightseagreen;
-        height: 5px;
-        width: 0%;
-        top: 50%;
-        left: 0;
-    }
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
 
-    #progress-num {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        display: flex;
-        justify-content: space-between;
-    }
-
-        #progress-num::before {
-            content: "";
-            background-color: lightgray;
-            position: absolute;
-            top: 50%;
-            left: 0;
-            height: 5px;
-            width: 100%;
-            z-index: -1;
-        }
-
-        #progress-num .step {
-            border: 3px solid lightgray;
-            border-radius: 100%;
-            width: 25px;
-            height: 25px;
-            line-height: 25px;
-            text-align: center;
-            background-color: #fff;
-            font-family: sans-serif;
-            font-size: 14px;
-            position: relative;
-            z-index: 1;
-        }
-
-            #progress-num .step.active {
-                border-color: lightseagreen;
-                background-color: lightseagreen;
-                color: #fff;
-            }
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
 </style>
-<div class="text-center">
-    <h1 class="display-4">Contact Details</h1>
-</div>
-    <center><h6>Please ensure you enter your correct details as we will be using this to contact you in regards to your order</h6></center>
-    <hr />
-    <div class="row g-2">
-        <div class="col-md">
-            <div class="form-floating">
-                <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
-                <label for="floatingInputGrid">First Name</label>
-            </div>
-        </div>
-        <div class="col-md">
-            <div class="form-floating">
-                <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
-                <label for="floatingInputGrid">Last Name</label>
-            </div>
-        </div>
-    </div>
-    <p></p>
-    <div class="form-floating mb-3">
-        <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" />
-        <label for="floatingInputGrid">Email</label>
-    </div>
-    <div class="form-floating mb-3">
-        <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" />
-        <label for="floatingInputGrid">Phone Number</label>
-    </div>
-    <div class="row g-2">
-        <div class="col-md">
-            <div class="form-floating">
-                <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example">
-                    <option selected>Pick your Location</option>
-                    <option value="1">This Place</option>
-                    <option value="2">That Place</option>
-                    <option value="3">That other area</option>
-                </select>
-                <label for="floatingSelectGrid">Country</label>
-            </div>
-        </div>
-        <div class="col-md">
-            <div class="form-floating">
-                <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
-                <label for="floatingInputGrid">Postal Code</label>
-            </div>
-        </div>
-    </div>
-    <p></p>
+<br />
+<table>
+  <tr>
+    <th>Tickets</th>
+    <th>Price</th>
+    <th>Quantity</th>
+    <th>Cost</th>
+  </tr>
+  <tr>
+    <td>Adult</td>
+    <td>$50.00</td>
+    <td>1</td>
+    <td>$50.00</td>
+  </tr>
+  <tr>
+    <td>Total</td>
+    <td></td>
+    <td></td>
+    <td>$50.00</td>
+  </tr>
+
+</table>
+<br />
+<h3>Download Tickets</h3>
+
+<table>
+  <tr>
+    <th>No</th>
+    <th>Ticket Type</th>
+    <th>Name</th>
+    <th>E-Ticket</th>
+  </tr>
+  <tr>
+    <td>900137</td>
+    <td>Adult</td>
+    <td>Mr John Smith</td>
+    <td>Download</td>
+  </tr>
 
 
+</table>
 

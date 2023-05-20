@@ -33,16 +33,6 @@ namespace event_booking.Controllers
             return View();
         }
 
-        public IActionResult Ticket3()
-        {
-            return View();
-        }
-
-        public IActionResult Ticket4()
-        {
-            return View();
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

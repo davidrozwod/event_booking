@@ -12,7 +12,7 @@ public partial class EventUser
 {
     [Key]
     [Column("EventUserID")]
-    [ForeignKey("IdentityUser")]//changed from aspnetuser table to reference the ASP.NET Core Identity <tkey>
+    [ForeignKey("IdentityUser")]//changed from aspnetuser table to reference the ASP.NET Core Identity <tkey> [IdentityUser]
     public string EventUserId { get; set; } = null!;
 
     public int? FirstName { get; set; }

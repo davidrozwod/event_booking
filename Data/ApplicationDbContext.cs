@@ -2,6 +2,11 @@
 //For tables that are not included in the models see below within
 //"protected override void OnModelCreating(ModelBuilder modelBuilder)"
 //
+//Tables here that are not included in models are
+//Junction table = User > Events [User_Event_Follow]
+//Junction table = User > Organizers [User_Organizer_Follow]
+//Junction table = User > Venues [User_Venue_Follow]
+//Junction table = Ticket > VIP [Junction_Ticket_VIP]
 
 using event_booking.Models;
 using Microsoft.AspNetCore.Identity;
@@ -88,11 +93,13 @@ namespace event_booking.Data
                 entity.Property(e => e.EventCategoryId).ValueGeneratedNever();
             });
 
+            //
             //EventUser table
+            //
             modelBuilder.Entity<EventUser>(entity =>
             {
                 modelBuilder.Entity<EventUser>()    //User primary key > EventUser
-                    .HasOne(eu => eu.IdentityUser)
+                    .HasOne(eu => eu.IdentityUser) //IdentityUser (UserID)
                     .WithOne()
                     .HasForeignKey<EventUser>(eu => eu.EventUserId);
 
@@ -253,6 +260,7 @@ namespace event_booking.Data
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Tickets_Venue_1");
 
+            //Junction table = Ticket > VIP
                 entity.HasMany(d => d.Vips).WithMany(p => p.Tickets)
                     .UsingEntity<Dictionary<string, object>>(
                         "JunctionTicketVip",

@@ -15,15 +15,23 @@ public partial class EventUser
     [ForeignKey("IdentityUser")]//changed from aspnetuser table to reference the ASP.NET Core Identity <tkey> [IdentityUser]
     public string EventUserId { get; set; } = null!;
 
-    public int? FirstName { get; set; }
+    [StringLength(50)]
+    [Unicode(false)]
+    public string FirstName { get; set; } = null!;
 
-    public int? LastName { get; set; }
+    [StringLength(50)]
+    [Unicode(false)]
+    public string LastName { get; set; } = null!;
 
     public int? Age { get; set; }
 
-    public int? Picture { get; set; }
+    [StringLength(450)]
+    [Unicode(false)]
+    public string? Picture { get; set; }
 
-    public int? Document { get; set; }
+    [StringLength(450)]
+    [Unicode(false)]
+    public string? Document { get; set; }
 
     //IdentityUser Relationship
     public virtual IdentityUser? IdentityUser { get; set; } // is the navigation property that points to the associated IdentityUser

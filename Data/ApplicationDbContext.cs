@@ -93,11 +93,13 @@ namespace event_booking.Data
                 entity.Property(e => e.EventCategoryId).ValueGeneratedNever();
             });
 
+            //
             //EventUser table
+            //
             modelBuilder.Entity<EventUser>(entity =>
             {
                 modelBuilder.Entity<EventUser>()    //User primary key > EventUser
-                    .HasOne(eu => eu.IdentityUser)
+                    .HasOne(eu => eu.IdentityUser) //IdentityUser (UserID)
                     .WithOne()
                     .HasForeignKey<EventUser>(eu => eu.EventUserId);
 

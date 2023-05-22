@@ -6,9 +6,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace event_booking.Models;
 
-/// <summary>
-/// Ticket Pricing Information
-/// </summary>
 [Table("Discount", Schema = "evnt")]
 public partial class Discount
 {
@@ -22,6 +19,7 @@ public partial class Discount
 
     public int? PriceMultiplier { get; set; }
 
+    //Relationships
     [InverseProperty("Discount")]
     public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
 }

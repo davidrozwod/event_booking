@@ -25,6 +25,8 @@ public partial class Sale
 
     public int? SalePrice { get; set; }
 
+
+    //Relationships
     [ForeignKey("EventUserId")]
     [InverseProperty("Sales")]
     public virtual EventUser? EventUser { get; set; }

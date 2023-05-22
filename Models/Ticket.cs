@@ -6,9 +6,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace event_booking.Models;
 
-/// <summary>
-/// Event Tickets
-/// </summary>
 [Table("Tickets", Schema = "evnt")]
 [Index("EventId", "SeatId", Name = "Ticket_Unique_Index", IsUnique = true)]
 public partial class Ticket
@@ -50,6 +47,7 @@ public partial class Ticket
 
     public int? TicketPrice { get; set; }
 
+    //Relationships
     [ForeignKey("DiscountId")]
     [InverseProperty("Tickets")]
     public virtual Discount? Discount { get; set; }

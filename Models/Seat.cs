@@ -13,9 +13,6 @@ public partial class Seat
     [Column("SeatID")]
     public int SeatId { get; set; }
 
-    /// <summary>
-    /// Seats Information
-    /// </summary>
     [Column("VenueID")]
     public int? VenueId { get; set; }
 
@@ -24,6 +21,7 @@ public partial class Seat
 
     public int? SeatNumber { get; set; }
 
+    //Relationships
     [ForeignKey("SectionId")]
     [InverseProperty("Seats")]
     public virtual Section? Section { get; set; }

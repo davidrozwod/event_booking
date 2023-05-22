@@ -37,6 +37,7 @@ public partial class Event
     [Column(TypeName = "date")]
     public DateTime? EarlyBirdCutoff { get; set; }
 
+    //Relationships
     [ForeignKey("EventCategoryId")]
     [InverseProperty("Events")]
     public virtual EventCategory EventCategory { get; set; } = null!;

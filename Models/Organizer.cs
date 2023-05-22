@@ -32,6 +32,7 @@ public partial class Organizer
     [Unicode(false)]
     public string? ContactInfo { get; set; }
 
+    //Relationships
     [InverseProperty("Organizer")]
     public virtual ICollection<Event> Events { get; set; } = new List<Event>();
 

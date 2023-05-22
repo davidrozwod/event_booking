@@ -1,4 +1,9 @@
-﻿using event_booking.Models;
+﻿//
+//For tables that are not included in the models see below within
+//"protected override void OnModelCreating(ModelBuilder modelBuilder)"
+//
+
+using event_booking.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -11,13 +16,14 @@ namespace event_booking.Data
             : base(options)
         {
         }
+     
         public virtual DbSet<Discount> Discounts { get; set; }
 
         public virtual DbSet<Event> Events { get; set; }
 
         public virtual DbSet<EventCategory> EventCategories { get; set; }
 
-        public virtual DbSet<EventUser> EventUsers { get; set; } //The change of reference from table to cfs identityuser (referes to the same table)
+        public virtual DbSet<EventUser> EventUsers { get; set; }
 
         public virtual DbSet<GroupDiscount> GroupDiscounts { get; set; }
 
@@ -52,6 +58,7 @@ namespace event_booking.Data
         {
             base.OnModelCreating(modelBuilder); // This ensures the base identity mappings are added
 
+            //Discount table
             modelBuilder.Entity<Discount>(entity =>
             {
                 entity.HasKey(e => e.DiscountId).HasName("PK_TicketPricing");
@@ -61,6 +68,7 @@ namespace event_booking.Data
                 entity.Property(e => e.DiscountId).ValueGeneratedNever();
             });
 
+            //Event table
             modelBuilder.Entity<Event>(entity =>
             {
                 entity.Property(e => e.EventId).ValueGeneratedNever();
@@ -74,20 +82,21 @@ namespace event_booking.Data
                     .HasConstraintName("FK_Events_Organizers");
             });
 
+            //EventCategory table
             modelBuilder.Entity<EventCategory>(entity =>
             {
                 entity.Property(e => e.EventCategoryId).ValueGeneratedNever();
             });
 
+            //EventUser table
             modelBuilder.Entity<EventUser>(entity =>
             {
-                //Because I didnt download the original aspnetuser table this relationship wasnt added
-                //Changed target from aspnetuser table to useridentity
-                modelBuilder.Entity<EventUser>()
+                modelBuilder.Entity<EventUser>()    //User primary key > EventUser
                     .HasOne(eu => eu.IdentityUser)
                     .WithOne()
                     .HasForeignKey<EventUser>(eu => eu.EventUserId);
 
+            //Junction table = User > Events
                 entity.HasMany(d => d.Events).WithMany(p => p.EventUsers)
                     .UsingEntity<Dictionary<string, object>>(
                         "UserEventFollow",
@@ -107,6 +116,7 @@ namespace event_booking.Data
                             j.IndexerProperty<int>("EventId").HasColumnName("EventID");
                         });
 
+            //Junction table = User > Organizers
                 entity.HasMany(d => d.Organizers).WithMany(p => p.EventUsers)
                     .UsingEntity<Dictionary<string, object>>(
                         "UserOrganizerFollow",
@@ -126,6 +136,7 @@ namespace event_booking.Data
                             j.IndexerProperty<int>("OrganizerId").HasColumnName("OrganizerID");
                         });
 
+            //Junction table = User > Venues
                 entity.HasMany(d => d.Venues).WithMany(p => p.EventUsers)
                     .UsingEntity<Dictionary<string, object>>(
                         "UserVenueFollow",
@@ -146,6 +157,7 @@ namespace event_booking.Data
                         });
             });
 
+            //GroupDiscount table
             modelBuilder.Entity<GroupDiscount>(entity =>
             {
                 entity.ToTable("GroupDiscounts", "evnt", tb => tb.HasComment("Discounts on groups"));
@@ -153,6 +165,7 @@ namespace event_booking.Data
                 entity.Property(e => e.GroupDiscountId).ValueGeneratedNever();
             });
 
+            //Loyalty table
             modelBuilder.Entity<Loyalty>(entity =>
             {
                 entity.HasOne(d => d.EventUser).WithOne(p => p.Loyalty)
@@ -160,6 +173,7 @@ namespace event_booking.Data
                     .HasConstraintName("FK_Loyalty_EventUser");
             });
 
+            //Organizer table
             modelBuilder.Entity<Organizer>(entity =>
             {
                 entity.HasKey(e => e.OrganizerId).HasName("PK_HostsOrganizers");
@@ -171,6 +185,7 @@ namespace event_booking.Data
                     .HasConstraintName("FK_Organizers_OrganizerCategories");
             });
 
+            //OrganizerCategory table
             modelBuilder.Entity<OrganizerCategory>(entity =>
             {
                 entity.HasKey(e => e.OrganizerCategoryId).HasName("PK_HostOrganizerCategories");
@@ -178,11 +193,13 @@ namespace event_booking.Data
                 entity.Property(e => e.OrganizerCategoryId).ValueGeneratedNever();
             });
 
+            //Purchase table
             modelBuilder.Entity<Purchase>(entity =>
             {
                 entity.Property(e => e.PurchaseId).ValueGeneratedNever();
             });
 
+            //Sale table
             modelBuilder.Entity<Sale>(entity =>
             {
                 entity.Property(e => e.SaleId).ValueGeneratedNever();
@@ -192,6 +209,7 @@ namespace event_booking.Data
                 entity.HasOne(d => d.Purchase).WithMany(p => p.Sales).HasConstraintName("FK_Sales_Purchase_1");
             });
 
+            //Seat table
             modelBuilder.Entity<Seat>(entity =>
             {
                 entity.Property(e => e.SeatId).ValueGeneratedNever();
@@ -202,11 +220,13 @@ namespace event_booking.Data
                 entity.HasOne(d => d.Venue).WithMany(p => p.Seats).HasConstraintName("FK_Seats_Venue");
             });
 
+            //Section table
             modelBuilder.Entity<Section>(entity =>
             {
                 entity.Property(e => e.SectionId).ValueGeneratedNever();
             });
 
+            //Ticket table
             modelBuilder.Entity<Ticket>(entity =>
             {
                 entity.ToTable("Tickets", "evnt", tb => tb.HasComment("Event Tickets"));
@@ -253,6 +273,7 @@ namespace event_booking.Data
                         });
             });
 
+            //TicketGroup table
             modelBuilder.Entity<TicketGroup>(entity =>
             {
                 entity.Property(e => e.TicketGroupId).ValueGeneratedNever();
@@ -262,6 +283,7 @@ namespace event_booking.Data
                 entity.HasOne(d => d.Purchase).WithMany(p => p.TicketGroups).HasConstraintName("FK_TicketGroup_Purchase");
             });
 
+            //TicketType table
             modelBuilder.Entity<TicketType>(entity =>
             {
                 entity.HasKey(e => e.TicketTypeId).HasName("PK_UserFollows");
@@ -269,11 +291,13 @@ namespace event_booking.Data
                 entity.Property(e => e.TicketTypeId).ValueGeneratedNever();
             });
 
+            //Venue table
             modelBuilder.Entity<Venue>(entity =>
             {
                 entity.Property(e => e.VenueId).ValueGeneratedNever();
             });
 
+            //Vip table
             modelBuilder.Entity<Vip>(entity =>
             {
                 entity.HasKey(e => e.VipId).HasName("PK_VIPAccess");

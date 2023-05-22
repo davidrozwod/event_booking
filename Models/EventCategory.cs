@@ -17,6 +17,7 @@ public partial class EventCategory
     [Unicode(false)]
     public string CategoryName { get; set; } = null!;
 
+    //Relationships
     [InverseProperty("EventCategory")]
     public virtual ICollection<Event> Events { get; set; } = new List<Event>();
 }

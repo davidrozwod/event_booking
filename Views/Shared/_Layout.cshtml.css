@@ -47,7 +47,7 @@ html, body {
 }
 
 .wrapper {
-    min-height: calc(100vh - 60px - 60px); /* Adjust the height to account for header and footer height */
+    min-height: calc(100vh - 20px - 20px); /* Adjust the height to account for header and footer height */
     display: flex;
     align-items: center;
 }

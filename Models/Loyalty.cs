@@ -1,18 +1,23 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
-namespace event_booking.Models
+namespace event_booking.Models;
+
+[Table("Loyalty", Schema = "evnt")]
+public partial class Loyalty
 {
-    public partial class Loyalty
-    {
-        public string? Id { get; set; } = null!;
-        public int TicketCount { get; set; }
-        public decimal PriceMultiplier { get; set; }
+    [Key]
+    [Column("EventUserID")]
+    public string EventUserId { get; set; } = null!;
 
-        [ForeignKey("Id")]
-        [InverseProperty("Loyalty")]
-        public virtual ApplicationUser? ApplicationUser { get; set; } = null!;
-    }
+    public int? TicketCount { get; set; }
 
+    public int? PriceMultiplier { get; set; }
+
+    [ForeignKey("EventUserId")]
+    [InverseProperty("Loyalty")]
+    public virtual EventUser EventUser { get; set; } = null!;
 }

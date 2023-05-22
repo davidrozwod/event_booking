@@ -1,68 +1,84 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Net.Sockets;
+using Microsoft.EntityFrameworkCore;
 
-namespace event_booking.Models
+namespace event_booking.Models;
+
+/// <summary>
+/// Event Tickets
+/// </summary>
+[Table("Tickets", Schema = "evnt")]
+[Index("EventId", "SeatId", Name = "Ticket_Unique_Index", IsUnique = true)]
+public partial class Ticket
 {
-    [Index("EventId", "SeatId", Name = "Ticket_Unique_Index", IsUnique = true)]
-    public partial class Ticket
-    {
-        [Key]
-        public int TicketId { get; set; }
-        public int EventId { get; set; }
-        public int VenueId { get; set; }
-        public int SeatId { get; set; }
-        public string? Id { get; set; }
+    [Key]
+    [Column("TicketID")]
+    public int TicketId { get; set; }
 
-        [StringLength(50)]
-        public string? FirstName { get; set; }
+    [Column("EventID")]
+    public int EventId { get; set; }
 
-        [StringLength(50)]
-        [Unicode(false)]
-        public string? LastName { get; set; }
-        public int? DiscountId { get; set; }
-        public int? TicketTypeId { get; set; }
-        public int? PurchaseId { get; set; }
-        public decimal BasePrice { get; set; }
-        public decimal? TicketPrice { get; set; }
+    [Column("VenueID")]
+    public int VenueId { get; set; }
 
-        [ForeignKey("DiscountId")]
-        [InverseProperty("Tickets")]
-        public virtual Discount? Discount { get; set; }
+    [Column("SeatID")]
+    public int SeatId { get; set; }
 
-        [ForeignKey("EventId")]
-        [InverseProperty("Tickets")]
-        public virtual Event Event { get; set; } = null!;
+    [Column("EventUserID")]
+    [StringLength(450)]
+    public string? EventUserId { get; set; }
 
-        [ForeignKey("Id")]
-        [InverseProperty("Tickets")]
-        public virtual ApplicationUser? ApplicationUser { get; set; }
+    [StringLength(50)]
+    public string? FirstName { get; set; }
 
-        [ForeignKey("PurchaseId")]
-        [InverseProperty("Tickets")]
-        public virtual Purchase? Purchase { get; set; }
+    [StringLength(50)]
+    [Unicode(false)]
+    public string? LastName { get; set; }
 
-        [ForeignKey("SeatId")]
-        [InverseProperty("Tickets")]
-        public virtual Seat Seat { get; set; } = null!;
+    [Column("DiscountID")]
+    public int? DiscountId { get; set; }
 
-        [ForeignKey("TicketTypeId")]
-        [InverseProperty("Tickets")]
-        public virtual TicketType? TicketType { get; set; }
+    [Column("TicketTypeID")]
+    public int? TicketTypeId { get; set; }
 
-        [ForeignKey("VenueId")]
-        [InverseProperty("Tickets")]
-        public virtual Venue Venue { get; set; } = null!;
+    [Column("PurchaseID")]
+    public int? PurchaseId { get; set; }
 
-        [ForeignKey("TicketId")]
-        [InverseProperty("Tickets")]
-        public virtual ICollection<Vip> Vips { get; set; } = new List<Vip>();
+    public int BasePrice { get; set; }
 
-        [InverseProperty("Ticket")]
-        public virtual ICollection<JunctionTicketVip> JunctionTicketVips { get; set; } = new List<JunctionTicketVip>();
+    public int? TicketPrice { get; set; }
 
+    [ForeignKey("DiscountId")]
+    [InverseProperty("Tickets")]
+    public virtual Discount? Discount { get; set; }
 
-    }
+    [ForeignKey("EventId")]
+    [InverseProperty("Tickets")]
+    public virtual Event Event { get; set; } = null!;
 
+    [ForeignKey("EventUserId")]
+    [InverseProperty("Tickets")]
+    public virtual EventUser? EventUser { get; set; }
+
+    [ForeignKey("PurchaseId")]
+    [InverseProperty("Tickets")]
+    public virtual Purchase? Purchase { get; set; }
+
+    [ForeignKey("SeatId")]
+    [InverseProperty("Tickets")]
+    public virtual Seat Seat { get; set; } = null!;
+
+    [ForeignKey("TicketTypeId")]
+    [InverseProperty("Tickets")]
+    public virtual TicketType? TicketType { get; set; }
+
+    [ForeignKey("VenueId")]
+    [InverseProperty("Tickets")]
+    public virtual Venue Venue { get; set; } = null!;
+
+    [ForeignKey("TicketId")]
+    [InverseProperty("Tickets")]
+    public virtual ICollection<Vip> Vips { get; set; } = new List<Vip>();
 }

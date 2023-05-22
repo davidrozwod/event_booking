@@ -1,35 +1,39 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
-namespace event_booking.Models
+namespace event_booking.Models;
+
+[Table("Venue", Schema = "evnt")]
+public partial class Venue
 {
-    public partial class Venue
-    {
-        
-        public int VenueId { get; set; }
-        [StringLength(50)]
-        [Unicode(false)]
-        public string? Name { get; set; }
+    [Key]
+    [Column("VenueID")]
+    public int VenueId { get; set; }
 
-        [StringLength(50)]
-        [Unicode(false)]
-        public string? Location { get; set; }
+    [StringLength(50)]
+    [Unicode(false)]
+    public string? Name { get; set; }
 
-        [Unicode(false)]
-        public string? Description { get; set; }
+    [StringLength(50)]
+    [Unicode(false)]
+    public string? Location { get; set; }
 
-        [Column("Seat Capacity")]
-        public int? SeatCapacity { get; set; }
+    [Unicode(false)]
+    public string? Description { get; set; }
 
-        [InverseProperty("Venue")]
-        public virtual ICollection<Seat> Seats { get; set; } = new List<Seat>();
+    [Column("Seat Capacity")]
+    public int? SeatCapacity { get; set; }
 
-        [InverseProperty("Venue")]
-        public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
+    [InverseProperty("Venue")]
+    public virtual ICollection<Seat> Seats { get; set; } = new List<Seat>();
 
-        [ForeignKey("VenueId")]
-        [InverseProperty("Venues")]
-        public virtual ICollection<ApplicationUser> ApplicationUsers { get; set; } = new List<ApplicationUser>();
-    }
+    [InverseProperty("Venue")]
+    public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
+
+    [ForeignKey("VenueId")]
+    [InverseProperty("Venues")]
+    public virtual ICollection<EventUser> EventUsers { get; set; } = new List<EventUser>();
 }

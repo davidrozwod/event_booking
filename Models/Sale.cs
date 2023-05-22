@@ -1,27 +1,35 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
-namespace event_booking.Models
+namespace event_booking.Models;
+
+[Table("Sales", Schema = "evnt")]
+public partial class Sale
 {
-    public partial class Sale
-    {
-        public int SaleId { get; set; }
-        public int PurchaseId { get; set; }
-        public string? Id { get; set; }
+    [Key]
+    [Column("SaleID")]
+    public int SaleId { get; set; }
 
-        [Column(TypeName = "date")]
-        public DateTime SaleDate { get; set; }
-        public decimal SalePrice { get; set; }
+    [Column("EventUserID")]
+    [StringLength(450)]
+    public string? EventUserId { get; set; }
 
-        [ForeignKey("Id")]
-        [InverseProperty("Sales")]
-        public virtual ApplicationUser? ApplicationUser { get; set; }
+    [Column("PurchaseID")]
+    public int? PurchaseId { get; set; }
 
-        [ForeignKey("PurchaseId")]
-        [InverseProperty("Sales")]
-        public virtual Purchase? Purchase { get; set; }
-    }
+    [Column(TypeName = "date")]
+    public DateTime? SaleDate { get; set; }
 
+    public int? SalePrice { get; set; }
+
+    [ForeignKey("EventUserId")]
+    [InverseProperty("Sales")]
+    public virtual EventUser? EventUser { get; set; }
+
+    [ForeignKey("PurchaseId")]
+    [InverseProperty("Sales")]
+    public virtual Purchase? Purchase { get; set; }
 }

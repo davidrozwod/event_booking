@@ -27,6 +27,7 @@ public partial class Venue
     [Column("Seat Capacity")]
     public int? SeatCapacity { get; set; }
 
+    //Relationships
     [InverseProperty("Venue")]
     public virtual ICollection<Seat> Seats { get; set; } = new List<Seat>();
 

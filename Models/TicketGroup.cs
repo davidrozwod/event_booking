@@ -19,6 +19,7 @@ public partial class TicketGroup
     [Column("GroupDiscountID")]
     public int? GroupDiscountId { get; set; }
 
+    //Relationships
     [ForeignKey("GroupDiscountId")]
     [InverseProperty("TicketGroups")]
     public virtual GroupDiscount? GroupDiscount { get; set; }

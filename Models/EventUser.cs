@@ -25,8 +25,10 @@ public partial class EventUser
 
     public int? Document { get; set; }
 
+    //IdentityUser Relationship
     public virtual IdentityUser? IdentityUser { get; set; } // is the navigation property that points to the associated IdentityUser
 
+    //Relationships
     [InverseProperty("EventUser")]
     public virtual Loyalty? Loyalty { get; set; }
 

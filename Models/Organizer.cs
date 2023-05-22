@@ -7,7 +7,6 @@ using Microsoft.EntityFrameworkCore;
 namespace event_booking.Models;
 
 [Table("Organizers", Schema = "evnt")]
-[Index("OrganizerCategoryId", Name = "IX_Organizers_OrganizerCategoryID")]
 public partial class Organizer
 {
     [Key]
@@ -33,6 +32,7 @@ public partial class Organizer
     [Unicode(false)]
     public string? ContactInfo { get; set; }
 
+    //Relationships
     [InverseProperty("Organizer")]
     public virtual ICollection<Event> Events { get; set; } = new List<Event>();
 

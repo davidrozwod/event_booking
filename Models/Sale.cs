@@ -7,8 +7,6 @@ using Microsoft.EntityFrameworkCore;
 namespace event_booking.Models;
 
 [Table("Sales", Schema = "evnt")]
-[Index("EventUserId", Name = "IX_Sales_EventUserID")]
-[Index("PurchaseId", Name = "IX_Sales_PurchaseID")]
 public partial class Sale
 {
     [Key]
@@ -16,6 +14,7 @@ public partial class Sale
     public int SaleId { get; set; }
 
     [Column("EventUserID")]
+    [StringLength(450)]
     public string? EventUserId { get; set; }
 
     [Column("PurchaseID")]
@@ -26,6 +25,8 @@ public partial class Sale
 
     public int? SalePrice { get; set; }
 
+
+    //Relationships
     [ForeignKey("EventUserId")]
     [InverseProperty("Sales")]
     public virtual EventUser? EventUser { get; set; }

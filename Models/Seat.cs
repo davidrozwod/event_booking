@@ -7,17 +7,12 @@ using Microsoft.EntityFrameworkCore;
 namespace event_booking.Models;
 
 [Table("Seats", Schema = "evnt")]
-[Index("SectionId", Name = "IX_Seats_SectionID")]
-[Index("VenueId", Name = "IX_Seats_VenueID")]
 public partial class Seat
 {
     [Key]
     [Column("SeatID")]
     public int SeatId { get; set; }
 
-    /// <summary>
-    /// Seats Information
-    /// </summary>
     [Column("VenueID")]
     public int? VenueId { get; set; }
 
@@ -26,6 +21,7 @@ public partial class Seat
 
     public int? SeatNumber { get; set; }
 
+    //Relationships
     [ForeignKey("SectionId")]
     [InverseProperty("Seats")]
     public virtual Section? Section { get; set; }

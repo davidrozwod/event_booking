@@ -7,8 +7,6 @@ using Microsoft.EntityFrameworkCore;
 namespace event_booking.Models;
 
 [Table("Events", Schema = "evnt")]
-[Index("EventCategoryId", Name = "IX_Events_EventCategoryID")]
-[Index("OrganizerId", Name = "IX_Events_OrganizerID")]
 public partial class Event
 {
     [Key]

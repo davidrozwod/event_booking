@@ -13,6 +13,7 @@ public partial class Purchase
     [Column("PurchaseID")]
     public int PurchaseId { get; set; }
 
+    //Relationships
     [InverseProperty("Purchase")]
     public virtual ICollection<Sale> Sales { get; set; } = new List<Sale>();
 

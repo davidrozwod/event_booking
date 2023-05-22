@@ -6,9 +6,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace event_booking.Models;
 
-/// <summary>
-/// Ticket Pricing Information
-/// </summary>
 [Table("Discount", Schema = "evnt")]
 public partial class Discount
 {

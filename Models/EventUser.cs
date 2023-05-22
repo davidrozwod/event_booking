@@ -10,8 +10,9 @@ namespace event_booking.Models;
 [Table("EventUser", Schema = "evnt")]
 public partial class EventUser
 {
+    [Key]
     [Column("EventUserID")]
-    [ForeignKey("IdentityUser")]//changed from aspnetuser table to reference the ASP.NET Core Identity <tkey>
+    [ForeignKey("IdentityUser")]//changed from aspnetuser table to reference the ASP.NET Core Identity <tkey> [IdentityUser]
     public string EventUserId { get; set; } = null!;
 
     [StringLength(50)]
@@ -24,13 +25,18 @@ public partial class EventUser
 
     public int? Age { get; set; }
 
-    public int? Picture { get; set; }
+    [StringLength(450)]
+    [Unicode(false)]
+    public string? Picture { get; set; }
 
-    public int? Document { get; set; }
+    [StringLength(450)]
+    [Unicode(false)]
+    public string? Document { get; set; }
 
     //IdentityUser Relationship
     public virtual IdentityUser? IdentityUser { get; set; } // is the navigation property that points to the associated IdentityUser
 
+    //Relationships
     [InverseProperty("EventUser")]
     public virtual Loyalty? Loyalty { get; set; }
 

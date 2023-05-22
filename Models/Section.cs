@@ -19,6 +19,7 @@ public partial class Section
 
     public int? PriceMultiplier { get; set; }
 
+    //Relationships
     [InverseProperty("Section")]
     public virtual ICollection<Seat> Seats { get; set; } = new List<Seat>();
 }

@@ -6,9 +6,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace event_booking.Models;
 
-/// <summary>
-/// Discounts on groups
-/// </summary>
 [Table("GroupDiscounts", Schema = "evnt")]
 public partial class GroupDiscount
 {
@@ -25,6 +22,7 @@ public partial class GroupDiscount
 
     public int? PriceMultiplier { get; set; }
 
+    //Relationships
     [InverseProperty("GroupDiscount")]
     public virtual ICollection<TicketGroup> TicketGroups { get; set; } = new List<TicketGroup>();
 }

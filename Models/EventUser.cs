@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace event_booking.Models;
@@ -11,7 +12,7 @@ public partial class EventUser
 {
     [Key]
     [Column("EventUserID")]
-    [ForeignKey("IdentityUser")]
+    [ForeignKey("IdentityUser")]//changed from aspnetuser table to reference the ASP.NET Core Identity <tkey>
     public string EventUserId { get; set; } = null!;
 
     public int? FirstName { get; set; }
@@ -23,6 +24,8 @@ public partial class EventUser
     public int? Picture { get; set; }
 
     public int? Document { get; set; }
+
+    public virtual IdentityUser? IdentityUser { get; set; } // is the navigation property that points to the associated IdentityUser
 
     [InverseProperty("EventUser")]
     public virtual Loyalty? Loyalty { get; set; }

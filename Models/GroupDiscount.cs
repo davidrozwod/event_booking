@@ -1,24 +1,30 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
+namespace event_booking.Models;
 
-namespace event_booking.Models
+/// <summary>
+/// Discounts on groups
+/// </summary>
+[Table("GroupDiscounts", Schema = "evnt")]
+public partial class GroupDiscount
 {
-    public partial class GroupDiscount
-    {
-        public int GroupDiscountId { get; set; }
+    [Key]
+    [Column("GroupDiscountID")]
+    public int GroupDiscountId { get; set; }
 
-        [StringLength(50)]
-        public string? GroupName { get; set; }
+    [StringLength(50)]
+    public string? GroupName { get; set; }
 
-        public int? MinimumAdults { get; set; }
+    public int? MinimumAdults { get; set; }
 
-        public int? MinimumChildren { get; set; }
+    public int? MinimumChildren { get; set; }
 
-        public int? PriceMultiplier { get; set; }
+    public int? PriceMultiplier { get; set; }
 
-        [InverseProperty("GroupDiscount")]
-        public virtual ICollection<TicketGroup> TicketGroups { get; set; } = new List<TicketGroup>();
-    }
+    [InverseProperty("GroupDiscount")]
+    public virtual ICollection<TicketGroup> TicketGroups { get; set; } = new List<TicketGroup>();
 }

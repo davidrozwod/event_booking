@@ -17,7 +17,6 @@ public partial class Loyalty
 
     public int? PriceMultiplier { get; set; }
 
-    //Relationships
     [ForeignKey("EventUserId")]
     [InverseProperty("Loyalty")]
     public virtual EventUser EventUser { get; set; } = null!;

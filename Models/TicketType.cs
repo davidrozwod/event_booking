@@ -19,7 +19,6 @@ public partial class TicketType
 
     public int PriceMultiplier { get; set; }
 
-    //Relationships
     [InverseProperty("TicketType")]
     public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
 }

@@ -16,7 +16,6 @@ public partial class OrganizerCategory
     [StringLength(50)]
     public string CategoryName { get; set; } = null!;
 
-    //Relationships
     [InverseProperty("OrganizerCategory")]
     public virtual ICollection<Organizer> Organizers { get; set; } = new List<Organizer>();
 }

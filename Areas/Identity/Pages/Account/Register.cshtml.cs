@@ -10,6 +10,7 @@ using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading;
 using System.Threading.Tasks;
+using event_booking.Data;
 using event_booking.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -31,6 +32,7 @@ namespace event_booking.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly ApplicationDbContext _dbContext; // Add this line
 
 
         public RegisterModel(
@@ -39,7 +41,8 @@ namespace event_booking.Areas.Identity.Pages.Account
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
-            RoleManager<IdentityRole> roleManager)
+            RoleManager<IdentityRole> roleManager,
+            ApplicationDbContext dbContext)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -48,6 +51,7 @@ namespace event_booking.Areas.Identity.Pages.Account
             _logger = logger;
             _emailSender = emailSender;
             _roleManager = roleManager;
+            _dbContext = dbContext;
         }
 
 
@@ -88,12 +92,12 @@ namespace event_booking.Areas.Identity.Pages.Account
             /// </summary>
 
             [Required]
-            [Display(Name = "First Name")]
+            [Display(Name = "FirstName")]
             public string FirstName { get; set; }
 
 
             [Required]
-            [Display(Name = "Last Name")]
+            [Display(Name = "LastName")]
             public string LastName { get; set; }
 
 
@@ -140,14 +144,17 @@ namespace event_booking.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
-
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
                 {
-                    
+
+
+
+
+
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);
@@ -168,6 +175,15 @@ namespace event_booking.Areas.Identity.Pages.Account
                     else {
                         throw new NotSupportedException("Please enter a user role");
                     }
+
+                    var eventUser = new EventUser
+                    {
+                        EventUserId = user.Id, // Use the Id of the newly created IdentityUser
+                        FirstName = Input.FirstName,
+                        LastName = Input.LastName
+                    };
+                    _dbContext.EventUsers.Add(eventUser);
+                    await _dbContext.SaveChangesAsync();
 
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Page(

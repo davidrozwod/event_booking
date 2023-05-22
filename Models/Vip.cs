@@ -6,7 +6,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace event_booking.Models;
 
+/// <summary>
+/// VIP Area
+/// </summary>
 [Table("VIP", Schema = "evnt")]
+[Index("EventId", Name = "IX_VIP_EventID")]
 [Index("VipId", "EventId", Name = "VIP_Unique_Index", IsUnique = true)]
 public partial class Vip
 {
@@ -27,7 +31,6 @@ public partial class Vip
     [Column("VIP_Price")]
     public int VipPrice { get; set; }
 
-    //Relationships
     [ForeignKey("EventId")]
     [InverseProperty("Vips")]
     public virtual Event Event { get; set; } = null!;

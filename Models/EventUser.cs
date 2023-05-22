@@ -15,9 +15,9 @@ public partial class EventUser
     [ForeignKey("IdentityUser")]//changed from aspnetuser table to reference the ASP.NET Core Identity <tkey>
     public string EventUserId { get; set; } = null!;
 
-    public int? FirstName { get; set; }
+    public string? FirstName { get; set; }
 
-    public int? LastName { get; set; }
+    public string? LastName { get; set; }
 
     public int? Age { get; set; }
 

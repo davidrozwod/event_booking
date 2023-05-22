@@ -58,6 +58,23 @@ namespace event_booking.Controllers
             return View();
         }
 
+        public IActionResult PerformancesAndNightlife()
+        {
+            return View();
+        }
+        public IActionResult SportsAndOutdoors()
+        {
+            return View();
+        }
+        public IActionResult TheaterAndArts()
+        {
+            return View();
+        }
+        public IActionResult FamilyAndEducation()
+        {
+            return View();
+        }
+
         public IActionResult PromoterArea()
         {
             return View();

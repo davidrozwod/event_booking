@@ -21,7 +21,6 @@ namespace event_booking.Data
             : base(options)
         {
         }
-     
         public virtual DbSet<Discount> Discounts { get; set; }
 
         public virtual DbSet<Event> Events { get; set; }
@@ -124,6 +123,7 @@ namespace event_booking.Data
                             j.IndexerProperty<string>("EventUserId").HasColumnName("EventUserID");
                             j.IndexerProperty<int>("EventId").HasColumnName("EventID");
                         });
+
 
             //Junction table = User > Organizers
                 entity.HasMany(d => d.Organizers).WithMany(p => p.EventUsers)

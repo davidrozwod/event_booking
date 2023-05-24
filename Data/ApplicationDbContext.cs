@@ -185,7 +185,7 @@ namespace event_booking.Data
             //Organizer table
             modelBuilder.Entity<Organizer>(entity =>
             {
-                entity.HasKey(e => e.OrganizerId).HasName("PK_HostsOrganizers");
+                entity.HasKey(e => e.OrganizerId).HasName("PK_Organizers");
 
                 entity.Property(e => e.OrganizerId).ValueGeneratedOnAdd();
 
@@ -197,7 +197,7 @@ namespace event_booking.Data
             //OrganizerCategory table
             modelBuilder.Entity<OrganizerCategory>(entity =>
             {
-                entity.HasKey(e => e.OrganizerCategoryId).HasName("PK_HostOrganizerCategories");
+                entity.HasKey(e => e.OrganizerCategoryId).HasName("PK_OrganizerCategories");
 
                 entity.Property(e => e.OrganizerCategoryId).ValueGeneratedOnAdd();
             });

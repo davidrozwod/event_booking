@@ -10,9 +10,11 @@ namespace event_booking.Models;
 public partial class Purchase
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Column("PurchaseID")]
     public int PurchaseId { get; set; }
 
+    //Relationships
     [InverseProperty("Purchase")]
     public virtual ICollection<Sale> Sales { get; set; } = new List<Sale>();
 

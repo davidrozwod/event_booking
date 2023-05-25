@@ -10,10 +10,12 @@ namespace event_booking.Models;
 /// VIP Area
 /// </summary>
 [Table("VIP", Schema = "evnt")]
+[Index("EventId", Name = "IX_VIP_EventID")]
 [Index("VipId", "EventId", Name = "VIP_Unique_Index", IsUnique = true)]
 public partial class Vip
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Column("VIP_ID")]
     public int VipId { get; set; }
 
@@ -25,11 +27,12 @@ public partial class Vip
     public string VipName { get; set; } = null!;
 
     [Unicode(false)]
-    public string? Description { get; set; }
+    public string Description { get; set; } = null!;
 
     [Column("VIP_Price")]
     public int VipPrice { get; set; }
 
+    //Relationships
     [ForeignKey("EventId")]
     [InverseProperty("Vips")]
     public virtual Event Event { get; set; } = null!;

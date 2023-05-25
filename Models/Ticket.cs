@@ -10,10 +10,17 @@ namespace event_booking.Models;
 /// Event Tickets
 /// </summary>
 [Table("Tickets", Schema = "evnt")]
+[Index("DiscountId", Name = "IX_Tickets_DiscountID")]
+[Index("EventUserId", Name = "IX_Tickets_EventUserID")]
+[Index("PurchaseId", Name = "IX_Tickets_PurchaseID")]
+[Index("SeatId", Name = "IX_Tickets_SeatID")]
+[Index("TicketTypeId", Name = "IX_Tickets_TicketTypeID")]
+[Index("VenueId", Name = "IX_Tickets_VenueID")]
 [Index("EventId", "SeatId", Name = "Ticket_Unique_Index", IsUnique = true)]
 public partial class Ticket
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Column("TicketID")]
     public int TicketId { get; set; }
 
@@ -26,15 +33,15 @@ public partial class Ticket
     [Column("SeatID")]
     public int SeatId { get; set; }
 
-    [StringLength(450)]
-    public string? Id { get; set; }
+    [Column("EventUserID")]
+    public string? EventUserId { get; set; }
 
     [StringLength(50)]
-    public string? FirstName { get; set; }
+    public string FirstName { get; set; } = null!;
 
     [StringLength(50)]
     [Unicode(false)]
-    public string? LastName { get; set; }
+    public string LastName { get; set; } = null!;
 
     [Column("DiscountID")]
     public int? DiscountId { get; set; }
@@ -49,6 +56,7 @@ public partial class Ticket
 
     public int? TicketPrice { get; set; }
 
+    //Relationships
     [ForeignKey("DiscountId")]
     [InverseProperty("Tickets")]
     public virtual Discount? Discount { get; set; }
@@ -57,9 +65,9 @@ public partial class Ticket
     [InverseProperty("Tickets")]
     public virtual Event Event { get; set; } = null!;
 
-    [ForeignKey("Id")]
+    [ForeignKey("EventUserId")]
     [InverseProperty("Tickets")]
-    public virtual AspNetUser? IdNavigation { get; set; }
+    public virtual EventUser? EventUser { get; set; }
 
     [ForeignKey("PurchaseId")]
     [InverseProperty("Tickets")]

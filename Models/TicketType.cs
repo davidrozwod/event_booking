@@ -10,6 +10,7 @@ namespace event_booking.Models;
 public partial class TicketType
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Column("TicketTypeID")]
     public int TicketTypeId { get; set; }
 
@@ -19,6 +20,7 @@ public partial class TicketType
 
     public int PriceMultiplier { get; set; }
 
+    //Relationships
     [InverseProperty("TicketType")]
     public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
 }

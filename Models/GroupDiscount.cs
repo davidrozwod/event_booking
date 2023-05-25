@@ -13,18 +13,20 @@ namespace event_booking.Models;
 public partial class GroupDiscount
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Column("GroupDiscountID")]
     public int GroupDiscountId { get; set; }
 
     [StringLength(50)]
-    public string? GroupName { get; set; }
+    public string GroupName { get; set; } = null!;
 
-    public int? MinimumAdults { get; set; }
+    public int MinimumAdults { get; set; }
 
-    public int? MinimumChildren { get; set; }
+    public int MinimumChildren { get; set; }
 
-    public int? PriceMultiplier { get; set; }
+    public int PriceMultiplier { get; set; }
 
+    //Relationships
     [InverseProperty("GroupDiscount")]
     public virtual ICollection<TicketGroup> TicketGroups { get; set; } = new List<TicketGroup>();
 }

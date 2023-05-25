@@ -10,13 +10,15 @@ namespace event_booking.Models;
 public partial class Loyalty
 {
     [Key]
-    public string Id { get; set; } = null!;
+    [Column("EventUserID")]
+    public string EventUserId { get; set; } = null!;
 
     public int? TicketCount { get; set; }
 
     public int? PriceMultiplier { get; set; }
 
-    [ForeignKey("Id")]
+    //Relationships
+    [ForeignKey("EventUserId")]
     [InverseProperty("Loyalty")]
-    public virtual AspNetUser IdNavigation { get; set; } = null!;
+    public virtual EventUser EventUser { get; set; } = null!;
 }

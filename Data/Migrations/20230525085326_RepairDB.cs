@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace event_booking.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class Repair10 : Migration
+    public partial class RepairDB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -14,6 +14,7 @@ namespace event_booking.Data.Migrations
             migrationBuilder.EnsureSchema(
                 name: "evnt");
 
+            //Discount
             migrationBuilder.CreateTable(
                 name: "Discount",
                 schema: "evnt",
@@ -30,6 +31,7 @@ namespace event_booking.Data.Migrations
                 },
                 comment: "Ticket Pricing Information");
 
+            //EventCategories
             migrationBuilder.CreateTable(
                 name: "EventCategories",
                 schema: "evnt",
@@ -44,7 +46,7 @@ namespace event_booking.Data.Migrations
                     table.PrimaryKey("PK_EventCategories", x => x.EventCategoryID);
                 });
 
-            migrationBuilder.CreateTable(
+            /*migrationBuilder.CreateTable(
                 name: "EventEventUser",
                 columns: table => new
                 {
@@ -54,8 +56,9 @@ namespace event_booking.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_EventEventUser", x => new { x.EventId, x.EventUserId });
-                });
+                });*/
 
+            //EventUser
             migrationBuilder.CreateTable(
                 name: "EventUser",
                 schema: "evnt",
@@ -78,7 +81,7 @@ namespace event_booking.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
-
+            /*
             migrationBuilder.CreateTable(
                 name: "EventUserOrganizer",
                 columns: table => new
@@ -101,8 +104,9 @@ namespace event_booking.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_EventUserVenue", x => new { x.EventUserId, x.VenueId });
-                });
+                });*/
 
+            //GroupDiscounts
             migrationBuilder.CreateTable(
                 name: "GroupDiscounts",
                 schema: "evnt",
@@ -121,6 +125,7 @@ namespace event_booking.Data.Migrations
                 },
                 comment: "Discounts on groups");
 
+            //OrganizerCategories
             migrationBuilder.CreateTable(
                 name: "OrganizerCategories",
                 schema: "evnt",
@@ -135,6 +140,7 @@ namespace event_booking.Data.Migrations
                     table.PrimaryKey("PK_OrganizerCategories", x => x.OrganizerCategoryID);
                 });
 
+            //Purchase
             migrationBuilder.CreateTable(
                 name: "Purchase",
                 schema: "evnt",
@@ -148,6 +154,7 @@ namespace event_booking.Data.Migrations
                     table.PrimaryKey("PK_Purchase", x => x.PurchaseID);
                 });
 
+            //Section
             migrationBuilder.CreateTable(
                 name: "Section",
                 schema: "evnt",
@@ -163,6 +170,7 @@ namespace event_booking.Data.Migrations
                     table.PrimaryKey("PK_Section", x => x.SectionID);
                 });
 
+            //TicketType
             migrationBuilder.CreateTable(
                 name: "TicketType",
                 schema: "evnt",
@@ -178,6 +186,7 @@ namespace event_booking.Data.Migrations
                     table.PrimaryKey("PK_UserFollows", x => x.TicketTypeID);
                 });
 
+            /*
             migrationBuilder.CreateTable(
                 name: "TicketVip",
                 columns: table => new
@@ -188,8 +197,9 @@ namespace event_booking.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TicketVip", x => new { x.TicketId, x.VipId });
-                });
+                });*/
 
+            //Venue
             migrationBuilder.CreateTable(
                 name: "Venue",
                 schema: "evnt",
@@ -207,6 +217,7 @@ namespace event_booking.Data.Migrations
                     table.PrimaryKey("PK_Venue", x => x.VenueID);
                 });
 
+            //Loyalty
             migrationBuilder.CreateTable(
                 name: "Loyalty",
                 schema: "evnt",
@@ -227,6 +238,7 @@ namespace event_booking.Data.Migrations
                         principalColumn: "EventUserID");
                 });
 
+            //Organizers
             migrationBuilder.CreateTable(
                 name: "Organizers",
                 schema: "evnt",
@@ -251,6 +263,7 @@ namespace event_booking.Data.Migrations
                         principalColumn: "OrganizerCategoryID");
                 });
 
+            //Sales
             migrationBuilder.CreateTable(
                 name: "Sales",
                 schema: "evnt",
@@ -280,6 +293,7 @@ namespace event_booking.Data.Migrations
                         principalColumn: "PurchaseID");
                 });
 
+            //TicketGroup
             migrationBuilder.CreateTable(
                 name: "TicketGroup",
                 schema: "evnt",
@@ -307,6 +321,7 @@ namespace event_booking.Data.Migrations
                         principalColumn: "PurchaseID");
                 });
 
+            //Seats
             migrationBuilder.CreateTable(
                 name: "Seats",
                 schema: "evnt",
@@ -335,6 +350,7 @@ namespace event_booking.Data.Migrations
                         principalColumn: "VenueID");
                 });
 
+            //User_Venue_Follow
             migrationBuilder.CreateTable(
                 name: "User_Venue_Follow",
                 schema: "evnt",
@@ -360,6 +376,7 @@ namespace event_booking.Data.Migrations
                         principalColumn: "VenueID");
                 });
 
+            //Events
             migrationBuilder.CreateTable(
                 name: "Events",
                 schema: "evnt",
@@ -393,6 +410,7 @@ namespace event_booking.Data.Migrations
                         principalColumn: "OrganizerID");
                 });
 
+            //User_Organizer_Follow
             migrationBuilder.CreateTable(
                 name: "User_Organizer_Follow",
                 schema: "evnt",
@@ -418,6 +436,7 @@ namespace event_booking.Data.Migrations
                         principalColumn: "OrganizerID");
                 });
 
+            //Tickets
             migrationBuilder.CreateTable(
                 name: "Tickets",
                 schema: "evnt",
@@ -485,6 +504,7 @@ namespace event_booking.Data.Migrations
                 },
                 comment: "Event Tickets");
 
+            //User_Event_Follow
             migrationBuilder.CreateTable(
                 name: "User_Event_Follow",
                 schema: "evnt",
@@ -510,6 +530,7 @@ namespace event_booking.Data.Migrations
                         principalColumn: "EventID");
                 });
 
+            //VIP
             migrationBuilder.CreateTable(
                 name: "VIP",
                 schema: "evnt",
@@ -534,6 +555,7 @@ namespace event_booking.Data.Migrations
                 },
                 comment: "VIP Area");
 
+            //Junction_Ticket_VIP
             migrationBuilder.CreateTable(
                 name: "Junction_Ticket_VIP",
                 schema: "evnt",
@@ -559,6 +581,7 @@ namespace event_booking.Data.Migrations
                         principalColumn: "VIP_ID");
                 });
 
+            //Indexes
             migrationBuilder.CreateIndex(
                 name: "IX_Events_EventCategoryID",
                 schema: "evnt",
@@ -697,14 +720,14 @@ namespace event_booking.Data.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
+            /*migrationBuilder.DropTable(
                 name: "EventEventUser");
 
             migrationBuilder.DropTable(
                 name: "EventUserOrganizer");
 
             migrationBuilder.DropTable(
-                name: "EventUserVenue");
+                name: "EventUserVenue");*/
 
             migrationBuilder.DropTable(
                 name: "Junction_Ticket_VIP",
@@ -722,8 +745,8 @@ namespace event_booking.Data.Migrations
                 name: "TicketGroup",
                 schema: "evnt");
 
-            migrationBuilder.DropTable(
-                name: "TicketVip");
+            /*migrationBuilder.DropTable(
+                name: "TicketVip");*/
 
             migrationBuilder.DropTable(
                 name: "User_Event_Follow",

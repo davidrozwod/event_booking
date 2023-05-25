@@ -12,8 +12,8 @@ using event_booking.Data;
 namespace event_booking.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230525064630_Repair10")]
-    partial class Repair10
+    [Migration("20230525085326_RepairDB")]
+    partial class RepairDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

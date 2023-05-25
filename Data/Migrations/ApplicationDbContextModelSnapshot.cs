@@ -22,7 +22,7 @@ namespace event_booking.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("EventEventUser", b =>
+            /*modelBuilder.Entity("EventEventUser", b =>
                 {
                     b.Property<int>("EventId")
                         .HasColumnType("int");
@@ -59,7 +59,7 @@ namespace event_booking.Data.Migrations
                     b.HasKey("EventUserId", "VenueId");
 
                     b.ToTable("EventUserVenue");
-                });
+                });*/
 
             modelBuilder.Entity("JunctionTicketVip", b =>
                 {
@@ -280,7 +280,8 @@ namespace event_booking.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("TicketVip", b =>
+            //Tables
+            /*modelBuilder.Entity("TicketVip", b =>
                 {
                     b.Property<int>("TicketId")
                         .HasColumnType("int");
@@ -291,7 +292,7 @@ namespace event_booking.Data.Migrations
                     b.HasKey("TicketId", "VipId");
 
                     b.ToTable("TicketVip");
-                });
+                });*/
 
             modelBuilder.Entity("UserEventFollow", b =>
                 {
@@ -890,6 +891,7 @@ namespace event_booking.Data.Migrations
                         });
                 });
 
+            //Relationships
             modelBuilder.Entity("JunctionTicketVip", b =>
                 {
                     b.HasOne("event_booking.Models.Ticket", null)
@@ -1171,6 +1173,7 @@ namespace event_booking.Data.Migrations
                     b.Navigation("Event");
                 });
 
+            //Navigations
             modelBuilder.Entity("event_booking.Models.Discount", b =>
                 {
                     b.Navigation("Tickets");

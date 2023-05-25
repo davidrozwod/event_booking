@@ -13,6 +13,7 @@ namespace event_booking.Models;
 public partial class GroupDiscount
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Column("GroupDiscountID")]
     public int GroupDiscountId { get; set; }
 

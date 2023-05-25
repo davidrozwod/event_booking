@@ -20,6 +20,7 @@ namespace event_booking.Models;
 public partial class Ticket
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Column("TicketID")]
     public int TicketId { get; set; }
 

@@ -12,6 +12,7 @@ namespace event_booking.Models;
 public partial class Sale
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Column("SaleID")]
     public int SaleId { get; set; }
 

@@ -15,6 +15,7 @@ namespace event_booking.Models;
 public partial class Vip
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Column("VIP_ID")]
     public int VipId { get; set; }
 

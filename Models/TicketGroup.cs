@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 namespace event_booking.Models;
 
 [Table("TicketGroup", Schema = "evnt")]
+[Index("GroupDiscountId", Name = "IX_TicketGroup_GroupDiscountID")]
+[Index("PurchaseId", Name = "IX_TicketGroup_PurchaseID")]
 public partial class TicketGroup
 {
     [Key]

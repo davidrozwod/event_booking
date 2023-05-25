@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 namespace event_booking.Models;
 
 [Table("Events", Schema = "evnt")]
+[Index("EventCategoryId", Name = "IX_Events_EventCategoryID")]
+[Index("OrganizerId", Name = "IX_Events_OrganizerID")]
 public partial class Event
 {
     [Key]
@@ -23,7 +25,7 @@ public partial class Event
     public string Name { get; set; } = null!;
 
     [StringLength(250)]
-    public string? Description { get; set; }
+    public string Description { get; set; } = null!;
 
     [Column(TypeName = "date")]
     public DateTime StartDateTime { get; set; }

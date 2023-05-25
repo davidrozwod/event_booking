@@ -6,7 +6,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace event_booking.Models;
 
+/// <summary>
+/// VIP Area
+/// </summary>
 [Table("VIP", Schema = "evnt")]
+[Index("EventId", Name = "IX_VIP_EventID")]
 [Index("VipId", "EventId", Name = "VIP_Unique_Index", IsUnique = true)]
 public partial class Vip
 {
@@ -22,7 +26,7 @@ public partial class Vip
     public string VipName { get; set; } = null!;
 
     [Unicode(false)]
-    public string? Description { get; set; }
+    public string Description { get; set; } = null!;
 
     [Column("VIP_Price")]
     public int VipPrice { get; set; }

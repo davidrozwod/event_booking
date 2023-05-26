@@ -31,7 +31,7 @@
             width: 200px;
             height: 120%;
             background: #4b4276;
-            padding: 20px 0px;
+            padding: 1.3px 0px;
         }
 
             .wrapper .sidebar h2 {
@@ -113,7 +113,6 @@
     <div class="wrapper">
         <div class="sidebar">
             <h2>Welcome Back</h2>
-            <h3 class="text-White">@User.Identity?.Name!</h3>
             <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                 <li class="nav-item"><a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">Profile</a></li>
                 <li class="nav-item"><a class="nav-link @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">Email</a></li>

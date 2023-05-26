@@ -711,11 +711,11 @@ namespace event_booking.Data.Migrations
                         .HasColumnType("nvarchar(450)")
                         .HasColumnName("EventUserID");
 
-                    b.Property<string>("FirstName")
+                    b.Property<string?>("FirstName")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("LastName")
+                    b.Property<string?>("LastName")
                         .HasMaxLength(50)
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)");

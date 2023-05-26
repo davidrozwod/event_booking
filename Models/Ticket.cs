@@ -37,11 +37,11 @@ public partial class Ticket
     public string? EventUserId { get; set; }
 
     [StringLength(50)]
-    public string FirstName { get; set; } = null!;
+    public string? FirstName { get; set; }
 
     [StringLength(50)]
     [Unicode(false)]
-    public string LastName { get; set; } = null!;
+    public string? LastName { get; set; }
 
     [Column("DiscountID")]
     public int? DiscountId { get; set; }

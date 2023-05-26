@@ -21,7 +21,8 @@ namespace event_booking.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
+            
+            //Tables
             /*modelBuilder.Entity("EventEventUser", b =>
                 {
                     b.Property<int>("EventId")
@@ -280,7 +281,6 @@ namespace event_booking.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            //Tables
             /*modelBuilder.Entity("TicketVip", b =>
                 {
                     b.Property<int>("TicketId")
@@ -712,12 +712,10 @@ namespace event_booking.Data.Migrations
                         .HasColumnName("EventUserID");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)");

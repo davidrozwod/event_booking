@@ -55,7 +55,5 @@ public partial class Event
     [InverseProperty("Event")]
     public virtual ICollection<Vip> Vips { get; set; } = new List<Vip>();
 
-    [ForeignKey("EventId")]
-    [InverseProperty("Events")]
     public virtual ICollection<EventUser> EventUsers { get; set; } = new List<EventUser>();
 }

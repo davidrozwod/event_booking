@@ -42,10 +42,10 @@
     style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
     <div class="mask d-flex align-items-center h-100 gradient-custom-3">
         <div class="container-fluid bg-white col-11">
-            <center><h3>@ViewData["Title"]</h3></center>
+            <h3>@ViewData["Title"]</h3>
             <partial name="_StatusMessage" for="StatusMessage" />
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-5">
                     <form id="profile-form" method="post">
                         <div class="form-floating mb-3">
                                 <input asp-for="Username" class="form-control" placeholder="Please choose your username." disabled />
@@ -65,11 +65,33 @@
                             <label asp-for="Input.PhoneNumber" class="form-label"></label>
                             <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
                         </div>
-
-                        <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
-                    </form>
+                        </form>
                 </div>
+                <div class="col-6">
+                    <form id="profile-form" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label asp-for="Input.ProfilePicture" style="width: 100%;"></label>
+                            @if (Model.Input.ProfilePicture != null)
+                            {
+                                <img id="profilePicture" style="width:300px;height:300px; object-fit:cover" src="data:image/*;base64,@(Convert.ToBase64String(Model.Input.ProfilePicture))">
+                            }
+                            else
+                            {
+                                <img id="profilePicture" style="width:300px;height:300px; object-fit:cover" src="">
+                            }
+                            <input type="file"
+                                   accept=".png,.jpg,.jpeg,.gif,.tif"
+                                   asp-for="Input.ProfilePicture"
+                                   class="form-control"
+                                   style="border:0px!important;padding: 0px;padding-top: 0px;padding-bottom: 0px;"
+                                   onchange="document.getElementById('profilePicture').src = window.URL.createObjectURL(this.files[0])" />
+                            <span asp-validation-for="Input.ProfilePicture" class="text-danger"></span>
+                        </div>
+                    </form>
+                </div>               
             </div>
+            <p></p>
+            <button id="update-profile-button" type="submit" class=" col-12 text-white btn gradient-custom-3">Save</button>
         </div>
     </div>
 </section>

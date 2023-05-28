@@ -4,9 +4,11 @@
 
 <link rel="stylesheet" href="style.css" />
 <script src="script.js" defer></script>
-<br>
+<div>
+    <h4 class="display-4">Buy a ticket to an event</h4>
+</div>
 <div class="progressbar">
-    <div class="progress" id="progress"></div>
+    <div class="progress gradient-custom-4" id="progress"></div>
 
     <div class="progress-step progress-step-active"
          data-title="Book"></div>
@@ -17,72 +19,75 @@
 
 <!-- Steps -->
 <div class="form-step form-step-active">
-    <table>
-        <tr>
-            <th>Tickets</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Sub-Total</th>
-
-        </tr>
-        <tr>
-            <td>Adult Ticket</td>
-            <td>$0</td>
-            <td>
-                <div class="data-list-input" style="width:190px;">
-                    <select class="data-list-input" style="width:190px;">
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                    </select>
-                </div>
-            </td>
-            <th>$0.00</th>
-        </tr>
-        <tr>
-            <td>Child Ticket</td>
-            <td>$0</td>
-            <td>
-                <div class="data-list-input" style="width:190px;">
-                    <select class="data-list-input" style="width:190px;">
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                    </select>
-                </div>
-            </td>
-            <th>$0.00</th>
-        </tr>
-        <tr>
-            <td>Under 6 Ticket</td>
-            <td>$0</td>
-            <td>
-                <div class="data-list-input" style="width:190px;">
-                    <select class="data-list-input" style="width:190px;">
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                    </select>
-                </div>
-            </td>
-            <th>$0.00</th>
-        </tr>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Tickets</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Sub-Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Adult</th>
+                <td>$0</td>
+                <td>
+                    <div class="data-list-input">
+                        <select class="data-list-input" style="width:70px;">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>
+                </td>
+                <td>$0</td>
+            </tr>
+            <tr>
+                <th scope="row">Child</th>
+                <td>$0</td>
+                <td>
+                    <div class="data-list-input">
+                        <select class="data-list-input" style="width:70px;">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>
+                </td>
+                <td>$0</td>
+            </tr>
+            <tr>
+                <th scope="row">Under 6</th>
+                <td>$0</td>
+                <td>
+                    <div class="data-list-input">
+                        <select class="data-list-input" style="width:70px;">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>
+                </td>
+                <td>$0</td>
+            </tr>
+        </tbody>
     </table>
     <p></p>
-    <div class="">
-        <a href="#" class="btn btn-next width-50 ml-auto">Next</a>
+    <div class="btns-group">
+            <button class=" text-white btn btn-lg gradient-custom-4 btn-next">Next</button>
     </div>
 </div>
 <div class="form-step">
@@ -130,42 +135,81 @@
     </div>
     <p></p>
     <div class="btns-group">
-        <a href="#" class="btn btn-prev">Previous</a>
-        <a href="#" class="btn btn-next">Next</a>
+        <button class=" text-white btn btn-lg gradient-custom-4 btn-prev">Prev</button>
+        <button class=" text-white btn btn-lg gradient-custom-4 btn-next">Next</button>
     </div>
 </div>
 <div class="form-step">
-    <table>
-        <tr>
-            <th>Tickets</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Sub-Total</th>
-
-        </tr>
-        <tr>
-            <td>Adult Ticket</td>
-            <td>$0</td>
-            <td>0</td>
-            <th>$0.00</th>
-        </tr>
-        <tr>
-            <td>Child Ticket</td>
-            <td>$0</td>
-            <td>0</td>
-            <th>$0.00</th>
-        </tr>
-        <tr>
-            <td>Under 6 Ticket</td>
-            <td>$0</td>
-            <td>0</td>
-            <th>$0.00</th>
-        </tr>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Tickets</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Sub-Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Adult</th>
+                <td>$0</td>
+                <td>
+                    <div class="data-list-input">
+                        <select class="data-list-input" style="width:70px;">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>
+                </td>
+                <td>$0</td>
+            </tr>
+            <tr>
+                <th scope="row">Child</th>
+                <td>$0</td>
+                <td>
+                    <div class="data-list-input">
+                        <select class="data-list-input" style="width:70px;">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>
+                </td>
+                <td>$0</td>
+            </tr>
+            <tr>
+                <th scope="row">Under 6</th>
+                <td>$0</td>
+                <td>
+                    <div class="data-list-input">
+                        <select class="data-list-input" style="width:70px;">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>
+                </td>
+                <td>$0</td>
+            </tr>
+        </tbody>
     </table>
     <p></p>
     <div class="btns-group">
-        <a href="#" class="btn btn-prev">Previous</a>
-        <a href="#" class="btn btn-next">Next</a>
+        <button class=" text-white btn btn-lg gradient-custom-4 btn-prev">Prev</button>
+        <button class=" text-white btn btn-lg gradient-custom-4 btn-next">Next</button>
     </div>
 </div>
 <div class="form-step">
@@ -234,8 +278,7 @@
     </div>
     <p></p>
     <div class="btns-group">
-        <a href="#" class="btn btn-prev">Previous</a>
-        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Ticket2"><input type="submit" value="Submit" class="btn" /> </a>
+        <a asp-area="" asp-controller="Home" asp-action="Ticket2"><input type="submit" value="Submit" class="text-white btn btn-lg gradient-custom-4" /> </a>
     </div>
 </div>
 
@@ -314,8 +357,6 @@
         border-radius: 0.25rem;
     }
 
-
-
     .text-center {
         text-align: center;
     }
@@ -342,7 +383,7 @@
         }
 
     .progress {
-        background-color: var(--primary-color);
+
         width: 0%;
         transition: 0.3s;
     }
@@ -371,7 +412,7 @@
         }
 
     .progress-step-active {
-        background-color: var(--primary-color);
+        background-color: rgba(108, 11, 113, 1);
         color: #f3f3f3;
     }
 
@@ -403,7 +444,6 @@
         padding: 0.75rem;
         display: block;
         text-decoration: none;
-        background-color: var(--primary-color);
         color: #f3f3f3;
         text-align: center;
         border-radius: 0.25rem;
@@ -414,21 +454,39 @@
         .btn:hover {
             box-shadow: 0 0 0 2px #fff, 0 0 0 3px var(--primary-color);
         }
-</style>
-<style>
+
+    .gradient-custom-4 {
+        /* fallback for old browsers */
+        background: #1A237E
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1)));
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1)) 
+    }
+        
+    thead,
+    tfoot {
+        background-color: lightblue;
+        color: DarkSlateGrey;
+    }
+
+    tbody { 
+    }
+
     table {
-        font-family: arial, sans-serif;
         border-collapse: collapse;
-        width: 100%;
     }
 
-    td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
+    td,
+    th {
+        padding: 5px 10px;
     }
 
-    tr:nth-child(even) {
-        background-color: #dddddd;
+    a{
+        text-decoration: none;
+    }
+
+    h4 {
+        color: rgba(108, 11, 113, 1);
     }
 </style>

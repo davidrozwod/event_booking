@@ -52,9 +52,9 @@ public partial class Ticket
     [Column("PurchaseID")]
     public int? PurchaseId { get; set; }
 
-    public int BasePrice { get; set; }
+    public decimal BasePrice { get; set; }
 
-    public int? TicketPrice { get; set; }
+    public decimal? TicketPrice { get; set; }
 
     //Relationships
     [ForeignKey("DiscountId")]

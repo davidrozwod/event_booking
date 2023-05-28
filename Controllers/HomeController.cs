@@ -53,6 +53,52 @@ namespace event_booking.Controllers
             return View();
         }
 
+        public IActionResult Event_Category()
+        {
+            return View();
+        }
+
+        public IActionResult PerformancesAndNightlife()
+        {
+            return View();
+        }
+        public IActionResult SportsAndOutdoors()
+        {
+            return View();
+        }
+        public IActionResult TheaterAndArts()
+        {
+            return View();
+        }
+        public IActionResult FamilyAndEducation()
+        {
+            return View();
+        }
+
+        public IActionResult PromoterArea()
+        {
+            return View();
+        }
+        public IActionResult Profile()
+        {
+            return View();
+        }
+
+        public IActionResult Booking()
+        {
+            return View();
+        }
+
+        public IActionResult Events()
+        {
+            return View();
+        }
+
+        public IActionResult Review()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

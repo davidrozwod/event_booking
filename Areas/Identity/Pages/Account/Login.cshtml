@@ -5,48 +5,67 @@
     ViewData["Title"] = "Welcome";
 }
 
+<style>
+    a {
+        text-decoration: none
+    }
 
-<div class="row">
-    <div class="col-md-4">
-        <h1 style="text-align:center;">@ViewData["Title"]</h1>
-        <center><img src="https://cdn-icons-png.flaticon.com/512/5087/5087579.png" width="120"></center>
+    div1 {
+        background-color: #F5F5F5;
+    }
+
+</style>
+<div1 class="row">
+    <div1 class="col-md-4">
         <section>
+            <h1 style="text-align:center;">Welcome</h1>
+            <center><img src="https://cdn-icons-png.flaticon.com/512/5087/5087579.png" width="120"></center>
+
             <form id="account" method="post">
                 <hr />
                 <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-                <div class="form-floating mb-3">
+                <div1 class="form-floating mb-3">
                     <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
                     <label asp-for="Input.Email" class="form-label">Email</label>
                     <span asp-validation-for="Input.Email" class="text-danger"></span>
-                </div>
-                <div class="form-floating mb-3">
+                </div1>
+                <p></p>
+                <div1 class="form-floating mb-3">
                     <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="password" />
                     <label asp-for="Input.Password" class="form-label">Password</label>
                     <span asp-validation-for="Input.Password" class="text-danger"></span>
-                </div>
-                <div class="checkbox mb-3">
+                </div1>
+                <p></p>
+                <div1 class="checkbox mb-3">
                     <label asp-for="Input.RememberMe" class="form-label">
                         <input class="form-check-input" asp-for="Input.RememberMe" />
                         @Html.DisplayNameFor(m => m.Input.RememberMe)
                     </label>
-                </div>
-                <div>
+                </div1>
+                <p></p>
+                <div1>
                     <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
-                </div>
-                <div>
+                </div1>
+                <div1>
                     <p>
                         <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password</a>
                     </p>
-                    <p>
-                        Dont have an account? <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Create one</a>
-                </div>
+                    <br>
+                    <br>
+                    <center>
+                        <p>
+                            Dont have an account? <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Create one</a>
+                        </p>
+                    </center>
+                </div1>
             </form>
         </section>
-    </div>
+    </div1>
+    <div1 class="col-md-8">
+        <section><img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"></section>
+    </div1>
 
-    <div class="col-md-8">
-        <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80">
-    </div>
+</div1>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

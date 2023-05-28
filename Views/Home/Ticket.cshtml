@@ -1,216 +1,434 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "View Ticket";
 }
 
-<div id="progress">
-    <div id="progress-bar"></div>
-    <ul id="progress-num">
-        <li class="step active">1</li>
-        <li class="step">2</li>
-        <li class="step">3</li>
-        <li class="step">4</li>
-    </ul>
+<link rel="stylesheet" href="style.css" />
+<script src="script.js" defer></script>
+<br>
+<div class="progressbar">
+    <div class="progress" id="progress"></div>
+
+    <div class="progress-step progress-step-active"
+         data-title="Book"></div>
+    <div class="progress-step" data-title="Details"></div>
+    <div class="progress-step" data-title="Review"></div>
+    <div class="progress-step" data-title="Payment"></div>
 </div>
-<button id="progress-next" class="btn"><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Ticket2">Next</a></button>
 
+<!-- Steps -->
+<div class="form-step form-step-active">
+    <table>
+        <tr>
+            <th>Tickets</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Sub-Total</th>
 
-<script>
-    const progressBar = document.getElementById("progress-bar");
-    const progressNext = document.getElementById("progress-next");
-    const progressPrev = document.getElementById("progress-prev");
-    const steps = document.querySelectorAll(".step");
-    let active = 1;
+        </tr>
+        <tr>
+            <td>Adult Ticket</td>
+            <td>$0</td>
+            <td>
+                <div class="data-list-input" style="width:190px;">
+                    <select class="data-list-input" style="width:190px;">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                </div>
+            </td>
+            <th>$0.00</th>
+        </tr>
+        <tr>
+            <td>Child Ticket</td>
+            <td>$0</td>
+            <td>
+                <div class="data-list-input" style="width:190px;">
+                    <select class="data-list-input" style="width:190px;">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                </div>
+            </td>
+            <th>$0.00</th>
+        </tr>
+        <tr>
+            <td>Under 6 Ticket</td>
+            <td>$0</td>
+            <td>
+                <div class="data-list-input" style="width:190px;">
+                    <select class="data-list-input" style="width:190px;">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                </div>
+            </td>
+            <th>$0.00</th>
+        </tr>
+    </table>
+    <p></p>
+    <div class="">
+        <a href="#" class="btn btn-next width-50 ml-auto">Next</a>
+    </div>
+</div>
+<div class="form-step">
+    <div class="row g-2">
+        <div class="col-md">
+            <div class="form-floating">
+                <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
+                <label for="floatingInputGrid">First Name</label>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="form-floating">
+                <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
+                <label for="floatingInputGrid">Last Name</label>
+            </div>
+        </div>
+    </div>
+    <p></p>
+    <div class="form-floating mb-3">
+        <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" />
+        <label for="floatingInputGrid">Email</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" />
+        <label for="floatingInputGrid">Phone Number</label>
+    </div>
+    <div class="row g-2">
+        <div class="col-md">
+            <div class="form-floating">
+                <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example">
+                    <option selected>Pick your Location</option>
+                    <option value="1">This Place</option>
+                    <option value="2">That Place</option>
+                    <option value="3">That other area</option>
+                </select>
+                <label for="floatingSelectGrid">Country</label>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="form-floating">
+                <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
+                <label for="floatingInputGrid">Postal Code</label>
+            </div>
+        </div>
+    </div>
+    <p></p>
+    <div class="btns-group">
+        <a href="#" class="btn btn-prev">Previous</a>
+        <a href="#" class="btn btn-next">Next</a>
+    </div>
+</div>
+<div class="form-step">
+    <table>
+        <tr>
+            <th>Tickets</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Sub-Total</th>
 
-    progressNext.addEventListener("click", () => {
-        active++;
-        if (active > steps.length) {
-            active = steps.length;
-        }
-        updateProgress();
-    });
+        </tr>
+        <tr>
+            <td>Adult Ticket</td>
+            <td>$0</td>
+            <td>0</td>
+            <th>$0.00</th>
+        </tr>
+        <tr>
+            <td>Child Ticket</td>
+            <td>$0</td>
+            <td>0</td>
+            <th>$0.00</th>
+        </tr>
+        <tr>
+            <td>Under 6 Ticket</td>
+            <td>$0</td>
+            <td>0</td>
+            <th>$0.00</th>
+        </tr>
+    </table>
+    <p></p>
+    <div class="btns-group">
+        <a href="#" class="btn btn-prev">Previous</a>
+        <a href="#" class="btn btn-next">Next</a>
+    </div>
+</div>
+<div class="form-step">
+    <div class="row g-2">
+        <div class="col-md">
+            <div class="form-floating">
+                <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
+                <label for="floatingInputGrid">Card Number</label>
+            </div>
+        </div>
+    </div>
+    <p></p>
+    <div class="row g-2">
+        <div class="col-md">
+            <div class="form-floating">
+                <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example">
+                    <option selected>Card Expiry Date</option>
+                    <option value="1">01</option>
+                    <option value="2">02</option>
+                    <option value="3">03</option>
+                    <option value="4">04</option>
+                    <option value="5">05</option>
+                    <option value="6">06</option>
+                    <option value="7">07</option>
+                    <option value="8">08</option>
+                    <option value="9">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                </select>
+                <label for="floatingSelectGrid">Month</label>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="form-floating">
+                <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example">
+                    <option value="1">23</option>
+                    <option value="2">24</option>
+                    <option value="3">25</option>
+                    <option value="4">26</option>
+                    <option value="5">27</option>
+                    <option value="6">28</option>
+                </select>
+                <label for="floatingSelectGrid">Year</label>
+            </div>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" />
+            <label for="floatingInputGrid">Cardholder Name</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" />
+            <label for="floatingInputGrid">Card Security Code</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" />
+            <label for="floatingInputGrid">Billing Address</label>
+        </div>
+        <div class="col-md">
+            <div class="form-floating">
+                <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
+                <label for="floatingInputGrid">Billing Postal Code</label>
+            </div>
+        </div>
 
-    progressPrev.addEventListener("click", () => {
-        active--;
-        if (active < 1) {
-            active = 1;
-        }
-        updateProgress();
-    });
-
-    const updateProgress = () => {
-        // toggle active class on list items
-        steps.forEach((step, i) => {
-            if (i < active) {
-                step.classList.add("active");
-            } else {
-                step.classList.remove("active");
-            }
-        });
-        // set progress bar width
-        progressBar.style.width =
-            ((active - 1) / (steps.length - 1)) * 100 + "%";
-        // enable disable prev and next buttons
-        if (active === 1) {
-            progressPrev.disabled = true;
-        } else if (active === steps.length) {
-            progressNext.disabled = true;
-        } else {
-            progressPrev.disabled = false;
-            progressNext.disabled = false;
-        }
-    };
-</script>
-
-<style>
-    #progress {
-        position: relative;
-        margin-bottom: 30px;
-        margin-top: -255px;
-    }
-
-    #progress-bar {
-        position: absolute;
-        background: lightseagreen;
-        height: 5px;
-        width: 0%;
-        top: 50%;
-        left: 0;
-    }
-
-    #progress-num {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        display: flex;
-        justify-content: space-between;
-    }
-
-        #progress-num::before {
-            content: "";
-            background-color: lightgray;
-            position: absolute;
-            top: 50%;
-            left: 0;
-            height: 5px;
-            width: 100%;
-            z-index: -1;
-        }
-
-        #progress-num .step {
-            border: 3px solid lightgray;
-            border-radius: 100%;
-            width: 25px;
-            height: 25px;
-            line-height: 25px;
-            text-align: center;
-            background-color: #fff;
-            font-family: sans-serif;
-            font-size: 14px;
-            position: relative;
-            z-index: 1;
-        }
-
-        #progress-num .step.active {
-                border-color: lightseagreen;
-                background-color: lightseagreen;
-                color: #fff;
-        }
-
-    .table-container {
-        overflow-y: auto;
-        max-height: 400px; 
-    }
-
-    table {
-        width: 100%;
-        table-layout: fixed;
-        border-collapse: collapse;
-    }
-
-    th, td {
-        padding: 8px;
-        text-align: left;
-        border: 1px solid #dddddd;
-        white-space: nowrap; 
-    }
-
-    .data-list-input {
-        width: 100%;
-    }
-
-</style>
-
-
-<div>
-    <div class="table-container">
-        <table>
-            <tr>
-                <th>Tickets</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Sub-Total</th>
-            </tr>
-            <tr>
-                <td>Adult Ticket</td>
-                <td>$0</td>
-                <td>
-                    <div class="data-list-input">
-                        <select class="data-list-input">
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                        </select>
-                    </div>
-                </td>
-                <td>$0.00</td>
-            </tr>
-            <tr>
-                <td>Child Ticket</td>
-                <td>$0</td>
-                <td>
-                    <div class="data-list-input">
-                        <select class="data-list-input">
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                        </select>
-                    </div>
-                </td>
-                <td>$0.00</td>
-            </tr>
-            <tr>
-                <td>Under 6 Ticket</td>
-                <td>$0</td>
-                <td>
-                    <div class="data-list-input">
-                        <select class="data-list-input">
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                        </select>
-                    </div>
-                </td>
-                <td>$0.00</td>
-            </tr>
-        </table>
+    </div>
+    <p></p>
+    <div class="btns-group">
+        <a href="#" class="btn btn-prev">Previous</a>
+        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Ticket2"><input type="submit" value="Submit" class="btn" /> </a>
     </div>
 </div>
 
+<script>
+    const prevBtns = document.querySelectorAll(".btn-prev");
+    const nextBtns = document.querySelectorAll(".btn-next");
+    const progress = document.getElementById("progress");
+    const formSteps = document.querySelectorAll(".form-step");
+    const progressSteps = document.querySelectorAll(".progress-step");
+
+    let formStepsNum = 0;
+
+    nextBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            formStepsNum++;
+            updateFormSteps();
+            updateProgressbar();
+        });
+    });
+
+    prevBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            formStepsNum--;
+            updateFormSteps();
+            updateProgressbar();
+        });
+    });
+
+    function updateFormSteps() {
+        formSteps.forEach((formStep) => {
+            formStep.classList.contains("form-step-active") &&
+                formStep.classList.remove("form-step-active");
+        });
+
+        formSteps[formStepsNum].classList.add("form-step-active");
+    }
+
+    function updateProgressbar() {
+        progressSteps.forEach((progressStep, idx) => {
+            if (idx < formStepsNum + 1) {
+                progressStep.classList.add("progress-step-active");
+            } else {
+                progressStep.classList.remove("progress-step-active");
+            }
+        });
+
+        const progressActive = document.querySelectorAll(".progress-step-active");
+
+        progress.style.width =
+            ((progressActive.length - 1) / (progressSteps.length - 1)) * 100 + "%";
+    }
+</script>
+<style>
+    :root {
+        --primary-color: rgb(11, 78, 179);
+    }
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+
+    /* Global Stylings */
+    label {
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    input {
+        display: block;
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ccc;
+        border-radius: 0.25rem;
+    }
 
 
 
+    .text-center {
+        text-align: center;
+    }
+
+    /* Progressbar */
+    .progressbar {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        counter-reset: step;
+        margin: 2rem 0 4rem;
+    }
+
+        .progressbar::before,
+        .progress {
+            content: "";
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 4px;
+            width: 100%;
+            background-color: #dcdcdc;
+            z-index: -1;
+        }
+
+    .progress {
+        background-color: var(--primary-color);
+        width: 0%;
+        transition: 0.3s;
+    }
+
+    .progress-step {
+        width: 2.1875rem;
+        height: 2.1875rem;
+        background-color: #dcdcdc;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .progress-step::before {
+            counter-increment: step;
+            content: counter(step);
+        }
+
+        .progress-step::after {
+            content: attr(data-title);
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+    .progress-step-active {
+        background-color: var(--primary-color);
+        color: #f3f3f3;
+    }
 
 
+
+    .form-step {
+        display: none;
+        transform-origin: top;
+        animation: animate 0.5s;
+    }
+
+    .form-step-active {
+        display: block;
+    }
+
+    .input-group {
+        margin: 2rem 0;
+    }
+
+
+    /* Button */
+    .btns-group {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .btn {
+        padding: 0.75rem;
+        display: block;
+        text-decoration: none;
+        background-color: var(--primary-color);
+        color: #f3f3f3;
+        text-align: center;
+        border-radius: 0.25rem;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+        .btn:hover {
+            box-shadow: 0 0 0 2px #fff, 0 0 0 3px var(--primary-color);
+        }
+</style>
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>

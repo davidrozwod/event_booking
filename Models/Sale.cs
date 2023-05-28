@@ -7,14 +7,17 @@ using Microsoft.EntityFrameworkCore;
 namespace event_booking.Models;
 
 [Table("Sales", Schema = "evnt")]
+[Index("EventUserId", Name = "IX_Sales_EventUserID")]
+[Index("PurchaseId", Name = "IX_Sales_PurchaseID")]
 public partial class Sale
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Column("SaleID")]
     public int SaleId { get; set; }
 
-    [StringLength(450)]
-    public string? Id { get; set; }
+    [Column("EventUserID")]
+    public string? EventUserId { get; set; }
 
     [Column("PurchaseID")]
     public int? PurchaseId { get; set; }
@@ -24,9 +27,10 @@ public partial class Sale
 
     public int? SalePrice { get; set; }
 
-    [ForeignKey("Id")]
+    //Relationships
+    [ForeignKey("EventUserId")]
     [InverseProperty("Sales")]
-    public virtual AspNetUser? IdNavigation { get; set; }
+    public virtual EventUser? EventUser { get; set; }
 
     [ForeignKey("PurchaseId")]
     [InverseProperty("Sales")]

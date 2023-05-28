@@ -10,6 +10,7 @@ namespace event_booking.Models;
 public partial class EventCategory
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Column("EventCategoryID")]
     public int EventCategoryId { get; set; }
 
@@ -17,6 +18,7 @@ public partial class EventCategory
     [Unicode(false)]
     public string CategoryName { get; set; } = null!;
 
+    //Relationships
     [InverseProperty("EventCategory")]
     public virtual ICollection<Event> Events { get; set; } = new List<Event>();
 }

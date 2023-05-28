@@ -10,6 +10,7 @@ namespace event_booking.Models;
 public partial class OrganizerCategory
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Column("OrganizerCategoryID")]
     public int OrganizerCategoryId { get; set; }
 

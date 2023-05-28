@@ -6,11 +6,21 @@ using Microsoft.EntityFrameworkCore;
 
 namespace event_booking.Models;
 
+/// <summary>
+/// Event Tickets
+/// </summary>
 [Table("Tickets", Schema = "evnt")]
+[Index("DiscountId", Name = "IX_Tickets_DiscountID")]
+[Index("EventUserId", Name = "IX_Tickets_EventUserID")]
+[Index("PurchaseId", Name = "IX_Tickets_PurchaseID")]
+[Index("SeatId", Name = "IX_Tickets_SeatID")]
+[Index("TicketTypeId", Name = "IX_Tickets_TicketTypeID")]
+[Index("VenueId", Name = "IX_Tickets_VenueID")]
 [Index("EventId", "SeatId", Name = "Ticket_Unique_Index", IsUnique = true)]
 public partial class Ticket
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Column("TicketID")]
     public int TicketId { get; set; }
 
@@ -24,7 +34,6 @@ public partial class Ticket
     public int SeatId { get; set; }
 
     [Column("EventUserID")]
-    [StringLength(450)]
     public string? EventUserId { get; set; }
 
     [StringLength(50)]

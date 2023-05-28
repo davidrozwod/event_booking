@@ -7,9 +7,11 @@ using Microsoft.EntityFrameworkCore;
 namespace event_booking.Models;
 
 [Table("Organizers", Schema = "evnt")]
+[Index("OrganizerCategoryId", Name = "IX_Organizers_OrganizerCategoryID")]
 public partial class Organizer
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Column("OrganizerID")]
     public int OrganizerId { get; set; }
 

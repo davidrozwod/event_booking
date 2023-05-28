@@ -75,8 +75,6 @@ namespace event_booking.Data
             //Event table
             modelBuilder.Entity<Event>(entity =>
             {
-                entity.Property(e => e.EventId).ValueGeneratedOnAdd();
-
                 //Relationship > EventCategory
                 entity.HasOne(d => d.EventCategory).WithMany(p => p.Events)
                     .OnDelete(DeleteBehavior.ClientSetNull)
@@ -88,12 +86,7 @@ namespace event_booking.Data
                     .HasConstraintName("FK_Events_Organizers");
             });
 
-            //EventCategory table
-            modelBuilder.Entity<EventCategory>(entity =>
-            {
-                entity.Property(e => e.EventCategoryId).ValueGeneratedOnAdd();
-            });
-
+            //EventCategory table N/A
             //
             //EventUser table
             //
@@ -120,10 +113,10 @@ namespace event_booking.Data
                         {
                             j.HasKey("EventUserId", "EventId");
                             j.ToTable("User_Event_Follow", "evnt");
+                            j.HasIndex(new[] { "EventId" }, "IX_User_Event_Follow_EventID");
                             j.IndexerProperty<string>("EventUserId").HasColumnName("EventUserID");
                             j.IndexerProperty<int>("EventId").HasColumnName("EventID");
                         });
-
 
             //Junction table = User > Organizers
                 entity.HasMany(d => d.Organizers).WithMany(p => p.EventUsers)
@@ -141,6 +134,7 @@ namespace event_booking.Data
                         {
                             j.HasKey("EventUserId", "OrganizerId");
                             j.ToTable("User_Organizer_Follow", "evnt");
+                            j.HasIndex(new[] { "OrganizerId" }, "IX_User_Organizer_Follow_OrganizerID");
                             j.IndexerProperty<string>("EventUserId").HasColumnName("EventUserID");
                             j.IndexerProperty<int>("OrganizerId").HasColumnName("OrganizerID");
                         });
@@ -161,6 +155,7 @@ namespace event_booking.Data
                         {
                             j.HasKey("EventUserId", "VenueId");
                             j.ToTable("User_Venue_Follow", "evnt");
+                            j.HasIndex(new[] { "VenueId" }, "IX_User_Venue_Follow_VenueID");
                             j.IndexerProperty<string>("EventUserId").HasColumnName("EventUserID");
                             j.IndexerProperty<int>("VenueId").HasColumnName("VenueID");
                         });
@@ -170,8 +165,6 @@ namespace event_booking.Data
             modelBuilder.Entity<GroupDiscount>(entity =>
             {
                 entity.ToTable("GroupDiscounts", "evnt", tb => tb.HasComment("Discounts on groups"));
-
-                entity.Property(e => e.GroupDiscountId).ValueGeneratedOnAdd();
             });
 
             //Loyalty table
@@ -187,8 +180,6 @@ namespace event_booking.Data
             {
                 entity.HasKey(e => e.OrganizerId).HasName("PK_Organizers");
 
-                entity.Property(e => e.OrganizerId).ValueGeneratedOnAdd();
-
                 entity.HasOne(d => d.OrganizerCategory).WithMany(p => p.Organizers)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Organizers_OrganizerCategories");
@@ -198,21 +189,12 @@ namespace event_booking.Data
             modelBuilder.Entity<OrganizerCategory>(entity =>
             {
                 entity.HasKey(e => e.OrganizerCategoryId).HasName("PK_OrganizerCategories");
-
-                entity.Property(e => e.OrganizerCategoryId).ValueGeneratedOnAdd();
             });
 
-            //Purchase table
-            modelBuilder.Entity<Purchase>(entity =>
-            {
-                entity.Property(e => e.PurchaseId).ValueGeneratedOnAdd();
-            });
-
+            //Purchase table N/A
             //Sale table
             modelBuilder.Entity<Sale>(entity =>
             {
-                entity.Property(e => e.SaleId).ValueGeneratedOnAdd();
-
                 entity.HasOne(d => d.EventUser).WithMany(p => p.Sales).HasConstraintName("FK_Sales_EventUser");
 
                 entity.HasOne(d => d.Purchase).WithMany(p => p.Sales).HasConstraintName("FK_Sales_Purchase_1");
@@ -221,26 +203,21 @@ namespace event_booking.Data
             //Seat table
             modelBuilder.Entity<Seat>(entity =>
             {
-                entity.Property(e => e.SeatId).ValueGeneratedOnAdd();
                 entity.Property(e => e.VenueId).HasComment("Seats Information");
 
                 entity.HasOne(d => d.Section).WithMany(p => p.Seats).HasConstraintName("FK_Seats_Section");
 
-                entity.HasOne(d => d.Venue).WithMany(p => p.Seats).HasConstraintName("FK_Seats_Venue");
+                entity.HasOne(d => d.Venue).WithMany(p => p.Seats)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Seats_Venue");
             });
 
-            //Section table
-            modelBuilder.Entity<Section>(entity =>
-            {
-                entity.Property(e => e.SectionId).ValueGeneratedOnAdd();
-            });
+            //Section table N/A
 
             //Ticket table
             modelBuilder.Entity<Ticket>(entity =>
             {
                 entity.ToTable("Tickets", "evnt", tb => tb.HasComment("Event Tickets"));
-
-                entity.Property(e => e.TicketId).ValueGeneratedOnAdd();
 
                 entity.HasOne(d => d.Discount).WithMany(p => p.Tickets).HasConstraintName("FK_Tickets_Discount_4");
 
@@ -278,6 +255,7 @@ namespace event_booking.Data
                         {
                             j.HasKey("TicketId", "VipId");
                             j.ToTable("Junction_Ticket_VIP", "evnt");
+                            j.HasIndex(new[] { "VipId" }, "IX_Junction_Ticket_VIP_VIP_ID");
                             j.IndexerProperty<int>("TicketId").HasColumnName("TicketID");
                             j.IndexerProperty<int>("VipId").HasColumnName("VIP_ID");
                         });
@@ -286,8 +264,6 @@ namespace event_booking.Data
             //TicketGroup table
             modelBuilder.Entity<TicketGroup>(entity =>
             {
-                entity.Property(e => e.TicketGroupId).ValueGeneratedOnAdd();
-
                 entity.HasOne(d => d.GroupDiscount).WithMany(p => p.TicketGroups).HasConstraintName("FK_TicketGroup_GroupDiscounts_1");
 
                 entity.HasOne(d => d.Purchase).WithMany(p => p.TicketGroups).HasConstraintName("FK_TicketGroup_Purchase");
@@ -297,15 +273,9 @@ namespace event_booking.Data
             modelBuilder.Entity<TicketType>(entity =>
             {
                 entity.HasKey(e => e.TicketTypeId).HasName("PK_UserFollows");
-
-                entity.Property(e => e.TicketTypeId).ValueGeneratedOnAdd();
             });
 
-            //Venue table
-            modelBuilder.Entity<Venue>(entity =>
-            {
-                entity.Property(e => e.VenueId).ValueGeneratedOnAdd();
-            });
+            //Venue table N/A
 
             //Vip table
             modelBuilder.Entity<Vip>(entity =>
@@ -314,13 +284,10 @@ namespace event_booking.Data
 
                 entity.ToTable("VIP", "evnt", tb => tb.HasComment("VIP Area"));
 
-                entity.Property(e => e.VipId).ValueGeneratedOnAdd();
-
                 entity.HasOne(d => d.Event).WithMany(p => p.Vips)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_VIP_Events");
             });
-
         }
     }
 }

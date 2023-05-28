@@ -42,7 +42,5 @@ public partial class Organizer
     [InverseProperty("Organizers")]
     public virtual OrganizerCategory OrganizerCategory { get; set; } = null!;
 
-    [ForeignKey("OrganizerId")]
-    [InverseProperty("Organizers")]
     public virtual ICollection<EventUser> EventUsers { get; set; } = new List<EventUser>();
 }

@@ -68,8 +68,6 @@ namespace event_booking.Data
                 entity.HasKey(e => e.DiscountId).HasName("PK_TicketPricing");
 
                 entity.ToTable("Discount", "evnt", tb => tb.HasComment("Ticket Pricing Information"));
-
-                entity.Property(e => e.DiscountId).ValueGeneratedOnAdd();
             });
 
             //Event table
@@ -192,6 +190,7 @@ namespace event_booking.Data
             });
 
             //Purchase table N/A
+
             //Sale table
             modelBuilder.Entity<Sale>(entity =>
             {

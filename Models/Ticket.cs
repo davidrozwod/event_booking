@@ -85,7 +85,5 @@ public partial class Ticket
     [InverseProperty("Tickets")]
     public virtual Venue Venue { get; set; } = null!;
 
-    [ForeignKey("TicketId")]
-    [InverseProperty("Tickets")]
     public virtual ICollection<Vip> Vips { get; set; } = new List<Vip>();
 }

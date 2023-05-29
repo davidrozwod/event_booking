@@ -1,5 +1,6 @@
 ﻿using event_booking.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
 namespace event_booking.Controllers
@@ -21,7 +22,7 @@ namespace event_booking.Controllers
 
         // Picture
         [HttpPost]
-        public async Task<IActionResult> UpdateProfile(string pictureUrl)
+        public async Task<IActionResult> UpdateProfileProfilePicture(string pictureUrl)
         {
             // Get the logged in user's id
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -39,15 +40,21 @@ namespace event_booking.Controllers
             return RedirectToAction("Profile", "Home");
         }
 
-        public async Task<IActionResult> Profile()
+        public async Task<IActionResult> ProfilePicture()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (string.IsNullOrWhiteSpace(userId))
+            {
+                // Handle case where user is not logged in
+                return NotFound();
+            }
+
             var pictureUrl = await _eventUserService.GetEventUserPictureUrlAsync(userId);
 
+            // Create a view model with the necessary data
             var model = new EventUser
             {
-                // Set other properties...
-
                 Picture = pictureUrl
             };
 

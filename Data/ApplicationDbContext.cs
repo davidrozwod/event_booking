@@ -70,7 +70,7 @@ namespace event_booking.Data
                 entity.ToTable("Discount", "evnt", tb => tb.HasComment("Ticket Pricing Information"));
 
                 entity.Property(e => e.PriceMultiplier)
-                    .HasColumnType("decimal(18, 2)");
+                    .HasColumnType("decimal(18, 2)");  
             });
 
             //Event table
@@ -99,7 +99,7 @@ namespace event_booking.Data
                     .WithOne()
                     .HasForeignKey<EventUser>(eu => eu.EventUserId);
 
-                //Junction table = User > Events
+            //Junction table = User > Events
                 entity.HasMany(d => d.Events).WithMany(p => p.EventUsers)
                     .UsingEntity<Dictionary<string, object>>(
                         "UserEventFollow",
@@ -120,7 +120,7 @@ namespace event_booking.Data
                             j.IndexerProperty<int>("EventId").HasColumnName("EventID");
                         });
 
-                //Junction table = User > Organizers
+            //Junction table = User > Organizers
                 entity.HasMany(d => d.Organizers).WithMany(p => p.EventUsers)
                     .UsingEntity<Dictionary<string, object>>(
                         "UserOrganizerFollow",
@@ -141,7 +141,7 @@ namespace event_booking.Data
                             j.IndexerProperty<int>("OrganizerId").HasColumnName("OrganizerID");
                         });
 
-                //Junction table = User > Venues
+            //Junction table = User > Venues
                 entity.HasMany(d => d.Venues).WithMany(p => p.EventUsers)
                     .UsingEntity<Dictionary<string, object>>(
                         "UserVenueFollow",

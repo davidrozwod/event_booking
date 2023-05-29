@@ -10,6 +10,7 @@ namespace event_booking.Models;
 public partial class Event
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int EventId { get; set; }
 
     [Required]

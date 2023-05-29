@@ -68,6 +68,9 @@ namespace event_booking.Data
                 entity.HasKey(e => e.DiscountId).HasName("PK_TicketPricing");
 
                 entity.ToTable("Discount", "evnt", tb => tb.HasComment("Ticket Pricing Information"));
+
+                entity.Property(e => e.PriceMultiplier)
+                    .HasColumnType("decimal(18, 2)");  
             });
 
             //Event table
@@ -85,6 +88,7 @@ namespace event_booking.Data
             });
 
             //EventCategory table N/A
+
             //
             //EventUser table
             //
@@ -163,6 +167,9 @@ namespace event_booking.Data
             modelBuilder.Entity<GroupDiscount>(entity =>
             {
                 entity.ToTable("GroupDiscounts", "evnt", tb => tb.HasComment("Discounts on groups"));
+
+                entity.Property(e => e.PriceMultiplier)
+                    .HasColumnType("decimal(18, 2)");
             });
 
             //Loyalty table
@@ -171,6 +178,9 @@ namespace event_booking.Data
                 entity.HasOne(d => d.EventUser).WithOne(p => p.Loyalty)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Loyalty_EventUser");
+
+                entity.Property(e => e.PriceMultiplier)
+                    .HasColumnType("decimal(18, 2)");
             });
 
             //Organizer table
@@ -197,6 +207,9 @@ namespace event_booking.Data
                 entity.HasOne(d => d.EventUser).WithMany(p => p.Sales).HasConstraintName("FK_Sales_EventUser");
 
                 entity.HasOne(d => d.Purchase).WithMany(p => p.Sales).HasConstraintName("FK_Sales_Purchase_1");
+
+                entity.Property(e => e.SalePrice)
+                    .HasColumnType("decimal(18, 2)");
             });
 
             //Seat table
@@ -211,7 +224,12 @@ namespace event_booking.Data
                     .HasConstraintName("FK_Seats_Venue");
             });
 
-            //Section table N/A
+            //Section table
+            modelBuilder.Entity<Section>(entity =>
+            {
+                entity.Property(e => e.PriceMultiplier)
+                    .HasColumnType("decimal(18, 2)");
+            });
 
             //Ticket table
             modelBuilder.Entity<Ticket>(entity =>
@@ -238,7 +256,13 @@ namespace event_booking.Data
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Tickets_Venue_1");
 
-            //Junction table = Ticket > VIP
+                entity.Property(e => e.BasePrice)
+                    .HasColumnType("decimal(18, 2)");
+
+                entity.Property(e => e.TicketPrice)
+                    .HasColumnType("decimal(18, 2)");
+
+                //Junction table = Ticket > VIP
                 entity.HasMany(d => d.Vips).WithMany(p => p.Tickets)
                     .UsingEntity<Dictionary<string, object>>(
                         "JunctionTicketVip",
@@ -272,6 +296,9 @@ namespace event_booking.Data
             modelBuilder.Entity<TicketType>(entity =>
             {
                 entity.HasKey(e => e.TicketTypeId).HasName("PK_UserFollows");
+
+                entity.Property(e => e.PriceMultiplier)
+                    .HasColumnType("decimal(18, 2)");
             });
 
             //Venue table N/A
@@ -286,6 +313,9 @@ namespace event_booking.Data
                 entity.HasOne(d => d.Event).WithMany(p => p.Vips)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_VIP_Events");
+
+                entity.Property(e => e.VipPrice)
+                    .HasColumnType("decimal(18, 2)");
             });
         }
     }

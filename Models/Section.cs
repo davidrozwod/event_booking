@@ -18,7 +18,7 @@ public partial class Section
     [Unicode(false)]
     public string SectionName { get; set; } = null!;
 
-    public int PriceMultiplier { get; set; }
+    public decimal PriceMultiplier { get; set; }
 
     //Relationships
     [InverseProperty("Section")]

@@ -21,7 +21,7 @@ public partial class Discount
     [Unicode(false)]
     public string DiscountName { get; set; } = null!;
 
-    public int PriceMultiplier { get; set; }
+    public decimal PriceMultiplier { get; set; }
 
     [InverseProperty("Discount")]
     public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();

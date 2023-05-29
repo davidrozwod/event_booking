@@ -25,7 +25,7 @@ public partial class Sale
     [Column(TypeName = "date")]
     public DateTime? SaleDate { get; set; }
 
-    public int? SalePrice { get; set; }
+    public decimal? SalePrice { get; set; }
 
     //Relationships
     [ForeignKey("EventUserId")]

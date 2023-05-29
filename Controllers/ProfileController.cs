@@ -17,6 +17,8 @@ namespace event_booking.Controllers
             return View();
         }
 
+
+        // Picture
         [HttpPost]
         public async Task<IActionResult> UpdateProfile(string pictureUrl)
         {
@@ -34,6 +36,17 @@ namespace event_booking.Controllers
 
             // If the update was successful, redirect to the profile page
             return RedirectToAction("Profile", "Home");
+        }
+
+        public async Task<IActionResult> Profile()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var pictureUrl = await _eventUserService.GetEventUserPictureUrlAsync(userId);
+
+            // Pass the picture URL to the view, e.g. using ViewBag
+            ViewBag.PictureUrl = pictureUrl;
+
+            return View();
         }
     }
 }

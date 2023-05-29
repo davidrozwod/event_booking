@@ -6,7 +6,7 @@ name: Build and deploy ASP.Net Core app to Azure Web App - eventbooking
 on:
   push:
     branches:
-      - merge_test
+      - development
   workflow_dispatch:
 
   #comment.

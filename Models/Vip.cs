@@ -30,7 +30,7 @@ public partial class Vip
     public string Description { get; set; } = null!;
 
     [Column("VIP_Price")]
-    public int VipPrice { get; set; }
+    public decimal VipPrice { get; set; }
 
     //Relationships
     [ForeignKey("EventId")]

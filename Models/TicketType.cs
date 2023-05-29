@@ -18,7 +18,7 @@ public partial class TicketType
     [Unicode(false)]
     public string TypeName { get; set; } = null!;
 
-    public int PriceMultiplier { get; set; }
+    public decimal PriceMultiplier { get; set; }
 
     //Relationships
     [InverseProperty("TicketType")]

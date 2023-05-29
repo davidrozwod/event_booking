@@ -46,15 +46,9 @@ public partial class EventUser
     [InverseProperty("EventUser")]
     public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
 
-    [ForeignKey("EventUserId")]
-    [InverseProperty("EventUsers")]
     public virtual ICollection<Event> Events { get; set; } = new List<Event>();
 
-    [ForeignKey("EventUserId")]
-    [InverseProperty("EventUsers")]
     public virtual ICollection<Organizer> Organizers { get; set; } = new List<Organizer>();
 
-    [ForeignKey("EventUserId")]
-    [InverseProperty("EventUsers")]
     public virtual ICollection<Venue> Venues { get; set; } = new List<Venue>();
 }

@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewData["Title"] = "Profile";
+    @model EventUser
 }
 
 <style>
@@ -215,9 +216,9 @@
 
         <button id="login-submit" type="submit" class="w-100 btn btn-sm btn-primary">Update</button>
     </form>
-    @if (!string.IsNullOrWhiteSpace(ViewBag.PictureUrl))
+    @if (!string.IsNullOrWhiteSpace(Model.Picture))
     {
-        <img src="@ViewBag.PictureUrl" alt="User's picture">
+        <img src="@Model.Picture" alt="User's picture">
     }
 </body>
 

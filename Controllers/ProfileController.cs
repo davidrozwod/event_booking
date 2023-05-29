@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using event_booking.Models;
+using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
 namespace event_booking.Controllers
@@ -43,10 +44,14 @@ namespace event_booking.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var pictureUrl = await _eventUserService.GetEventUserPictureUrlAsync(userId);
 
-            // Pass the picture URL to the view, e.g. using ViewBag
-            ViewBag.PictureUrl = pictureUrl;
+            var model = new EventUser
+            {
+                // Set other properties...
 
-            return View();
+                Picture = pictureUrl
+            };
+
+            return View(model);
         }
     }
 }

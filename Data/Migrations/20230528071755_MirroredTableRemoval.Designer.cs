@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using event_booking.Data;
 
@@ -11,9 +12,11 @@ using event_booking.Data;
 namespace event_booking.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230528071755_MirroredTableRemoval")]
+    partial class MirroredTableRemoval
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +25,6 @@ namespace event_booking.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            //Tables
             modelBuilder.Entity("JunctionTicketVip", b =>
                 {
                     b.Property<int>("TicketId")
@@ -308,8 +310,8 @@ namespace event_booking.Data.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<decimal>("PriceMultiplier")
-                        .HasColumnType("decimal(18, 2)");
+                    b.Property<int>("PriceMultiplier")
+                        .HasColumnType("int");
 
                     b.HasKey("DiscountId")
                         .HasName("PK_TicketPricing");
@@ -445,8 +447,8 @@ namespace event_booking.Data.Migrations
                     b.Property<int>("MinimumChildren")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("PriceMultiplier")
-                        .HasColumnType("decimal(18, 2)");
+                    b.Property<int>("PriceMultiplier")
+                        .HasColumnType("int");
 
                     b.HasKey("GroupDiscountId");
 
@@ -462,8 +464,8 @@ namespace event_booking.Data.Migrations
                         .HasColumnType("nvarchar(450)")
                         .HasColumnName("EventUserID");
 
-                    b.Property<decimal?>("PriceMultiplier")
-                        .HasColumnType("decimal(18, 2)");
+                    b.Property<int?>("PriceMultiplier")
+                        .HasColumnType("int");
 
                     b.Property<int?>("TicketCount")
                         .HasColumnType("int");
@@ -570,8 +572,8 @@ namespace event_booking.Data.Migrations
                     b.Property<DateTime?>("SaleDate")
                         .HasColumnType("date");
 
-                    b.Property<decimal?>("SalePrice")
-                        .HasColumnType("decimal(18, 2)");
+                    b.Property<int?>("SalePrice")
+                        .HasColumnType("int");
 
                     b.HasKey("SaleId");
 
@@ -621,8 +623,8 @@ namespace event_booking.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SectionId"));
 
-                    b.Property<decimal>("PriceMultiplier")
-                        .HasColumnType("decimal(18, 2)");
+                    b.Property<int>("PriceMultiplier")
+                        .HasColumnType("int");
 
                     b.Property<string>("SectionName")
                         .IsRequired()
@@ -644,8 +646,8 @@ namespace event_booking.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TicketId"));
 
-                    b.Property<decimal>("BasePrice")
-                        .HasColumnType("decimal(18, 2)");
+                    b.Property<int>("BasePrice")
+                        .HasColumnType("int");
 
                     b.Property<int?>("DiscountId")
                         .HasColumnType("int")
@@ -676,8 +678,8 @@ namespace event_booking.Data.Migrations
                         .HasColumnType("int")
                         .HasColumnName("SeatID");
 
-                    b.Property<decimal?>("TicketPrice")
-                        .HasColumnType("decimal(18, 2)");
+                    b.Property<int?>("TicketPrice")
+                        .HasColumnType("int");
 
                     b.Property<int?>("TicketTypeId")
                         .HasColumnType("int")
@@ -745,8 +747,8 @@ namespace event_booking.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TicketTypeId"));
 
-                    b.Property<decimal>("PriceMultiplier")
-                        .HasColumnType("decimal(18, 2)");
+                    b.Property<int>("PriceMultiplier")
+                        .HasColumnType("int");
 
                     b.Property<string>("TypeName")
                         .IsRequired()
@@ -819,8 +821,8 @@ namespace event_booking.Data.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("VIP_Name");
 
-                    b.Property<decimal>("VipPrice")
-                        .HasColumnType("decimal(18, 2)")
+                    b.Property<int>("VipPrice")
+                        .HasColumnType("int")
                         .HasColumnName("VIP_Price");
 
                     b.HasKey("VipId")
@@ -837,7 +839,6 @@ namespace event_booking.Data.Migrations
                         });
                 });
 
-            //Relationships
             modelBuilder.Entity("JunctionTicketVip", b =>
                 {
                     b.HasOne("event_booking.Models.Ticket", null)
@@ -1119,7 +1120,6 @@ namespace event_booking.Data.Migrations
                     b.Navigation("Event");
                 });
 
-            //Navigations
             modelBuilder.Entity("event_booking.Models.Discount", b =>
                 {
                     b.Navigation("Tickets");

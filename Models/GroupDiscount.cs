@@ -24,7 +24,7 @@ public partial class GroupDiscount
 
     public int MinimumChildren { get; set; }
 
-    public int PriceMultiplier { get; set; }
+    public decimal PriceMultiplier { get; set; }
 
     //Relationships
     [InverseProperty("GroupDiscount")]

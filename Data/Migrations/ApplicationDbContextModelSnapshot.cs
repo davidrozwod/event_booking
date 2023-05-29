@@ -22,7 +22,45 @@ namespace event_booking.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            //Tables
+            modelBuilder.Entity("EventEventUser", b =>
+                {
+                    b.Property<int>("EventId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EventUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("EventId", "EventUserId");
+
+                    b.ToTable("EventEventUser");
+                });
+
+            modelBuilder.Entity("EventUserOrganizer", b =>
+                {
+                    b.Property<string>("EventUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("OrganizerId")
+                        .HasColumnType("int");
+
+                    b.HasKey("EventUserId", "OrganizerId");
+
+                    b.ToTable("EventUserOrganizer");
+                });
+
+            modelBuilder.Entity("EventUserVenue", b =>
+                {
+                    b.Property<string>("EventUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("VenueId")
+                        .HasColumnType("int");
+
+                    b.HasKey("EventUserId", "VenueId");
+
+                    b.ToTable("EventUserVenue");
+                });
+
             modelBuilder.Entity("JunctionTicketVip", b =>
                 {
                     b.Property<int>("TicketId")
@@ -35,7 +73,7 @@ namespace event_booking.Data.Migrations
 
                     b.HasKey("TicketId", "VipId");
 
-                    b.HasIndex(new[] { "VipId" }, "IX_Junction_Ticket_VIP_VIP_ID");
+                    b.HasIndex("VipId");
 
                     b.ToTable("Junction_Ticket_VIP", "evnt");
                 });
@@ -242,6 +280,19 @@ namespace event_booking.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("TicketVip", b =>
+                {
+                    b.Property<int>("TicketId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VipId")
+                        .HasColumnType("int");
+
+                    b.HasKey("TicketId", "VipId");
+
+                    b.ToTable("TicketVip");
+                });
+
             modelBuilder.Entity("UserEventFollow", b =>
                 {
                     b.Property<string>("EventUserId")
@@ -254,7 +305,7 @@ namespace event_booking.Data.Migrations
 
                     b.HasKey("EventUserId", "EventId");
 
-                    b.HasIndex(new[] { "EventId" }, "IX_User_Event_Follow_EventID");
+                    b.HasIndex("EventId");
 
                     b.ToTable("User_Event_Follow", "evnt");
                 });
@@ -271,7 +322,7 @@ namespace event_booking.Data.Migrations
 
                     b.HasKey("EventUserId", "OrganizerId");
 
-                    b.HasIndex(new[] { "OrganizerId" }, "IX_User_Organizer_Follow_OrganizerID");
+                    b.HasIndex("OrganizerId");
 
                     b.ToTable("User_Organizer_Follow", "evnt");
                 });
@@ -288,7 +339,7 @@ namespace event_booking.Data.Migrations
 
                     b.HasKey("EventUserId", "VenueId");
 
-                    b.HasIndex(new[] { "VenueId" }, "IX_User_Venue_Follow_VenueID");
+                    b.HasIndex("VenueId");
 
                     b.ToTable("User_Venue_Follow", "evnt");
                 });
@@ -296,20 +347,16 @@ namespace event_booking.Data.Migrations
             modelBuilder.Entity("event_booking.Models.Discount", b =>
                 {
                     b.Property<int>("DiscountId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("DiscountID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DiscountId"));
-
                     b.Property<string>("DiscountName")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<decimal>("PriceMultiplier")
-                        .HasColumnType("decimal(18, 2)");
+                    b.Property<int?>("PriceMultiplier")
+                        .HasColumnType("int");
 
                     b.HasKey("DiscountId")
                         .HasName("PK_TicketPricing");
@@ -323,14 +370,10 @@ namespace event_booking.Data.Migrations
             modelBuilder.Entity("event_booking.Models.Event", b =>
                 {
                     b.Property<int>("EventId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("EventID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EventId"));
-
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
@@ -362,9 +405,9 @@ namespace event_booking.Data.Migrations
 
                     b.HasKey("EventId");
 
-                    b.HasIndex(new[] { "EventCategoryId" }, "IX_Events_EventCategoryID");
+                    b.HasIndex("EventCategoryId");
 
-                    b.HasIndex(new[] { "OrganizerId" }, "IX_Events_OrganizerID");
+                    b.HasIndex("OrganizerId");
 
                     b.ToTable("Events", "evnt");
                 });
@@ -372,11 +415,8 @@ namespace event_booking.Data.Migrations
             modelBuilder.Entity("event_booking.Models.EventCategory", b =>
                 {
                     b.Property<int>("EventCategoryId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("EventCategoryID");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EventCategoryId"));
 
                     b.Property<string>("CategoryName")
                         .IsRequired()
@@ -398,27 +438,17 @@ namespace event_booking.Data.Migrations
                     b.Property<int?>("Age")
                         .HasColumnType("int");
 
-                    b.Property<string>("Document")
-                        .HasMaxLength(450)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(450)");
+                    b.Property<int?>("Document")
+                        .HasColumnType("int");
 
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
+                    b.Property<int?>("FirstName")
+                        .HasColumnType("int");
 
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
+                    b.Property<int?>("LastName")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Picture")
-                        .HasMaxLength(450)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(450)");
+                    b.Property<int?>("Picture")
+                        .HasColumnType("int");
 
                     b.HasKey("EventUserId");
 
@@ -428,25 +458,21 @@ namespace event_booking.Data.Migrations
             modelBuilder.Entity("event_booking.Models.GroupDiscount", b =>
                 {
                     b.Property<int>("GroupDiscountId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("GroupDiscountID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GroupDiscountId"));
-
                     b.Property<string>("GroupName")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("MinimumAdults")
+                    b.Property<int?>("MinimumAdults")
                         .HasColumnType("int");
 
-                    b.Property<int>("MinimumChildren")
+                    b.Property<int?>("MinimumChildren")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("PriceMultiplier")
-                        .HasColumnType("decimal(18, 2)");
+                    b.Property<int?>("PriceMultiplier")
+                        .HasColumnType("int");
 
                     b.HasKey("GroupDiscountId");
 
@@ -462,8 +488,8 @@ namespace event_booking.Data.Migrations
                         .HasColumnType("nvarchar(450)")
                         .HasColumnName("EventUserID");
 
-                    b.Property<decimal?>("PriceMultiplier")
-                        .HasColumnType("decimal(18, 2)");
+                    b.Property<int?>("PriceMultiplier")
+                        .HasColumnType("int");
 
                     b.Property<int?>("TicketCount")
                         .HasColumnType("int");
@@ -476,11 +502,8 @@ namespace event_booking.Data.Migrations
             modelBuilder.Entity("event_booking.Models.Organizer", b =>
                 {
                     b.Property<int>("OrganizerId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("OrganizerID");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrganizerId"));
 
                     b.Property<string>("ContactInfo")
                         .HasMaxLength(100)
@@ -509,9 +532,9 @@ namespace event_booking.Data.Migrations
                         .HasColumnName("OrganizerCategoryID");
 
                     b.HasKey("OrganizerId")
-                        .HasName("PK_Organizers");
+                        .HasName("PK_HostsOrganizers");
 
-                    b.HasIndex(new[] { "OrganizerCategoryId" }, "IX_Organizers_OrganizerCategoryID");
+                    b.HasIndex("OrganizerCategoryId");
 
                     b.ToTable("Organizers", "evnt");
                 });
@@ -519,11 +542,8 @@ namespace event_booking.Data.Migrations
             modelBuilder.Entity("event_booking.Models.OrganizerCategory", b =>
                 {
                     b.Property<int>("OrganizerCategoryId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("OrganizerCategoryID");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrganizerCategoryId"));
 
                     b.Property<string>("CategoryName")
                         .IsRequired()
@@ -531,7 +551,7 @@ namespace event_booking.Data.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.HasKey("OrganizerCategoryId")
-                        .HasName("PK_OrganizerCategories");
+                        .HasName("PK_HostOrganizerCategories");
 
                     b.ToTable("OrganizerCategories", "evnt");
                 });
@@ -539,11 +559,8 @@ namespace event_booking.Data.Migrations
             modelBuilder.Entity("event_booking.Models.Purchase", b =>
                 {
                     b.Property<int>("PurchaseId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("PurchaseID");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PurchaseId"));
 
                     b.HasKey("PurchaseId");
 
@@ -553,13 +570,11 @@ namespace event_booking.Data.Migrations
             modelBuilder.Entity("event_booking.Models.Sale", b =>
                 {
                     b.Property<int>("SaleId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("SaleID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SaleId"));
-
                     b.Property<string>("EventUserId")
+                        .HasMaxLength(450)
                         .HasColumnType("nvarchar(450)")
                         .HasColumnName("EventUserID");
 
@@ -570,14 +585,14 @@ namespace event_booking.Data.Migrations
                     b.Property<DateTime?>("SaleDate")
                         .HasColumnType("date");
 
-                    b.Property<decimal?>("SalePrice")
-                        .HasColumnType("decimal(18, 2)");
+                    b.Property<int?>("SalePrice")
+                        .HasColumnType("int");
 
                     b.HasKey("SaleId");
 
-                    b.HasIndex(new[] { "EventUserId" }, "IX_Sales_EventUserID");
+                    b.HasIndex("EventUserId");
 
-                    b.HasIndex(new[] { "PurchaseId" }, "IX_Sales_PurchaseID");
+                    b.HasIndex("PurchaseId");
 
                     b.ToTable("Sales", "evnt");
                 });
@@ -585,29 +600,26 @@ namespace event_booking.Data.Migrations
             modelBuilder.Entity("event_booking.Models.Seat", b =>
                 {
                     b.Property<int>("SeatId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("SeatID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SeatId"));
-
-                    b.Property<int>("SeatNumber")
+                    b.Property<int?>("SeatNumber")
                         .HasColumnType("int");
 
                     b.Property<int?>("SectionId")
                         .HasColumnType("int")
                         .HasColumnName("SectionID");
 
-                    b.Property<int>("VenueId")
+                    b.Property<int?>("VenueId")
                         .HasColumnType("int")
                         .HasColumnName("VenueID")
                         .HasComment("Seats Information");
 
                     b.HasKey("SeatId");
 
-                    b.HasIndex(new[] { "SectionId" }, "IX_Seats_SectionID");
+                    b.HasIndex("SectionId");
 
-                    b.HasIndex(new[] { "VenueId" }, "IX_Seats_VenueID");
+                    b.HasIndex("VenueId");
 
                     b.ToTable("Seats", "evnt");
                 });
@@ -615,17 +627,13 @@ namespace event_booking.Data.Migrations
             modelBuilder.Entity("event_booking.Models.Section", b =>
                 {
                     b.Property<int>("SectionId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("SectionID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SectionId"));
-
-                    b.Property<decimal>("PriceMultiplier")
-                        .HasColumnType("decimal(18, 2)");
+                    b.Property<int?>("PriceMultiplier")
+                        .HasColumnType("int");
 
                     b.Property<string>("SectionName")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)");
@@ -638,14 +646,11 @@ namespace event_booking.Data.Migrations
             modelBuilder.Entity("event_booking.Models.Ticket", b =>
                 {
                     b.Property<int>("TicketId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("TicketID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TicketId"));
-
-                    b.Property<decimal>("BasePrice")
-                        .HasColumnType("decimal(18, 2)");
+                    b.Property<int>("BasePrice")
+                        .HasColumnType("int");
 
                     b.Property<int?>("DiscountId")
                         .HasColumnType("int")
@@ -656,6 +661,7 @@ namespace event_booking.Data.Migrations
                         .HasColumnName("EventID");
 
                     b.Property<string>("EventUserId")
+                        .HasMaxLength(450)
                         .HasColumnType("nvarchar(450)")
                         .HasColumnName("EventUserID");
 
@@ -676,8 +682,8 @@ namespace event_booking.Data.Migrations
                         .HasColumnType("int")
                         .HasColumnName("SeatID");
 
-                    b.Property<decimal?>("TicketPrice")
-                        .HasColumnType("decimal(18, 2)");
+                    b.Property<int?>("TicketPrice")
+                        .HasColumnType("int");
 
                     b.Property<int?>("TicketTypeId")
                         .HasColumnType("int")
@@ -689,17 +695,17 @@ namespace event_booking.Data.Migrations
 
                     b.HasKey("TicketId");
 
-                    b.HasIndex(new[] { "DiscountId" }, "IX_Tickets_DiscountID");
+                    b.HasIndex("DiscountId");
 
-                    b.HasIndex(new[] { "EventUserId" }, "IX_Tickets_EventUserID");
+                    b.HasIndex("EventUserId");
 
-                    b.HasIndex(new[] { "PurchaseId" }, "IX_Tickets_PurchaseID");
+                    b.HasIndex("PurchaseId");
 
-                    b.HasIndex(new[] { "SeatId" }, "IX_Tickets_SeatID");
+                    b.HasIndex("SeatId");
 
-                    b.HasIndex(new[] { "TicketTypeId" }, "IX_Tickets_TicketTypeID");
+                    b.HasIndex("TicketTypeId");
 
-                    b.HasIndex(new[] { "VenueId" }, "IX_Tickets_VenueID");
+                    b.HasIndex("VenueId");
 
                     b.HasIndex(new[] { "EventId", "SeatId" }, "Ticket_Unique_Index")
                         .IsUnique();
@@ -713,11 +719,8 @@ namespace event_booking.Data.Migrations
             modelBuilder.Entity("event_booking.Models.TicketGroup", b =>
                 {
                     b.Property<int>("TicketGroupId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("TicketGroupID");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TicketGroupId"));
 
                     b.Property<int?>("GroupDiscountId")
                         .HasColumnType("int")
@@ -729,9 +732,9 @@ namespace event_booking.Data.Migrations
 
                     b.HasKey("TicketGroupId");
 
-                    b.HasIndex(new[] { "GroupDiscountId" }, "IX_TicketGroup_GroupDiscountID");
+                    b.HasIndex("GroupDiscountId");
 
-                    b.HasIndex(new[] { "PurchaseId" }, "IX_TicketGroup_PurchaseID");
+                    b.HasIndex("PurchaseId");
 
                     b.ToTable("TicketGroup", "evnt");
                 });
@@ -739,14 +742,11 @@ namespace event_booking.Data.Migrations
             modelBuilder.Entity("event_booking.Models.TicketType", b =>
                 {
                     b.Property<int>("TicketTypeId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("TicketTypeID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TicketTypeId"));
-
-                    b.Property<decimal>("PriceMultiplier")
-                        .HasColumnType("decimal(18, 2)");
+                    b.Property<int>("PriceMultiplier")
+                        .HasColumnType("int");
 
                     b.Property<string>("TypeName")
                         .IsRequired()
@@ -763,30 +763,24 @@ namespace event_booking.Data.Migrations
             modelBuilder.Entity("event_booking.Models.Venue", b =>
                 {
                     b.Property<int>("VenueId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("VenueID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VenueId"));
-
                     b.Property<string>("Description")
-                        .IsRequired()
                         .IsUnicode(false)
                         .HasColumnType("varchar(max)");
 
                     b.Property<string>("Location")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<int>("SeatCapacity")
+                    b.Property<int?>("SeatCapacity")
                         .HasColumnType("int")
                         .HasColumnName("Seat Capacity");
 
@@ -798,14 +792,10 @@ namespace event_booking.Data.Migrations
             modelBuilder.Entity("event_booking.Models.Vip", b =>
                 {
                     b.Property<int>("VipId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("VIP_ID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VipId"));
-
                     b.Property<string>("Description")
-                        .IsRequired()
                         .IsUnicode(false)
                         .HasColumnType("varchar(max)");
 
@@ -819,14 +809,14 @@ namespace event_booking.Data.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("VIP_Name");
 
-                    b.Property<decimal>("VipPrice")
-                        .HasColumnType("decimal(18, 2)")
+                    b.Property<int>("VipPrice")
+                        .HasColumnType("int")
                         .HasColumnName("VIP_Price");
 
                     b.HasKey("VipId")
                         .HasName("PK_VIPAccess");
 
-                    b.HasIndex(new[] { "EventId" }, "IX_VIP_EventID");
+                    b.HasIndex("EventId");
 
                     b.HasIndex(new[] { "VipId", "EventId" }, "VIP_Unique_Index")
                         .IsUnique();
@@ -837,7 +827,6 @@ namespace event_booking.Data.Migrations
                         });
                 });
 
-            //Relationships
             modelBuilder.Entity("JunctionTicketVip", b =>
                 {
                     b.HasOne("event_booking.Models.Ticket", null)
@@ -1028,7 +1017,6 @@ namespace event_booking.Data.Migrations
                     b.HasOne("event_booking.Models.Venue", "Venue")
                         .WithMany("Seats")
                         .HasForeignKey("VenueId")
-                        .IsRequired()
                         .HasConstraintName("FK_Seats_Venue");
 
                     b.Navigation("Section");
@@ -1119,7 +1107,6 @@ namespace event_booking.Data.Migrations
                     b.Navigation("Event");
                 });
 
-            //Navigations
             modelBuilder.Entity("event_booking.Models.Discount", b =>
                 {
                     b.Navigation("Tickets");

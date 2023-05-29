@@ -10,7 +10,6 @@ namespace event_booking.Models;
 public partial class TicketType
 {
     [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Column("TicketTypeID")]
     public int TicketTypeId { get; set; }
 
@@ -18,7 +17,7 @@ public partial class TicketType
     [Unicode(false)]
     public string TypeName { get; set; } = null!;
 
-    public decimal PriceMultiplier { get; set; }
+    public int PriceMultiplier { get; set; }
 
     //Relationships
     [InverseProperty("TicketType")]

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace event_booking.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class RestoreDB : Migration
+    public partial class RestoreSolution : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,10 +19,9 @@ namespace event_booking.Data.Migrations
                 schema: "evnt",
                 columns: table => new
                 {
-                    DiscountID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    DiscountName = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false),
-                    PriceMultiplier = table.Column<int>(type: "int", nullable: false)
+                    DiscountID = table.Column<int>(type: "int", nullable: false),
+                    DiscountName = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: true),
+                    PriceMultiplier = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -35,8 +34,7 @@ namespace event_booking.Data.Migrations
                 schema: "evnt",
                 columns: table => new
                 {
-                    EventCategoryID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EventCategoryID = table.Column<int>(type: "int", nullable: false),
                     CategoryName = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false)
                 },
                 constraints: table =>
@@ -44,7 +42,7 @@ namespace event_booking.Data.Migrations
                     table.PrimaryKey("PK_EventCategories", x => x.EventCategoryID);
                 });
 
-            /*migrationBuilder.CreateTable(
+            migrationBuilder.CreateTable(
                 name: "EventEventUser",
                 columns: table => new
                 {
@@ -54,7 +52,7 @@ namespace event_booking.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_EventEventUser", x => new { x.EventId, x.EventUserId });
-                });*/
+                });
 
             migrationBuilder.CreateTable(
                 name: "EventUser",
@@ -62,11 +60,11 @@ namespace event_booking.Data.Migrations
                 columns: table => new
                 {
                     EventUserID = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    FirstName = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false),
-                    LastName = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false),
+                    FirstName = table.Column<int>(type: "int", nullable: true),
+                    LastName = table.Column<int>(type: "int", nullable: true),
                     Age = table.Column<int>(type: "int", nullable: true),
-                    Picture = table.Column<string>(type: "varchar(450)", unicode: false, maxLength: 450, nullable: true),
-                    Document = table.Column<string>(type: "varchar(450)", unicode: false, maxLength: 450, nullable: true)
+                    Picture = table.Column<int>(type: "int", nullable: true),
+                    Document = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -79,7 +77,7 @@ namespace event_booking.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            /*migrationBuilder.CreateTable(
+            migrationBuilder.CreateTable(
                 name: "EventUserOrganizer",
                 columns: table => new
                 {
@@ -101,19 +99,18 @@ namespace event_booking.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_EventUserVenue", x => new { x.EventUserId, x.VenueId });
-                });*/
+                });
 
             migrationBuilder.CreateTable(
                 name: "GroupDiscounts",
                 schema: "evnt",
                 columns: table => new
                 {
-                    GroupDiscountID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    GroupName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    MinimumAdults = table.Column<int>(type: "int", nullable: false),
-                    MinimumChildren = table.Column<int>(type: "int", nullable: false),
-                    PriceMultiplier = table.Column<int>(type: "int", nullable: false)
+                    GroupDiscountID = table.Column<int>(type: "int", nullable: false),
+                    GroupName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    MinimumAdults = table.Column<int>(type: "int", nullable: true),
+                    MinimumChildren = table.Column<int>(type: "int", nullable: true),
+                    PriceMultiplier = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -126,13 +123,12 @@ namespace event_booking.Data.Migrations
                 schema: "evnt",
                 columns: table => new
                 {
-                    OrganizerCategoryID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OrganizerCategoryID = table.Column<int>(type: "int", nullable: false),
                     CategoryName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OrganizerCategories", x => x.OrganizerCategoryID);
+                    table.PrimaryKey("PK_HostOrganizerCategories", x => x.OrganizerCategoryID);
                 });
 
             migrationBuilder.CreateTable(
@@ -141,7 +137,6 @@ namespace event_booking.Data.Migrations
                 columns: table => new
                 {
                     PurchaseID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1")
                 },
                 constraints: table =>
                 {
@@ -153,10 +148,9 @@ namespace event_booking.Data.Migrations
                 schema: "evnt",
                 columns: table => new
                 {
-                    SectionID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    SectionName = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false),
-                    PriceMultiplier = table.Column<int>(type: "int", nullable: false)
+                    SectionID = table.Column<int>(type: "int", nullable: false),
+                    SectionName = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: true),
+                    PriceMultiplier = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -168,8 +162,7 @@ namespace event_booking.Data.Migrations
                 schema: "evnt",
                 columns: table => new
                 {
-                    TicketTypeID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TicketTypeID = table.Column<int>(type: "int", nullable: false),
                     TypeName = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false),
                     PriceMultiplier = table.Column<int>(type: "int", nullable: false)
                 },
@@ -178,7 +171,7 @@ namespace event_booking.Data.Migrations
                     table.PrimaryKey("PK_UserFollows", x => x.TicketTypeID);
                 });
 
-            /*migrationBuilder.CreateTable(
+            migrationBuilder.CreateTable(
                 name: "TicketVip",
                 columns: table => new
                 {
@@ -188,19 +181,18 @@ namespace event_booking.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TicketVip", x => new { x.TicketId, x.VipId });
-                });*/
+                });
 
             migrationBuilder.CreateTable(
                 name: "Venue",
                 schema: "evnt",
                 columns: table => new
                 {
-                    VenueID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false),
-                    Location = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false),
-                    Description = table.Column<string>(type: "varchar(max)", unicode: false, nullable: false),
-                    SeatCapacity = table.Column<int>(name: "Seat Capacity", type: "int", nullable: false)
+                    VenueID = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: true),
+                    Location = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: true),
+                    Description = table.Column<string>(type: "varchar(max)", unicode: false, nullable: true),
+                    SeatCapacity = table.Column<int>(name: "Seat Capacity", type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -232,8 +224,7 @@ namespace event_booking.Data.Migrations
                 schema: "evnt",
                 columns: table => new
                 {
-                    OrganizerID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OrganizerID = table.Column<int>(type: "int", nullable: false),
                     OrganizerCategoryID = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false),
                     Description = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false),
@@ -242,7 +233,7 @@ namespace event_booking.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Organizers", x => x.OrganizerID);
+                    table.PrimaryKey("PK_HostsOrganizers", x => x.OrganizerID);
                     table.ForeignKey(
                         name: "FK_Organizers_OrganizerCategories",
                         column: x => x.OrganizerCategoryID,
@@ -256,9 +247,8 @@ namespace event_booking.Data.Migrations
                 schema: "evnt",
                 columns: table => new
                 {
-                    SaleID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    EventUserID = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    SaleID = table.Column<int>(type: "int", nullable: false),
+                    EventUserID = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
                     PurchaseID = table.Column<int>(type: "int", nullable: true),
                     SaleDate = table.Column<DateTime>(type: "date", nullable: true),
                     SalePrice = table.Column<int>(type: "int", nullable: true)
@@ -285,8 +275,7 @@ namespace event_booking.Data.Migrations
                 schema: "evnt",
                 columns: table => new
                 {
-                    TicketGroupID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TicketGroupID = table.Column<int>(type: "int", nullable: false),
                     PurchaseID = table.Column<int>(type: "int", nullable: true),
                     GroupDiscountID = table.Column<int>(type: "int", nullable: true)
                 },
@@ -312,11 +301,10 @@ namespace event_booking.Data.Migrations
                 schema: "evnt",
                 columns: table => new
                 {
-                    SeatID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    VenueID = table.Column<int>(type: "int", nullable: false, comment: "Seats Information"),
+                    SeatID = table.Column<int>(type: "int", nullable: false),
+                    VenueID = table.Column<int>(type: "int", nullable: true, comment: "Seats Information"),
                     SectionID = table.Column<int>(type: "int", nullable: true),
-                    SeatNumber = table.Column<int>(type: "int", nullable: false)
+                    SeatNumber = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -365,12 +353,11 @@ namespace event_booking.Data.Migrations
                 schema: "evnt",
                 columns: table => new
                 {
-                    EventID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EventID = table.Column<int>(type: "int", nullable: false),
                     OrganizerID = table.Column<int>(type: "int", nullable: false),
                     EventCategoryID = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     StartDateTime = table.Column<DateTime>(type: "date", nullable: false),
                     EndDateTime = table.Column<DateTime>(type: "date", nullable: false),
                     Image = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
@@ -423,12 +410,11 @@ namespace event_booking.Data.Migrations
                 schema: "evnt",
                 columns: table => new
                 {
-                    TicketID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TicketID = table.Column<int>(type: "int", nullable: false),
                     EventID = table.Column<int>(type: "int", nullable: false),
                     VenueID = table.Column<int>(type: "int", nullable: false),
                     SeatID = table.Column<int>(type: "int", nullable: false),
-                    EventUserID = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    EventUserID = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
                     FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     LastName = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: true),
                     DiscountID = table.Column<int>(type: "int", nullable: true),
@@ -515,11 +501,10 @@ namespace event_booking.Data.Migrations
                 schema: "evnt",
                 columns: table => new
                 {
-                    VIP_ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    VIP_ID = table.Column<int>(type: "int", nullable: false),
                     EventID = table.Column<int>(type: "int", nullable: false),
                     VIP_Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Description = table.Column<string>(type: "varchar(max)", unicode: false, nullable: false),
+                    Description = table.Column<string>(type: "varchar(max)", unicode: false, nullable: true),
                     VIP_Price = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -559,7 +544,6 @@ namespace event_booking.Data.Migrations
                         principalColumn: "VIP_ID");
                 });
 
-            //Indexes
             migrationBuilder.CreateIndex(
                 name: "IX_Events_EventCategoryID",
                 schema: "evnt",

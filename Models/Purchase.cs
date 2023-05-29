@@ -10,7 +10,6 @@ namespace event_booking.Models;
 public partial class Purchase
 {
     [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Column("PurchaseID")]
     public int PurchaseId { get; set; }
 

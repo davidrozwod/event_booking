@@ -10,23 +10,22 @@ namespace event_booking.Models;
 public partial class Venue
 {
     [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Column("VenueID")]
     public int VenueId { get; set; }
 
     [StringLength(50)]
     [Unicode(false)]
-    public string Name { get; set; } = null!;
+    public string? Name { get; set; }
 
     [StringLength(50)]
     [Unicode(false)]
-    public string Location { get; set; } = null!;
+    public string? Location { get; set; }
 
     [Unicode(false)]
-    public string Description { get; set; } = null!;
+    public string? Description { get; set; }
 
     [Column("Seat Capacity")]
-    public int SeatCapacity { get; set; }
+    public int? SeatCapacity { get; set; }
 
     //Relationships
     [InverseProperty("Venue")]
@@ -35,5 +34,7 @@ public partial class Venue
     [InverseProperty("Venue")]
     public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
 
+    [ForeignKey("VenueId")]
+    [InverseProperty("Venues")]
     public virtual ICollection<EventUser> EventUsers { get; set; } = new List<EventUser>();
 }

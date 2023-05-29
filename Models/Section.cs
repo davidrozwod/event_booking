@@ -10,15 +10,14 @@ namespace event_booking.Models;
 public partial class Section
 {
     [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Column("SectionID")]
     public int SectionId { get; set; }
 
     [StringLength(50)]
     [Unicode(false)]
-    public string SectionName { get; set; } = null!;
+    public string? SectionName { get; set; }
 
-    public decimal PriceMultiplier { get; set; }
+    public int? PriceMultiplier { get; set; }
 
     //Relationships
     [InverseProperty("Section")]

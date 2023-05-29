@@ -6,25 +6,21 @@ using Microsoft.EntityFrameworkCore;
 
 namespace event_booking.Models;
 
-/// <summary>
-/// Discounts on groups
-/// </summary>
 [Table("GroupDiscounts", Schema = "evnt")]
 public partial class GroupDiscount
 {
     [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Column("GroupDiscountID")]
     public int GroupDiscountId { get; set; }
 
     [StringLength(50)]
-    public string GroupName { get; set; } = null!;
+    public string? GroupName { get; set; }
 
-    public int MinimumAdults { get; set; }
+    public int? MinimumAdults { get; set; }
 
-    public int MinimumChildren { get; set; }
+    public int? MinimumChildren { get; set; }
 
-    public decimal PriceMultiplier { get; set; }
+    public int? PriceMultiplier { get; set; }
 
     //Relationships
     [InverseProperty("GroupDiscount")]

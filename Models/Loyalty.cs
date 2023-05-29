@@ -15,7 +15,7 @@ public partial class Loyalty
 
     public int? TicketCount { get; set; }
 
-    public decimal? PriceMultiplier { get; set; }
+    public int? PriceMultiplier { get; set; }
 
     //Relationships
     [ForeignKey("EventUserId")]

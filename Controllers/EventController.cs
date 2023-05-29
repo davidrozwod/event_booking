@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using event_booking.Models;
 using event_booking.Data;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace event_booking.Controllers
 {
@@ -48,6 +49,10 @@ namespace event_booking.Controllers
         {
             // Populate any dropdowns or necessary data for the create view
             // For example, you can fetch EventCategory and Organizer data from the database and pass it to the view
+            // If the model is not valid, return the create view with validation errors
+            ViewBag.Organizers = _context.Organizers.ToList();
+            ViewBag.EventCategories = _context.EventCategories.ToList();
+
             return View();
         }
 
@@ -63,9 +68,14 @@ namespace event_booking.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            // If the model is not valid, return the create view with validation errors
-            return View(@event);
+                // Set up necessary data for the create view
+                ViewBag.Organizers = _context.Organizers.ToList();
+                ViewBag.EventCategories = _context.EventCategories.ToList();
+
+                // Return the create view with validation errors
+                return View(@event);
         }
+
 
         // GET: Event/Edit/5
         public IActionResult Edit(int? id)

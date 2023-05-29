@@ -10,10 +10,8 @@ namespace event_booking.Models;
 public partial class Organizer
 {
     [Key]
-    [Column("OrganizerID")]
     public int OrganizerId { get; set; }
 
-    [Column("OrganizerCategoryID")]
     public int OrganizerCategoryId { get; set; }
 
     [StringLength(50)]

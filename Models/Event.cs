@@ -10,41 +10,41 @@ namespace event_booking.Models;
 public partial class Event
 {
     [Key]
-    [Column("EventID")]
     public int EventId { get; set; }
 
-    [Column("OrganizerID")]
+    [Required]
     public int OrganizerId { get; set; }
 
-    [Column("EventCategoryID")]
+    [Required]
     public int EventCategoryId { get; set; }
 
+    [Required]
     [StringLength(50)]
     public string Name { get; set; } = null!;
 
+    [Required]
     [StringLength(250)]
     public string? Description { get; set; }
 
-    [Column(TypeName = "date")]
+    [Required]
     public DateTime StartDateTime { get; set; }
 
-    [Column(TypeName = "date")]
+    [Required]
     public DateTime EndDateTime { get; set; }
 
     [StringLength(100)]
     public string? Image { get; set; }
 
-    [Column(TypeName = "date")]
     public DateTime? EarlyBirdCutoff { get; set; }
 
     //Relationships
     [ForeignKey("EventCategoryId")]
     [InverseProperty("Events")]
-    public virtual EventCategory EventCategory { get; set; } = null!;
+    public virtual EventCategory? EventCategory { get; set; }
 
     [ForeignKey("OrganizerId")]
     [InverseProperty("Events")]
-    public virtual Organizer Organizer { get; set; } = null!;
+    public virtual Organizer? Organizer { get; set; }
 
     [InverseProperty("Event")]
     public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();

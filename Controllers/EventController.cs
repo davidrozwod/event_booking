@@ -91,7 +91,8 @@ namespace event_booking.Controllers
             {
                 return NotFound();
             }
-
+            ViewBag.Organizers = _context.Organizers.ToList(); // Populate Organizers
+            ViewBag.EventCategories = _context.EventCategories.ToList();
             return View(@event);
         }
 

@@ -85,6 +85,12 @@ namespace event_booking.Data
                 entity.HasOne(d => d.Organizer).WithMany(p => p.Events)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Events_Organizers");
+
+                //Relationship > CreatedbyUser
+                entity.HasOne(e => e.CreatedByUser)
+                .WithMany()
+                .HasForeignKey(e => e.CreatedByUserId)
+                .OnDelete(DeleteBehavior.Restrict);
             });
 
             //EventCategory table N/A

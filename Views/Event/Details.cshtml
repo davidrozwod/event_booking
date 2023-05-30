@@ -15,6 +15,18 @@
         <dt class="col-sm-2">End Date</dt>
         <dd class="col-sm-10">@Html.DisplayFor(model => model.EndDateTime)</dd>
 
+        <dt class="col-sm-2">Organizer</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Organizer.Name)</dd>
+
+        <dt class="col-sm-2">Event Category</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.EventCategory.CategoryName)</dd>
+
+        <dt class="col-sm-2">Image URL</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Image)</dd>
+
+        <dt class="col-sm-2">Early Bird Cutoff</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.EarlyBirdCutoff)</dd>
+
         <!-- Add other properties you want to display -->
 
     </dl>

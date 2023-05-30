@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace event_booking.Models;
@@ -12,6 +13,9 @@ public partial class Event
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int EventId { get; set; }
+
+    [Required]
+    public string? CreatedByUserId { get; set; }
 
     [Required]
     public int OrganizerId { get; set; }
@@ -56,4 +60,7 @@ public partial class Event
     [ForeignKey("EventId")]
     [InverseProperty("Events")]
     public virtual ICollection<EventUser> EventUsers { get; set; } = new List<EventUser>();
+
+    [ForeignKey("CreatedByUserId")]
+    public virtual IdentityUser? CreatedByUser { get; set; }
 }

@@ -1,7 +1,7 @@
-﻿
+﻿@*@model EventUser*@
+
 @{
     ViewData["Title"] = "Profile";
-    @model EventUser
 }
 
 <style>
@@ -155,6 +155,7 @@
 </script>
 
 <body>
+
     <div class="wrapper">
         <div class="sidebar">
             <h2>Eventful</h2>
@@ -170,11 +171,6 @@
         </div>
         <div class="main_content">
             <div class="header">Welcome to the Admin Dashboard</div>
-                @if (Model != null && !string.IsNullOrWhiteSpace(Model.Picture))
-                {
-
-                    <img src="@Model.Picture" alt="User's picture">
-                }
             <div class="info">
                 <center><h3>Update your Admin Profile</h3></center>
                 <div class="col-md">
@@ -210,7 +206,7 @@
         </div>
     </div>
 
-    <form asp-action="UpdateProfile" asp-controller="Profile" method="post">
+    @*<form asp-action="UpdateProfile" asp-controller="Profile" method="post">
         <!-- Your existing form fields go here -->
 
         <div class="form-floating mb-3">
@@ -220,6 +216,10 @@
 
         <button id="login-submit" type="submit" class="w-100 btn btn-sm btn-primary">Update</button>
     </form>
+    @if (!string.IsNullOrWhiteSpace(Model.Picture))
+    {
+        <img src="@Model.Picture" alt="User's picture">
+    }*@
 </body>
 
 

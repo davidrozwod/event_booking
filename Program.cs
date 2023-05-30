@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Components.Web.Virtualization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 
 namespace event_booking
@@ -18,6 +19,7 @@ namespace event_booking
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddRazorPages();
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
@@ -32,7 +34,6 @@ namespace event_booking
             builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
 
             //Personalized services
-            builder.Services.AddScoped<IEventUserService, EventUserService>();
 
 
             var app = builder.Build();
@@ -55,12 +56,11 @@ namespace event_booking
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.MapRazorPages();
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-
-            app.MapRazorPages();
-
 
             app.Run();
         }

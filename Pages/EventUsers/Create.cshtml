@@ -1,0 +1,58 @@
+﻿@page
+@model event_booking.Pages.EventUsers.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>EventUser</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="EventUser.EventUserId" class="control-label"></label>
+                <select asp-for="EventUser.EventUserId" class ="form-control" asp-items="ViewBag.EventUserId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="EventUser.FirstName" class="control-label"></label>
+                <input asp-for="EventUser.FirstName" class="form-control" />
+                <span asp-validation-for="EventUser.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EventUser.LastName" class="control-label"></label>
+                <input asp-for="EventUser.LastName" class="form-control" />
+                <span asp-validation-for="EventUser.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EventUser.Age" class="control-label"></label>
+                <input asp-for="EventUser.Age" class="form-control" />
+                <span asp-validation-for="EventUser.Age" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EventUser.Picture" class="control-label"></label>
+                <input asp-for="EventUser.Picture" class="form-control" />
+                <span asp-validation-for="EventUser.Picture" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EventUser.Document" class="control-label"></label>
+                <input asp-for="EventUser.Document" class="form-control" />
+                <span asp-validation-for="EventUser.Document" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

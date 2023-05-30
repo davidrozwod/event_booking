@@ -1,7 +1,7 @@
-﻿
+﻿@*@model EventUser*@
+
 @{
     ViewData["Title"] = "Profile";
-    @model EventUser
 }
 
 <style>
@@ -206,7 +206,7 @@
         </div>
     </div>
 
-    <form asp-action="UpdateProfile" asp-controller="Profile" method="post">
+    @*<form asp-action="UpdateProfile" asp-controller="Profile" method="post">
         <!-- Your existing form fields go here -->
 
         <div class="form-floating mb-3">
@@ -219,7 +219,7 @@
     @if (!string.IsNullOrWhiteSpace(Model.Picture))
     {
         <img src="@Model.Picture" alt="User's picture">
-    }
+    }*@
 </body>
 
 

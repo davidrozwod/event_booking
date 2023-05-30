@@ -32,7 +32,6 @@ namespace event_booking
             builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
 
             //Personalized services
-            builder.Services.AddScoped<IEventUserService, EventUserService>();
 
 
             var app = builder.Build();

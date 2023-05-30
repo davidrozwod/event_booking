@@ -8,7 +8,7 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    @*<a asp-page="Create">Create New</a>*@
     <a href="/EventUsers/Create">Create New</a>
 </p>
 <table class="table">
@@ -57,9 +57,12 @@
                 @Html.DisplayFor(modelItem => item.IdentityUser.Id)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.EventUserId">Edit</a>
+                @*<a asp-page="./Edit" asp-route-id="@item.EventUserId">Edit</a>
                 <a asp-page="./Details" asp-route-id="@item.EventUserId">Details</a>
-                <a asp-page="./Delete" asp-route-id="@item.EventUserId">Delete</a>
+                <a asp-page="./Delete" asp-route-id="@item.EventUserId">Delete</a>*@
+                <a href="/EventUsers/Edit" asp-route-id="@item.EventUserId">Edit</a>
+                <a href="/EventUsers/Details" asp-route-id="@item.EventUserId">Details</a>
+                <a href="/EventUsers/Delete" asp-route-id="@item.EventUserId">Delete</a>
             </td>
         </tr>
 }

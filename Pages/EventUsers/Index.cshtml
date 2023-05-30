@@ -9,8 +9,7 @@
 
 <p>
     <a asp-page="Create">Create New</a>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        Create New</button>
+    <a href="/EventUsers/Create">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -58,8 +57,8 @@
                 @Html.DisplayFor(modelItem => item.IdentityUser.Id)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.EventUserId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.EventUserId">Details</a> |
+                <a asp-page="./Edit" asp-route-id="@item.EventUserId">Edit</a>
+                <a asp-page="./Details" asp-route-id="@item.EventUserId">Details</a>
                 <a asp-page="./Delete" asp-route-id="@item.EventUserId">Delete</a>
             </td>
         </tr>

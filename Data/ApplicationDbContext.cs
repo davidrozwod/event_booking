@@ -224,7 +224,7 @@ namespace event_booking.Data
                     .HasConstraintName("FK_Seats_Venue");
             });
 
-            //Section table 
+            //Section table
             modelBuilder.Entity<Section>(entity =>
             {
                 entity.Property(e => e.PriceMultiplier)

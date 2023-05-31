@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using event_booking.Data;
-using event_booking.Models;
 
 public class JunctionTicketVipsController : Controller
 {
@@ -19,7 +17,7 @@ public class JunctionTicketVipsController : Controller
 
     public async Task<IActionResult> Index()
     {
-        var junctionTicketVips = await _applicationDbContext.Junction_Ticket_VIP.ToListAsync();
+        var junctionTicketVips = await _applicationDbContext.Set<Dictionary<string, object>>().FromSqlRaw("SELECT * FROM Junction_Ticket_VIP").ToListAsync();
         return View(junctionTicketVips);
     }
 
@@ -29,21 +27,18 @@ public class JunctionTicketVipsController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create(JunctionTicketVip junctionTicketVip)
+    public async Task<IActionResult> Create(Dictionary<string, object> junctionTicketVip)
     {
-        if (ModelState.IsValid)
-        {
-            await _applicationDbContext.JunctionTicketVips.AddAsync(junctionTicketVip);
-            await _applicationDbContext.SaveChangesAsync();
-            return RedirectToAction("Index");
-        }
+        // Perform necessary validations and populate the dictionary object with the required values
 
-        return View(junctionTicketVip);
+        await _applicationDbContext.Database.ExecuteSqlRawAsync("INSERT INTO Junction_Ticket_VIP (TicketId, VipId) VALUES ({ticketId}, {vipId})", junctionTicketVip);
+        return RedirectToAction("Index");
     }
 
-    public async Task<IActionResult> Edit(int id)
+    public async Task<IActionResult> Edit(int ticketId, int vipId)
     {
-        var junctionTicketVip = await _applicationDbContext.JunctionTicketVips.FindAsync(id);
+        var junctionTicketVip = await _applicationDbContext.Set<Dictionary<string, object>>().FromSqlRaw("SELECT * FROM Junction_Ticket_VIP WHERE TicketId = {ticketId} AND VipId = {vipId}", ticketId, vipId).FirstOrDefaultAsync();
+
         if (junctionTicketVip == null)
         {
             return NotFound();
@@ -53,28 +48,17 @@ public class JunctionTicketVipsController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> Edit(JunctionTicketVip junctionTicketVip)
+    public async Task<IActionResult> Edit(Dictionary<string, object> junctionTicketVip)
     {
-        if (ModelState.IsValid)
-        {
-            _applicationDbContext.Update(junctionTicketVip);
-            await _applicationDbContext.SaveChangesAsync();
-            return RedirectToAction("Index");
-        }
+        // Perform necessary validations and update the dictionary object with the modified values
 
-        return View(junctionTicketVip);
+        await _applicationDbContext.Database.ExecuteSqlRawAsync("UPDATE Junction_Ticket_VIP SET ... WHERE TicketId = {ticketId} AND VipId = {vipId}", junctionTicketVip);
+        return RedirectToAction("Index");
     }
 
-    public async Task<IActionResult> Delete(int id)
+    public async Task<IActionResult> Delete(int ticketId, int vipId)
     {
-        var junctionTicketVip = await _applicationDbContext.JunctionTicketVips.FindAsync(id);
-        if (junctionTicketVip == null)
-        {
-            return NotFound();
-        }
-
-        _applicationDbContext.JunctionTicketVips.Remove(junctionTicketVip);
-        await _applicationDbContext.SaveChangesAsync();
+        await _applicationDbContext.Database.ExecuteSqlRawAsync("DELETE FROM Junction_Ticket_VIP WHERE TicketId = {ticketId} AND VipId = {vipId}", ticketId, vipId);
         return RedirectToAction("Index");
     }
 }

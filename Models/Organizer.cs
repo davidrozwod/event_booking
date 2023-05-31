@@ -7,11 +7,15 @@ using Microsoft.EntityFrameworkCore;
 namespace event_booking.Models;
 
 [Table("Organizers", Schema = "evnt")]
+[Index("OrganizerCategoryId", Name = "IX_Organizers_OrganizerCategoryID")]
 public partial class Organizer
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    [Column("OrganizerID")]
     public int OrganizerId { get; set; }
 
+    [Column("OrganizerCategoryID")]
     public int OrganizerCategoryId { get; set; }
 
     [StringLength(50)]
@@ -38,7 +42,5 @@ public partial class Organizer
     [InverseProperty("Organizers")]
     public virtual OrganizerCategory OrganizerCategory { get; set; } = null!;
 
-    [ForeignKey("OrganizerId")]
-    [InverseProperty("Organizers")]
     public virtual ICollection<EventUser> EventUsers { get; set; } = new List<EventUser>();
 }

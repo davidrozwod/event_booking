@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using event_booking.Data;
 
@@ -11,9 +12,11 @@ using event_booking.Data;
 namespace event_booking.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230531034428_RemovedCreatedbyUser")]
+    partial class RemovedCreatedbyUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -334,10 +337,10 @@ namespace event_booking.Data.Migrations
                         .HasColumnType("nvarchar(250)");
 
                     b.Property<DateTime?>("EarlyBirdCutoff")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<DateTime>("EndDateTime")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<int>("EventCategoryId")
                         .HasColumnType("int")
@@ -357,7 +360,7 @@ namespace event_booking.Data.Migrations
                         .HasColumnName("OrganizerID");
 
                     b.Property<DateTime>("StartDateTime")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.HasKey("EventId");
 

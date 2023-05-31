@@ -8,33 +8,29 @@ using Microsoft.EntityFrameworkCore;
 namespace event_booking.Models;
 
 [Table("Events", Schema = "evnt")]
+[Index("EventCategoryId", Name = "IX_Events_EventCategoryID")]
+[Index("OrganizerId", Name = "IX_Events_OrganizerID")]
 public partial class Event
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    [Column("EventID")]
     public int EventId { get; set; }
 
-    [Required]
-    public string? CreatedByUserId { get; set; }
-
-    [Required]
+    [Column("OrganizerID")]
     public int OrganizerId { get; set; }
 
-    [Required]
+    [Column("EventCategoryID")]
     public int EventCategoryId { get; set; }
 
-    [Required]
     [StringLength(50)]
     public string Name { get; set; } = null!;
 
-    [Required]
     [StringLength(250)]
-    public string? Description { get; set; }
+    public string Description { get; set; } = null!;
 
-    [Required]
     public DateTime StartDateTime { get; set; }
 
-    [Required]
     public DateTime EndDateTime { get; set; }
 
     [StringLength(100)]
@@ -42,7 +38,7 @@ public partial class Event
 
     public DateTime? EarlyBirdCutoff { get; set; }
 
-    //Relationships
+
     [ForeignKey("EventCategoryId")]
     [InverseProperty("Events")]
     public virtual EventCategory? EventCategory { get; set; }
@@ -57,10 +53,5 @@ public partial class Event
     [InverseProperty("Event")]
     public virtual ICollection<Vip> Vips { get; set; } = new List<Vip>();
 
-    [ForeignKey("EventId")]
-    [InverseProperty("Events")]
     public virtual ICollection<EventUser> EventUsers { get; set; } = new List<EventUser>();
-
-    [ForeignKey("CreatedByUserId")]
-    public virtual IdentityUser? CreatedByUser { get; set; }
 }

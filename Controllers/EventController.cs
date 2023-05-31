@@ -3,13 +3,17 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using event_booking.Models;
 using event_booking.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace event_booking.Controllers
 {
     public class EventController : Controller
     {
         private readonly ApplicationDbContext _context;
+
 
         public EventController(ApplicationDbContext context)
         {
@@ -59,6 +63,7 @@ namespace event_booking.Controllers
         // POST: Event/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public IActionResult Create(Event @event)
         {
             if (ModelState.IsValid)

@@ -13,26 +13,11 @@ namespace event_booking.Controllers.CRUDs
     public class OrganizersController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private readonly ILogger _logger;
-
-        public OrganizersController(ApplicationDbContext context, ILogger<OrganizersController> logger)
-        {
-            _context = context;
-            _logger = logger;
-        }
-        /*private readonly ILogger _logger;
-
-        public OrganizersController(ILogger<OrganizersController> logger)
-        {
-            _logger = logger;
-        }
-
-        private readonly ApplicationDbContext _context;
 
         public OrganizersController(ApplicationDbContext context)
         {
             _context = context;
-        }*/
+        }
 
         // GET: Organizers
         public async Task<IActionResult> Index()
@@ -80,13 +65,6 @@ namespace event_booking.Controllers.CRUDs
                 _context.Add(organizer);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
-            foreach (var modelState in ViewData.ModelState.Values)
-            {
-                foreach (var error in modelState.Errors)
-                {
-                    _logger.LogError(error.ErrorMessage);
-                }
             }
 
             ViewData["OrganizerCategoryId"] = new SelectList(_context.OrganizerCategories, "OrganizerCategoryId", "CategoryName", organizer.OrganizerCategoryId);

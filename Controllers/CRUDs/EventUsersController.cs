@@ -23,7 +23,7 @@ namespace event_booking.Controllers.CRUDs
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.EventUsers.Include(e => e.IdentityUser);
-            return View(await applicationDbContext.ToListAsync());
+            return View("~/Views/CRUDs/EventUsers/Index.cshtml", await applicationDbContext.ToListAsync());
         }
 
         // GET: EventUsers/Details/5
@@ -42,14 +42,14 @@ namespace event_booking.Controllers.CRUDs
                 return NotFound();
             }
 
-            return View(eventUser);
+            return View("~/Views/CRUDs/EventUsers/Details.cshtml", eventUser);
         }
 
         // GET: EventUsers/Create
         public IActionResult Create()
         {
             ViewData["EventUserId"] = new SelectList(_context.Users, "Id", "Id");
-            return View();
+            return View("~/Views/CRUDs/EventUsers/Create.cshtml");
         }
 
         // POST: EventUsers/Create
@@ -66,7 +66,7 @@ namespace event_booking.Controllers.CRUDs
                 return RedirectToAction(nameof(Index));
             }
             ViewData["EventUserId"] = new SelectList(_context.Users, "Id", "Id", eventUser.EventUserId);
-            return View(eventUser);
+            return View("~/Views/CRUDs/EventUsers/Create.cshtml", eventUser);
         }
 
         // GET: EventUsers/Edit/5
@@ -83,7 +83,7 @@ namespace event_booking.Controllers.CRUDs
                 return NotFound();
             }
             ViewData["EventUserId"] = new SelectList(_context.Users, "Id", "Id", eventUser.EventUserId);
-            return View(eventUser);
+            return View("~/Views/CRUDs/EventUsers/Edit.cshtml", eventUser);
         }
 
         // POST: EventUsers/Edit/5
@@ -119,7 +119,7 @@ namespace event_booking.Controllers.CRUDs
                 return RedirectToAction(nameof(Index));
             }
             ViewData["EventUserId"] = new SelectList(_context.Users, "Id", "Id", eventUser.EventUserId);
-            return View(eventUser);
+            return View("~/Views/CRUDs/EventUsers/Edit.cshtml", eventUser);
         }
 
         // GET: EventUsers/Delete/5
@@ -138,7 +138,7 @@ namespace event_booking.Controllers.CRUDs
                 return NotFound();
             }
 
-            return View(eventUser);
+            return View("~/Views/CRUDs/EventUsers/Delete.cshtml", eventUser);
         }
 
         // POST: EventUsers/Delete/5

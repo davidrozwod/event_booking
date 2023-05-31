@@ -1,0 +1,50 @@
+﻿@model List<event_booking.Models.Event>
+@{
+    ViewData["Title"] = "Events";
+}
+<body>
+    <div>
+        <div class="main_content">
+            <div class="header">Welcome to the Admin Dashboard</div>
+            <div class="info">
+                <p>
+                    <a asp-action="Create" class="btn btn-primary">Create New</a>
+                </p>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                Name
+                            </th>
+                            <th>
+                                Start Date
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.StartDateTime)
+                                </td>
+                                <td>
+                                    <a asp-action="Details" asp-route-id="@item.EventId">Details</a> |
+                                    <a asp-action="Edit" asp-route-id="@item.EventId">Edit</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.EventId">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+

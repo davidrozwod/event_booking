@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace event_booking.Models;
@@ -28,26 +29,23 @@ public partial class Event
     [StringLength(250)]
     public string Description { get; set; } = null!;
 
-    [Column(TypeName = "date")]
     public DateTime StartDateTime { get; set; }
 
-    [Column(TypeName = "date")]
     public DateTime EndDateTime { get; set; }
 
     [StringLength(100)]
     public string? Image { get; set; }
 
-    [Column(TypeName = "date")]
     public DateTime? EarlyBirdCutoff { get; set; }
 
-    //Relationships
+
     [ForeignKey("EventCategoryId")]
     [InverseProperty("Events")]
-    public virtual EventCategory EventCategory { get; set; } = null!;
+    public virtual EventCategory? EventCategory { get; set; }
 
     [ForeignKey("OrganizerId")]
     [InverseProperty("Events")]
-    public virtual Organizer Organizer { get; set; } = null!;
+    public virtual Organizer? Organizer { get; set; }
 
     [InverseProperty("Event")]
     public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();

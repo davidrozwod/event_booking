@@ -1,4 +1,5 @@
-﻿
+﻿@*@model EventUser*@
+
 @{
     ViewData["Title"] = "Profile";
 }
@@ -204,6 +205,21 @@
             </div>
         </div>
     </div>
+
+    @*<form asp-action="UpdateProfile" asp-controller="Profile" method="post">
+        <!-- Your existing form fields go here -->
+
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingPictureUrl" name="pictureUrl" placeholder="URL of your picture">
+            <label for="floatingPictureUrl">Picture URL</label>
+        </div>
+
+        <button id="login-submit" type="submit" class="w-100 btn btn-sm btn-primary">Update</button>
+    </form>
+    @if (!string.IsNullOrWhiteSpace(Model.Picture))
+    {
+        <img src="@Model.Picture" alt="User's picture">
+    }*@
 </body>
 
 

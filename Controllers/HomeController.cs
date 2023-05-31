@@ -99,6 +99,11 @@ namespace event_booking.Controllers
             return View();
         }
 
+        public IActionResult CRUDs()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

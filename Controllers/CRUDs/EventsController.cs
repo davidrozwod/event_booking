@@ -22,7 +22,7 @@ namespace event_booking.Controllers.CRUDs
         // GET: Events
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Events.Include(@ => @.EventCategory).Include(@ => @.Organizer);
+            var applicationDbContext = _context.Events.Include(e => e.EventCategory).Include(f => f.Organizer);
             return View("~/Views/CRUDs/Events/Index.cshtml", await applicationDbContext.ToListAsync());
         }
 
@@ -35,8 +35,8 @@ namespace event_booking.Controllers.CRUDs
             }
 
             var @event = await _context.Events
-                .Include(@ => @.EventCategory)
-                .Include(@ => @.Organizer)
+                .Include(e => e.EventCategory)
+                .Include(f => f.Organizer)
                 .FirstOrDefaultAsync(m => m.EventId == id);
             if (@event == null)
             {
@@ -61,6 +61,8 @@ namespace event_booking.Controllers.CRUDs
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("EventId,OrganizerId,EventCategoryId,Name,Description,StartDateTime,EndDateTime,Image,EarlyBirdCutoff")] Event @event)
         {
+            ModelState.Remove("Organizer");
+            ModelState.Remove("EventCategory");
             if (ModelState.IsValid)
             {
                 _context.Add(@event);
@@ -102,6 +104,8 @@ namespace event_booking.Controllers.CRUDs
                 return NotFound();
             }
 
+            ModelState.Remove("Organizer");
+            ModelState.Remove("EventCategory");
             if (ModelState.IsValid)
             {
                 try
@@ -136,8 +140,8 @@ namespace event_booking.Controllers.CRUDs
             }
 
             var @event = await _context.Events
-                .Include(@ => @.EventCategory)
-                .Include(@ => @.Organizer)
+                .Include(e => e.EventCategory)
+                .Include(f => f.Organizer)
                 .FirstOrDefaultAsync(m => m.EventId == id);
             if (@event == null)
             {

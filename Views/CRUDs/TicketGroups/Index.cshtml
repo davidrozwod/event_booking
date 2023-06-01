@@ -1,0 +1,41 @@
+@model IEnumerable<event_booking.Models.TicketGroup>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GroupDiscount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Purchase)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.GroupDiscount.GroupDiscountId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Purchase.PurchaseId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.TicketGroupId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.TicketGroupId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.TicketGroupId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

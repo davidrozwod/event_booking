@@ -62,10 +62,10 @@
                 @Html.DisplayFor(modelItem => item.EarlyBirdCutoff)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.EventCategory.EventCategoryId)
+                    @Html.DisplayFor(modelItem => item.EventCategory.CategoryName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Organizer.OrganizerId)
+                    @Html.DisplayFor(modelItem => item.Organizer.Name)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.EventId">Edit</a> |

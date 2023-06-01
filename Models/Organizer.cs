@@ -22,7 +22,7 @@ public partial class Organizer
     [Unicode(false)]
     public string Name { get; set; } = null!;
 
-    [StringLength(50)]
+    [StringLength(450)]
     [Unicode(false)]
     public string Description { get; set; } = null!;
 

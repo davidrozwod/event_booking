@@ -46,7 +46,7 @@
                 @Html.DisplayFor(modelItem => item.ContactInfo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.OrganizerCategory.OrganizerCategoryId)
+                    @Html.DisplayFor(modelItem => item.OrganizerCategory.CategoryName)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.OrganizerId">Edit</a> |

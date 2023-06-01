@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using event_booking.Data;
 
@@ -11,9 +12,11 @@ using event_booking.Data;
 namespace event_booking.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230601094115_CreatedbyUserFIXnullableRepairdevelopment")]
+    partial class CreatedbyUserFIXnullableRepairdevelopment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +25,6 @@ namespace event_booking.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            //Tables
             modelBuilder.Entity("JunctionTicketVip", b =>
                 {
                     b.Property<int>("TicketId")
@@ -841,7 +843,6 @@ namespace event_booking.Data.Migrations
                         });
                 });
 
-            //Relationships
             modelBuilder.Entity("JunctionTicketVip", b =>
                 {
                     b.HasOne("event_booking.Models.Ticket", null)
@@ -1123,7 +1124,6 @@ namespace event_booking.Data.Migrations
                     b.Navigation("Event");
                 });
 
-            //Navigations
             modelBuilder.Entity("event_booking.Models.Discount", b =>
                 {
                     b.Navigation("Tickets");

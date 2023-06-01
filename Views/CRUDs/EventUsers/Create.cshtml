@@ -13,7 +13,7 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="EventUserId" class="control-label"></label>
+                <label asp-for="EventUserId" class="control-label">UserName</label>
                 @*<select asp-for="EventUserId" class ="form-control" asp-items="ViewBag.EventUserId"></select>*@
                 <select asp-for="EventUserId" class="form-control" asp-items="@(ViewData["EventUserId"] as List<SelectListItem>)"></select>
             </div>

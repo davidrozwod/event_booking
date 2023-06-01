@@ -28,7 +28,7 @@
                 @Html.DisplayNameFor(model => model.Document)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdentityUser)
+                @Html.DisplayNameFor(model => model.IdentityUser.UserName)
             </th>
             <th></th>
         </tr>
@@ -52,7 +52,7 @@
                 @Html.DisplayFor(modelItem => item.Document)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdentityUser.Id)
+                    @Html.DisplayFor(modelItem => item.IdentityUser.UserName)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.EventUserId">Edit</a> |

@@ -47,11 +47,11 @@ public partial class Event
     //Relationships
     [ForeignKey("EventCategoryId")]
     [InverseProperty("Events")]
-    public virtual EventCategory? EventCategory { get; set; }
+    public virtual EventCategory EventCategory { get; set; } = null!;
 
     [ForeignKey("OrganizerId")]
     [InverseProperty("Events")]
-    public virtual Organizer? Organizer { get; set; }
+    public virtual Organizer Organizer { get; set; } = null!;
 
     [InverseProperty("Event")]
     public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();

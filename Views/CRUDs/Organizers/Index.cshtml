@@ -4,6 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
+<a id="top"></a>
 <h1>Index</h1>
 
 <p>
@@ -46,7 +47,7 @@
                 @Html.DisplayFor(modelItem => item.ContactInfo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.OrganizerCategory.OrganizerCategoryId)
+                    @Html.DisplayFor(modelItem => item.OrganizerCategory.CategoryName)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.OrganizerId">Edit</a> |
@@ -61,4 +62,5 @@
 <div class="mt-5">
     <a class="btn btn-primary" asp-controller="Home" asp-action="PromoterArea">Back to Promoters Area</a>
     <a class="btn btn-primary" asp-controller="Home" asp-action="CRUDs">CRUDs</a>
+    <a class="btn btn-primary" href="#top">Back to Top</a>
 </div>

@@ -84,7 +84,7 @@ namespace event_booking.Controllers.CRUDs
             {
                 return NotFound();
             }
-            ViewData["OrganizerCategoryId"] = new SelectList(_context.OrganizerCategories, "OrganizerCategoryId", "OrganizerCategoryId", organizer.OrganizerCategoryId);
+            ViewData["OrganizerCategoryId"] = new SelectList(_context.OrganizerCategories, "OrganizerCategoryId", "CategoryName", organizer.OrganizerCategoryId);
             return View("~/Views/CRUDs/Organizers/Edit.cshtml", organizer);
         }
 
@@ -100,6 +100,7 @@ namespace event_booking.Controllers.CRUDs
                 return NotFound();
             }
 
+            ModelState.Remove("OrganizerCategory");
             if (ModelState.IsValid)
             {
                 try
@@ -120,7 +121,7 @@ namespace event_booking.Controllers.CRUDs
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["OrganizerCategoryId"] = new SelectList(_context.OrganizerCategories, "OrganizerCategoryId", "OrganizerCategoryId", organizer.OrganizerCategoryId);
+            ViewData["OrganizerCategoryId"] = new SelectList(_context.OrganizerCategories, "OrganizerCategoryId", "CategoryName", organizer.OrganizerCategoryId);
             return View("~/Views/CRUDs/Organizers/Edit.cshtml", organizer);
         }
 

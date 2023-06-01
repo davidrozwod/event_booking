@@ -4,6 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
+<a id="top"></a>
 <h1>Index</h1>
 
 <p>
@@ -28,7 +29,7 @@
                 @Html.DisplayNameFor(model => model.Document)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdentityUser)
+                @Html.DisplayNameFor(model => model.IdentityUser.UserName)
             </th>
             <th></th>
         </tr>
@@ -52,7 +53,7 @@
                 @Html.DisplayFor(modelItem => item.Document)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdentityUser.Id)
+                    @Html.DisplayFor(modelItem => item.IdentityUser.UserName)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.EventUserId">Edit</a> |
@@ -67,4 +68,5 @@
 <div class="mt-5">
     <a class="btn btn-primary" asp-controller="Home" asp-action="PromoterArea">Back to Promoters Area</a>
     <a class="btn btn-primary" asp-controller="Home" asp-action="CRUDs">CRUDs</a>
+    <a class="btn btn-primary" href="#top">Back to Top</a>
 </div>

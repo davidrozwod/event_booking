@@ -1,4 +1,5 @@
 ﻿using event_booking.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -75,6 +76,7 @@ namespace event_booking.Controllers
             return View();
         }
 
+        [Authorize]
         public IActionResult PromoterArea()
         {
             return View();

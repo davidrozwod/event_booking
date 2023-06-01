@@ -29,13 +29,16 @@ public partial class Event
     [StringLength(250)]
     public string Description { get; set; } = null!;
 
+    [Column(TypeName = "date")]
     public DateTime StartDateTime { get; set; }
 
+    [Column(TypeName = "date")]
     public DateTime EndDateTime { get; set; }
 
     [StringLength(100)]
     public string? Image { get; set; }
 
+    [Column(TypeName = "date")]
     public DateTime? EarlyBirdCutoff { get; set; }
 
 

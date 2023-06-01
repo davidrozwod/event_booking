@@ -7,16 +7,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using event_booking.Data;
 using event_booking.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace event_booking.Controllers.CRUDs
 {
     public class EventUsersController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public EventUsersController(ApplicationDbContext context)
+        public EventUsersController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: EventUsers
@@ -48,7 +51,16 @@ namespace event_booking.Controllers.CRUDs
         // GET: EventUsers/Create
         public IActionResult Create()
         {
-            ViewData["EventUserId"] = new SelectList(_context.Users, "Id", "Id");
+            /*ViewData["EventUserId"] = new SelectList(_context.Users, "Id", "Id");
+            return View("~/Views/CRUDs/EventUsers/Create.cshtml");*/
+            var users = _userManager.Users.ToList();
+
+            ViewData["EventUserId"] = users.Select(u => new SelectListItem
+            {
+                Value = u.Id,
+                Text = u.UserName
+            }).ToList();
+
             return View("~/Views/CRUDs/EventUsers/Create.cshtml");
         }
 

@@ -1,9 +1,11 @@
-﻿@*@model EventUser*@
+﻿@model event_booking.Models.EventUser
 
 @{
     ViewData["Title"] = "Profile";
+    var profilePicture = ViewData["ProfilePicture"] as string;
 }
 
+@* Page Customization *@
 <style>
     * {
         margin: 0;
@@ -97,6 +99,7 @@
     }
 </style>
 
+@* Pop ups *@
 <style>
     .popup {
         position: relative;
@@ -147,6 +150,44 @@
 
 </style>
 
+@* Profile Customization *@
+<style >
+    .profile-picture {
+        float: right;
+        margin-left: 20px;
+        border-radius: 50%;
+        height: 150px;
+        width: 150px;
+    }
+
+    .Profile-Dashboard{
+        height: 200px;
+    }
+
+    .profile-box {
+        background-color: #6c629c;
+        padding: -40px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-row {
+        display: flex;
+    }
+
+    .profile-item {
+        margin-right: 20px;
+    }
+
+    .profile-item:last-child {
+        margin-right: 0;
+    }
+
+    .label, .value {
+        color: white; /* Set the text color to white */
+    }
+</style>
+
 <script>
     function myFunction() {
         var popup = document.getElementById("myPopup");
@@ -170,13 +211,44 @@
             </ul>
         </div>
         <div class="main_content">
-            <div class="header">Welcome to the Admin Dashboard</div>
+            <div class="header Profile-Dashboard">Welcome to the Admin Dashboard
+                @if (!string.IsNullOrEmpty(profilePicture))
+                {
+                    <img src="@profilePicture" alt="Profile Picture" class="profile-picture" />
+                }
+
+                <div class="profile-box">
             <div class="info">
-                <center><h3>Update your Admin Profile</h3></center>
-                <div class="col-md">
-                    <div class="form-floating">
-                        <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
-                        <label for="floatingInputGrid">First Name</label>
+                        <div class="profile-item">
+                            <span class="label">ID:</span>
+                            <span class="value">@ViewData["UserId"]</span>
+                        </div>
+                        <div class="profile-item">
+                            <span class="label">Email:</span>
+                            <span class="value">@ViewData["Email"]</span>
+                        </div>
+                        <div class="profile-row">
+                            <div class="profile-item">
+                                <span class="label">Name:</span>
+                                <span class="value">
+                                    @(ViewData["FirstName"] + " " + ViewData["LastName"])
+                                </span>
+                            </div>
+                            <div class="profile-item">
+                                <span class="label">Age:</span>
+                                <span class="value">@ViewData["Age"]</span>
+                            </div>
+                            <div class="profile-item">
+                                <span class="label">Document:</span>
+                                <span class="value">
+                                    @(!string.IsNullOrEmpty(ViewData["Document"]?.ToString()) ? "Available" : "Not Available")
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
                     </div>
                 </div>
                 <div class="col-md">

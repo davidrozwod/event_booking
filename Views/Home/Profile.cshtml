@@ -218,7 +218,7 @@
                 }
 
                 <div class="profile-box">
-            <div class="info">
+                    <div class="info">
                         <div class="profile-item">
                             <span class="label">ID:</span>
                             <span class="value">@ViewData["UserId"]</span>
@@ -249,49 +249,77 @@
                 </div>
 
             </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <form asp-action="ProfileEdit">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="EventUserId" />
+                        <div class="form-group">
+                            <label asp-for="FirstName" class="control-label"></label>
+                            <input asp-for="FirstName" class="form-control" />
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="LastName" class="control-label"></label>
+                            <input asp-for="LastName" class="form-control" />
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Age" class="control-label"></label>
+                            <input asp-for="Age" class="form-control" />
+                            <span asp-validation-for="Age" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Picture" class="control-label"></label>
+                            <input asp-for="Picture" class="form-control" />
+                            <span asp-validation-for="Picture" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Document" class="control-label"></label>
+                            <input asp-for="Document" class="form-control" />
+                            <span asp-validation-for="Document" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Save" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+                <div class="col-md">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="userName" placeholder="Username" value="@ViewData["UserName"]">
+                        <label for="userName">Username</label>
                     </div>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="email" placeholder="Email" value="@ViewData["Email"]">
+                    <label for="email">Email</label>
                 </div>
                 <div class="col-md">
                     <div class="form-floating">
-                        <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
-                        <label for="floatingInputGrid">Last Name</label>
+                        <input type="password" class="form-control" id="password" placeholder="Password">
+                        <label for="password">Password</label>
                     </div>
                 </div>
-            <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" />
-                <label for="floatingInputGrid">Email</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" />
-                <label for="floatingInputGrid">Phone Number</label>
-            </div>
                 <div class="col-md">
-                    <div class="form-floating">
-                        <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
-                        <label for="floatingInputGrid">Password</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="deleteAccount">
+                        <label class="form-check-label" for="deleteAccount">
+                            Delete Account
+                        </label>
                     </div>
                 </div>
             </div>
+
             <div>
                 <button id="login-submit" type="submit" class="w-100 btn btn-sm btn-primary">Update</button>
             </div>
-        </div>
-    </div>
-
-    @*<form asp-action="UpdateProfile" asp-controller="Profile" method="post">
-        <!-- Your existing form fields go here -->
-
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="floatingPictureUrl" name="pictureUrl" placeholder="URL of your picture">
-            <label for="floatingPictureUrl">Picture URL</label>
-        </div>
-
-        <button id="login-submit" type="submit" class="w-100 btn btn-sm btn-primary">Update</button>
-    </form>
-    @if (!string.IsNullOrWhiteSpace(Model.Picture))
-    {
-        <img src="@Model.Picture" alt="User's picture">
-    }*@
 </body>
 
-
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

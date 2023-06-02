@@ -12,6 +12,7 @@
         font-family: 'Josefin Sans', sans-serif;
     }
 
+
     body {
         background-color: #f3f5f9;
     }
@@ -24,10 +25,10 @@
         .wrapper .sidebar {
             width: 200px;
             height: 100%;
-            background: #4b4276;
-            padding: 30px 0px;
+            padding: 10px 0px;
             position: absolute;
             float: right;
+            background-color: black;
         }
 
             .wrapper .sidebar h2 {
@@ -38,23 +39,15 @@
             }
 
             .wrapper .sidebar ul li {
-                padding: 15px;
-                border-bottom: 1px solid #bdb8d7;
-                border-bottom: 1px solid rgba(0,0,0,0.05);
-                border-top: 1px solid rgba(255,255,255,0.05);
+                padding: 20px;
                 text-decoration: none
             }
 
                 .wrapper .sidebar ul li a {
-                    color: #bdb8d7;
-                    display: block;
+                    color: #fff;
                     text-decoration: none
                 }
 
-                    .wrapper .sidebar ul li a .fas {
-                        width: 25px;
-                        text-decoration: none
-                    }
 
                 .wrapper .sidebar ul li:hover {
                     background-color: #594f8d;
@@ -71,22 +64,15 @@
             margin-left: 200px;
         }
 
-            .wrapper .main_content .header {
-                padding: 20px;
-                background: #fff;
-                color: #717171;
-                border-bottom: 1px solid #e0e4e8;
-            }
-
             .wrapper .main_content .info {
                 margin: 20px;
-                color: #717171;
-                line-height: 25px;
             }
 
-                .wrapper .main_content .info div {
-                    margin-bottom: 20px;
-                }
+            .wrapper .main_content .header {
+                padding: 10px;
+                background-color: rgba(108, 11, 113, 1);
+                color: #fff;
+            }
 
     img {
         float: left;
@@ -94,56 +80,98 @@
         display: inline-block;
         margin: 0px 6px 4px;
     }
-</style>
 
-<style>
+    h8 {
+        font-weight: bold;
+        color: rgba(0, 9, 75, 0.8);
+    }
+
+    labels,
+    xValues,
+    yValues {
+        color: rgba(0, 9, 75, 0.8);
+    }
+
+
+    h4,
+    div {
+        color: rgba(108, 11, 113, 1);
+    }
+
+    .gradient-custom-4 {
+        /* fallback for old browsers */
+        background: #1A237E
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1)));
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1))
+    }
+
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        width: 100%;
+    }
+
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+
+    .container {
+        padding: 2px 16px;
+    }
+
+
+    button {
+        float: right;
+        background-color: rgba(108, 11, 113, 1);
+        border: none;
+        padding: 1px 1px 0px;
+        cursor: pointer;
+    }
+
+    .button1 {
+        border: none;
+    }
+
+        .button1:hover {
+            background-color: blue;
+            border: none;
+        }
+
     .popup {
         position: relative;
-        display: inline-block;
         cursor: pointer;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        color: #bdb8d7;
     }
 
         /* The actual popup */
         .popup .popuptext {
             visibility: hidden;
-            width: 160px;
+            width: 150px;
             background-color: #555;
-            color: #bdb8d7;
+            color: #fff;
             text-align: center;
             border-radius: 6px;
-            padding: 8px 0;
             position: absolute;
-            z-index: 1;
-            bottom: 125%;
             left: 50%;
-            margin-left: -80px;
+            margin-left: -180px;
+            margin-bottom: -100px;
         }
 
             /* Popup arrow */
             .popup .popuptext::after {
-                content: "";
                 position: absolute;
                 top: 100%;
                 left: 50%;
-                margin-left: -5px;
-                border-width: 5px;
                 border-style: solid;
                 border-color: #555 transparent transparent transparent;
-                color: #bdb8d7;
             }
 
         /* Toggle this class - hide and show the popup */
         .popup .show {
             visibility: visible;
-            -webkit-animation: fadeIn 1s;
             animation: fadeIn 1s;
         }
-
 </style>
 
 <script>
@@ -153,57 +181,73 @@
     }
 </script>
 
-<body>
-
-    <div class="wrapper">
-        <div class="sidebar">
-            <h2>Eventful</h2>
-            <ul>
-                <li><img src="https://icon-library.com/images/dashboard-icon-vector/dashboard-icon-vector-2.jpg" /> <a asp-controller="Home" asp-action="AdminDashboard"> Dashboard</a></li>
-                <li><img src="https://www.freeiconspng.com/thumbs/profile-icon-png/profile-icon-person-user-19.png" /> <a asp-controller="Home" asp-action="Profile"> Profile</a></li>
-                <li><img src="https://img.uxwing.com/wp-content/themes/uxwing/download/seo-marketing/announcement-icon.png" /> <a asp-controller="Home" asp-action="Events"> Events</a></li>
-                <li><img src="https://cdn-icons-png.flaticon.com/512/55/55281.png" /> <a asp-controller="Home" asp-action="Booking"> Bookings</a></li>
-                <li><img src="https://cdn.onlinewebfonts.com/svg/img_387338.png" /> <a asp-controller="Home" asp-action="Reviews"> Reviews</a></li>
-                <li><img src="https://cdn-icons-png.flaticon.com/512/3239/3239958.png" /><div class="popup" onclick="myFunction()"> Notifications<span class="popuptext" id="myPopup">A Notification</span></div></li>
-                <li><img src="https://cdn.icon-icons.com/icons2/2518/PNG/512/logout_icon_151219.png" /> <a asp-area="Identity" asp-page="/Account/Logout"> Logout</a></li>
-            </ul>
+<div class="wrapper">
+    <div class="sidebar gradient-custom-4">
+        <h2>Eventful</h2>
+        <ul>
+            <li><img src="https://icon-library.com/images/dashboard-icon-vector/dashboard-icon-vector-2.jpg" /> <a asp-controller="Home" asp-action="AdminDashboard"> Dashboard</a></li>
+            <li><img src="https://www.freeiconspng.com/thumbs/profile-icon-png/profile-icon-person-user-19.png" /> <a asp-controller="Home" asp-action="Profile"> Profile</a></li>
+            <li><img src="https://img.uxwing.com/wp-content/themes/uxwing/download/seo-marketing/announcement-icon.png" /> <a asp-controller="Home" asp-action="Events"> Events</a></li>
+            <li><img src="https://cdn-icons-png.flaticon.com/512/55/55281.png" /> <a asp-controller="Home" asp-action="Booking"> Bookings</a></li>
+            <li><img src="https://cdn.onlinewebfonts.com/svg/img_387338.png" /> <a asp-controller="Home" asp-action="Review"> Reviews</a></li>
+        </ul>
+    </div>
+    <div class="main_content">
+        <div class="header">
+            Welcome to the Admin Profile
+            <button class="rounded button button1">
+                <div class="popup" onclick="myFunction()">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3239/3239958.png" />
+                    <span class="popuptext" id="myPopup">A New Notification</span>
+                </div>
+            </button>
         </div>
-        <div class="main_content">
-            <div class="header">Welcome to the Admin Dashboard</div>
             <div class="info">
                 <center><h3>Update your Admin Profile</h3></center>
-                <div class="col-md">
+                <div class="col">
+
+                </div>
+                <div class="col">
+                    <div class="row g-2">
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
+                                <label for="floatingInputGrid">First Name</label>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
+                                <label for="floatingInputGrid">Last Name</label>
+                            </div>
+                        </div>
+                    </div>
+                    <p></p>
                     <div class="form-floating">
                         <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
-                        <label for="floatingInputGrid">First Name</label>
+                        <label for="floatingInputGrid">Email</label>
                     </div>
-                </div>
-                <div class="col-md">
+                    <p></p>
                     <div class="form-floating">
                         <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
-                        <label for="floatingInputGrid">Last Name</label>
-                    </div>
-                </div>
-            <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" />
-                <label for="floatingInputGrid">Email</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" />
-                <label for="floatingInputGrid">Phone Number</label>
-            </div>
-                <div class="col-md">
+                        <label for="floatingInputGrid">Phone Number</label>
+                    </div>          
+                    <p></p>
                     <div class="form-floating">
                         <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
                         <label for="floatingInputGrid">Password</label>
                     </div>
+                    <p></p>
+                    <div>
+                        <button id="login-submit" type="submit" class="w-100 text-white btn btn-lg gradient-custom-4 ">Submit</button>
+                    </div>
                 </div>
-            </div>
-            <div>
-                <button id="login-submit" type="submit" class="w-100 btn btn-sm btn-primary">Update</button>
+                <div class="col">
+
+                </div>
             </div>
         </div>
     </div>
-</body>
+
 
 

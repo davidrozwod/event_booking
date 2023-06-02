@@ -9,11 +9,12 @@
       padding: 0;
       box-sizing: border-box;
       list-style: none;
-      font-family: 'Josefin Sans', sans-serif;
+        font-family: 'Josefin Sans', sans-serif;
     }
 
-     body{
-       background-color: #f3f5f9;
+
+    body {
+        background-color: #f3f5f9;
     }
 
     .wrapper{
@@ -24,10 +25,10 @@
     .wrapper .sidebar{
       width: 200px;
       height: 100%;
-      background: #4b4276;
-      padding: 30px 0px;
+      padding: 10px 0px;
       position: absolute;
       float: right;
+      background-color: black;
     }
 
     .wrapper .sidebar h2{
@@ -38,23 +39,15 @@
     }
 
     .wrapper .sidebar ul li{
-      padding: 15px;
-      border-bottom: 1px solid #bdb8d7;
-      border-bottom: 1px solid rgba(0,0,0,0.05);
-      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 20px;
                 text-decoration: none
     }
 
     .wrapper .sidebar ul li a{
-      color: #bdb8d7;
-      display: block;
+                    color: #fff;
                     text-decoration: none
     }
 
-    .wrapper .sidebar ul li a .fas{
-      width: 25px;
-                        text-decoration: none
-    }
 
     .wrapper .sidebar ul li:hover{
       background-color: #594f8d;
@@ -71,21 +64,13 @@
       margin-left: 200px;
     }
 
+            .wrapper .main_content .info {
+                margin: 20px;
+            }
     .wrapper .main_content .header{
-      padding: 20px;
-      background: #fff;
-      color: #717171;
-      border-bottom: 1px solid #e0e4e8;
-    }
-
-    .wrapper .main_content .info{
-      margin: 20px;
-      color: #717171;
-      line-height: 25px;
-    }
-
-    .wrapper .main_content .info div{
-      margin-bottom: 20px;
+      padding: 10px;   
+      background-color: rgba(108, 11, 113, 1);
+                color: #fff;
     }
 
     img{
@@ -97,58 +82,97 @@
 
     h8{
         font-weight: bold;
+        color: rgba(0, 9, 75, 0.8);
     }
-</style>
+    
+    labels,
+    xValues,
+    yValues{
+        color: rgba(0, 9, 75, 0.8);
+    }
 
-<style>
-/* Popup container - can be anything you want */
-.popup {
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-        color: #bdb8d7;
+
+    h4,
+    div{
+        color: rgba(108, 11, 113, 1);
+    }
+
+    .gradient-custom-4 {
+        /* fallback for old browsers */
+        background: #1A237E
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1)));
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1))
+    }
+
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        width: 100%;
+    }
+
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+
+    .container {
+        padding: 2px 16px;
+    }
+
+
+button {
+
+    float: right;
+    background-color: rgba(108, 11, 113, 1);
+    border: none;
+    padding: 1px 1px 0px;
+    cursor: pointer;
 }
 
-/* The actual popup */
-.popup .popuptext {
-  visibility: hidden;
-  width: 160px;
-  background-color: #555;
-            color: #bdb8d7;
-  text-align: center;
-  border-radius: 6px;
-  padding: 8px 0;
-  position: absolute;
-  z-index: 1;
-  bottom: 125%;
-  left: 50%;
-  margin-left: -80px;
-}
+    .button1 {
+        border: none;
+    }
 
-/* Popup arrow */
-.popup .popuptext::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #555 transparent transparent transparent;
-                color: #bdb8d7;
-}
+        .button1:hover {
+            background-color: blue;
+            border: none;
+        }
 
-/* Toggle this class - hide and show the popup */
-.popup .show {
-  visibility: visible;
-  -webkit-animation: fadeIn 1s;
-  animation: fadeIn 1s;
-}
+    .popup {
+        position: relative;
+        cursor: pointer;
+    }
 
+        /* The actual popup */
+        .popup .popuptext {
+            visibility: hidden;
+            width: 150px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+
+            position: absolute;
+            left: 50%;
+            margin-left: -180px;
+            margin-bottom: -100px;
+        }
+
+            /* Popup arrow */
+            .popup .popuptext::after {
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                border-style: solid;
+                border-color: #555 transparent transparent transparent;
+            }
+
+        /* Toggle this class - hide and show the popup */
+        .popup .show {
+            visibility: visible;
+            animation: fadeIn 1s;
+        }
 </style>   
 
 <script>
@@ -159,321 +183,350 @@
 </script>
 
     <div class="wrapper">
-        <div class="sidebar">
-            <h2>Eventful</h2>
-            <ul>
-                <li><img src="https://icon-library.com/images/dashboard-icon-vector/dashboard-icon-vector-2.jpg" /> <a asp-controller="Home" asp-action="AdminDashboard"> Dashboard</a></li>
-                <li><img src="https://www.freeiconspng.com/thumbs/profile-icon-png/profile-icon-person-user-19.png" /> <a asp-controller="Home" asp-action="Profile"> Profile</a></li>
-                <li><img src="https://img.uxwing.com/wp-content/themes/uxwing/download/seo-marketing/announcement-icon.png" /> <a asp-controller="Home" asp-action="Events"> Events</a></li>
-                <li><img src="https://cdn-icons-png.flaticon.com/512/55/55281.png" /> <a asp-controller="Home" asp-action="Booking"> Bookings</a></li>
-                <li><img src="https://cdn.onlinewebfonts.com/svg/img_387338.png" /> <a asp-controller="Home" asp-action="Review"> Reviews</a></li>
-                <li><img src="https://cdn-icons-png.flaticon.com/512/3239/3239958.png" /><div class="popup" onclick="myFunction()"> Notifications<span class="popuptext" id="myPopup">A Notification</span></div></li>     
-                <li><img src="https://cdn.icon-icons.com/icons2/2518/PNG/512/logout_icon_151219.png" /> <a asp-area="Identity" asp-page="/Account/Logout"> Logout</a></li>
-            </ul>
+        <div class="sidebar gradient-custom-4">
+                <h2>Eventful</h2>
+        <ul>
+            <li><img src="https://icon-library.com/images/dashboard-icon-vector/dashboard-icon-vector-2.jpg" /> <a asp-controller="Home" asp-action="AdminDashboard"> Dashboard</a></li>
+            <li><img src="https://www.freeiconspng.com/thumbs/profile-icon-png/profile-icon-person-user-19.png" /> <a asp-controller="Home" asp-action="Profile"> Profile</a></li>
+            <li><img src="https://img.uxwing.com/wp-content/themes/uxwing/download/seo-marketing/announcement-icon.png" /> <a asp-controller="Home" asp-action="Events"> Events</a></li>
+            <li><img src="https://cdn-icons-png.flaticon.com/512/55/55281.png" /> <a asp-controller="Home" asp-action="Booking"> Bookings</a></li>
+            <li><img src="https://cdn.onlinewebfonts.com/svg/img_387338.png" /> <a asp-controller="Home" asp-action="Review"> Reviews</a></li>
+        </ul>
         </div>
-        <div class="main_content">
-            <div class="header">Welcome to the Admin Dashboard</div>
-            <div class="info">
-                <div class="row">
-                    <div class="container border col-4 ">
-                        <h4> Upcoming Events </h4>
-                        <div class="col-12">
-                            <h8>UFC Fight Night: Felder Vs Hooker</h8>
+    <div class="main_content">
+        <div class="header">Welcome to the Admin Dashboard
+            <button class="rounded button button1">
+                <div class="popup" onclick="myFunction()">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3239/3239958.png" />
+                    <span class="popuptext" id="myPopup">A New Notification</span>
+                </div>
+            </button>
+        </div>
+        <div class="info">
+            <div class="row">
+                <div class="container col-4 ">
+                    <div class="card">
+                        <div class="container">
+                            <h4> Upcoming Events </h4>
+                            <div class="col-12">
+                                <h8>UFC Fight Night: Felder Vs Hooker</h8>
                                 <p class="text-muted">January 28 Tuesday | 8pm - 1AM </p>
 
-                            <h8>Ricky Gervais: Armageddon</h8>
+                                <h8>Ricky Gervais: Armageddon</h8>
                                 <p class="text-muted">January 28 Tuesday | 8pm - 1AM </p>
 
-                            <h8>Coachella 2023</h8>
+                                <h8>Coachella 2023</h8>
                                 <p class="text-muted">January 28 Tuesday | 8pm - 1AM </p>
-                        <h8>UFC Fight Night: Felder Vs Hooker</h8>
-                        <p class="text-muted">January 28 Tuesday | 8pm - 1AM </p>
 
-                        <h8>Ricky Gervais: Armageddon</h8>
-                        <p class="text-muted">January 28 Tuesday | 8pm - 1AM </p>
+                                <h8>UFC Fight Night: Felder Vs Hooker</h8>
+                                <p class="text-muted">January 28 Tuesday | 8pm - 1AM </p>
 
-                        <h8>Coachella 2023</h8>
-                        <p class="text-muted">January 28 Tuesday | 8pm - 1AM </p>
-                        <h8>Ricky Gervais: Armageddon</h8>
-                        <p class="text-muted">January 28 Tuesday | 8pm - 1AM </p>
+                                <h8>Ricky Gervais: Armageddon</h8>
+                                <p class="text-muted">January 28 Tuesday | 8pm - 1AM </p>
 
-                        <h8>Coachella 2023</h8>
-                        <p class="text-muted">January 28 Tuesday | 8pm - 1AM </p>
-                            
-                        </div>     
-                    </div>
-                    <div class="col-8">
-                        <Center><h2> Discover Events </h2></Center>
-                        <div class="row">
-                            <div class="col-6">
-                            <link rel='stylesheet' href='style.css' type='text/css' />
-                            <div class="phppot-container">
-                                <center><h4>Sales Overview</h4></center>
-                                <div>
-                                    <canvas id="line-chart"></canvas>
-                                </div>
+                                <h8>Coachella 2023</h8>
+                                <p class="text-muted">January 28 Tuesday | 8pm - 1AM </p>
                             </div>
-                            <script src="https://cdn.jsdelivr.net/npm/chart.js@4.0.1/dist/chart.umd.min.js"></script>
-                            <script>
-                                new Chart(
-                                    document.getElementById("line-chart"),
-                                    {
-                                        type: 'line',
-                                        data: {
-                                            labels: ["January", "February", "March", "April", "May",
-                                                "June", "July", "August", "September", "October", "November", "December"],
-                                            datasets: [
-                                                {
-                                                    data: [186, 205, 132, 151,
-                                                        210, 219, 313, 322,
-                                                        478, 547, 190, 263],
-                                                    label: "Tickets Available",
-                                                    borderColor: "#3cba9f",
-                                                    fill: false
+                        </div>
+                    </div>                  
+                </div>
+                <div class="col-8">
+                    <div class="row">
+                        <div class="col-6">
+                            <link rel='stylesheet' href='style.css' type='text/css' />
+                            <div class="card">
+                                <div class="container">
+                                    <div class="phppot-container">
+                                        <center><h4>Sales Overview</h4></center>
+                                        <div>
+                                            <canvas id="line-chart"></canvas>
+                                        </div>
+                                    </div>
+                                    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.0.1/dist/chart.umd.min.js"></script>
+                                    <script>
+                                        new Chart(
+                                            document.getElementById("line-chart"),
+                                            {
+                                                type: 'line',
+                                                data: {
+                                                    labels: ["Jan", "Feb", "Mar", "Apr", "May",
+                                                        "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                                                    datasets: [
+                                                        {
+                                                            data: [186, 205, 132, 151,
+                                                                210, 219, 313, 322,
+                                                                478, 547, 190, 263],
+                                                            label: "Tickets Available",
+                                                            borderColor: "#e8c3b9",
+                                                            fill: false
+                                                        },
+                                                        {
+                                                            data: [128, 135, 241,
+                                                                250, 263, 280, 394,
+                                                                440, 370, 526, 423, 665],
+                                                            label: "Tickets Sold",
+                                                            borderColor: "#1e7145",
+                                                            fill: false
+                                                        },]
                                                 },
-                                                {
-                                                    data: [128, 135, 241,
-                                                        250, 263, 280, 394,
-                                                        440, 370, 526, 423, 665],
-                                                    label: "Tickets Sold",
-                                                    borderColor: "#e43202",
-                                                    fill: false
-                                                },]
-                                        },
-                                        options: {
-                                            title: {
-                                                display: true,
-                                                text: 'Chart JS Gridlines - Line Chart Example'
-                                            },
-                                            scales: {
-                                                x: {
-                                                    grid: {
+                                                options: {
+                                                    title: {
                                                         display: true,
-                                                        color: "#0046ff",
-                                                        lineWidth: 3
-                                                    }
-                                                },
-                                                y: {
-                                                    grid: {
-                                                        display: true,
-                                                        color: "#0046ff"
+                                                    },
+                                                    scales: {
+                                                        x: {
+                                                            grid: {
+                                                                display: true,
+                                                                color: "#bdb8d7",
+                                                                lineWidth: 1
+                                                            }
+                                                        },
+                                                        y: {
+                                                            grid: {
+                                                                display: true,
+                                                                color: "#bdb8d7"
+                                                            }
+                                                        }
                                                     }
                                                 }
-                                            }
-                                        }
-                                    });
-                            </script>
+                                            });
+                                    </script>
+                                </div>
                             </div>
-                            <div class="col-6">
+                        </div>
+                        <div class="col-6">
                             <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-                                <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
-                                <script>
-                                    var xValues = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-                                    var yValues = [55, 49, 44, 24, 15];
-                                    var barColors = ["red", "green", "blue", "orange", "brown", "yellow", "purple"];
+                            <div class="card">
+                                <div class="container">
+                                    <center><h4>Ticket Sales (This Week)</h4></center>
+                                    <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+                                    <script>
+                                        var xValues = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+                                        var yValues = [55, 49, 44, 34, 60, 50, 35];
+                                        var barColors = ["#b91d47",
+                                            "#00aba9",
+                                            "#8B008B",
+                                            "#e8c3b9",
+                                            "#1e7145",
+                                            "#1434A4",
+                                            "#FFA07A",];
 
-                                    new Chart("myChart", {
-                                        type: "bar",
-                                        data: {
-                                            labels: xValues,
-                                            datasets: [{
-                                                backgroundColor: barColors,
-                                                data: yValues
-                                            }]
-                                        },
-                                        options: {
-                                            legend: { display: false },
-                                            title: {
-                                                display: true,
-                                                text: "Ticket Sales (This Week)"
+                                        new Chart("myChart", {
+                                            type: "bar",
+                                            data: {
+                                                labels: xValues,
+                                                datasets: [{
+                                                    backgroundColor: barColors,
+                                                    data: yValues
+                                                }]
+                                            },
+                                            options: {
+                                                legend: { display: false },
+                                                title: {
+                                                    display: true,
+                                                }
                                             }
-                                        }
-                                    });
-                                </script>
+                                        });
+                                    </script>
+                                </div>
                             </div>
-                            <div class="row">
-                                <div class="col-6">
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <br />
                                 <style>
-                                    * {
-                                        box-sizing: border-box
-                                    }
-
-                                    .container1 {
-                                        width: 100%;
-                                        background-color: #ddd;
-                                    }
-
-                                    .skills {
+                                    /* Place text to the right */
+                                    .right {
                                         text-align: right;
-                                        padding-top: 5px;
-                                        padding-bottom: 5px;
+                                    }
+                                    /* The bar container */
+                                    .bar-container {
+                                        width: 100%;
+                                        background-color: #f1f1f1;
+                                        text-align: center;
                                         color: white;
                                     }
 
-                                    .html {
-                                        width: 90%;
-                                        background-color: #04AA6D;
+                                    /* Individual bars */
+                                    .bar-5 {
+                                        width: 78%;
+                                        height: 10px;
+                                        background-color: #e8c3b9;
                                     }
 
-                                    .css {
-                                        width: 80%;
-                                        background-color: #2196F3;
+                                    .bar-4 {
+                                        width: 42%;
+                                        height: 10px;
+                                        background-color: #1e7145;
                                     }
 
-                                    .js {
-                                        width: 65%;
-                                        background-color: #f44336;
+                                    .bar-3 {
+                                        width: 94%;
+                                        height: 10px;
+                                        background-color: #1434A4;
                                     }
 
-                                    .php {
-                                        width: 60%;
-                                        background-color: #808080;
+                                    .bar-2 {
+                                        width: 31%;
+                                        height: 10px;
+                                        background-color: #FFA07A;
                                     }
+
                                 </style>
+                                <div class="card">
+                                    <div class="container">
+                                        <center><h4>Goals</h4></center>
+                                        <div>Event Hosted</div>
+                                        <div class="bar-container">
+                                            <div class="bar-5"></div>
+                                        </div>
+                                        <div>Revenue</div>
+                                        <div class="bar-container">
+                                            <div class="bar-4"></div>
+                                        </div>
+                                        <div>Tickets Sold</div>
+                                        <div class="bar-container">
+                                            <div class="bar-3"></div>
+                                        </div>
+                                        <div>Events That Earned</div>
+                                        <div class="bar-container">
+                                            <div class="bar-2"></div>
+                                        </div>
+                                        <br />
+                                    </div>
+                                </div>   
+                            </div>
+                            <div class="col-6">
+                                <br />
+                                <style>
+                                    * {
+                                        box-sizing: border-box;
+                                    }
 
-                                    <h6>Goals</h6>
-                                    <div class="container1">
-                                    <div class="skills html">Events Hosted 90%</div>
-                                    </div>
-                                    <div class="container1">
-                                        <div class="skills css">Revenue 80%</div>
-                                    </div>
-                                    <div class="container1">
-                                    <div class="skills js">Tickets Sold 70%</div>
-                                    </div>
-                                    <div class="container1">
-                                    <div class="skills php">Events That Earned 60%</div>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <style>
-                                        * {box-sizing: border-box;}
-                                        ul {list-style-type: none;}
-                                        body {font-family: Verdana, sans-serif;}
+                                    ul {
+                                        list-style-type: none;
+                                    }
 
-                                        .month {
-                                          padding: 20px 20px;
-                                          width: 100%;
-                                          background: #1abc9c;
-                                          text-align: center;
-                                        }
+                                    .month {
+                                        padding: 2px 2px;
+                                        width: 100%;
+                                        background: #b91d47;
+                                        text-align: center;
+                                    }
 
                                         .month ul {
-                                          margin: 0;
-                                          padding: 0;
+                                            margin: 0;
+                                            padding: 0;
                                         }
 
-                                        .month ul li {
-                                          color: white;
-                                          font-size: 20px;
-                                          text-transform: uppercase;
-                                          letter-spacing: 2px;
-                                        }
+                                            .month ul li {
+                                                color: white;
+                                                font-size: 10px;
+                                                text-transform: uppercase;
+                                            }
 
                                         .month .prev {
-                                          float: left;
-                                          padding-top: 10px;
+                                            float: left;
+                                            padding-top: 10px;
                                         }
 
                                         .month .next {
-                                          float: right;
-                                          padding-top: 10px;
+                                            float: right;
+                                            padding-top: 10px;
                                         }
 
-                                        .weekdays {
-                                          margin: 0;
-                                          padding: 5px 0;
-                                          background-color: #ddd;
-                                        }
+                                    .weekdays {
+                                        margin: 0;
+                                        padding: 1px 0;
+                                        background-color: #ddd;
+                                    }
 
                                         .weekdays li {
-                                          display: inline-block;
-                                          width: 10.6%;
-                                          color: #666;
-                                          text-align: center;
+                                            display: inline-block;
+                                            width: 13%;
+                                            color: #666;
+                                            text-align: center;
+                                            font-size: 10px;
                                         }
 
-                                        .days {
-                                          padding: 7px 0;
-                                          background: #eee;
-                                          margin: 0;
-                                        }
+                                    .days {
+                                        padding: 10px 0;
+                                        background: #eee;
+                                        margin: 0;
+                                    }
 
                                         .days li {
-                                          list-style-type: none;
-                                          display: inline-block;
-                                          width: 10.6%;
-                                          text-align: center;
-                                          margin-bottom: 5px;
-                                          font-size:12px;
-                                          color: #777;
+                                            list-style-type: none;
+                                            display: inline-block;
+                                            width: 13%;
+                                            text-align: center;
+                                            margin-bottom: 5px;
+                                            font-size: 10px;
+                                            color: #777;
                                         }
 
-                                        .days li .active {
-                                          padding: 5px;
-                                          background: #1abc9c;
-                                          color: white !important
-                                        }
+                                            .days li .active {
+                                                padding: 4px;
+                                                background: #b91d47;
+                                                color: white !important
+                                            }
 
-                                        </style>
+                                </style>
 
-
-                                        <div class="month">      
-                                          <ul>
-                                            <li class="prev">&#10094;</li>
-                                            <li class="next">&#10095;</li>
-                                            <li>
-                                              May<br>
-                                              <span style="font-size:18px">2023</span>
-                                            </li>
-                                          </ul>
-                                        </div>
-
-                                        <ul class="weekdays">
-                                          <li>Mo</li>
-                                          <li>Tu</li>
-                                          <li>We</li>
-                                          <li>Th</li>
-                                          <li>Fr</li>
-                                          <li>Sa</li>
-                                          <li>Su</li>
-                                        </ul>
-
-                                        <ul class="days">  
-                                          <li>1</li>
-                                          <li>2</li>
-                                          <li>3</li>
-                                          <li>4</li>
-                                          <li>5</li>
-                                          <li>6</li>
-                                          <li>7</li>
-                                          <li>8</li>
-                                          <li>9</li>
-                                          <li><span class="active">10</span></li>
-                                          <li>11</li>
-                                          <li>12</li>
-                                          <li>13</li>
-                                          <li>14</li>
-                                          <li>15</li>
-                                          <li>16</li>
-                                          <li>17</li>
-                                          <li>18</li>
-                                          <li>19</li>
-                                          <li>20</li>
-                                          <li>21</li>
-                                          <li>22</li>
-                                          <li>23</li>
-                                          <li>24</li>
-                                          <li>25</li>
-                                          <li>26</li>
-                                          <li>27</li>
-                                          <li>28</li>
-                                          <li>29</li>
-                                          <li>30</li>
-                                          <li>31</li>
-                                        </ul>
-                                    </div>     
+                                <div class="month">
+                                    <ul>
+                                        <li class="prev">&#10094;</li>
+                                        <li class="next">&#10095;</li>
+                                        <li>
+                                            June<br>
+                                            <span style="font-size:10px">2023</span>
+                                        </li>
+                                    </ul>
                                 </div>
+
+                                <ul class="weekdays">
+                                    <li>Mo</li>
+                                    <li>Tu</li>
+                                    <li>We</li>
+                                    <li>Th</li>
+                                    <li>Fr</li>
+                                    <li>Sa</li>
+                                    <li>Su</li>
+                                </ul>
+
+                                <ul class="days">
+                                    <li>1</li>
+                                    <li>2</li>
+                                    <li>3</li>
+                                    <li>4</li>
+                                    <li>5</li>
+                                    <li>6</li>
+                                    <li>7</li>
+                                    <li>8</li>
+                                    <li>9</li>
+                                    <li><span class="active">10</span></li>
+                                    <li>11</li>
+                                    <li>12</li>
+                                    <li>13</li>
+                                    <li>14</li>
+                                    <li>15</li>
+                                    <li>16</li>
+                                    <li>17</li>
+                                    <li>18</li>
+                                    <li>19</li>
+                                    <li>20</li>
+                                    <li>21</li>
+                                    <li>22</li>
+                                    <li>23</li>
+                                    <li>24</li>
+                                    <li>25</li>
+                                    <li>26</li>
+                                    <li>27</li>
+                                    <li>28</li>
+                                    <li>29</li>
+                                    <li>30</li>
+                                    <li>31</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -481,4 +534,5 @@
             </div>
         </div>
     </div>
+</div>
 

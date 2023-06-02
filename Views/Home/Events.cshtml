@@ -12,6 +12,7 @@
         font-family: 'Josefin Sans', sans-serif;
     }
 
+
     body {
         background-color: #f3f5f9;
     }
@@ -24,10 +25,10 @@
         .wrapper .sidebar {
             width: 200px;
             height: 100%;
-            background: #4b4276;
-            padding: 30px 0px;
+            padding: 10px 0px;
             position: absolute;
             float: right;
+            background-color: black;
         }
 
             .wrapper .sidebar h2 {
@@ -38,23 +39,15 @@
             }
 
             .wrapper .sidebar ul li {
-                padding: 15px;
-                border-bottom: 1px solid #bdb8d7;
-                border-bottom: 1px solid rgba(0,0,0,0.05);
-                border-top: 1px solid rgba(255,255,255,0.05);
+                padding: 20px;
                 text-decoration: none
             }
 
                 .wrapper .sidebar ul li a {
-                    color: #bdb8d7;
-                    display: block;
+                    color: #fff;
                     text-decoration: none
                 }
 
-                    .wrapper .sidebar ul li a .fas {
-                        width: 25px;
-                        text-decoration: none
-                    }
 
                 .wrapper .sidebar ul li:hover {
                     background-color: #594f8d;
@@ -68,24 +61,18 @@
 
         .wrapper .main_content {
             width: 100%;
-            margin-left: 190px;
+            margin-left: 200px;
         }
 
-            .wrapper .main_content .header {
-                padding: 20px;
-                background: #fff;
-                color: #717171;
-                border-bottom: 1px solid #e0e4e8;
-            }
-
             .wrapper .main_content .info {
-                margin: 11px;
-                color: #717171;
+                margin: 20px;
             }
 
-                .wrapper .main_content .info div {
-                    margin-bottom: 20px;
-                }
+            .wrapper .main_content .header {
+                padding: 10px;
+                background-color: rgba(108, 11, 113, 1);
+                color: #fff;
+            }
 
     img {
         float: left;
@@ -94,22 +81,97 @@
         margin: 0px 6px 4px;
     }
 
-</style>
-<style>
-    table {
-        border-collapse: collapse;
+    h8 {
+        font-weight: bold;
+        color: rgba(0, 9, 75, 0.8);
+    }
+
+    labels,
+    xValues,
+    yValues {
+        color: rgba(0, 9, 75, 0.8);
+    }
+
+
+    h4,
+    div {
+        color: rgba(108, 11, 113, 1);
+    }
+
+    .gradient-custom-4 {
+        /* fallback for old browsers */
+        background: #1A237E
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1)));
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1))
+    }
+
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
         width: 100%;
-        font-size: 15px
     }
 
-    th, td {
-        padding: 3px;
-        text-align: left;
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+
+    .container {
+        padding: 2px 16px;
     }
 
-    tr:nth-child(even) {
-        background-color: #dddddd;
+
+    button {
+        float: right;
+        background-color: rgba(108, 11, 113, 1);
+        border: none;
+        padding: 1px 1px 0px;
+        cursor: pointer;
     }
+
+    .button1 {
+        border: none;
+    }
+
+        .button1:hover {
+            background-color: blue;
+            border: none;
+        }
+
+    .popup {
+        position: relative;
+        cursor: pointer;
+    }
+
+        /* The actual popup */
+        .popup .popuptext {
+            visibility: hidden;
+            width: 150px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            position: absolute;
+            left: 50%;
+            margin-left: -180px;
+            margin-bottom: -100px;
+        }
+
+            /* Popup arrow */
+            .popup .popuptext::after {
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                border-style: solid;
+                border-color: #555 transparent transparent transparent;
+            }
+
+        /* Toggle this class - hide and show the popup */
+        .popup .show {
+            visibility: visible;
+            animation: fadeIn 1s;
+        }
 </style>
 <style>
     * {
@@ -121,69 +183,41 @@
     }
 
     .column {
-        flex: 15%;
+        flex: 5%;
         padding: 0px;
     }
-    
-    button {
-        margin-top: 30px;
-    }
 
-    button:hover {
-            box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
-    }
-
-</style>
-
-<style>
-    .popup {
-        position: relative;
-        display: inline-block;
+    .button3 {
+        border: none;
+        float: right;
+        border: none;
+        padding: 1px 1px 0px;
         cursor: pointer;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        color: #bdb8d7;
     }
 
-        /* The actual popup */
-        .popup .popuptext {
-            visibility: hidden;
-            width: 160px;
-            background-color: #555;
-            color: #bdb8d7;
-            text-align: center;
-            border-radius: 6px;
-            padding: 8px 0;
-            position: absolute;
-            z-index: 1;
-            bottom: 125%;
-            left: 50%;
-            margin-left: -80px;
-        }
+    button3:hover {
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+    }
 
-            /* Popup arrow */
-            .popup .popuptext::after {
-                content: "";
-                position: absolute;
-                top: 100%;
-                left: 50%;
-                margin-left: -5px;
-                border-width: 5px;
-                border-style: solid;
-                border-color: #555 transparent transparent transparent;
-                color: #bdb8d7;
-            }
+    thead,
+    tfoot {
+        background-color: lightblue;
+        color: DarkSlateGrey;
+    }
 
-        /* Toggle this class - hide and show the popup */
-        .popup .show {
-            visibility: visible;
-            -webkit-animation: fadeIn 1s;
-            animation: fadeIn 1s;
-        }
+    table {
+        border-collapse: collapse;
+    }
 
+    a {
+        text-decoration: none;
+    }
+
+    h4 {
+        color: rgba(108, 11, 113, 1);
+    }
 </style>
+
 
 <script>
     function myFunction() {
@@ -192,188 +226,194 @@
     }
 </script>
 
-<body>
-
-    <div class="wrapper">
-        <div class="sidebar">
-            <h2>Eventful</h2>
-            <ul>
-                <li><img src="https://icon-library.com/images/dashboard-icon-vector/dashboard-icon-vector-2.jpg" /> <a asp-controller="Home" asp-action="AdminDashboard"> Dashboard</a></li>
-                <li><img src="https://www.freeiconspng.com/thumbs/profile-icon-png/profile-icon-person-user-19.png" /> <a asp-controller="Home" asp-action="Profile"> Profile</a></li>
-                <li><img src="https://img.uxwing.com/wp-content/themes/uxwing/download/seo-marketing/announcement-icon.png" /> <a asp-controller="Home" asp-action="Events"> Events</a></li>
-                <li><img src="https://cdn-icons-png.flaticon.com/512/55/55281.png" /> <a asp-controller="Home" asp-action="Booking"> Bookings</a></li>
-                <li><img src="https://cdn.onlinewebfonts.com/svg/img_387338.png" /> <a asp-controller="Home" asp-action="Review"> Review</a></li>
-                <li><img src="https://cdn-icons-png.flaticon.com/512/3239/3239958.png" /><div class="popup" onclick="myFunction()"> Notifications<span class="popuptext" id="myPopup">A Notification</span></div></li>
-                <li><img src="https://cdn.icon-icons.com/icons2/2518/PNG/512/logout_icon_151219.png" /> <a asp-area="Identity" asp-page="/Account/Logout"> Logout</a></li>
-            </ul>
+<div class="wrapper">
+    <div class="sidebar gradient-custom-4">
+        <h2>Eventful</h2>
+        <ul>
+            <li><img src="https://icon-library.com/images/dashboard-icon-vector/dashboard-icon-vector-2.jpg" /> <a asp-controller="Home" asp-action="AdminDashboard"> Dashboard</a></li>
+            <li><img src="https://www.freeiconspng.com/thumbs/profile-icon-png/profile-icon-person-user-19.png" /> <a asp-controller="Home" asp-action="Profile"> Profile</a></li>
+            <li><img src="https://img.uxwing.com/wp-content/themes/uxwing/download/seo-marketing/announcement-icon.png" /> <a asp-controller="Home" asp-action="Events"> Events</a></li>
+            <li><img src="https://cdn-icons-png.flaticon.com/512/55/55281.png" /> <a asp-controller="Home" asp-action="Booking"> Bookings</a></li>
+            <li><img src="https://cdn.onlinewebfonts.com/svg/img_387338.png" /> <a asp-controller="Home" asp-action="Review"> Reviews</a></li>
+        </ul>
+    </div>
+    <div class="main_content">
+        <div class="header">
+            Welcome to the Admin Events
+            <button class="rounded button button1">
+                <div class="popup" onclick="myFunction()">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3239/3239958.png" />
+                    <span class="popuptext" id="myPopup">A New Notification</span>
+                </div>
+            </button>
         </div>
-        <div class="main_content">
-            <div class="header">Welcome to the Admin Dashboard</div>
             <div class="info">
-                <table>
+            <table class="table">
+                <thead>
                     <tr>
-                        <th>Event Title</th>
-                        <th>Event Type</th>
-                        <th>Event Location</th>
-                        <th>Event Organiser</th>
-                        <th>Event Start Date </th>
-                        <th>Event End Date</th>
-                        <th>Actions</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Location</th>
+                        <th scope="col">Organiser</th>
+                        <th scope="col">Start Date</th>
+                        <th scope="col">End Date</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">UFC Fight Night: Felder Vs Hooker</th>
+                        <td>Sports & Outdoors</td>
+                        <td>Auckland</td>
+                        <td>UFC</td>
+                        <td>31/05/23</td>
+                        <td>01/6/23</td>
+                        <td>
+                            <div class="row">
+                                <div class="column">
+                                    <button3 class="button3">
+                                        <img src="https://www.freeiconspng.com/thumbs/eye-icon/eye-of-a-human-vector-icon--shapes-icons--icons-download-14.png" />
+                                    </button3>
+                                </div>
+                                <div class="column">
+                                    <button3 class="button3"><img src="https://cdn-icons-png.flaticon.com/512/266/266146.png"></button3>
+                                </div>
+                                <div class="column">
+                                    <button3 class="button3">
+                                        <img src="https://cdn-icons-png.flaticon.com/512/1345/1345874.png">
+                                    </button3>
+                                </div>
+                            </div>
+                        </td>
                     </tr>
                     <tr>
-                        <td>Alfreds Futterkiste</td>
+                        <th scope="row">Ricky Gervais: Armageddon</th>
+                        <td>Comedy</td>
+                        <td>Wellington</td>
+                        <td>John Smith</td>
+                        <td>09/06/23</td>
+                        <td>14/06/23</td>
+                        <td>
+                            <div class="row">
+                                <div class="column">
+                                    <button3 class="button3">
+                                        <img src="https://www.freeiconspng.com/thumbs/eye-icon/eye-of-a-human-vector-icon--shapes-icons--icons-download-14.png" />
+                                    </button3>
+                                </div>
+                                <div class="column">
+                                    <button3 class="button3"><img src="https://cdn-icons-png.flaticon.com/512/266/266146.png"></button3>
+                                </div>
+                                <div class="column">
+                                    <button3 class="button3">
+                                        <img src="https://cdn-icons-png.flaticon.com/512/1345/1345874.png">
+                                    </button3>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Coachella 2023</th>
+                        <td>Festivals and Lifestyles</td>
+                        <td>Queenstown</td>
                         <td>Maria Anders</td>
-                        <td>Germany</td>
-                        <td>Jonny Smith</td>
-                        <td>31/4/23</td>
-                        <td>29/5/23</td>
+                        <td>28/06/23</td>
+                        <td>28/07/23</td>
                         <td>
                             <div class="row">
                                 <div class="column">
-                                    <button>
+                                    <button3 class="button3">
                                         <img src="https://www.freeiconspng.com/thumbs/eye-icon/eye-of-a-human-vector-icon--shapes-icons--icons-download-14.png" />
-                                    </button>
+                                    </button3>
                                 </div>
                                 <div class="column">
-                                    <button><img src="https://cdn-icons-png.flaticon.com/512/266/266146.png"></button>
+                                    <button3 class="button3"><img src="https://cdn-icons-png.flaticon.com/512/266/266146.png"></button3>
                                 </div>
                                 <div class="column">
-                                    <button>
+                                    <button3 class="button3">
                                         <img src="https://cdn-icons-png.flaticon.com/512/1345/1345874.png">
-                                    </button>
+                                    </button3>
                                 </div>
                             </div>
                         </td>
                     </tr>
                     <tr>
-                        <td>Centro comercial</td>
-                        <td>Francisco Chang</td>
-                        <td>Mexico</td>
-                        <td>Jonny Smith</td>
-                        <td>31/4/23</td>
-                        <td>29/5/23</td>
-                        <td>
-                            <div class="row">
-                                <div class="column">
-                                    <button>
-                                        <img src="https://www.freeiconspng.com/thumbs/eye-icon/eye-of-a-human-vector-icon--shapes-icons--icons-download-14.png" />
-                                    </button>
-                                </div>
-                                <div class="column">
-                                    <button><img src="https://cdn-icons-png.flaticon.com/512/266/266146.png"></button>
-                                </div>
-                                <div class="column">
-                                    <button>
-                                        <img src="https://cdn-icons-png.flaticon.com/512/1345/1345874.png">
-                                    </button>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Ernst Handel</td>
-                        <td>Roland Mendel</td>
-                        <td>Austria</td>
-                        <td>Jonny Smith</td>
-                        <td>31/4/23</td>
-                        <td>29/5/23</td>
-                        <td>
-                            <div class="row">
-                                <div class="column">
-                                    <button>
-                                        <img src="https://www.freeiconspng.com/thumbs/eye-icon/eye-of-a-human-vector-icon--shapes-icons--icons-download-14.png" />
-                                    </button>
-                                </div>
-                                <div class="column">
-                                    <button><img src="https://cdn-icons-png.flaticon.com/512/266/266146.png"></button>
-                                </div>
-                                <div class="column">
-                                    <button>
-                                        <img src="https://cdn-icons-png.flaticon.com/512/1345/1345874.png">
-                                    </button>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Island Trading</td>
-                        <td>Helen Bennett</td>
-                        <td>UK</td>
-                        <td>Jonny Smith</td>
-                        <td>31/4/23</td>
-                        <td>29/5/23</td>
-                        <td>
-                            <div class="row">
-                                <div class="column">
-                                    <button>
-                                        <img src="https://www.freeiconspng.com/thumbs/eye-icon/eye-of-a-human-vector-icon--shapes-icons--icons-download-14.png" />
-                                    </button>
-                                </div>
-                                <div class="column">
-                                    <button><img src="https://cdn-icons-png.flaticon.com/512/266/266146.png"></button>
-                                </div>
-                                <div class="column">
-                                    <button>
-                                        <img src="https://cdn-icons-png.flaticon.com/512/1345/1345874.png">
-                                    </button>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Laughing Bacchus</td>
-                        <td>Yoshi Tannamuri</td>
-                        <td>Canada</td>
-                        <td>Jonny Smith</td>
-                        <td>31/4/23</td>
-                        <td>29/5/23</td>
-                        <td>
-                            <div class="row">
-                                <div class="column">
-                                    <button>
-                                        <img src="https://www.freeiconspng.com/thumbs/eye-icon/eye-of-a-human-vector-icon--shapes-icons--icons-download-14.png"/>
-                                    </button>
-                                </div>
-                                <div class="column">
-                                    <button><img src="https://cdn-icons-png.flaticon.com/512/266/266146.png"></button>
-                                </div>
-                                <div class="column">
-                                    <button>
-                                        <img src="https://cdn-icons-png.flaticon.com/512/1345/1345874.png">
-                                    </button>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
+                        <th scope="row">Walking with Dinosaurs</th>
+                        <td>Family & Education</td>
+                        <td>Gisborne</td>
                         <td>Magazzini</td>
-                        <td>Giovanni</td>
-                        <td>Italy</td>
-                        <td>Jonny Smith</td>
-                        <td>31/4/23</td>
-                        <td>29/5/23</td>
+                        <td>30/06/23</td>
+                        <td>4/07/23</td>
                         <td>
                             <div class="row">
                                 <div class="column">
-                                    <button>
-                                        <img src="https://www.freeiconspng.com/thumbs/eye-icon/eye-of-a-human-vector-icon--shapes-icons--icons-download-14.png"/>
-                                    </button>
+                                    <button3 class="button3">
+                                        <img src="https://www.freeiconspng.com/thumbs/eye-icon/eye-of-a-human-vector-icon--shapes-icons--icons-download-14.png" />
+                                    </button3>
                                 </div>
                                 <div class="column">
-                                    <button><img src="https://cdn-icons-png.flaticon.com/512/266/266146.png"></button>
+                                    <button3 class="button3"><img src="https://cdn-icons-png.flaticon.com/512/266/266146.png"></button3>
                                 </div>
                                 <div class="column">
-                                    <button>
+                                    <button3 class="button3">
                                         <img src="https://cdn-icons-png.flaticon.com/512/1345/1345874.png">
-                                    </button>
+                                    </button3>
                                 </div>
                             </div>
                         </td>
                     </tr>
-                </table>
-            </div>
+                    <tr>
+                        <th scope="row">Bell Shakesphere 2023</th>
+                        <td>Festivals and Lifestyles</td>
+                        <td>Christchurch</td>
+                        <td>Island Trading</td>
+                        <td>2/07/23</td>
+                        <td>28/07/23</td>
+                        <td>
+                            <div class="row">
+                                <div class="column">
+                                    <button3 class="button3">
+                                        <img src="https://www.freeiconspng.com/thumbs/eye-icon/eye-of-a-human-vector-icon--shapes-icons--icons-download-14.png" />
+                                    </button3>
+                                </div>
+                                <div class="column">
+                                    <button3 class=button3><img src="https://cdn-icons-png.flaticon.com/512/266/266146.png"></button3>
+                                </div>
+                                <div class="column">
+                                    <button3 class="button3">
+                                        <img src="https://cdn-icons-png.flaticon.com/512/1345/1345874.png">
+                                    </button3>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Revelmode Cringemas 2023</th>
+                        <td>Charity & Causes</td>
+                        <td>Queenstown</td>
+                        <td>Centro comercial</td>
+                        <td>18/07/23</td>
+                        <td>25/07/23</td>
+                        <td>
+                            <div class="row">
+                                <div class="column">
+                                    <button3 class="button3">
+                                        <img src="https://www.freeiconspng.com/thumbs/eye-icon/eye-of-a-human-vector-icon--shapes-icons--icons-download-14.png" />
+                                    </button3>
+                                </div>
+                                <div class="column">
+                                    <button3 class="button3"><img src="https://cdn-icons-png.flaticon.com/512/266/266146.png"></button3>
+                                </div>
+                                <div class="column">
+                                    <button3 class="button3">
+                                        <img src="https://cdn-icons-png.flaticon.com/512/1345/1345874.png">
+                                    </button3>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
+</div>
 
-</body>
-</html>

@@ -12,6 +12,7 @@
         font-family: 'Josefin Sans', sans-serif;
     }
 
+
     body {
         background-color: #f3f5f9;
     }
@@ -24,10 +25,10 @@
         .wrapper .sidebar {
             width: 200px;
             height: 100%;
-            background: #4b4276;
-            padding: 30px 0px;
+            padding: 10px 0px;
             position: absolute;
             float: right;
+            background-color: black;
         }
 
             .wrapper .sidebar h2 {
@@ -38,23 +39,15 @@
             }
 
             .wrapper .sidebar ul li {
-                padding: 15px;
-                border-bottom: 1px solid #bdb8d7;
-                border-bottom: 1px solid rgba(0,0,0,0.05);
-                border-top: 1px solid rgba(255,255,255,0.05);
+                padding: 20px;
                 text-decoration: none
             }
 
                 .wrapper .sidebar ul li a {
-                    color: #bdb8d7;
-                    display: block;
+                    color: #fff;
                     text-decoration: none
                 }
 
-                    .wrapper .sidebar ul li a .fas {
-                        width: 25px;
-                        text-decoration: none
-                    }
 
                 .wrapper .sidebar ul li:hover {
                     background-color: #594f8d;
@@ -71,22 +64,15 @@
             margin-left: 200px;
         }
 
-            .wrapper .main_content .header {
-                padding: 20px;
-                background: #fff;
-                color: #717171;
-                border-bottom: 1px solid #e0e4e8;
-            }
-
             .wrapper .main_content .info {
                 margin: 20px;
-                color: #717171;
-                line-height: 25px;
             }
 
-                .wrapper .main_content .info div {
-                    margin-bottom: 20px;
-                }
+            .wrapper .main_content .header {
+                padding: 10px;
+                background-color: rgba(108, 11, 113, 1);
+                color: #fff;
+            }
 
     img {
         float: left;
@@ -95,62 +81,97 @@
         margin: 0px 6px 4px;
     }
 
-    p {
-        font-size: 12px;
+    h8 {
+        font-weight: bold;
+        color: rgba(0, 9, 75, 0.8);
     }
 
-    h4 {
-        font-weight: bold;
+    labels,
+    xValues,
+    yValues {
+        color: rgba(0, 9, 75, 0.8);
     }
-</style>
-<style>
+
+
+    h4,
+    div {
+        color: rgba(108, 11, 113, 1);
+    }
+
+    .gradient-custom-4 {
+        /* fallback for old browsers */
+        background: #1A237E
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1)));
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1))
+    }
+
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        width: 100%;
+    }
+
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+
+    .container {
+        padding: 2px 16px;
+    }
+
+
+    button {
+        float: right;
+        background-color: rgba(108, 11, 113, 1);
+        border: none;
+        padding: 1px 1px 0px;
+        cursor: pointer;
+    }
+
+    .button1 {
+        border: none;
+    }
+
+        .button1:hover {
+            background-color: blue;
+            border: none;
+        }
+
     .popup {
         position: relative;
-        display: inline-block;
         cursor: pointer;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        color: #bdb8d7;
     }
 
         /* The actual popup */
         .popup .popuptext {
             visibility: hidden;
-            width: 160px;
+            width: 150px;
             background-color: #555;
-            color: #bdb8d7;
+            color: #fff;
             text-align: center;
             border-radius: 6px;
-            padding: 8px 0;
             position: absolute;
-            z-index: 1;
-            bottom: 125%;
             left: 50%;
-            margin-left: -80px;
+            margin-left: -180px;
+            margin-bottom: -100px;
         }
 
             /* Popup arrow */
             .popup .popuptext::after {
-                content: "";
                 position: absolute;
                 top: 100%;
                 left: 50%;
-                margin-left: -5px;
-                border-width: 5px;
                 border-style: solid;
                 border-color: #555 transparent transparent transparent;
-                color: #bdb8d7;
             }
 
         /* Toggle this class - hide and show the popup */
         .popup .show {
             visibility: visible;
-            -webkit-animation: fadeIn 1s;
             animation: fadeIn 1s;
         }
-
 </style>
 
 <script>
@@ -159,190 +180,140 @@
         popup.classList.toggle("show");
     }
 </script>
-    <div class="wrapper">
-        <div class="sidebar">
-            <h2>Eventful</h2>
-            <ul>
-                <li><img src="https://icon-library.com/images/dashboard-icon-vector/dashboard-icon-vector-2.jpg" /> <a asp-controller="Home" asp-action="AdminDashboard"> Dashboard</a></li>
-                <li><img src="https://www.freeiconspng.com/thumbs/profile-icon-png/profile-icon-person-user-19.png" /> <a asp-controller="Home" asp-action="Profile"> Profile</a></li>
-                <li><img src="https://img.uxwing.com/wp-content/themes/uxwing/download/seo-marketing/announcement-icon.png" /> <a asp-controller="Home" asp-action="Events"> Events</a></li>
-                <li><img src="https://cdn-icons-png.flaticon.com/512/55/55281.png" /> <a asp-controller="Home" asp-action="Booking"> Bookings</a></li>
-                <li><img src="https://cdn.onlinewebfonts.com/svg/img_387338.png" /> <a asp-controller="Home" asp-action="Review"> Reviews</a></li>
-            <li><img src="https://cdn-icons-png.flaticon.com/512/3239/3239958.png" /><div class="popup" onclick="myFunction()"> Notifications<span class="popuptext" id="myPopup">A Notification</span></div></li>
-                <li><img src="https://cdn.icon-icons.com/icons2/2518/PNG/512/logout_icon_151219.png" /> <a asp-area="Identity" asp-page="/Account/Logout"> Logout</a></li>
-            </ul>
+
+<div class="wrapper">
+    <div class="sidebar gradient-custom-4">
+        <h2>Eventful</h2>
+        <ul>
+            <li><img src="https://icon-library.com/images/dashboard-icon-vector/dashboard-icon-vector-2.jpg" /> <a asp-controller="Home" asp-action="AdminDashboard"> Dashboard</a></li>
+            <li><img src="https://www.freeiconspng.com/thumbs/profile-icon-png/profile-icon-person-user-19.png" /> <a asp-controller="Home" asp-action="Profile"> Profile</a></li>
+            <li><img src="https://img.uxwing.com/wp-content/themes/uxwing/download/seo-marketing/announcement-icon.png" /> <a asp-controller="Home" asp-action="Events"> Events</a></li>
+            <li><img src="https://cdn-icons-png.flaticon.com/512/55/55281.png" /> <a asp-controller="Home" asp-action="Booking"> Bookings</a></li>
+            <li><img src="https://cdn.onlinewebfonts.com/svg/img_387338.png" /> <a asp-controller="Home" asp-action="Review"> Reviews</a></li>
+        </ul>
+    </div>
+    <div class="main_content">
+        <div class="header">
+            Welcome to the Admin Bookings
+            <button class="rounded button button1">
+                <div class="popup" onclick="myFunction()">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3239/3239958.png" />
+                    <span class="popuptext" id="myPopup">A New Notification</span>
+                </div>
+            </button>
         </div>
-        <div class="main_content">
-            <div class="header">Welcome to the Admin Dashboard</div>
             <div class="info">
+            <h3>Bookings & Sales</h3>
             <div class="row">
                 <div class="col">
-                    <div class="border">
-                        <p>Gross Sales</p>
-                        <h4>$2439</h4>
+                    <div class="card">
+                        <div class="container">
+                            <p>Gross Sales</p>
+                            <h4>$2439</h4>
+                        </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="border">
-                        <p>Online Sales</p>
-                        <h4>$7830</h4>
+                    <div class="card">
+                        <div class="container">
+                            <p>Online Sales</p>
+                            <h4>$7830</h4>
+                        </div>
                     </div>
                 </div>
 
                 <div class="col">
-                    <div class="border">
-                        <p>Registered User Tickets Sold</p>
-                        <h4>3927 Tickets</h4>
+                    <div class="card">
+                        <div class="container">
+                            <p>Registered User Tickets Sold</p>
+                            <h4>3927 Tickets</h4>
+                        </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="border">
-                        <p>Unregistered User Tickets Sold</p>
-                        <h4>2042 Tickets</h4>
+                    <div class="card">
+                        <div class="container">
+                            <p>Unregistered User Tickets Sold</p>
+                            <h4>2042 Tickets</h4>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <div class="border">
-                            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-                            <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
-                            <script>
-                                var xValues = ["Gross", "Online"];
-                                var yValues = [24, 85];
-                                var barColors = [
-                                    "#e8c3b9",
-                                    "#1e7145"
-                                ];
+                        <br />
+                        <div class="card">
+                            <div class="container">
+                                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+                                <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+                                <script>
+                                    var xValues = ["Gross", "Online"];
+                                    var yValues = [24, 85];
+                                    var barColors = [
+                                        "#e8c3b9",
+                                        "#1e7145",
+                                    ];
 
-                                new Chart("myChart", {
-                                    type: "doughnut",
-                                    data: {
-                                        labels: xValues,
-                                        datasets: [{
-                                            backgroundColor: barColors,
-                                            data: yValues
-                                        }]
-                                    },
-                                    options: {
-                                        title: {
-                                            display: true,
-                                            text: "Eary Bird Tickets"
-                                        }
-                                    }
-                                });
-                            </script>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="border">
-
-                            <script src="https://cdnjs.cloudf	lare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-                            <canvas id="theChart" style="width:100%;max-width:600px"></canvas>
-                            <script>
-                                var xGoals = ["Event Goals", "Sold Seats"];
-                                var yGoals = [50, 78];
-                                var barColors = [
-                                    "#00aba9",
-                                    "#2b5797",
-                                ];
-
-                                new Chart("theChart", {
-                                    type: "doughnut",
-                                    data: {
-                                        labels: xGoals,
-                                        datasets: [{
-                                            backgroundColor: barColors,
-                                            data: yGoals
-                                        }]
-                                    },
-                                    options: {
-                                        title: {
-                                            display: true,
-                                            text: "Event Goals"
-                                        }
-                                    }
-                                });
-                            </script>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm">
-                    <div class="border">
-                            <link rel='stylesheet' href='style.css' type='text/css' />
-                            <div class="phppot-container">
-                            <center><h4>Ticket Sales Trends</h4></center>
-                                <div>
-                                    <canvas id="line-chart"></canvas>
-                                </div>
-                            </div>
-                            <script src="https://cdn.jsdelivr.net/npm/chart.js@4.0.1/dist/chart.umd.min.js"></script>
-                            <script>
-                                new Chart(
-                                    document.getElementById("line-chart"),
-                                    {
-                                        type: 'line',
+                                    new Chart("myChart", {
+                                        type: "doughnut",
                                         data: {
-                                            labels: ["January", "February", "March", "April", "May",
-                                                "June", "July", "August", "September", "October", "November", "December"],
-                                            datasets: [
-                                                {
-                                                    data: [186, 205, 132, 151,
-                                                        210, 219, 313, 322,
-                                                        478, 547, 190, 263],
-                                                    label: "Past 24 Hours",
-                                                    borderColor: "#3cba9f",
-                                                    fill: false
-                                                },
-                                                {
-                                                    data: [128, 135, 241,
-                                                        250, 263, 280, 394,
-                                                        440, 370, 526, 423, 665],
-                                                    label: "Past 7 Days",
-                                                    borderColor: "#e43202",
-                                                    fill: false
-                                                },
-                                                {
-                                                    data: [283, 250, 311,
-                                                        502, 535, 209, 447,
-                                                        402, 613, 267, 218, 169],
-                                                    label: "Past 30 Days",
-                                                    borderColor: "#006400",
-                                                    fill: false
-                                                }]
+                                            labels: xValues,
+                                            datasets: [{
+                                                backgroundColor: barColors,
+                                                data: yValues
+                                            }]
                                         },
                                         options: {
                                             title: {
                                                 display: true,
-                                                text: 'Chart JS Gridlines - Line Chart Example'
-                                            },
-                                            scales: {
-                                                x: {
-                                                    grid: {
-                                                        display: true,
-                                                        color: "#0046ff",
-                                                        lineWidth: 3
-                                                    }
-                                                },
-                                                y: {
-                                                    grid: {
-                                                        display: true,
-                                                        color: "#0046ff"
-                                                    }
-                                                }
+                                                text: "Eary Bird Tickets"
                                             }
                                         }
                                     });
-                            </script>
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <br />
+                        <div class="card">
+                            <div class="container">
+                                <script src="https://cdnjs.cloudf	lare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+                                <canvas id="theChart" style="width:100%;max-width:600px"></canvas>
+                                <script>
+                                    var xGoals = ["Event Goals", "Sold Seats"];
+                                    var yGoals = [50, 78];
+                                    var barColors = [
+                                        "#b91d47",
+                                        "#00aba9"
+                                    ];
+
+                                    new Chart("theChart", {
+                                        type: "doughnut",
+                                        data: {
+                                            labels: xGoals,
+                                            datasets: [{
+                                                backgroundColor: barColors,
+                                                data: yGoals
+                                            }]
+                                        },
+                                        options: {
+                                            title: {
+                                                display: true,
+                                                text: "Event Goals"
+                                            }
+                                        }
+                                    });
+                                </script>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 

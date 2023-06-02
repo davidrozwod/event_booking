@@ -38,28 +38,10 @@ namespace event_booking.Controllers
             return View(eventUser);
         }
 
-        // GET: EventUser/Edit
-        public async Task<IActionResult> Edit()
-        {
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            var eventUser = await _context.EventUsers.FirstOrDefaultAsync(e => e.EventUserId == user.Id);
-            if (eventUser == null)
-            {
-                return NotFound();
-            }
-
-            return View(eventUser);
-        }
-
         // POST: EventUser/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("EventUserId,FirstName,LastName,Age,Picture,Document")] EventUser eventUser)
+        public async Task<IActionResult> Index(string id, [Bind("EventUserId,FirstName,LastName,Age,Picture,Document")] EventUser eventUser)
         {
             if (id != eventUser.EventUserId)
             {

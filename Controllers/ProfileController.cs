@@ -35,19 +35,22 @@ namespace event_booking.Controllers
                 return NotFound();
             }
 
-            return View(eventUser);
+            ViewData["ProfilePicture"] = eventUser.Picture;
+            ViewData["UserId"] = user.Id;
+            ViewData["Email"] = user.Email;
+            ViewData["FirstName"] = eventUser.FirstName;
+            ViewData["LastName"] = eventUser.LastName;
+            ViewData["Age"] = eventUser.Age;
+            ViewData["Document"] = eventUser.Document;
+
+            return View("~/Views/Home/Profile.cshtml", eventUser);
         }
 
         // POST: EventUser/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Index(string id, [Bind("EventUserId,FirstName,LastName,Age,Picture,Document")] EventUser eventUser)
+        public async Task<IActionResult> Index([Bind("EventUserId,FirstName,LastName,Age,Picture,Document")] EventUser eventUser)
         {
-            if (id != eventUser.EventUserId)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
                 try
@@ -68,7 +71,7 @@ namespace event_booking.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(eventUser);
+            return View("~/Views/Home/Profile.cshtml", eventUser);
         }
 
         private bool EventUserExists(string id)

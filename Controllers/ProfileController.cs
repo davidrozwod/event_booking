@@ -97,7 +97,7 @@ namespace event_booking.Controllers
             }
 
 
-            return View("~/Views/Home/Profile.cshtml", profileViewModel);
+            return RedirectToAction("Index");
         }
 
         // POST: EventUser/Delete

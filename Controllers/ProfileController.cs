@@ -23,18 +23,21 @@ namespace event_booking.Controllers
         // GET: EventUser
         public async Task<IActionResult> Index()
         {
+            //Gets logged in user
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
                 return NotFound();
             }
 
+            //Matches logged in user to the EventUser
             var eventUser = await _context.EventUsers.FirstOrDefaultAsync(e => e.EventUserId == user.Id);
             if (eventUser == null)
             {
                 return NotFound();
             }
 
+            //Updates the Profile View with the logged in user's information
             ViewData["ProfilePicture"] = eventUser.Picture;
             ViewData["UserId"] = user.Id;
             ViewData["Email"] = user.Email;

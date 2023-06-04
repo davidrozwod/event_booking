@@ -1,9 +1,21 @@
 ﻿<style>
-    .carousel-inner {
-    margin-top: -17px;
+    .overlay {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        width: 100%;
+        opacity: 0;
+        transition: .5s ease;
+    }
+.carousel-inner {
+   margin-top: -17px;
+   margin-bottom: -17px;
 }
  body{
-       background: rgb(232, 252, 252);
+       background: white;
        margin: 0px;
        padding: 0px
  }
@@ -12,9 +24,11 @@
   bottom: 8px;
   left: 16px;
 }
-
+.imageborder{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
 .hover12 figure {
-        background: #D50000;
+        background: #6A1B9A;
 }
 .hover12 figure img {
 	opacity: 1;
@@ -32,11 +46,26 @@
 	animation: flash 1.5s;
 }
 
+    .hover14 figure {
+        background: #6A1B9A;
+        margin-right: -30px;
+    }
+
+        .hover14 figure img {
+            opacity: 1;
+            -webkit-transition: .3s ease-in-out;
+            transition: .3s ease-in-out;
+        }
+
+        .hover14 figure:hover img {
+            opacity: .5;
+        }
+
     h1,
     h1 + p {
-        margin-left: 20px
+        margin-left: 20px;
         font-weight: 300;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+        font-family: Georgia, 'Times New Roman', Times, serif
     }
 
         h1 + p a {
@@ -51,7 +80,7 @@
         margin: 5px 15px 0;
         padding: 0;
         font-weight: 300;
-        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+        font-family: Georgia, 'Times New Roman', Times, serif
     }
 
         h2 span {
@@ -62,10 +91,10 @@
 
     h3 {
 
-        margin-top: 10px
+        margin-top: 10px;
         padding: 0;
         font-weight: 300;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+        font-family: Georgia, 'Times New Roman', Times, serif
     }
 
         h3 span {
@@ -79,7 +108,8 @@
         margin-top: -10px;
         padding: 0;
         font-weight: 300;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+        font-family: Georgia, 'Times New Roman', Times, serif;
+       
     }
 
         h4 span {
@@ -87,11 +117,15 @@
             color: #aaa;
             font-size: 85%;
         }
+    h4:hover{
+            text-decoration: underline;
+    }
 
     h5 {
-        margin-top: 75px padding: 0;
+        margin-top: 75px;
+        padding: 0;
         font-weight: 300;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+        font-family: Georgia, 'Times New Roman', Times, serif
     }
 
         h5 span {
@@ -104,7 +138,7 @@
         margin: 5px 5px 0;
         padding: 0;
         font-weight: 300;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+        font-family: Georgia, 'Times New Roman', Times, serif
     }
 
         h6 span {
@@ -132,12 +166,52 @@
   cursor: pointer;
   overflow: hidden;
 }
+   img{
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+   }
+   
+   .border-light{
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      margin-bottom: -30px;
+   }
+   .border-top{
+        margin-top: 27px;
+    }
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        width: 103%;
+        opacity: 0;
+        transition: .5s ease;
+        background-color: darkblue;
+    }
+
+    .container:hover .overlay {
+        opacity: 0.8;
+    }
+
+    .text {
+        color: white;
+        font-size: 50px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
 </style>
 <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
     <div class="carousel-inner">
         <div class="hover12 carousel-item active ">
            <figure>
-               <img src="https://cdn.discordapp.com/attachments/1090451877126225987/1108902948664254636/Homepage2.png" class="d-block w-100" width="80%">
+                <img src="https://cdn.shopify.com/s/files/1/0512/3489/8105/collections/Razer_Collection_Banner.jpg?v=1657161862" class="d-block w-100" width="80%">
                <div class="bottom-left text-white">
                   <h1>Bottom Left</h1> 
                   <h3>Bottom Left</h3> 
@@ -146,7 +220,7 @@
         </div>
         <div class="hover12 carousel-item">
             <figure>
-                <img src="https://cdn.discordapp.com/attachments/1090451877126225987/1108902948278382592/Homepage3.png" class="d-block w-100" alt="...">
+                <img src="https://dei.gsu.edu/files/2021/09/1920x720-extended-banner-LGBTQ-history-month-min.jpg" class="d-block w-100" alt="...">
                 <div class="bottom-left text-white">
                   <h1>Bottom Left</h1> 
                   <h3>Bottom Left</h3> 
@@ -155,7 +229,9 @@
         </div>
         <div class="hover12 carousel-item ">
             <figure>
-                <img src="https://cdn.discordapp.com/attachments/1090451877126225987/1108902949192741026/Homepage1.png" class="d-block w-100" alt="...">
+                <img src="https://www.bergara.online/wp-content/uploads/2017/12/banner-home-1920x720.jpg
+
+" class="d-block w-100" alt="...">
                 <div class="bottom-left text-white">
                   <h1>Bottom Left</h1> 
                   <h3>Bottom Left</h3> 
@@ -172,97 +248,232 @@
         <span class="visually-hidden">Next</span>
     </button>
 </div>
-<div class="container-fluid">
-    <center><H2>Popular Events</H2></center>
 <div class="row">
-    <div class="hover12 col-3">
-        <div>
-            <figure><img src="https://dynamicmedia.livenationinternational.com/Media/m/q/o/75f8c640-9b94-4de4-8854-7ad9d6165cdf.jpeg" class="rounded-6" width="100%" /></figure>
-            <p class="text-muted">Performances & Nightlife </p>
-            <center><h4>Denzel Curry</h4></center>
-        </div>
-    </div>
-    <div class="hover12 col-3">
-        <div>
-            <figure><img src="https://scenestr.com.au/media/k2/items/cache/57730bf7a9bf93c0495a1f10b3667005_XL.jpg" class="rounded-6" width="100%" /></figure>
-            <p class="text-muted">Performances & Nightlife</p>
-            <center><h4>Vacations</h4></center>
-        </div>
-    </div>
-    <div class="hover12 col-3">
-        <div>
-            <figure><img src="https://thetowerlight.com/wp-content/uploads/2018/12/1319_FOB_Mix_Anderson_Paak_A.jpg" class="rounded-6" width="100%" /></figure>
-            <p class="text-muted">Performances & Nightlife</p>
-            <center><h4>Anderson.Paak</h4></center>
-        </div>
-    </div>
-    <div class="hover12 col-3">
-        <figure><img src="https://dmxg5wxfqgb4u.cloudfront.net/styles/background_image_sm/s3/2020-01/UFC-Fight-Night-Auckland-Event-Hero-2020.jpg?h=d1cb525d&itok=J2RTLpW0" class="rounded-6" width="100%" /></figure>
-        <p class="text-muted">Sports & Outdoors</p>
-        <center><h4>UFC Fight Night: Felder Vs Hooker</h4></center>
-    </div>
-    <p></p>
-</div>
- <div class="row">
-        <div class="container border border-dark col-4 ">
-            <Center><h2> Latest Events </h2></Center>
-            <Center>
-                <div class="col-12 ">
-                    <div class="hover12">
+    <div class="container-fluid border border-light col-4 ">
+        <Center><h2> Latest Events </h2></Center>
+        <Center>
+            <div class="col-12 ">
+                <div class="hover12">
                     <figure><img src="https://dmxg5wxfqgb4u.cloudfront.net/styles/background_image_sm/s3/2020-01/UFC-Fight-Night-Auckland-Event-Hero-2020.jpg?h=d1cb525d&itok=J2RTLpW0" class="rounded-6" width="100%" /></figure>
-                        <p class="text-muted">Sports & Outdoors</p>
-                        <center><h4>UFC Fight Night: Felder Vs Hooker</h4></center>
-                    </div>
-                    <div class="hover12">
+                    <p class="text-muted">Sports & Outdoors</p>
+                    <center><h4>UFC Fight Night: Felder Vs Hooker</h4></center>
+                </div>
+                <div class="hover12">
                     <figure><img src="https://lwt-live.s3.eu-west-1.amazonaws.com/wp-content/uploads/2023/03/03112533/Ricky-Gervais-London-Palladium-1600x1000-1-1-1600x1000.jpg" class="rounded-6" width="100%" /></figure>
-                        <p class="text-muted">Comedy</p>
-                        <center><h4>Ricky Gervais: Armageddon</h4></center>
-                        <p></p>
-                    </div>
-                    <div class="hover12">
+                    <p class="text-muted">Comedy</p>
+                    <center><h4>Ricky Gervais: Armageddon</h4></center>
+                    <p></p>
+                </div>
+                <div class="hover12">
                     <figure><img src="https://ourculturemag.com/wp-content/uploads/2023/01/FmIsf66akAADz4t-e1673385058434-696x365.jpeg" width="100%" /></figure>
-                        <p class="text-muted">Festivals and Lifestyles</p>
-                        <center><h4>Coachella 2023</h4></center>
-                        <p></p>
-                    </div>
-            </Center>
-        </div>
-        <div class="col-8">
-            <Center><h2> Discover Events </h2></Center>
+                    <p class="text-muted">Festivals and Lifestyles</p>
+                    <center><h4>Coachella 2023</h4></center>
+                    <p></p>
+                </div>
+            </div>
+        </Center>
+    </div>
+    <div class="col-8 container-fluid">
+        <div class="row border-top" style="margin-left:10px; margin-right:10px;">
+            <Center><h2 style="margin-top: 15px; ">Discover Events </h2></Center>
+            <div class="  col-6 hover12">
+                <figure><img src="https://wallpapercave.com/wp/wp4197304.jpg" width="100%" /></figure>
+                <p class="text-muted">Family & Education</p>
+                <center><h3>Walking with Dinosaurs</h3></center>
+                <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</h6>
+                <strong><h5><a href="#" class="text-primary">Find Tickets</a></h5></strong>
+            </div>
+            <div class="col-6 hover12">
+                <figure><img src=" https://scontent.fakl8-1.fna.fbcdn.net/v/t39.30808-6/246164822_4364883746921319_4196205017400528076_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=9267fe&_nc_ohc=C3Imh-Ml-wYAX-Acij1&_nc_ht=scontent.fakl8-1.fna&oh=00_AfB4MtdpCHxbU2XiHGXLvpCQB-D_XRDITGTToS78TEjp1g&oe=646A0AFD" width="100%" /></figure>
+                <p class="text-muted">Theater & Arts</p>
+                <center><h3>Bell Shakesphere 2023</h3></center>
+                <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</h6>
+                <strong><h5><a href="#" class="text-primary">Find Tickets</a></h5></strong>
+            </div>
             <div class="row">
                 <div class="col-6 hover12">
-                <figure><img src="https://wallpapercave.com/wp/wp4197304.jpg" width="100%" /></figure>
-                    <p class="text-muted">Family & Education</p>
-                    <center><h4>Walking with Dinosaurs</h4></center>
+                    <figure><img src="https://i.ytimg.com/vi/H8bH1v0M1GI/maxresdefault.jpg" width="100%" /></figure>
+                    <p class="text-muted">Charity & Causes</p>
+                    <center><h3>Revelmode Cringemas 2023</h3></center>
                     <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</h6>
                     <strong><h5><a href="#" class="text-primary">Find Tickets</a></h5></strong>
                 </div>
                 <div class="col-6 hover12">
-                <figure><img src=" https://scontent.fakl8-1.fna.fbcdn.net/v/t39.30808-6/246164822_4364883746921319_4196205017400528076_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=9267fe&_nc_ohc=C3Imh-Ml-wYAX-Acij1&_nc_ht=scontent.fakl8-1.fna&oh=00_AfB4MtdpCHxbU2XiHGXLvpCQB-D_XRDITGTToS78TEjp1g&oe=646A0AFD" width="100%" /></figure>
-                    <p class="text-muted">Theater & Arts</p>
-                    <center><h4>Bell Shakesphere 2023</h4></center>
+                    <figure><img src=" https://static01.nyt.com/images/2021/07/07/arts/06billboard-item/06billboard-item-videoSixteenByNineJumbo1600.jpg" width="100%" /></figure>
+                    <p class="text-muted">Performances & Nightlife</p>
+                    <center><h3>Call Me if you get lost Tour</h3></center>
                     <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</h6>
                     <strong><h5><a href="#" class="text-primary">Find Tickets</a></h5></strong>
-                </div
-                <div class="row">
-                    <div class="col-6 hover12">
-                    <figure><img src="https://i.ytimg.com/vi/H8bH1v0M1GI/maxresdefault.jpg" width="100%" /></figure>
-                        <p class="text-muted">Charity & Causes</p>
-                        <center><h4>Revelmode Cringemas 2023</h4></center>
-                        <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</h6>
-                        <strong><h5><a href="#" class="text-primary">Find Tickets</a></h5></strong>
-                    </div>
-                    <div class="col-6 hover12">
-
-                        <figure><img src=" https://static01.nyt.com/images/2021/07/07/arts/06billboard-item/06billboard-item-videoSixteenByNineJumbo1600.jpg" width="100%" /></figure>
-                        <p class="text-muted">Performances & Nightlife</p>
-                        <center><h4>Call Me if you get lost Tour</h4></center>
-                        <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</h6>
-                        <strong><h5><a href="#" class="text-primary">Find Tickets</a></h5></strong>                  
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="pt-5 pb-5">
+    <div class="container-overflow">
+        <div class="row">
+            <div class="col-12">
+                <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="row">
+                                <div class=" container col-4">
+                                    <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" width="107%" height="500px alt="Avatar" class="image">
+                                    <div class="overlay">
+                                        <div class="text"> Music and Performances </div>
+                                    </div>
+                                </div>
+                                <div class=" container col-4">
+                                    <img style="margin-left:-15px" src="https://images.unsplash.com/photo-1607627000458-210e8d2bdb1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1449&q=80" width="110%" height="500px" alt="Avatar" class="image">
+                                    <div class="overlay">
+                                        <div class="text">Sports and Outdoors </div>
+                                    </div>
+                                </div>
+                                <div class=" container col-4">
+                                    <img style="margin-left:-15px" src="https://images.unsplash.com/photo-1605034949929-6af5f19593b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" width="107%" height="500px" alt="Avatar" class="image">
+                                    <div class="overlay">
+                                        <div class="text">Theater and Arts</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="row">
+                                <div class=" container col-4">
+                                    <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" width="107%" height="500px alt="Avatar" class="image">
+                                    <div class="overlay">
+                                        <div class="text">Charity and Causes</div>
+                                    </div>
+                                </div>
+                                <div class=" container col-4">
+                                    <img style="margin-left:-15px" src="https://images.unsplash.com/photo-1524008279394-3aed4643b30b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" width="110%" height="500px" alt="Avatar" class="image">
+                                    <div class="overlay">
+                                        <div class="text">Family and Education</div>
+                                    </div>
+                                </div>
+                                <div class=" container col-4">
+                                    <img style="margin-left:-15px" src="https://images.unsplash.com/photo-1523292562811-8fa7962a78c8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" width="107%" height="500px" alt="Avatar" class="image">
+                                    <div class="overlay">
+                                        <div class="text">Government and Politics</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
     </div>
-</div>
- 
+</section>
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+<div class="row" style="margin-top: -30px;">
+    <div class="col-8 container-fluid">
+        <div class="container-fluid">
+            <div class="row border-top" style="margin-bottom: 15px; margin-left: 20px; ">
+                <center><H2 style="margin-top: 15px;">Popular Events</H2></center>
+            </div>
+            <div class="row border-bottom">
+                <div class="hover12 col-4">
+                    <div class="imageborder">
+                        <figure><img src="https://dynamicmedia.livenationinternational.com/Media/m/q/o/75f8c640-9b94-4de4-8854-7ad9d6165cdf.jpeg" class="rounded-6" width="100%" /></figure>
+                        <p class="text-muted">Performances & Nightlife </p>
+                        <center><h4>Denzel Curry</h4></center>
+                    </div>
+                </div>
+                <div class="hover12 col-4">
+                    <figure><img src="https://dmxg5wxfqgb4u.cloudfront.net/styles/background_image_sm/s3/2020-01/UFC-Fight-Night-Auckland-Event-Hero-2020.jpg?h=d1cb525d&itok=J2RTLpW0" class="rounded-6" width="100%" /></figure>
+                    <p class="text-muted">Sports & Outdoors</p>
+                    <center><h4>UFC Fight Night: Felder Vs Hooker</h4></center>
+                </div>
+                <div class="hover12 col-4">
+                    <div>
+                        <figure><img src="https://thetowerlight.com/wp-content/uploads/2018/12/1319_FOB_Mix_Anderson_Paak_A.jpg" class="rounded-6" width="100%" /></figure>
+                        <p class="text-muted">Performances & Nightlife</p>
+                        <center><h4>Anderson.Paak</h4></center>
+                    </div>
+                </div>
+                <p></p>
+            </div>
+            <div class="row">
+                <center><H2 style="margin-top: 15px;">Popular Events</H2></center>
+            </div>
+            <div class="row border-bottom">
+                <div class="hover12 col-4">
+                    <div class="imageborder">
+                        <figure><img src="https://dynamicmedia.livenationinternational.com/Media/m/q/o/75f8c640-9b94-4de4-8854-7ad9d6165cdf.jpeg" class="rounded-6" width="100%" /></figure>
+                        <p class="text-muted">Performances & Nightlife </p>
+                        <center><h4>Denzel Curry</h4></center>
+                    </div>
+                </div>
+                <div class="hover12 col-4">
+                    <figure><img src="https://dmxg5wxfqgb4u.cloudfront.net/styles/background_image_sm/s3/2020-01/UFC-Fight-Night-Auckland-Event-Hero-2020.jpg?h=d1cb525d&itok=J2RTLpW0" class="rounded-6" width="100%" /></figure>
+                    <p class="text-muted">Sports & Outdoors</p>
+                    <center><h4>UFC Fight Night: Felder Vs Hooker</h4></center>
+                </div>
+                <div class="hover12 col-4">
+                    <div>
+                        <figure><img src="https://thetowerlight.com/wp-content/uploads/2018/12/1319_FOB_Mix_Anderson_Paak_A.jpg" class="rounded-6" width="100%" /></figure>
+                        <p class="text-muted">Performances & Nightlife</p>
+                        <center><h4>Anderson.Paak</h4></center>
+                    </div>
+                </div>
+                <p></p>
+            </div>
+            <div class="row">
+                <center><H2 style="margin-top: 15px;">Popular Events</H2></center>
+            </div>
+            <div class="row border-bottom">
+                <div class="hover12 col-4">
+                    <div class="imageborder">
+                        <figure><img src="https://dynamicmedia.livenationinternational.com/Media/m/q/o/75f8c640-9b94-4de4-8854-7ad9d6165cdf.jpeg" class="rounded-6" width="100%" /></figure>
+                        <p class="text-muted">Performances & Nightlife </p>
+                        <center><h4>Denzel Curry</h4></center>
+                    </div>
+                </div>
+                <div class="hover12 col-4">
+                    <figure><img src="https://dmxg5wxfqgb4u.cloudfront.net/styles/background_image_sm/s3/2020-01/UFC-Fight-Night-Auckland-Event-Hero-2020.jpg?h=d1cb525d&itok=J2RTLpW0" class="rounded-6" width="100%" /></figure>
+                    <p class="text-muted">Sports & Outdoors</p>
+                    <center><h4>UFC Fight Night: Felder Vs Hooker</h4></center>
+                </div>
+                <div class="hover12 col-4">
+                    <div>
+                        <figure><img src="https://thetowerlight.com/wp-content/uploads/2018/12/1319_FOB_Mix_Anderson_Paak_A.jpg" class="rounded-6" width="100%" /></figure>
+                        <p class="text-muted">Performances & Nightlife</p>
+                        <center><h4>Anderson.Paak</h4></center>
+                    </div>
+                </div>
+                <p></p>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid border border-light col-4 ">
+        <Center><h2> Latest Events </h2></Center>
+        <Center>
+            <div class="col-12 ">
+                <div class="hover12">
+                    <figure><img src="https://dmxg5wxfqgb4u.cloudfront.net/styles/background_image_sm/s3/2020-01/UFC-Fight-Night-Auckland-Event-Hero-2020.jpg?h=d1cb525d&itok=J2RTLpW0" class="rounded-6" width="100%" /></figure>
+                    <p class="text-muted">Sports & Outdoors</p>
+                    <center><h4>UFC Fight Night: Felder Vs Hooker</h4></center>
+                </div>
+                <div class="hover12">
+                    <figure><img src="https://lwt-live.s3.eu-west-1.amazonaws.com/wp-content/uploads/2023/03/03112533/Ricky-Gervais-London-Palladium-1600x1000-1-1-1600x1000.jpg" class="rounded-6" width="100%" /></figure>
+                    <p class="text-muted">Comedy</p>
+                    <center><h4>Ricky Gervais: Armageddon</h4></center>
+                    <p></p>
+                </div>
+                <div class="hover12">
+                    <figure><img src="https://ourculturemag.com/wp-content/uploads/2023/01/FmIsf66akAADz4t-e1673385058434-696x365.jpeg" width="100%" /></figure>
+                    <p class="text-muted">Festivals and Lifestyles</p>
+                    <center><h4>Coachella 2023</h4></center>
+                    <p></p>
+                </div>
+            </div>
+
+        </Center>
+    </div>
 </div>

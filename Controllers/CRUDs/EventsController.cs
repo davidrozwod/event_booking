@@ -49,8 +49,8 @@ namespace event_booking.Controllers.CRUDs
         // GET: Events/Create
         public IActionResult Create()
         {
-            ViewBag.Organizers = _context.Organizers.ToList();
-            ViewBag.EventCategories = _context.EventCategories.ToList();
+            ViewData["EventCategoryId"] = new SelectList(_context.EventCategories, "EventCategoryId", "EventCategoryId");
+            ViewData["OrganizerId"] = new SelectList(_context.Organizers, "OrganizerId", "OrganizerId");
             return View("~/Views/CRUDs/Events/Create.cshtml");
         }
 
@@ -69,8 +69,8 @@ namespace event_booking.Controllers.CRUDs
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewBag.Organizers = _context.Organizers.ToList();
-            ViewBag.EventCategories = _context.EventCategories.ToList();
+            ViewData["EventCategoryId"] = new SelectList(_context.EventCategories, "EventCategoryId", "EventCategoryId", @event.EventCategoryId);
+            ViewData["OrganizerId"] = new SelectList(_context.Organizers, "OrganizerId", "OrganizerId", @event.OrganizerId);
             return View("~/Views/CRUDs/Events/Create.cshtml", @event);
         }
 
@@ -87,8 +87,8 @@ namespace event_booking.Controllers.CRUDs
             {
                 return NotFound();
             }
-            ViewBag.Organizers = _context.Organizers.ToList();
-            ViewBag.EventCategories = _context.EventCategories.ToList();
+            ViewData["EventCategoryId"] = new SelectList(_context.EventCategories, "EventCategoryId", "EventCategoryId", @event.EventCategoryId);
+            ViewData["OrganizerId"] = new SelectList(_context.Organizers, "OrganizerId", "OrganizerId", @event.OrganizerId);
             return View("~/Views/CRUDs/Events/Edit.cshtml", @event);
         }
 

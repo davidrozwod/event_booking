@@ -1,4 +1,4 @@
-﻿@model event_booking.Models.EventUser
+﻿@model event_booking.Models.ViewModels.ProfileViewModel
 
 @{
     ViewData["Title"] = "Profile";
@@ -156,12 +156,12 @@
         float: right;
         margin-left: 20px;
         border-radius: 50%;
-        height: 150px;
-        width: 150px;
+        height: 170px;
+        width: 170px;
     }
 
     .Profile-Dashboard{
-        height: 200px;
+        height: 240px;
     }
 
     .profile-box {
@@ -229,10 +229,20 @@
                                 <span class="label">ID:</span>
                                 <span class="value">@ViewData["UserId"]</span>
                             </div>
-                            <div class="profile-item">
-                                <span class="label">Email:</span>
-                                <span class="value">@ViewData["Email"]</span>
+
+                            @* Group UserName+Email *@
+                            <div class="profile-row">
+                                <div class="profile-item">
+                                    <span class="label">UserName:</span>
+                                    <span class="value">@ViewData["UserName"]</span>
+                                </div>
+                                <div class="profile-item">
+                                    <span class="label">Email:</span>
+                                    <span class="value">@ViewData["Email"]</span>
+                                </div>
                             </div>
+
+                        @* Group Name+Age+Age Verification *@
                             <div class="profile-row">
                                 <div class="profile-item">
                                     <span class="label">Name:</span>
@@ -240,55 +250,68 @@
                                         @(ViewData["FirstName"] + " " + ViewData["LastName"])
                                     </span>
                                 </div>
-                            <div class="profile-item">
-                                <span class="label">Age:</span>
-                                <span class="value">@ViewData["Age"]</span>
-                            </div>
-                            <div class="profile-item">
-                                <span class="label">Age Verification:</span>
-                                <span class="value">
-                                    @(!string.IsNullOrEmpty(ViewData["Document"]?.ToString()) ? "Provided" : "Not Provided")
-                                </span>
+                                <div class="profile-item">
+                                    <span class="label">Age:</span>
+                                    <span class="value">@ViewData["Age"]</span>
+                                </div>
+                                <div class="profile-item">
+                                    <span class="label">Age Verification:</span>
+                                    <span class="value">
+                                        @(!string.IsNullOrEmpty(ViewData["Document"]?.ToString()) ? "Provided" : "Not Provided")
+                                    </span>
+                                </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
             @* Main content - Edit *@
             <div class="row edit" >
                 <div class="col-md-6">
-                    <form asp-action="Index">
-                        <input type="hidden" asp-for="EventUserId" />
+                    <form asp-action="Index" asp-controller="Profile">
+                        <input type="hidden" asp-for="EventUser.EventUserId" />
 
                         <div class="form-group">
-                            <label asp-for="FirstName" class="control-label"></label>
-                            <input asp-for="FirstName" class="form-control" />
-                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                            <label asp-for="IdentityUser.UserName" class="control-label"></label>
+                            <input asp-for="IdentityUser.UserName" class="form-control" />
+                            <span asp-validation-for="IdentityUser.UserName" class="text-danger"></span>
                         </div>
 
                         <div class="form-group">
-                            <label asp-for="LastName" class="control-label"></label>
-                            <input asp-for="LastName" class="form-control" />
-                            <span asp-validation-for="LastName" class="text-danger"></span>
+                            <label asp-for="IdentityUser.Email" class="control-label"></label>
+                            <input asp-for="IdentityUser.Email" class="form-control" />
+                            <span asp-validation-for="IdentityUser.Email" class="text-danger"></span>
                         </div>
 
                         <div class="form-group">
-                            <label asp-for="Age" class="control-label"></label>
-                            <input asp-for="Age" class="form-control" />
-                            <span asp-validation-for="Age" class="text-danger"></span>
+                            <label asp-for="EventUser.FirstName" class="control-label"></label>
+                            <input asp-for="EventUser.FirstName" class="form-control" />
+                            <span asp-validation-for="EventUser.FirstName" class="text-danger"></span>
                         </div>
 
                         <div class="form-group">
-                            <label asp-for="Picture" class="control-label"></label>
-                            <input asp-for="Picture" class="form-control" />
-                            <span asp-validation-for="Picture" class="text-danger"></span>
+                            <label asp-for="EventUser.LastName" class="control-label"></label>
+                            <input asp-for="EventUser.LastName" class="form-control" />
+                            <span asp-validation-for="EventUser.LastName" class="text-danger"></span>
                         </div>
 
                         <div class="form-group">
-                            <label asp-for="Document" class="control-label"></label>
-                            <input asp-for="Document" class="form-control" />
-                            <span asp-validation-for="Document" class="text-danger"></span>
+                            <label asp-for="EventUser.Age" class="control-label"></label>
+                            <input asp-for="EventUser.Age" class="form-control" />
+                            <span asp-validation-for="EventUser.Age" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="EventUser.Picture" class="control-label"></label>
+                            <input asp-for="EventUser.Picture" class="form-control" />
+                            <span asp-validation-for="EventUser.Picture" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="EventUser.Document" class="control-label"></label>
+                            <input asp-for="EventUser.Document" class="form-control" />
+                            <span asp-validation-for="EventUser.Document" class="text-danger"></span>
                         </div>
 
                         <div class="form-group">
@@ -299,7 +322,6 @@
             </div>
         </div>
     </div>
-
 
 </body>
 

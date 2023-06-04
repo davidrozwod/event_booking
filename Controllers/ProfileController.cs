@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using event_booking.Data;
 using event_booking.Models;
+using event_booking.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
 
 namespace event_booking.Controllers
@@ -41,19 +42,31 @@ namespace event_booking.Controllers
             ViewData["ProfilePicture"] = eventUser.Picture;
             ViewData["UserId"] = user.Id;
             ViewData["Email"] = user.Email;
+            ViewData["UserName"] = user.UserName;
             ViewData["FirstName"] = eventUser.FirstName;
             ViewData["LastName"] = eventUser.LastName;
             ViewData["Age"] = eventUser.Age;
             ViewData["Document"] = eventUser.Document;
 
-            return View("~/Views/Home/Profile.cshtml", eventUser);
+            //
+            var profileViewModel = new ProfileViewModel
+            {
+                EventUser = eventUser,
+                IdentityUser = user
+            };
+
+            return View("~/Views/Home/Profile.cshtml", profileViewModel);
         }
 
         // POST: EventUser/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Index([Bind("EventUserId,FirstName,LastName,Age,Picture,Document")] EventUser eventUser)
+        public async Task<IActionResult> Index(ProfileViewModel profileViewModel)
         {
+            // Get the EventUser from the view model
+            var eventUser = profileViewModel.EventUser;
+
+            //Updates the event users information
             if (ModelState.IsValid)
             {
                 try
@@ -72,10 +85,48 @@ namespace event_booking.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
             }
-            return View("~/Views/Home/Profile.cshtml", eventUser);
+
+            // Update the IdentityUser properties separately
+            var identityUser = await _userManager.FindByIdAsync(eventUser.EventUserId);
+            if (identityUser != null)
+            {
+                identityUser.Email = profileViewModel.IdentityUser.Email;
+                identityUser.UserName = profileViewModel.IdentityUser.UserName;
+                await _userManager.UpdateAsync(identityUser);
+            }
+
+
+            return View("~/Views/Home/Profile.cshtml", profileViewModel);
         }
+
+        // POST: EventUser/Delete
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var eventUser = await _context.EventUsers.FirstOrDefaultAsync(e => e.EventUserId == user.Id);
+            if (eventUser == null)
+            {
+                return NotFound();
+            }
+
+            _context.EventUsers.Remove(eventUser);
+            await _context.SaveChangesAsync();
+
+            await _userManager.DeleteAsync(user);
+
+            // Account deletion successful
+            // You can perform additional actions or redirect to another page
+            return RedirectToAction("Index", "Home");
+        }
+
 
         private bool EventUserExists(string id)
         {

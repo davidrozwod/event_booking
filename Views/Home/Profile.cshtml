@@ -1,9 +1,11 @@
-﻿@*@model EventUser*@
+﻿@model event_booking.Models.ViewModels.ProfileViewModel
 
 @{
     ViewData["Title"] = "Profile";
+    var profilePicture = ViewData["ProfilePicture"] as string;
 }
 
+@* Page Customization *@
 <style>
     * {
         margin: 0;
@@ -97,6 +99,7 @@
     }
 </style>
 
+@* Pop ups *@
 <style>
     .popup {
         position: relative;
@@ -147,6 +150,48 @@
 
 </style>
 
+@* Profile Customization *@
+<style >
+    .profile-picture {
+        float: right;
+        margin-left: 20px;
+        border-radius: 50%;
+        height: 170px;
+        width: 170px;
+    }
+
+    .Profile-Dashboard{
+        height: 240px;
+    }
+
+    .profile-box {
+        background-color: #6c629c;
+        padding: -40px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-row {
+        display: flex;
+    }
+
+    .profile-item {
+        margin-right: 20px;
+    }
+
+    .profile-item:last-child {
+        margin-right: 0;
+    }
+
+    .label, .value {
+        color: white; /* Set the text color to white */
+    }
+
+    .edit {
+        padding: 20px;
+    }
+</style>
+
 <script>
     function myFunction() {
         var popup = document.getElementById("myPopup");
@@ -155,71 +200,180 @@
 </script>
 
 <body>
-
     <div class="wrapper">
         <div class="sidebar">
             <h2>Eventful</h2>
             <ul>
                 <li><img src="https://icon-library.com/images/dashboard-icon-vector/dashboard-icon-vector-2.jpg" /> <a asp-controller="Home" asp-action="PromoterArea"> Dashboard</a></li>
-                <li><img src="https://www.freeiconspng.com/thumbs/profile-icon-png/profile-icon-person-user-19.png" /> <a asp-controller="Home" asp-action="Profile"> Profile</a></li>
+                <li><img src="https://www.freeiconspng.com/thumbs/profile-icon-png/profile-icon-person-user-19.png" /> <a asp-controller="Profile" asp-action="Index"> Profile</a></li>
                 <li><img src="https://img.uxwing.com/wp-content/themes/uxwing/download/seo-marketing/announcement-icon.png" /> <a asp-controller="Home" asp-action="Events"> Events</a></li>
                 <li><img src="https://cdn-icons-png.flaticon.com/512/55/55281.png" /> <a asp-controller="Home" asp-action="Booking"> Bookings</a></li>
-                <li><img src="https://cdn.onlinewebfonts.com/svg/img_387338.png" /> <a asp-controller="Home" asp-action="Reviews"> Reviews</a></li>
+                <li><img src="https://cdn.onlinewebfonts.com/svg/img_387338.png" /> <a asp-controller="Home" asp-action="Review"> Reviews</a></li>
                 <li><img src="https://cdn-icons-png.flaticon.com/512/3239/3239958.png" /><div class="popup" onclick="myFunction()"> Notifications<span class="popuptext" id="myPopup">A Notification</span></div></li>
+                <li><img src="https://icon-library.com/images/settings-wheel-icon/settings-wheel-icon-14.jpg" /> <a asp-controller="Home" asp-action="CRUDs"> CRUDs</a></li>
                 <li><img src="https://cdn.icon-icons.com/icons2/2518/PNG/512/logout_icon_151219.png" /> <a asp-area="Identity" asp-page="/Account/Logout"> Logout</a></li>
             </ul>
         </div>
-        <div class="main_content">
-            <div class="header">Welcome to the Admin Dashboard</div>
-            <div class="info">
-                <center><h3>Update your Admin Profile</h3></center>
-                <div class="col-md">
-                    <div class="form-floating">
-                        <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
-                        <label for="floatingInputGrid">First Name</label>
+            <div class="main_content">
+            @* Admin Dashboard with Profile Viewer *@
+                <div class="header Profile-Dashboard">Welcome to the Admin Dashboard
+                    @if (!string.IsNullOrEmpty(profilePicture))
+                    {
+                        <img src="@profilePicture" alt="Profile Picture" class="profile-picture" />
+                    }
+
+                    <div class="profile-box">
+                            @* ID *@
+                        <div class="info">
+                            <div class="profile-item">
+                                <span class="label">ID:</span>
+                                <span class="value">@ViewData["UserId"]</span>
+                            </div>
+
+                        @* Group 1 *@
+                            <div class="profile-row">
+                            @* UserName *@
+                                <div class="profile-item">
+                                    <span class="label">UserName:</span>
+                                    <span class="value">@ViewData["UserName"]</span>
+                                </div>
+                            @* Email *@
+                                <div class="profile-item">
+                                    <span class="label">Email:</span>
+                                    <span class="value">@ViewData["Email"]</span>
+                                </div>
+                            </div>
+
+                        @* Group 2 *@
+                            <div class="profile-row">
+                            @* Name *@
+                                <div class="profile-item">
+                                    <span class="label">Name:</span>
+                                    <span class="value">
+                                        @(ViewData["FirstName"] + " " + ViewData["LastName"])
+                                    </span>
+                                </div>
+                            @* Age *@
+                                <div class="profile-item">
+                                    <span class="label">Age:</span>
+                                    <span class="value">@ViewData["Age"]</span>
+                                </div>
+                            @* Age Verification *@
+                                <div class="profile-item">
+                                    <span class="label">Age Verification:</span>
+                                    <span class="value">
+                                        @(!string.IsNullOrEmpty(ViewData["Document"]?.ToString()) ? "Provided" : "Not Provided")
+                                    </span>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md">
-                    <div class="form-floating">
-                        <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
-                        <label for="floatingInputGrid">Last Name</label>
+
+            @* Main content - Edit *@
+            <div class="row edit" >
+                <div class="col-md-6">
+                    <form asp-action="Index" asp-controller="Profile">
+                        <input type="hidden" asp-for="EventUser.EventUserId" />
+
+                        @* UserName *@
+                        <div class="form-group">
+                            <label asp-for="EventUser.UserName" class="control-label"></label>
+                            <input asp-for="EventUser.UserName" class="form-control" />
+                            <span asp-validation-for="EventUser.UserName" class="text-danger"></span>
+                        </div>
+
+                        @* Email *@
+                        <div class="form-group">
+                            <label asp-for="IdentityUser.Email" class="control-label"></label>
+                            <input asp-for="IdentityUser.Email" class="form-control" />
+                            <span asp-validation-for="IdentityUser.Email" class="text-danger"></span>
+                        </div>
+
+                        @* FirstName *@
+                        <div class="form-group">
+                            <label asp-for="EventUser.FirstName" class="control-label"></label>
+                            <input asp-for="EventUser.FirstName" class="form-control" />
+                            <span asp-validation-for="EventUser.FirstName" class="text-danger"></span>
+                        </div>
+
+                        @* LastName *@
+                        <div class="form-group">
+                            <label asp-for="EventUser.LastName" class="control-label"></label>
+                            <input asp-for="EventUser.LastName" class="form-control" />
+                            <span asp-validation-for="EventUser.LastName" class="text-danger"></span>
+                        </div>
+
+                        @* Age *@
+                        <div class="form-group">
+                            <label asp-for="EventUser.Age" class="control-label"></label>
+                            <input asp-for="EventUser.Age" class="form-control" />
+                            <span asp-validation-for="EventUser.Age" class="text-danger"></span>
+                        </div>
+
+                        @* Picture *@
+                        <div class="form-group">
+                            <label asp-for="EventUser.Picture" class="control-label"></label>
+                            <input asp-for="EventUser.Picture" class="form-control" />
+                            <span asp-validation-for="EventUser.Picture" class="text-danger"></span>
+                        </div>
+
+                        @* Document *@
+                        <div class="form-group">
+                            <label asp-for="EventUser.Document" class="control-label"></label>
+                            <input asp-for="EventUser.Document" class="form-control" />
+                            <span asp-validation-for="EventUser.Document" class="text-danger"></span>
+                        </div>
+
+                        <div class="mt-3 d-flex justify-content-between">
+                            @* Save Button *@
+                            <div class="form-group">
+                                <input type="submit" value="Save" class="btn btn-primary" />
+                            </div>
+
+                            
+                        </div>
+
+
+                    </form>
+
+                    @* Delete Button - Goes to Modal first *@
+                    <div class="form-group">
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
                     </div>
-                </div>
-            <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" />
-                <label for="floatingInputGrid">Email</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" />
-                <label for="floatingInputGrid">Phone Number</label>
-            </div>
-                <div class="col-md">
-                    <div class="form-floating">
-                        <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
-                        <label for="floatingInputGrid">Password</label>
+
+                    @* Delete Confirmation Modal *@
+                    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to delete your account? This action cannot be undone.
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <form action="@Url.Action("Delete", "Profile")" method="post">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
-            </div>
-            <div>
-                <button id="login-submit" type="submit" class="w-100 btn btn-sm btn-primary">Update</button>
             </div>
         </div>
     </div>
 
-    @*<form asp-action="UpdateProfile" asp-controller="Profile" method="post">
-        <!-- Your existing form fields go here -->
-
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="floatingPictureUrl" name="pictureUrl" placeholder="URL of your picture">
-            <label for="floatingPictureUrl">Picture URL</label>
-        </div>
-
-        <button id="login-submit" type="submit" class="w-100 btn btn-sm btn-primary">Update</button>
-    </form>
-    @if (!string.IsNullOrWhiteSpace(Model.Picture))
-    {
-        <img src="@Model.Picture" alt="User's picture">
-    }*@
 </body>
 
-
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

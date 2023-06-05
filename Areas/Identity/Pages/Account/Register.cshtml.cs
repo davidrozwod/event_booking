@@ -176,6 +176,7 @@ namespace event_booking.Areas.Identity.Pages.Account
                         throw new NotSupportedException("Please enter a user role");
                     }
 
+                    // Add the user to the EventUser table
                     var eventUser = new EventUser
                     {
                         EventUserId = user.Id, // Use the Id of the newly created IdentityUser
@@ -192,6 +193,7 @@ namespace event_booking.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
 
+                    // Email confirmation
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 

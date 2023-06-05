@@ -96,6 +96,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxEYW5jZUVsZWN0cm9uaWMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/GitHub stuff/Event-Booking/Views/Home/EventPage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFdmVudFBhZ2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/GitHub stuff/Event-Booking/Views/Home/FairsAndFestivals.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxGYWlyc0FuZEZlc3RpdmFscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

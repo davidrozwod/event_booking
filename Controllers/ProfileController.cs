@@ -81,6 +81,9 @@ namespace event_booking.Controllers
                     eventUser.Document = memoryStream.ToArray();
                 }
             }
+            else
+                ModelState.Remove("Document");
+
 
             //Updates the event users information
             if (ModelState.IsValid)

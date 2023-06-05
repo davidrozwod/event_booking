@@ -8,25 +8,38 @@ using Microsoft.EntityFrameworkCore;
 using event_booking.Data;
 using event_booking.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace event_booking.Controllers.CRUDs
 {
     public class GroupDiscountsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public GroupDiscountsController(ApplicationDbContext context)
+        public GroupDiscountsController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
+
         }
 
         // GET: GroupDiscounts
         [Authorize]
         public async Task<IActionResult> Index()
         {
-              return _context.GroupDiscounts != null ? 
+            var currentUser = await _userManager.GetUserAsync(User);
+            if (currentUser != null && User.IsInRole("Admin"))
+            {
+                return _context.GroupDiscounts != null ?
                           View("~/Views/CRUDs/GroupDiscounts/Index.cshtml", await _context.GroupDiscounts.ToListAsync()) :
                           Problem("Entity set 'ApplicationDbContext.GroupDiscounts'  is null.");
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Access restricted to admin accounts.";
+                return Redirect("/Identity/Account/Login");
+            }
         }
 
         // GET: GroupDiscounts/Details/5

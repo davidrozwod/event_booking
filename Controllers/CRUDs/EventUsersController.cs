@@ -27,8 +27,18 @@ namespace event_booking.Controllers.CRUDs
         [Authorize]
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.EventUsers.Include(e => e.IdentityUser);
-            return View("~/Views/CRUDs/EventUsers/Index.cshtml", await applicationDbContext.ToListAsync());
+            var currentUser = await _userManager.GetUserAsync(User);
+            if (currentUser != null && User.IsInRole("Admin"))
+            {
+                var applicationDbContext = _context.EventUsers.Include(e => e.IdentityUser);
+                return View("~/Views/CRUDs/EventUsers/Index.cshtml", await applicationDbContext.ToListAsync());
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Access restricted to admin accounts.";
+                return Redirect("/Identity/Account/Login");
+            }
+
         }
 
         // GET: EventUsers/Details/5

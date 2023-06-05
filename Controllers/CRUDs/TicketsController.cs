@@ -8,24 +8,37 @@ using Microsoft.EntityFrameworkCore;
 using event_booking.Data;
 using event_booking.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace event_booking.Controllers.CRUDs
 {
     public class TicketsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public TicketsController(ApplicationDbContext context)
+        public TicketsController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Tickets
         [Authorize]
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Tickets.Include(t => t.Discount).Include(t => t.Event).Include(t => t.EventUser).Include(t => t.Purchase).Include(t => t.Seat).Include(t => t.TicketType).Include(t => t.Venue);
-            return View("~/Views/CRUDs/Tickets/Index.cshtml", await applicationDbContext.ToListAsync());
+            var currentUser = await _userManager.GetUserAsync(User);
+
+            if (currentUser != null && User.IsInRole("Admin"))
+            {
+                var applicationDbContext = _context.Tickets.Include(t => t.Discount).Include(t => t.Event).Include(t => t.EventUser).Include(t => t.Purchase).Include(t => t.Seat).Include(t => t.TicketType).Include(t => t.Venue);
+                return View("~/Views/CRUDs/Tickets/Index.cshtml", await applicationDbContext.ToListAsync());
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Access restricted to admin accounts.";
+                return Redirect("/Identity/Account/Login");
+            }
         }
 
         // GET: Tickets/Details/5

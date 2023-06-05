@@ -8,24 +8,36 @@ using Microsoft.EntityFrameworkCore;
 using event_booking.Data;
 using event_booking.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace event_booking.Controllers.CRUDs
 {
     public class LoyaltysController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public LoyaltysController(ApplicationDbContext context)
+        public LoyaltysController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Loyaltys
         [Authorize]
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Loyalties.Include(l => l.EventUser);
-            return View("~/Views/CRUDs/Loyaltys/Index.cshtml", await applicationDbContext.ToListAsync());
+            var currentUser = await _userManager.GetUserAsync(User);
+            if (currentUser != null && User.IsInRole("Admin"))
+            {
+                var applicationDbContext = _context.Loyalties.Include(l => l.EventUser);
+                return View("~/Views/CRUDs/Loyaltys/Index.cshtml", await applicationDbContext.ToListAsync());
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Access restricted to admin accounts.";
+                return Redirect("/Identity/Account/Login");
+            }
         }
 
         // GET: Loyaltys/Details/5

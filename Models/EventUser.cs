@@ -17,6 +17,10 @@ public partial class EventUser
 
     [StringLength(50)]
     [Unicode(false)]
+    public string? UserName { get; set; }
+
+    [StringLength(50)]
+    [Unicode(false)]
     public string FirstName { get; set; } = null!;
 
     [StringLength(50)]

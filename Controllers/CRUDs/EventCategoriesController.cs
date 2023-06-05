@@ -8,25 +8,38 @@ using Microsoft.EntityFrameworkCore;
 using event_booking.Data;
 using event_booking.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace event_booking.Controllers.CRUDs
 {
     public class EventCategoriesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public EventCategoriesController(ApplicationDbContext context)
+        public EventCategoriesController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         [Authorize]
         // GET: EventCategories
         public async Task<IActionResult> Index()
         {
-              return _context.EventCategories != null ? 
+            var currentUser = await _userManager.GetUserAsync(User);
+            if (currentUser != null && User.IsInRole("Admin"))
+            {
+                return _context.EventCategories != null ?
                           View("~/Views/CRUDs/EventCategories/Index.cshtml", await _context.EventCategories.ToListAsync()) :
                           Problem("Entity set 'ApplicationDbContext.EventCategories'  is null.");
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Access restricted to admin accounts.";
+                return Redirect("/Identity/Account/Login");
+            }
+
         }
 
         // GET: EventCategories/Details/5

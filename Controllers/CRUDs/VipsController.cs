@@ -8,24 +8,38 @@ using Microsoft.EntityFrameworkCore;
 using event_booking.Data;
 using event_booking.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace event_booking.Controllers.CRUDs
 {
     public class VipsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public VipsController(ApplicationDbContext context)
+        public VipsController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
+
         }
 
         // GET: Vips
         [Authorize]
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Vips.Include(v => v.Event);
-            return View("~/Views/CRUDs/Vips/Index.cshtml", await applicationDbContext.ToListAsync());
+            var currentUser = await _userManager.GetUserAsync(User);
+
+            if (currentUser != null && User.IsInRole("Admin"))
+            {
+                var applicationDbContext = _context.Vips.Include(v => v.Event);
+                return View("~/Views/CRUDs/Vips/Index.cshtml", await applicationDbContext.ToListAsync());
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Access restricted to admin accounts.";
+                return Redirect("/Identity/Account/Login");
+            }
         }
 
 

@@ -8,25 +8,38 @@ using Microsoft.EntityFrameworkCore;
 using event_booking.Data;
 using event_booking.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace event_booking.Controllers.CRUDs
 {
     public class OrganizerCategoriesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public OrganizerCategoriesController(ApplicationDbContext context)
+        public OrganizerCategoriesController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: OrganizerCategories
         [Authorize]
         public async Task<IActionResult> Index()
         {
-              return _context.OrganizerCategories != null ? 
-                          View("~/Views/CRUDs/OrganizerCategories/Index.cshtml", await _context.OrganizerCategories.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.OrganizerCategories'  is null.");
+            var currentUser = await _userManager.GetUserAsync(User);
+            if (currentUser != null && User.IsInRole("Admin"))
+            {
+                
+                return _context.OrganizerCategories != null ?
+                              View("~/Views/CRUDs/OrganizerCategories/Index.cshtml", await _context.OrganizerCategories.ToListAsync()) :
+                              Problem("Entity set 'ApplicationDbContext.OrganizerCategories'  is null.");
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Access restricted to admin accounts.";
+                return Redirect("/Identity/Account/Login");
+            }
         }
 
         // GET: OrganizerCategories/Details/5

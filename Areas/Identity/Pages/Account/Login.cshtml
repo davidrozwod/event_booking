@@ -4,7 +4,10 @@
 @{
     ViewData["Title"] = "Welcome";
 }
-
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
 <style>
     h2 {
         color: indigo;

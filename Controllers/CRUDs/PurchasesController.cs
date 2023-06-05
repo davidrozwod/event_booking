@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using event_booking.Data;
 using event_booking.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace event_booking.Controllers.CRUDs
 {
@@ -20,6 +21,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: Purchases
+        [Authorize]
         public async Task<IActionResult> Index()
         {
               return _context.Purchases != null ? 
@@ -28,6 +30,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: Purchases/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Purchases == null)
@@ -46,6 +49,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: Purchases/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View("~/Views/CRUDs/Purchases/Create.cshtml");
@@ -56,6 +60,7 @@ namespace event_booking.Controllers.CRUDs
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("PurchaseId")] Purchase purchase)
         {
             if (ModelState.IsValid)
@@ -68,6 +73,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: Purchases/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Purchases == null)
@@ -88,6 +94,7 @@ namespace event_booking.Controllers.CRUDs
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("PurchaseId")] Purchase purchase)
         {
             if (id != purchase.PurchaseId)
@@ -119,6 +126,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: Purchases/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Purchases == null)
@@ -139,6 +147,7 @@ namespace event_booking.Controllers.CRUDs
         // POST: Purchases/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Purchases == null)
@@ -155,6 +164,7 @@ namespace event_booking.Controllers.CRUDs
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize]
         private bool PurchaseExists(int id)
         {
           return (_context.Purchases?.Any(e => e.PurchaseId == id)).GetValueOrDefault();

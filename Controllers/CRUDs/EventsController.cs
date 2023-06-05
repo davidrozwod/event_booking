@@ -25,6 +25,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: Events
+        [Authorize]
         public async Task<IActionResult> Index()
         {
 
@@ -42,6 +43,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: Events/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Events == null)
@@ -62,6 +64,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: Events/Create
+        [Authorize]
         public IActionResult Create()
         {
             ViewBag.Organizers = _context.Organizers.ToList();
@@ -97,6 +100,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: Events/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Events == null)
@@ -119,6 +123,7 @@ namespace event_booking.Controllers.CRUDs
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("EventId,OrganizerId,EventCategoryId,Name,Description,StartDateTime,EndDateTime,Image,EarlyBirdCutoff")] Event @event)
         {
             if (id != @event.EventId)
@@ -154,6 +159,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: Events/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Events == null)
@@ -176,6 +182,7 @@ namespace event_booking.Controllers.CRUDs
         // POST: Events/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Events == null)
@@ -192,6 +199,7 @@ namespace event_booking.Controllers.CRUDs
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize]
         private bool EventExists(int id)
         {
           return (_context.Events?.Any(e => e.EventId == id)).GetValueOrDefault();

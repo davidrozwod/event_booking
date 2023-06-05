@@ -35,6 +35,8 @@ public partial class EventUser
 
     public byte[]? Document { get; set; }
 
+    public string? DocumentFileName { get; set; }
+
     //IdentityUser Relationship
     public virtual IdentityUser? IdentityUser { get; set; } // is the navigation property that points to the associated IdentityUser
 

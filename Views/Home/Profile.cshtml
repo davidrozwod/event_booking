@@ -274,7 +274,7 @@
             @* Main content - Edit *@
             <div class="row edit" >
                 <div class="col-md-6">
-                    <form asp-action="Index" asp-controller="Profile">
+                    <form asp-action="Index" asp-controller="Profile" enctype="multipart/form-data">
                         <input type="hidden" asp-for="EventUser.EventUserId" />
 
                         @* UserName *@
@@ -322,10 +322,11 @@
                         @* Document *@
                         <div class="form-group">
                             <label asp-for="EventUser.Document" class="control-label"></label>
-                            <input asp-for="EventUser.Document" class="form-control" />
+                            <input type="file" name="EventUser.Document" class="form-control-file" />
                             <span asp-validation-for="EventUser.Document" class="text-danger"></span>
                         </div>
 
+                        @* NOTICE: The two div errors a false positives. They are link, but the technique used isnt recognized *@
                         <div class="mt-3 d-flex justify-content-between">
                             @* Save Button *@
                             <div class="form-group">

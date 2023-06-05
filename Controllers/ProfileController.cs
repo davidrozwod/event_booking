@@ -67,10 +67,20 @@ namespace event_booking.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> Index(ProfileViewModel profileViewModel)
+        public async Task<IActionResult> Index(ProfileViewModel profileViewModel, IFormFile document)
         {
             // Get the EventUser from the view model
             var eventUser = profileViewModel.EventUser;
+
+            // Upload the document
+            if (document != null && document.Length > 0)
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    await document.CopyToAsync(memoryStream);
+                    eventUser.Document = memoryStream.ToArray();
+                }
+            }
 
             //Updates the event users information
             if (ModelState.IsValid)

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using event_booking.Data;
 using event_booking.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace event_booking.Controllers.CRUDs
 {
@@ -20,6 +21,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: Loyaltys
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Loyalties.Include(l => l.EventUser);
@@ -27,6 +29,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: Loyaltys/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(string id)
         {
             if (id == null || _context.Loyalties == null)
@@ -45,6 +48,7 @@ namespace event_booking.Controllers.CRUDs
             return View("~/Views/CRUDs/Loyaltys/Details.cshtml", loyalty);
         }
 
+        [Authorize]
         // GET: Loyaltys/Create
         public IActionResult Create()
         {
@@ -57,6 +61,7 @@ namespace event_booking.Controllers.CRUDs
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("EventUserId,TicketCount,PriceMultiplier")] Loyalty loyalty)
         {
             ModelState.Remove("EventUser");
@@ -70,6 +75,7 @@ namespace event_booking.Controllers.CRUDs
             return View("~/Views/CRUDs/Loyaltys/Create.cshtml", loyalty);
         }
 
+        [Authorize]
         // GET: Loyaltys/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
@@ -92,6 +98,7 @@ namespace event_booking.Controllers.CRUDs
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(string id, [Bind("EventUserId,TicketCount,PriceMultiplier")] Loyalty loyalty)
         {
             if (id != loyalty.EventUserId)
@@ -125,6 +132,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: Loyaltys/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null || _context.Loyalties == null)
@@ -146,6 +154,7 @@ namespace event_booking.Controllers.CRUDs
         // POST: Loyaltys/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
             if (_context.Loyalties == null)
@@ -162,6 +171,7 @@ namespace event_booking.Controllers.CRUDs
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize]
         private bool LoyaltyExists(string id)
         {
           return (_context.Loyalties?.Any(e => e.EventUserId == id)).GetValueOrDefault();

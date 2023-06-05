@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using event_booking.Data;
 using event_booking.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace event_booking.Controllers.CRUDs
 {
@@ -20,13 +21,16 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: Vips
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Vips.Include(v => v.Event);
             return View("~/Views/CRUDs/Vips/Index.cshtml", await applicationDbContext.ToListAsync());
         }
 
+
         // GET: Vips/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Vips == null)
@@ -46,6 +50,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: Vips/Create
+        [Authorize]
         public IActionResult Create()
         {
             ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventId");
@@ -57,6 +62,7 @@ namespace event_booking.Controllers.CRUDs
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("VipId,EventId,VipName,Description,VipPrice")] Vip vip)
         {
             ModelState.Remove("Event");
@@ -71,6 +77,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: Vips/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Vips == null)
@@ -92,6 +99,7 @@ namespace event_booking.Controllers.CRUDs
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("VipId,EventId,VipName,Description,VipPrice")] Vip vip)
         {
             if (id != vip.VipId)
@@ -125,6 +133,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: Vips/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Vips == null)
@@ -146,6 +155,7 @@ namespace event_booking.Controllers.CRUDs
         // POST: Vips/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Vips == null)
@@ -162,6 +172,7 @@ namespace event_booking.Controllers.CRUDs
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize]
         private bool VipExists(int id)
         {
           return (_context.Vips?.Any(e => e.VipId == id)).GetValueOrDefault();

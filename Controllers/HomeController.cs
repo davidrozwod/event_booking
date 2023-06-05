@@ -81,26 +81,31 @@ namespace event_booking.Controllers
         {
             return View();
         }
+        [Authorize]
         public IActionResult Profile()
         {
             return View();
         }
 
+        [Authorize]
         public IActionResult Booking()
         {
             return View();
         }
 
+        [Authorize]
         public IActionResult Events()
         {
             return View();
         }
 
+        [Authorize]
         public IActionResult Review()
         {
             return View();
         }
 
+        [Authorize]
         public IActionResult CRUDs()
         {
             return View();

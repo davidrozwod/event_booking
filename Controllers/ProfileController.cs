@@ -7,6 +7,7 @@ using event_booking.Data;
 using event_booking.Models;
 using event_booking.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication;
 
 namespace event_booking.Controllers
 {
@@ -14,11 +15,13 @@ namespace event_booking.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
 
-        public ProfileController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
+        public ProfileController(ApplicationDbContext context, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
         {
             _context = context;
             _userManager = userManager;
+            _signInManager = signInManager;
         }
 
         // GET: EventUser
@@ -42,7 +45,7 @@ namespace event_booking.Controllers
             ViewData["ProfilePicture"] = eventUser.Picture;
             ViewData["UserId"] = user.Id;
             ViewData["Email"] = user.Email;
-            ViewData["UserName"] = user.UserName;
+            ViewData["UserName"] = eventUser.UserName;
             ViewData["FirstName"] = eventUser.FirstName;
             ViewData["LastName"] = eventUser.LastName;
             ViewData["Age"] = eventUser.Age;
@@ -92,7 +95,7 @@ namespace event_booking.Controllers
             if (identityUser != null)
             {
                 identityUser.Email = profileViewModel.IdentityUser.Email;
-                identityUser.UserName = profileViewModel.IdentityUser.UserName;
+                identityUser.UserName = profileViewModel.IdentityUser.Email;
                 await _userManager.UpdateAsync(identityUser);
             }
 
@@ -121,6 +124,9 @@ namespace event_booking.Controllers
             await _context.SaveChangesAsync();
 
             await _userManager.DeleteAsync(user);
+
+            // Log out the user
+            await _signInManager.SignOutAsync();
 
             // Account deletion successful
             // You can perform additional actions or redirect to another page

@@ -56,6 +56,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/GitHub stuff/Event-Booking/Views/Home/AlternativeRock.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBbHRlcm5hdGl2ZVJvY2suY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/GitHub stuff/Event-Booking/Views/Home/FamilyAndEducation.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxGYW1pbHlBbmRFZHVjYXRpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

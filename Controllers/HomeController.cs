@@ -1,4 +1,5 @@
 ﻿using event_booking.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -75,30 +76,36 @@ namespace event_booking.Controllers
             return View();
         }
 
+        [Authorize]
         public IActionResult PromoterArea()
         {
             return View();
         }
+        [Authorize]
         public IActionResult Profile()
         {
             return View();
         }
 
+        [Authorize]
         public IActionResult Booking()
         {
             return View();
         }
 
+        [Authorize]
         public IActionResult Events()
         {
             return View();
         }
 
+        [Authorize]
         public IActionResult Review()
         {
             return View();
         }
 
+        [Authorize]
         public IActionResult CRUDs()
         {
             return View();

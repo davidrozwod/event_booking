@@ -7,26 +7,43 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using event_booking.Data;
 using event_booking.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace event_booking.Controllers.CRUDs
 {
     public class EventsController : Controller
     {
         private readonly ApplicationDbContext _context;
-
-        public EventsController(ApplicationDbContext context)
+        private readonly UserManager<IdentityUser> _userManager;
+        public EventsController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
+
         }
 
         // GET: Events
+        [Authorize]
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Events.Include(e => e.EventCategory).Include(f => f.Organizer);
-            return View("~/Views/CRUDs/Events/Index.cshtml", await applicationDbContext.ToListAsync());
+
+            var currentUser = await _userManager.GetUserAsync(User);
+
+            if (currentUser != null)
+            {
+                var applicationDbContext = _context.Events.Include(e => e.EventCategory).Include(f => f.Organizer).Where(e => e.CreatedByUserId == currentUser.Id);
+                return View("~/Views/CRUDs/Events/Index.cshtml", await applicationDbContext.ToListAsync());
+            }
+            else 
+            {
+                return Redirect("/Identity/Account/Login");
+            }
         }
 
         // GET: Events/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Events == null)
@@ -47,10 +64,11 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: Events/Create
+        [Authorize]
         public IActionResult Create()
         {
-            ViewData["EventCategoryId"] = new SelectList(_context.EventCategories, "EventCategoryId", "EventCategoryId");
-            ViewData["OrganizerId"] = new SelectList(_context.Organizers, "OrganizerId", "OrganizerId");
+            ViewBag.Organizers = _context.Organizers.ToList();
+            ViewBag.EventCategories = _context.EventCategories.ToList();
             return View("~/Views/CRUDs/Events/Create.cshtml");
         }
 
@@ -59,22 +77,30 @@ namespace event_booking.Controllers.CRUDs
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("EventId,OrganizerId,EventCategoryId,Name,Description,StartDateTime,EndDateTime,Image,EarlyBirdCutoff")] Event @event)
         {
             ModelState.Remove("Organizer");
             ModelState.Remove("EventCategory");
             if (ModelState.IsValid)
             {
-                _context.Add(@event);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                var currentUser = await _userManager.GetUserAsync(User);
+
+                if (currentUser != null)
+                {
+                    @event.CreatedByUserId = currentUser.Id;
+                    _context.Add(@event);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
             }
-            ViewData["EventCategoryId"] = new SelectList(_context.EventCategories, "EventCategoryId", "EventCategoryId", @event.EventCategoryId);
-            ViewData["OrganizerId"] = new SelectList(_context.Organizers, "OrganizerId", "OrganizerId", @event.OrganizerId);
+            ViewBag.Organizers = _context.Organizers.ToList();
+            ViewBag.EventCategories = _context.EventCategories.ToList();
             return View("~/Views/CRUDs/Events/Create.cshtml", @event);
         }
 
         // GET: Events/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Events == null)
@@ -87,8 +113,8 @@ namespace event_booking.Controllers.CRUDs
             {
                 return NotFound();
             }
-            ViewData["EventCategoryId"] = new SelectList(_context.EventCategories, "EventCategoryId", "EventCategoryId", @event.EventCategoryId);
-            ViewData["OrganizerId"] = new SelectList(_context.Organizers, "OrganizerId", "OrganizerId", @event.OrganizerId);
+            ViewBag.Organizers = _context.Organizers.ToList();
+            ViewBag.EventCategories = _context.EventCategories.ToList();
             return View("~/Views/CRUDs/Events/Edit.cshtml", @event);
         }
 
@@ -97,6 +123,7 @@ namespace event_booking.Controllers.CRUDs
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("EventId,OrganizerId,EventCategoryId,Name,Description,StartDateTime,EndDateTime,Image,EarlyBirdCutoff")] Event @event)
         {
             if (id != @event.EventId)
@@ -132,6 +159,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: Events/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Events == null)
@@ -154,6 +182,7 @@ namespace event_booking.Controllers.CRUDs
         // POST: Events/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Events == null)
@@ -170,6 +199,7 @@ namespace event_booking.Controllers.CRUDs
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize]
         private bool EventExists(int id)
         {
           return (_context.Events?.Any(e => e.EventId == id)).GetValueOrDefault();

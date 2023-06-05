@@ -33,9 +33,7 @@ public partial class EventUser
     [Unicode(false)]
     public string? Picture { get; set; }
 
-    [StringLength(450)]
-    [Unicode(false)]
-    public string? Document { get; set; }
+    public byte[]? Document { get; set; }
 
     //IdentityUser Relationship
     public virtual IdentityUser? IdentityUser { get; set; } // is the navigation property that points to the associated IdentityUser

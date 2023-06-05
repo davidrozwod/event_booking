@@ -8,6 +8,7 @@ using event_booking.Models;
 using event_booking.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 
 namespace event_booking.Controllers
 {
@@ -25,6 +26,7 @@ namespace event_booking.Controllers
         }
 
         // GET: EventUser
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             //Gets logged in user
@@ -64,6 +66,7 @@ namespace event_booking.Controllers
         // POST: EventUser/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Index(ProfileViewModel profileViewModel)
         {
             // Get the EventUser from the view model
@@ -106,6 +109,7 @@ namespace event_booking.Controllers
         // POST: EventUser/Delete
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Delete()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -133,7 +137,7 @@ namespace event_booking.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-
+        [Authorize]
         private bool EventUserExists(string id)
         {
             return _context.EventUsers.Any(e => e.EventUserId == id);

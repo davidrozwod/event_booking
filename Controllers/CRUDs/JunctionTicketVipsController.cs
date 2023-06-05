@@ -6,21 +6,33 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using event_booking.Data;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 public class JunctionTicketVipsController : Controller
 {
     private readonly ApplicationDbContext _applicationDbContext;
+    private readonly UserManager<IdentityUser> _userManager;
 
-    public JunctionTicketVipsController(ApplicationDbContext applicationDbContext)
+    public JunctionTicketVipsController(ApplicationDbContext applicationDbContext, UserManager<IdentityUser> userManager)
     {
         _applicationDbContext = applicationDbContext;
+        _userManager = userManager;
     }
 
     [Authorize]
     public async Task<IActionResult> Index()
     {
-        var junctionTicketVips = await _applicationDbContext.Set<Dictionary<string, object>>().FromSqlRaw("SELECT * FROM Junction_Ticket_VIP").ToListAsync();
-        return View(junctionTicketVips);
+        var currentUser = await _userManager.GetUserAsync(User);
+        if (currentUser != null && User.IsInRole("Admin"))
+        {
+            var junctionTicketVips = await _applicationDbContext.Set<Dictionary<string, object>>().FromSqlRaw("SELECT * FROM Junction_Ticket_VIP").ToListAsync();
+            return View(junctionTicketVips);
+        }
+        else
+        {
+            TempData["ErrorMessage"] = "Access restricted to admin accounts.";
+            return Redirect("/Identity/Account/Login");
+        }
     }
 
     [Authorize]

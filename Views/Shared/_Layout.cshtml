@@ -37,7 +37,7 @@
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="UserExclusiveFeatures">Subscribe</a>
                         </li>
                         <li class="nav-item">
-                            @if (User.IsInRole("Promoter"))
+                            @if (User.IsInRole("Promoter") || User.IsInRole("Admin"))
                             {
                                 <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="PromoterArea">Create Event</a>
                             }

@@ -8,24 +8,37 @@ using Microsoft.EntityFrameworkCore;
 using event_booking.Data;
 using event_booking.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace event_booking.Controllers.CRUDs
 {
     public class SalesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public SalesController(ApplicationDbContext context)
+        public SalesController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Sales
         [Authorize]
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Sales.Include(s => s.EventUser).Include(s => s.Purchase);
-            return View("~/Views/CRUDs/Sales/Index.cshtml", await applicationDbContext.ToListAsync());
+            var currentUser = await _userManager.GetUserAsync(User);
+
+            if (currentUser != null && User.IsInRole("Admin"))
+            {
+                var applicationDbContext = _context.Sales.Include(s => s.EventUser).Include(s => s.Purchase);
+                return View("~/Views/CRUDs/Sales/Index.cshtml", await applicationDbContext.ToListAsync());
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Access restricted to admin accounts.";
+                return Redirect("/Identity/Account/Login");
+            }
         }
 
         // GET: Sales/Details/5

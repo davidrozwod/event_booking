@@ -31,13 +31,19 @@ namespace event_booking.Controllers.CRUDs
 
             var currentUser = await _userManager.GetUserAsync(User);
 
-            if (currentUser != null)
+            if (currentUser != null && User.IsInRole("Promoter"))
             {
                 var applicationDbContext = _context.Events.Include(e => e.EventCategory).Include(f => f.Organizer).Where(e => e.CreatedByUserId == currentUser.Id);
                 return View("~/Views/CRUDs/Events/Index.cshtml", await applicationDbContext.ToListAsync());
             }
+            else if (currentUser != null && User.IsInRole("Admin"))
+            {
+                var applicationDbContext = _context.Events.Include(e => e.EventCategory).Include(f => f.Organizer);
+                return View("~/Views/CRUDs/Events/Index.cshtml", await applicationDbContext.ToListAsync());
+            }
             else 
             {
+                TempData["ErrorMessage"] = "Access restricted to admin and promoter accounts.";
                 return Redirect("/Identity/Account/Login");
             }
         }

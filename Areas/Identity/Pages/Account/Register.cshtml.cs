@@ -76,7 +76,8 @@ namespace event_booking.Areas.Identity.Pages.Account
         public enum UserRole
         {
             User,
-            Promoter
+            Promoter,
+            Admin
         }
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
@@ -167,6 +168,10 @@ namespace event_booking.Areas.Identity.Pages.Account
                     if (!await _roleManager.RoleExistsAsync("Promoter"))
                     {
                         await _roleManager.CreateAsync(new IdentityRole("Promoter"));
+                    }
+                    if (!await _roleManager.RoleExistsAsync("Admin"))
+                    {
+                        await _roleManager.CreateAsync(new IdentityRole("Admin"));
                     }
                     if (role != null)
                     {

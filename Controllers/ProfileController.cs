@@ -9,6 +9,9 @@ using event_booking.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using System.IO;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace event_booking.Controllers
 {
@@ -79,6 +82,7 @@ namespace event_booking.Controllers
                 {
                     await document.CopyToAsync(memoryStream);
                     eventUser.Document = memoryStream.ToArray();
+                    eventUser.DocumentFileName = document.FileName; // Save the document name
                 }
             }
             else
@@ -117,6 +121,33 @@ namespace event_booking.Controllers
 
 
             return RedirectToAction("Index");
+        }
+
+        public IActionResult DisplayImage()
+        {
+            // Retrieve the image data from the database
+            byte[] imageData = _context.EventUsers.FirstOrDefault()?.Document;
+
+            // Determine the image format based on the image data
+            ImageFormat imageFormat = ImageFormat.Jpeg; // Default format
+            using (var imageStream = new MemoryStream(imageData))
+            {
+                using (var image = Image.FromStream(imageStream))
+                {
+                    ImageCodecInfo[] encoders = ImageCodecInfo.GetImageEncoders();
+                    foreach (ImageCodecInfo encoder in encoders)
+                    {
+                        if (encoder.FormatID.Equals(image.RawFormat.Guid))
+                        {
+                            imageFormat = encoder.Format;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            // Return the image with appropriate content type
+            return File(imageData, imageFormat.MimeType);
         }
 
         // POST: EventUser/Delete

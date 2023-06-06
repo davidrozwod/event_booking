@@ -321,10 +321,19 @@
 
                         @* Document *@
                         <div class="form-group">
-                            <label asp-for="EventUser.Document" class="control-label"></label>
-                            <input type="file" name="document" class="form-control-file" />
+                            <label asp-for="EventUser.Document" class="control-label" id="documentLabel">@(!string.IsNullOrEmpty(Model.EventUser.DocumentFileName) ? Model.EventUser.DocumentFileName : "No Document Provided")</label>
+                            <input type="file" name="document" class="form-control-file" id="documentInput"/>
                             <span asp-validation-for="EventUser.Document" class="text-danger"></span>
                         </div>
+
+                        @if (!string.IsNullOrEmpty(Model.EventUser.DocumentFileName))
+                        {
+                            <div>
+                                <h4>Uploaded Document</h4>
+                                <p>Filename: @Model.EventUser.DocumentFileName</p>
+                                <img src="@Url.Action("DisplayImage", "Profile")" alt="Uploaded Document" />
+                            </div>
+                        }
 
                         @* NOTICE: The two div errors a false positives. They are link, but the technique used isnt recognized *@
                         <div class="mt-3 d-flex justify-content-between">

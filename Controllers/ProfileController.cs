@@ -10,8 +10,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using System.IO;
-using System.Drawing;
-using System.Drawing.Imaging;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Formats;
+using SixLabors.ImageSharp.Advanced;
 
 namespace event_booking.Controllers
 {
@@ -148,17 +149,10 @@ namespace event_booking.Controllers
 
             using (var imageStream = new MemoryStream(imageData))
             {
-                using (var image = Image.FromStream(imageStream))
+                using (var image = SixLabors.ImageSharp.Image.Load(imageStream))
                 {
-                    ImageCodecInfo[] encoders = ImageCodecInfo.GetImageEncoders();
-                    foreach (ImageCodecInfo encoder in encoders)
-                    {
-                        if (encoder.FormatID.Equals(image.RawFormat.Guid))
-                        {
-                            fileExtension = encoder.FilenameExtension.ToLowerInvariant();
-                            break;
-                        }
-                    }
+                    var format = image.Metadata.DecodedImageFormat;
+                    fileExtension = format.FileExtensions.First(); // Default to first file extension if multiple are available
                 }
             }
 

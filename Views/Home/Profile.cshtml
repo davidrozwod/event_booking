@@ -190,6 +190,17 @@
     .edit {
         padding: 20px;
     }
+
+    .form-group{
+       margin-bottom: 10px;
+    }
+
+    .Document-Img{
+        margin-left: 10px;
+        border-radius: 10%;
+        height: 200px;
+        width: 340px;
+    }
 </style>
 
 <script>
@@ -321,17 +332,16 @@
 
                         @* Document *@
                         <div class="form-group">
-                            <label asp-for="EventUser.Document" class="control-label" id="documentLabel">@(!string.IsNullOrEmpty(Model.EventUser.DocumentFileName) ? Model.EventUser.DocumentFileName : "No Document Provided")</label>
+                            <label asp-for="EventUser.Document" class="control-label" id="documentLabel">Document: @(!string.IsNullOrEmpty(Model.EventUser.DocumentFileName) ? Model.EventUser.DocumentFileName : "No Document Provided")</label>
                             <input type="file" name="document" class="form-control-file" id="documentInput"/>
                             <span asp-validation-for="EventUser.Document" class="text-danger"></span>
                         </div>
 
+                        @* Document Image*@
                         @if (!string.IsNullOrEmpty(Model.EventUser.DocumentFileName))
                         {
-                            <div>
-                                <h4>Uploaded Document</h4>
-                                <p>Filename: @Model.EventUser.DocumentFileName</p>
-                                <img src="@Url.Action("DisplayImage", "Profile")" alt="Uploaded Document" />
+                            <div class="d-flex p-2 bd-highlight">
+                                <img class="Document-Img" src="@Url.Action("DisplayImage", "Profile")" alt="Uploaded Document" />
                             </div>
                         }
 

@@ -123,13 +123,29 @@ namespace event_booking.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult DisplayImage()
+        // GET: EventUser/DisplayImage
+        public async Task<IActionResult> DisplayImage()
         {
-            // Retrieve the image data from the database
-            byte[] imageData = _context.EventUsers.FirstOrDefault()?.Document;
+            // Gets logged in user
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return NotFound();
+            }
 
-            // Determine the image format based on the image data
-            ImageFormat imageFormat = ImageFormat.Jpeg; // Default format
+            // Retrieves the event user for the logged-in user
+            var eventUser = await _context.EventUsers.FirstOrDefaultAsync(e => e.EventUserId == user.Id);
+            if (eventUser == null)
+            {
+                return NotFound();
+            }
+
+            // Retrieve the image data from the event user
+            byte[] imageData = eventUser.Document;
+
+            // Determine the file extension based on the image data
+            string fileExtension = ".jpg"; // Default file extension
+
             using (var imageStream = new MemoryStream(imageData))
             {
                 using (var image = Image.FromStream(imageStream))
@@ -139,7 +155,7 @@ namespace event_booking.Controllers
                     {
                         if (encoder.FormatID.Equals(image.RawFormat.Guid))
                         {
-                            imageFormat = encoder.Format;
+                            fileExtension = encoder.FilenameExtension.ToLowerInvariant();
                             break;
                         }
                     }
@@ -147,7 +163,7 @@ namespace event_booking.Controllers
             }
 
             // Return the image with appropriate content type
-            return File(imageData, imageFormat.MimeType);
+            return File(imageData, $"image/{fileExtension}");
         }
 
         // POST: EventUser/Delete

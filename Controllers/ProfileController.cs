@@ -9,6 +9,10 @@ using event_booking.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using System.IO;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Formats;
+using SixLabors.ImageSharp.Advanced;
 
 namespace event_booking.Controllers
 {
@@ -52,6 +56,8 @@ namespace event_booking.Controllers
             ViewData["LastName"] = eventUser.LastName;
             ViewData["Age"] = eventUser.Age;
             ViewData["Document"] = eventUser.Document;
+            ViewData["DocumentFileName"] = eventUser.DocumentFileName;
+
 
             //
             var profileViewModel = new ProfileViewModel
@@ -67,10 +73,29 @@ namespace event_booking.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> Index(ProfileViewModel profileViewModel)
+        public async Task<IActionResult> Index(ProfileViewModel profileViewModel, IFormFile document)
         {
             // Get the EventUser from the view model
             var eventUser = profileViewModel.EventUser;
+
+            // Upload the document
+            if (document != null && document.Length > 0)
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    await document.CopyToAsync(memoryStream);
+                    eventUser.Document = memoryStream.ToArray();
+                    eventUser.DocumentFileName = document.FileName; // Save the document name
+                }
+            }
+            else
+            {
+                // No new document uploaded, retain the existing document in the model
+                eventUser.Document = ViewData["Document"] as byte[];
+                eventUser.DocumentFileName = ViewData["DocumentFileName"] as string;
+            }
+
+
 
             //Updates the event users information
             if (ModelState.IsValid)
@@ -104,6 +129,42 @@ namespace event_booking.Controllers
 
 
             return RedirectToAction("Index");
+        }
+
+        // GET: EventUser/DisplayImage
+        public async Task<IActionResult> DisplayImage()
+        {
+            // Gets logged in user
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            // Retrieves the event user for the logged-in user
+            var eventUser = await _context.EventUsers.FirstOrDefaultAsync(e => e.EventUserId == user.Id);
+            if (eventUser == null)
+            {
+                return NotFound();
+            }
+
+            // Retrieve the image data from the event user
+            byte[] imageData = eventUser.Document;
+
+            // Determine the file extension based on the image data
+            string fileExtension = ".jpg"; // Default file extension
+
+            using (var imageStream = new MemoryStream(imageData))
+            {
+                using (var image = SixLabors.ImageSharp.Image.Load(imageStream))
+                {
+                    var format = image.Metadata.DecodedImageFormat;
+                    fileExtension = format.FileExtensions.First(); // Default to first file extension if multiple are available
+                }
+            }
+
+            // Return the image with appropriate content type
+            return File(imageData, $"image/{fileExtension}");
         }
 
         // POST: EventUser/Delete

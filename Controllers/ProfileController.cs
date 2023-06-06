@@ -56,6 +56,8 @@ namespace event_booking.Controllers
             ViewData["LastName"] = eventUser.LastName;
             ViewData["Age"] = eventUser.Age;
             ViewData["Document"] = eventUser.Document;
+            ViewData["DocumentFileName"] = eventUser.DocumentFileName;
+
 
             //
             var profileViewModel = new ProfileViewModel
@@ -87,7 +89,12 @@ namespace event_booking.Controllers
                 }
             }
             else
-                ModelState.Remove("Document");
+            {
+                // No new document uploaded, retain the existing document in the model
+                eventUser.Document = ViewData["Document"] as byte[];
+                eventUser.DocumentFileName = ViewData["DocumentFileName"] as string;
+            }
+
 
 
             //Updates the event users information

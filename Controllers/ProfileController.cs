@@ -76,7 +76,23 @@ namespace event_booking.Controllers
         public async Task<IActionResult> Index(ProfileViewModel profileViewModel, IFormFile document)
         {
             // Get the EventUser from the view model
-            var eventUser = profileViewModel.EventUser;
+            var eventUserViewModel = profileViewModel.EventUser;
+
+            // Fetch the existing EventUser from the database
+            var eventUser = await _context.EventUsers.FindAsync(eventUserViewModel.EventUserId);
+
+            // If the EventUser doesn't exist, return NotFound
+            if (eventUser == null)
+            {
+                return NotFound();
+            }
+
+            // Update the non-document properties of EventUser
+            eventUser.Picture = eventUserViewModel.Picture;
+            eventUser.UserName = eventUserViewModel.UserName;
+            eventUser.FirstName = eventUserViewModel.FirstName;
+            eventUser.LastName = eventUserViewModel.LastName;
+            eventUser.Age = eventUserViewModel.Age;
 
             // Upload the document
             if (document != null && document.Length > 0)
@@ -90,14 +106,13 @@ namespace event_booking.Controllers
             }
             else
             {
-                // No new document uploaded, retain the existing document in the model
-                eventUser.Document = ViewData["Document"] as byte[];
-                eventUser.DocumentFileName = ViewData["DocumentFileName"] as string;
+                ModelState.Remove("Document");
             }
 
 
 
             //Updates the event users information
+            //Im pretty sure this can be removed, update is already done above
             if (ModelState.IsValid)
             {
                 try

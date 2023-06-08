@@ -177,7 +177,13 @@ namespace event_booking.Areas.Identity.Pages.Account
                     {
                         await _userManager.AddToRoleAsync(user, role);
                     }
-                    else {
+                    else if (role == null)
+                    {
+                        role = "User";
+                        await _userManager.AddToRoleAsync(user, role);
+                    }
+                    else 
+                    {
                         throw new NotSupportedException("Please enter a user role");
                     }
 

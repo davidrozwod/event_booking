@@ -73,8 +73,15 @@ namespace event_booking.Controllers.CRUDs
         [Authorize]
         public IActionResult Create()
         {
-            ViewBag.Organizers = _context.Organizers.ToList();
-            ViewBag.EventCategories = _context.EventCategories.ToList();
+            var organizers = _context.Organizers.OrderBy(o => o.Name).ToList();
+            ViewBag.Organizers = organizers;
+
+
+            var eventCategories = _context.EventCategories.OrderBy(ec => ec.CategoryName).ToList();
+            ViewBag.EventCategories = eventCategories;
+
+            /*ViewBag.Organizers = _context.Organizers.ToList();
+            ViewBag.EventCategories = _context.EventCategories.ToList();*/
             return View("~/Views/CRUDs/Events/Create.cshtml");
         }
 

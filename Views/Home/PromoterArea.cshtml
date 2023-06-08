@@ -169,7 +169,7 @@
                 <li><img src="https://cdn.onlinewebfonts.com/svg/img_387338.png" /> <a asp-controller="Home" asp-action="Review"> Reviews</a></li>
             @if (User.IsInRole("Admin"))
             {
-                <li><img src="https://www.freeiconspng.com/thumbs/profile-icon-png/profile-icon-person-user-19.png" /> <a asp-area="Identity" asp-page="/Account/Register">Accounts</a></li>
+                <li><img src="https://www.freeiconspng.com/thumbs/profile-icon-png/profile-icon-person-user-19.png"/> <a asp-controller="Account" asp-action="Index">Accounts</a></li>
             }
             <li><img src="https://icon-library.com/images/settings-wheel-icon/settings-wheel-icon-14.jpg" /> <a asp-controller="Home" asp-action="CRUDs"> CRUDs</a></li>
             </ul>

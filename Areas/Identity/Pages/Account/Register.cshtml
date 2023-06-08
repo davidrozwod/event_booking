@@ -1,5 +1,7 @@
 ﻿@page
 @using event_booking.Models
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
 @model RegisterModel
 @{
 }
@@ -38,12 +40,15 @@
                             <h1 class="text-uppercase text-center mb-5">Register An Account</h1>
 
                                 <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                                @if (!SignInManager.IsSignedIn(User))
+                                {
                                     <div>
                                         <p style="text-align:center;">
                                             Already Have an account? <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl">Sign In</a>
                                         </p>
                                     </div>
-                                    <hr />
+                                }
+                                <hr />
                                     <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
                                     <div class="row g-2">
                                         <div class="col-md">

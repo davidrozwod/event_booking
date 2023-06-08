@@ -218,7 +218,7 @@
                                             <td>@users.Email</td>
                                             <td class="password-hash">@users.PasswordHash</td>
                                             <td>
-                                                <form method="post" asp-controller="User" asp-action="Delete">
+                                                <form method="post" asp-controller="Account" asp-action="Delete">
                                                     <input type="hidden" name="id" value="@users.Id" />
                                                     <button type="submit">Delete</button>
                                                 </form>
@@ -228,7 +228,7 @@
                                 </tbody>
                             </table>
                             <div class="mt-5">
-                                <a class="btn btn-primary" asp-area="Identity" asp-page="/Account/Register" asp-route-returnUrl="~/User/Index">Create Account</a>
+                                <a class="btn btn-primary" asp-area="Identity" asp-page="/Account/Register">Create Account</a>
                             </div>
                         </div>
                     </div>

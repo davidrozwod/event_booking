@@ -31,7 +31,7 @@ public class AccountController : Controller
             if (result.Succeeded)
             {
                 TempData["SuccessMessage"] = "User deleted successfully";
-                return RedirectToAction("Index", "User");
+                return RedirectToAction("Index", "Account");
             }
             else
             {
@@ -45,6 +45,6 @@ public class AccountController : Controller
             TempData["ErrorMessage"] = "Could not find user";
         }
 
-        return RedirectToAction("Index", "User");
+        return RedirectToAction("Index", "Account");
     }
 }

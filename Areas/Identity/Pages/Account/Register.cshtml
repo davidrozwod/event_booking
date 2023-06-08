@@ -77,6 +77,8 @@
                                         <label asp-for="Input.ConfirmPassword">Confirm Password</label>
                                         <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                                     </div>
+                                    @if (User.IsInRole("Admin"))
+                                    {
                                     <div class="form-floating mb-3">
                                         <select asp-for="Input.Role" class="form-control">
                                             <option value="">Select a role</option>
@@ -85,6 +87,7 @@
                                             <option value="@UserRole.Admin">Admin</option>
                                         </select>
                                     </div>
+                                    }
                                     <p></p>
                                     <button id="registerSubmit" type="submit" class="btn-block w-100 btn-lg gradient-custom-4 text-white">Register</button>
                                     <!--

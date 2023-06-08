@@ -15,19 +15,29 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="EventId" class="control-label"></label>
-                <select asp-for="EventId" class ="form-control" asp-items="ViewBag.EventId"></select>
+                <select asp-for="EventId" class ="form-control" asp-items="@ViewBag.EventId">
+                    <option value="">Select Event</option>
+                </select>
+                <span asp-validation-for="EventId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="VenueId" class="control-label"></label>
-                <select asp-for="VenueId" class ="form-control" asp-items="ViewBag.VenueId"></select>
+                <select asp-for="VenueId" class ="form-control" asp-items="@ViewBag.VenueId">
+                    <option value="">Select Venue</option>
+                </select>
+                <span asp-validation-for="VenueId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="SeatId" class="control-label"></label>
-                <select asp-for="SeatId" class ="form-control" asp-items="ViewBag.SeatId"></select>
+                <select asp-for="SeatId" class ="form-control" asp-items="@ViewBag.SeatId">
+                    <option value="">Select Seat</option>
+                </select>
+                <span asp-validation-for="SeatId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="EventUserId" class="control-label"></label>
-                <select asp-for="EventUserId" class="form-control" asp-items="ViewBag.EventUserId"><option value="">Select User...</option></select>
+                <select asp-for="EventUserId" class="form-control" asp-items="@ViewBag.EventUserId"><option value="">Select User...</option></select>
+                <span asp-validation-for="EventUserId" class="text-danger"></span>
                 
             </div>
             <div class="form-group">
@@ -42,15 +52,24 @@
             </div>
             <div class="form-group">
                 <label asp-for="DiscountId" class="control-label"></label>
-                <select asp-for="DiscountId" class ="form-control" asp-items="ViewBag.DiscountId"></select>
+                <select asp-for="DiscountId" class ="form-control" asp-items="@ViewBag.DiscountId">
+                    <option value="">Leave Blank</option>
+                </select>
+                <span asp-validation-for="DiscountId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="TicketTypeId" class="control-label"></label>
-                <select asp-for="TicketTypeId" class ="form-control" asp-items="ViewBag.TicketTypeId"></select>
+                <select asp-for="TicketTypeId" class ="form-control" asp-items="@ViewBag.TicketTypeId">
+                    <option value="">Leave Blank</option>
+                </select>
+                <span asp-validation-for="TicketTypeId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="PurchaseId" class="control-label"></label>
-                <select asp-for="PurchaseId" class ="form-control" asp-items="ViewBag.PurchaseId"></select>
+                <select asp-for="PurchaseId" class ="form-control" asp-items="@ViewBag.PurchaseId">
+                    <option value="">Leave Blank</option>
+                </select>
+                <span asp-validation-for="PurchaseId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="BasePrice" class="control-label"></label>

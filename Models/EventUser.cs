@@ -55,4 +55,9 @@ public partial class EventUser
     public virtual ICollection<Organizer> Organizers { get; set; } = new List<Organizer>();
 
     public virtual ICollection<Venue> Venues { get; set; } = new List<Venue>();
+
+    public string FullName
+    {
+        get { return $"{FirstName} {LastName}"; }
+    }
 }

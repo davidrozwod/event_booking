@@ -26,7 +26,7 @@ public partial class Event
     [StringLength(50)]
     public string Name { get; set; } = null!;
 
-    [StringLength(250)]
+    [StringLength(450)]
     public string Description { get; set; } = null!;
 
     [Column(TypeName = "date")]

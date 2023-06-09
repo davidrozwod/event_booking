@@ -35,7 +35,6 @@ public partial class Event
     [Column(TypeName = "date")]
     public DateTime EndDateTime { get; set; }
 
-    [StringLength(MAX)]
     public string? Image { get; set; }
 
     [Column(TypeName = "date")]

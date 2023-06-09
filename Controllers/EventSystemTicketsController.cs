@@ -8,7 +8,7 @@ using System.Linq;
 namespace event_booking.Controllers
 {
     public class EventSystemTicketsController : Controller
-    {
+    {        
         private readonly ApplicationDbContext _context;
 
         public EventSystemTicketsController(ApplicationDbContext context)

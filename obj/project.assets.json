@@ -10988,23 +10988,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\vince\\.nuget\\packages\\": {},
+    "C:\\Users\\JtotheB\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\GitHub stuff\\Event-Booking\\event_booking.csproj",
+      "projectUniqueName": "G:\\jeremybrokken\\Repositories\\event_booking\\event_booking.csproj",
       "projectName": "event_booking",
-      "projectPath": "D:\\GitHub stuff\\Event-Booking\\event_booking.csproj",
-      "packagesPath": "C:\\Users\\vince\\.nuget\\packages\\",
-      "outputPath": "D:\\GitHub stuff\\Event-Booking\\obj\\",
+      "projectPath": "G:\\jeremybrokken\\Repositories\\event_booking\\event_booking.csproj",
+      "packagesPath": "C:\\Users\\JtotheB\\.nuget\\packages\\",
+      "outputPath": "G:\\jeremybrokken\\Repositories\\event_booking\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\vince\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\JtotheB\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -11014,6 +11014,7 @@
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "C:\\Program Files\\dotnet\\library-packs": {},
+        "C:\\Program Files\\dotnet\\sdk\\7.0.302\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -11080,7 +11081,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }

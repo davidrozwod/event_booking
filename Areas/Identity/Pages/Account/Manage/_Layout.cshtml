@@ -8,6 +8,7 @@
         Layout = "/Areas/Identity/Pages/_Layout.cshtml";
     }
 }
+
 <style>
     body {
         background: rgb(232, 252, 252);
@@ -91,7 +92,8 @@
         }
 
     h5 {
-        margin-top: 75px padding: 0;
+        margin-top: 75px; 
+        padding: 0;
         font-weight: 300;
         font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
     }
@@ -152,7 +154,7 @@
         /* fallback for old browsers */
         background: #1A237E
         /* Chrome 10-25, Safari 5.1-6 */
-        background: -webkit-linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1)));
+        background -webkit-linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1));
         /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         background: linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1))
     }
@@ -161,13 +163,19 @@
         /* fallback for old browsers */
         background: #1A237E
         /* Chrome 10-25, Safari 5.1-6 */
-        background: -webkit-linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1)));
+        background -webkit-linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1));
         /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         background: linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1))
     }
 </style>
+<div class="bg-image container-Overflow"
+     style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
+    <div class="gradient-custom-3">
+        <h1 class="text-black">Welcome Back</h1>
+        <h2 class="text-black">@User.Identity?.Name</h2>
 
         <div>
+            <hr />
             <div class="row">
                 <div class="col-md-3">
                     <partial name="_ManageNav" />
@@ -177,6 +185,10 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
+
 @section Scripts {
     @RenderSection("Scripts", required: false)
 }

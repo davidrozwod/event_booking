@@ -156,6 +156,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZXNldFBhc3N3b3JkQ29uZmlybWF0aW9uLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[G:/jeremybrokken/Repositories/event_booking/Areas/Identity/Pages/Account/UserProfileDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxVc2VyUHJvZmlsZURldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [G:/jeremybrokken/Repositories/event_booking/Areas/Identity/Pages/Account/_StatusMessage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxfU3RhdHVzTWVzc2FnZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -176,12 +180,544 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[G:/jeremybrokken/Repositories/event_booking/Views/Account/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Discounts/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcRGlzY291bnRzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Discounts/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcRGlzY291bnRzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Discounts/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcRGlzY291bnRzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Discounts/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcRGlzY291bnRzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Discounts/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcRGlzY291bnRzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/EventCategories/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcRXZlbnRDYXRlZ29yaWVzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/EventCategories/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcRXZlbnRDYXRlZ29yaWVzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/EventCategories/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcRXZlbnRDYXRlZ29yaWVzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/EventCategories/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcRXZlbnRDYXRlZ29yaWVzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/EventCategories/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcRXZlbnRDYXRlZ29yaWVzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Events/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcRXZlbnRzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Events/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcRXZlbnRzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Events/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcRXZlbnRzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Events/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcRXZlbnRzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Events/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcRXZlbnRzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/EventUsers/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcRXZlbnRVc2Vyc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/EventUsers/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcRXZlbnRVc2Vyc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/EventUsers/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcRXZlbnRVc2Vyc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/EventUsers/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcRXZlbnRVc2Vyc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/EventUsers/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcRXZlbnRVc2Vyc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/GroupDiscounts/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcR3JvdXBEaXNjb3VudHNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/GroupDiscounts/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcR3JvdXBEaXNjb3VudHNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/GroupDiscounts/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcR3JvdXBEaXNjb3VudHNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/GroupDiscounts/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcR3JvdXBEaXNjb3VudHNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/GroupDiscounts/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcR3JvdXBEaXNjb3VudHNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Loyaltys/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcTG95YWx0eXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Loyaltys/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcTG95YWx0eXNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Loyaltys/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcTG95YWx0eXNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Loyaltys/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcTG95YWx0eXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Loyaltys/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcTG95YWx0eXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/OrganizerCategories/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcT3JnYW5pemVyQ2F0ZWdvcmllc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/OrganizerCategories/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcT3JnYW5pemVyQ2F0ZWdvcmllc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/OrganizerCategories/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcT3JnYW5pemVyQ2F0ZWdvcmllc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/OrganizerCategories/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcT3JnYW5pemVyQ2F0ZWdvcmllc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/OrganizerCategories/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcT3JnYW5pemVyQ2F0ZWdvcmllc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Organizers/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcT3JnYW5pemVyc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Organizers/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcT3JnYW5pemVyc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Organizers/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcT3JnYW5pemVyc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Organizers/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcT3JnYW5pemVyc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Organizers/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcT3JnYW5pemVyc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Purchases/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcUHVyY2hhc2VzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Purchases/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcUHVyY2hhc2VzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Purchases/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcUHVyY2hhc2VzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Purchases/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcUHVyY2hhc2VzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Purchases/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcUHVyY2hhc2VzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Sales/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcU2FsZXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Sales/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcU2FsZXNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Sales/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcU2FsZXNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Sales/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcU2FsZXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Sales/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcU2FsZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Seats/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcU2VhdHNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Seats/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcU2VhdHNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Seats/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcU2VhdHNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Seats/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcU2VhdHNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Seats/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcU2VhdHNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Sections/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcU2VjdGlvbnNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Sections/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcU2VjdGlvbnNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Sections/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcU2VjdGlvbnNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Sections/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcU2VjdGlvbnNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Sections/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcU2VjdGlvbnNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/TicketGroups/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcVGlja2V0R3JvdXBzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/TicketGroups/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcVGlja2V0R3JvdXBzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/TicketGroups/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcVGlja2V0R3JvdXBzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/TicketGroups/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcVGlja2V0R3JvdXBzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/TicketGroups/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcVGlja2V0R3JvdXBzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Tickets/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcVGlja2V0c1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Tickets/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcVGlja2V0c1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Tickets/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcVGlja2V0c1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Tickets/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcVGlja2V0c1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Tickets/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcVGlja2V0c1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/TicketTypes/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcVGlja2V0VHlwZXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/TicketTypes/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcVGlja2V0VHlwZXNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/TicketTypes/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcVGlja2V0VHlwZXNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/TicketTypes/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcVGlja2V0VHlwZXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/TicketTypes/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcVGlja2V0VHlwZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Venues/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcVmVudWVzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Venues/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcVmVudWVzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Venues/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcVmVudWVzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Venues/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcVmVudWVzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Venues/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcVmVudWVzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Vips/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcVmlwc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Vips/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcVmlwc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Vips/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcVmlwc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Vips/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcVmlwc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/CRUDs/Vips/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1JVRHNcVmlwc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/AlternativeRock.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBbHRlcm5hdGl2ZVJvY2suY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/BalletAndDance.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxCYWxsZXRBbmREYW5jZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/Baseball.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxCYXNlYmFsbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/Basketball.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxCYXNrZXRiYWxsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/Booking.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxCb29raW5nLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/ChildrensMusicAndTheater.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDaGlsZHJlbnNNdXNpY0FuZFRoZWF0ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/Circus.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDaXJjdXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/Classical.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDbGFzc2ljYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/CombatSports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb21iYXRTcG9ydHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/Contact.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb250YWN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/Cricket.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDcmlja2V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/CRUDs.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDUlVEcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/DanceElectronic.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxEYW5jZUVsZWN0cm9uaWMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/EventPage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFdmVudFBhZ2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/Events.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFdmVudHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/EventsPage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFdmVudHNQYWdlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/Event_Category.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFdmVudF9DYXRlZ29yeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/FairsAndFestivals.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxGYWlyc0FuZEZlc3RpdmFscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/FamilyAndEducation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxGYW1pbHlBbmRFZHVjYXRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/FamilyAttractions.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxGYW1pbHlBdHRyYWN0aW9ucy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/Fashion.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxGYXNoaW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/Football.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxGb290YmFsbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/Golf.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxHb2xmLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/HardRockMetal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxIYXJkUm9ja01ldGFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/IceShows.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJY2VTaG93cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [G:/jeremybrokken/Repositories/event_booking/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/JazzAndBlues.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxKYXp6QW5kQmx1ZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/MagicShows.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxNYWdpY1Nob3dzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/MuseumAndExhibits.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxNdXNldW1BbmRFeGhpYml0cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/Musicals.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxNdXNpY2Fscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/Netball.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxOZXRiYWxsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/Opera.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxPcGVyYS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/PerformancesAndNightlife.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQZXJmb3JtYW5jZXNBbmROaWdodGxpZmUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/Plays.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQbGF5cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/Policy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQb2xpY3kuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [G:/jeremybrokken/Repositories/event_booking/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/Profile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcm9maWxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/PromoterArea.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcm9tb3RlckFyZWEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/RapAndHipHop.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSYXBBbmRIaXBIb3AuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/RBandSoul.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSQmFuZFNvdWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/Review.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSZXZpZXcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/RugbyUnion.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSdWdieVVuaW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/SportsAndOutdoors.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTcG9ydHNBbmRPdXRkb29ycy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/TheaterAndArts.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxUaGVhdGVyQW5kQXJ0cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/Ticket.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxUaWNrZXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/Ticket2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxUaWNrZXQyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/Ticket3.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxUaWNrZXQzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/Ticket4.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxUaWNrZXQ0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/jeremybrokken/Repositories/event_booking/Views/Home/UserExclusiveFeatures.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxVc2VyRXhjbHVzaXZlRmVhdHVyZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [G:/jeremybrokken/Repositories/event_booking/Views/Shared/Error.cshtml]

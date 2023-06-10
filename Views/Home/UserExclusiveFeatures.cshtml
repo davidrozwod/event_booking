@@ -1,0 +1,333 @@
+﻿
+@{
+    ViewData["Title"] = "UserExclusiveFeatures";
+}
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+
+    #section1 {
+        height: 500px;
+    }
+
+    #section2 {
+        height: 600px;
+    }
+
+    #section3 {
+        height: 600px;
+        background-image: url("https://i0.wp.com/blog.10times.com/wp-content/uploads/2019/12/Reviews.png?fit=1200%2C600&ssl=1");
+    }
+
+    #section4 {
+        height: 600px;
+        background-image: url("https://kit8.net/wp-content/uploads/2020/12/Planning@2x-2.png");
+    }
+
+    #section5 {
+        height: 600px;
+    }
+
+    #section6 {
+        height: 600px;
+        background-image: url("https://www.outputdesk.com/wp-content/uploads/2020/06/ticket-management-help-desk-Output-Desk.png");
+    }
+
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        width: 100%;
+        border-radius: 5px;
+            }
+
+    .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+
+    .container {
+        padding: 20px 26px;
+    }
+
+            ul1 {
+                list-style: none;
+            }
+
+    img {
+        float: left;
+    }
+
+    p {
+        font-size: 15px;
+                }
+
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        width: 100%;
+    body {
+        background-image: url('https://media.istockphoto.com/id/1069378234/photo/marble-white-and-texture-tile-ceramic-gray-background-marble-natural-for-interior-decoration.jpg?b=1&s=612x612&w=0&k=20&c=1eJ-llBtfuOGazHhxacpff-KkLkMg663qoHNmMxbZo8=');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+
+    .bronze {
+        background-color: #CD7F32;
+        color: white;
+        padding: 4px 8px;
+        text-align: center;
+        border-radius: 5px;
+    }
+
+    .silver {
+        background-color: #C0C0C0;
+        color: white;
+        padding: 4px 8px;
+        text-align: center;
+        border-radius: 5px;
+    }
+
+    .gold {
+        background-color: #ffd700;
+        color: white;
+        padding: 4px 8px;
+        text-align: center;
+        border-radius: 5px;
+    }
+
+    .gradient-custom-4 {
+        /* fallback for old browsers */
+        background: #1A237E
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1)));
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1))
+    }
+
+    h1{
+        color: rgba(108, 11, 113, 1);
+    }
+
+    li,
+    p1{
+        color: rgba(0, 9, 75, 0.8);
+    }
+
+
+</style>
+
+<div class="main" id="section1">
+    <div class="row text-center">
+        <div class="text-center">
+            <h1 class="display-4">Subscribe</h1>
+            <p1>Start your First Month FREE, Cancel anytime</p1>
+        </div>
+
+        <div class="col">
+            <div class="card">
+                <div class="container">
+                    <center><h1 class="display-4">Bronze</h1></center>
+                    <ul1>
+                        <li>&check; Customization</li>
+                        <li>&check; Rating Events</li>
+                        <li style="text-decoration: line-through;">&#10005; Upcoming Events</li>
+                        <li style="text-decoration: line-through;">&#10005; Follow Events</li>
+                        <li style="text-decoration: line-through;">&#10005; Manage Tickets</li>
+                    </ul1>
+
+                    <br>
+                    <button id="registerSubmit" type="submit" class=" text-white w-100 btn btn-lg gradient-custom-4">Start Free Trial</button>
+                    <p1>then starting at $2.17 a month</p1>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card">
+                <div class="container">
+                    <center><h1 class="display-4">Silver</h1></center>
+                    <ul1>
+                        <li>&check; Customization</li>
+                        <li>&check; Rating Events</li>
+                        <li>&check; Upcoming Events</li>
+                        <li style="text-decoration: line-through;">&#10005; Follow Events</li>
+                        <li style="text-decoration: line-through;">&#10005; Manage Tickets</li>
+                    </ul1>
+                    <br>
+                    <button id="registerSubmit" type="submit" class="text-white w-100 btn btn-lg gradient-custom-4">Start Free Trial</button>
+                    <p1>then starting at $3.17 a month</p1>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="container">
+                    <center><h1 class="display-4">Gold</h1></center>
+                    <ul1>
+                        <li>&check; Customization</li>
+                        <li>&check; Rating Events</li>
+                        <li>&check; Upcoming Events</li>
+                        <li>&check; Follow Events</li>
+                        <li>&check; Manage Tickets</li>
+                    </ul1>
+                    <br>
+                    <button id="registerSubmit" type="submit" class=" text-white w-100 btn btn-lg gradient-custom-4">Start Free Trial</button>
+                    <p1>then starting at $4.17 a month</p1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main" id="section2">
+    <div class="row">
+        <div class="col-sm">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <center>
+                <h6><span class="bronze">Bronze</span> <span class="silver">Silver</span> <span class="gold">Gold</span></h6>
+                <h1 class="display-4">Customization</h1>
+                <p>
+                    You can customizes your profile. You will be able to change your profile picture whenever you feel like you,
+                    you can change your password, email and phone number at any given time.
+                </p>
+            </center>
+        </div>
+        <div class="col">
+            <img src="https://productimize.com/wp-content/uploads/2018/12/Productimize_UI.png" width="900" />
+        </div>
+    </div>
+</div>
+
+<div class="main" id="section3">
+    <div class="row">
+        <div class="col">
+        </div>
+        <div class="col-sm">
+        </div>
+        <div class="col-sm">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <center>
+                <h6><span class="bronze">Bronze</span> <span class="silver">Silver</span> <span class="gold">Gold</span></h6>
+                <h1 class="display-4">Rating Event</h1>
+                <p>
+                    You will be able to rate an event after you have attend it. You will be able to see other people who have attended the
+                    event to see their experience on the event. This way we can see your enjoyability on the event and recommend you more events
+                    like those you rated high.
+                </p>
+            </center>
+        </div>
+    </div>
+</div>
+
+<div class="main" id="section4">
+    <div class="row">
+        <div class="col-sm">
+           
+        </div>
+        <div class="col-sm">
+            
+        </div>
+        <div class="col-sm">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <center>
+                <h6><span class="silver">Silver</span> <span class="gold">Gold</span></h6>
+                <h1 class="display-4">Upcoming Events</h1>
+                <p>
+                    You can see upcoming events. We will update the calender that will show you all the upcoming events that have been posted on the
+                    calender. This way you can see all the upcomign events before anyone else, and you can get the first tickets for the event,
+                    making your experience at the event that more worthwhile.
+                </p>
+            </center>
+        </div>
+    </div>
+</div>
+
+<div class="main" id="section5">
+    <div class="row">
+        <div class="col-sm">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <center>
+                <h6><span class="gold">Gold</span></h6>
+                <h1 class="display-4">Follow Events</h1>
+                <p>
+                    If you like an event and cant wait for the event to pop up again. You can. Because with this subscribtation you can
+                    follow the events and once the event pops up again you will get a notication to inform you that the event that you follow
+                    has started back up again.
+                </p>
+            </center>
+        </div>
+        <div class="col">
+            <img src="https://www.eventbrite.co.uk/blog/wp-content/uploads/2022/06/event-planning-checklist-768x512.png" width="900" />
+        </div>
+    </div>
+</div>
+
+<div class="main" id="section6">
+    <div class="row">
+        <div class="col-sm">
+        </div>
+        <div class="col-sm-5">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br />
+            <center>
+                <h6><span class="gold">Gold</span></h6>
+                <h1 class="display-4">Manage Events</h1>
+                <p>
+                    You can manage your tickets. You will be able to edit it by either adding more or adding less tickets. You can change
+                    your seats on the tickets or even change the date of the ticket to a different day if you happen to not be able to attend
+                    the event for some particular reason.
+                </p>
+            </center>
+        </div>
+        <div class="col-sm">
+                
+            </div>
+        </div>
+    </div>
+</div>
+ </div>        }
+
+            .rate:not(:checked) > label:before {
+                content: '★ ';
+            }
+
+        .rate > input:checked ~ label {
+            color: #ffc700;
+        }
+
+        .rate:not(:checked) > label:hover,
+        .rate:not(:checked) > label:hover ~ label {
+            color: #deb217;
+        }
+
+        .rate > input:checked + label:hover,
+        .rate > input:checked + label:hover ~ label,
+        .rate > input:checked ~ label:hover,
+        .rate > input:checked ~ label:hover ~ label,
+        .rate > label:hover ~ input:checked ~ label {
+            color: #c59b08;
+        }
+</style>

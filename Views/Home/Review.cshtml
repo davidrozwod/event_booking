@@ -65,12 +65,12 @@
             .wrapper .main_content .info {
                 margin: 20px;
             }
-
+            
             .wrapper .main_content .header {
                 padding: 10px;
                 background-color: rgba(108, 11, 113, 1);
                 color: #fff;
-            }
+                }
 
     img {
         float: left;
@@ -179,18 +179,18 @@
     }
 </script>
 
-<div class="wrapper">
+    <div class="wrapper">
     <div class="sidebar gradient-custom-4">
-        <h2>Eventful</h2>
-        <ul>
+            <h2>Eventful</h2>
+            <ul>
             <li><img src="https://icon-library.com/images/dashboard-icon-vector/dashboard-icon-vector-2.jpg" /> <a asp-controller="Home" asp-action="AdminDashboard"> Dashboard</a></li>
             <li><img src="https://www.freeiconspng.com/thumbs/profile-icon-png/profile-icon-person-user-19.png" /> <a asp-controller="Home" asp-action="Profile"> Profile</a></li>
-            <li><img src="https://img.uxwing.com/wp-content/themes/uxwing/download/seo-marketing/announcement-icon.png" /> <a asp-controller="Home" asp-action="Events"> Events</a></li>
-            <li><img src="https://cdn-icons-png.flaticon.com/512/55/55281.png" /> <a asp-controller="Home" asp-action="Booking"> Bookings</a></li>
-            <li><img src="https://cdn.onlinewebfonts.com/svg/img_387338.png" /> <a asp-controller="Home" asp-action="Review"> Reviews</a></li>
-        </ul>
-    </div>
-    <div class="main_content">
+                <li><img src="https://img.uxwing.com/wp-content/themes/uxwing/download/seo-marketing/announcement-icon.png" /> <a asp-controller="Home" asp-action="Events"> Events</a></li>
+                <li><img src="https://cdn-icons-png.flaticon.com/512/55/55281.png" /> <a asp-controller="Home" asp-action="Booking"> Bookings</a></li>
+                <li><img src="https://cdn.onlinewebfonts.com/svg/img_387338.png" /> <a asp-controller="Home" asp-action="Review"> Reviews</a></li>
+            </ul>
+        </div>
+        <div class="main_content">
         <div class="header">
             Welcome to the Admin Reviews
             <button class="rounded button button1">
@@ -201,73 +201,73 @@
             </button>
         </div>
             <div class="info">
-            <h3>Ratings & Reviews</h3>
+                <h3>Ratings & Reviews</h3>
                 <div class="row">
                     <div class="col">
                         <div class="card">
                             <div class="container">
-                                <p>Total Reviews Last 30 Days</p>
-                                <h4>287</h4>
-                            </div>
+                            <p>Total Reviews Last 30 Days</p>
+                            <h4>287</h4>
                         </div>
+                    </div>
                     </div>
 
                     <div class="col">
                         <div class="card">
                             <div class="container">
-                                <p>Positive Reviews Last 30 Days</p>
-                                <h4>342</h4>
-                            </div>
+                            <p>Positive Reviews Last 30 Days</p>
+                            <h4>342</h4>
                         </div>
+                    </div>
                     </div>
 
                     <div class="col">
                         <div class="card">
                             <div class="container">
                                 <p>Neutral Reviews Last 30 Days</p>
-                                <h4>189</h4>
-                            </div>
+                            <h4>189</h4>
                         </div>
+                    </div>
                     </div>
                     <div class="col">
                         <div class="card">
                             <div class="container">
                                 <p>Decrease Review Last 30 Day</p>
-                                <h4>50</h4>
-                            </div>
+                            <h4>50</h4>
                         </div>
                     </div>
+                </div>
                 </div>
                 <br />
                 <div class="row">
                     <div class="col">
                         <div class="card">
                             <div class="container">
-                                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-                                    <canvas id="theChart" style="width:100%;max-width:600px"></canvas>
-                                    <script>
-                                        var xValues = ["5 Stars", "4 Stars", "3 Stars", "2 Stars", "1 Stars"];
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+                                <canvas id="theChart" style="width:100%;max-width:600px"></canvas>
+                                <script>
+                                    var xValues = ["5 Stars", "4 Stars", "3 Stars", "2 Stars", "1 Stars"];
                                         var yValues = [55, 49, 44, 24, 21];
                                 var barColors = "#89CFF0";
 
-                                        new Chart("theChart", {
-                                            type: "bar",
-                                            data: {
-                                                labels: xValues,
-                                                datasets: [{
-                                                    backgroundColor: barColors,
-                                                    data: yValues
-                                                }]
-                                            },
-                                            options: {
-                                                legend: { display: false },
-                                                title: {
-                                                    display: true,
-                                                    text: "Review Score Breakdown"
-                                                }
+                                    new Chart("theChart", {
+                                        type: "bar",
+                                        data: {
+                                            labels: xValues,
+                                            datasets: [{
+                                                backgroundColor: barColors,
+                                                data: yValues
+                                            }]
+                                        },
+                                        options: {
+                                            legend: { display: false },
+                                            title: {
+                                                display: true,
+                                                text: "Review Score Breakdown"
                                             }
-                                        });
-                                    </script>
+                                        }
+                                    });
+                                </script>
                                 
                             </div>
                         </div>
@@ -276,40 +276,40 @@
                     <div class="col">
                         <div class="card">
                             <div class="container">
-                                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-                                <canvas id="theReview" style="width:100%;max-width:600px"></canvas>
-                                    <script>
-                                    var xReviews = ["Performance & Nightlife", "Theater & Arts", "Sports & Outdoors", "Festivals & Lifestyle", "Professional Events & Government", "Charity & Causes", "Comedy", "Family & Education"];
-                                    var yReviews = [55, 49, 44, 24, 15, 20, 37, 9];
-                                        var barColors = [
-                                    "#b91d47",
-                                    "#00aba9",
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+                            <canvas id="theReview" style="width:100%;max-width:600px"></canvas>
+                                <script>
+                                var xReviews = ["Performance & Nightlife", "Theater & Arts", "Sports & Outdoors", "Festivals & Lifestyle", "Professional Events & Government", "Charity & Causes", "Comedy", "Family & Education"];
+                                var yReviews = [55, 49, 44, 24, 15, 20, 37, 9];
+                                    var barColors = [
+                                        "#b91d47",
+                                        "#00aba9",
                                     "#8B008B",
-                                    "#e8c3b9",
-                                    "#1e7145",
+                                        "#e8c3b9",
+                                        "#1e7145",
                                     "#1434A4",
                                     "#556B2F",
                                     "#FFA07A",
 
-                                        ];
+                                    ];
 
-                                        new Chart("theReview", {
-                                            type: "doughnut",
-                                            data: {
-                                            labels: xReviews,
-                                                datasets: [{
-                                                    backgroundColor: barColors,
-                                                    data: yReviews
-                                                }]
-                                            },
-                                            options: {
-                                                title: {
-                                                    display: true,
-                                                    text: "Review Per Event"
-                                                }
+                                    new Chart("theReview", {
+                                        type: "doughnut",
+                                        data: {
+                                        labels: xReviews,
+                                            datasets: [{
+                                                backgroundColor: barColors,
+                                                data: yReviews
+                                            }]
+                                        },
+                                        options: {
+                                            title: {
+                                                display: true,
+                                                text: "Review Per Event"
                                             }
-                                        });
-                                    </script>
+                                        }
+                                    });
+                                </script>
                             </div>
                         </div>
                     </div>

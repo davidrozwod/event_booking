@@ -1,6 +1,14 @@
+using DotNetEd.CoreAdmin;
 using event_booking.Data;
+using event_booking.Data.Migrations;
+using event_booking.Models;
+using event_booking.Services;
+using Microsoft.AspNetCore.Components.Web.Virtualization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+
 
 namespace event_booking
 {
@@ -11,16 +19,28 @@ namespace event_booking
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            //Razor pages
+            builder.Services.AddRazorPages();
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+            // DbContext
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
+            // Database Developer Page Exception Filter
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+            //Identity
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()  
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            // Controllers
             builder.Services.AddControllersWithViews();
 
+            // Email sender
+            builder.Services.AddTransient<IEmailSender, EmailSender>();
+            // AuthMessageSenderOptions
+            builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
+
+            //Personalized services
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -42,10 +62,12 @@ namespace event_booking
 
             app.UseAuthorization();
 
+            // Razor pages
+            app.MapRazorPages();
+            // Controller routes
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-            app.MapRazorPages();
 
             app.Run();
         }

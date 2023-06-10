@@ -1,0 +1,54 @@
+@model IEnumerable<event_booking.Models.Seat>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<a id="top"></a>
+<h1>Seats</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SeatNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Section)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Venue)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SeatNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Section.SectionId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Venue.VenueId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.SeatId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.SeatId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.SeatId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<div class="mt-5">
+    <a class="btn btn-primary" asp-controller="Home" asp-action="PromoterArea">Back to Promoters Area</a>
+    <a class="btn btn-primary" asp-controller="Home" asp-action="CRUDs">CRUDs</a>
+    <a class="btn btn-primary" href="#top">Back to Top</a>
+</div>

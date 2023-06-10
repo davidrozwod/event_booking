@@ -124,7 +124,9 @@
         width: 50%;
         padding: 10px;
     }
-
+img {
+    margin-bottom: -42px;
+}
     .gradient-custom-3 {
         /* fallback for old browsers */
         background: #1A237E
@@ -157,22 +159,25 @@
                     <div class="p-3 border bg-light">
                         <center><h2 class="border-dark border-bottom">SUB CATEGORIES</h2></center>
                         <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
-                              Alternative Rock
+                            <a class="nav-link text-black" asp-area="" asp-controller="Home" asp-action="PerformancesAndNightlife">All Events</a>
                         </div>
                         <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
-                            Rap & Hip Hop
+                            <a class="nav-link text-black" asp-area="" asp-controller="Home" asp-action="AlternativeRock">Alternative Rock</a>
                         </div>
                         <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
-                           R&b & Soul
+                            <a class="nav-link text-black" asp-area="" asp-controller="Home" asp-action="RapAndHipHop">Rap And Hip Hop</a>
                         </div>
                         <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
-                            Jazz & Blues
+                            <a class="nav-link text-black" asp-area="" asp-controller="Home" asp-action="RBandSoul">R&B and Soul</a>
                         </div>
                         <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
-                            Hard/Rock Metal
+                            <a class="nav-link text-black" asp-area="" asp-controller="Home" asp-action="JazzAndBlues">Jazz And Blues</a>
                         </div>
                         <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
-                            Dance/ELectronic
+                            <a class="nav-link text-black" asp-area="" asp-controller="Home" asp-action="HardRockMetal">Hard Rock And Metal</a>
+                        </div>
+                        <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
+                                <a class="nav-link text-black" asp-area="" asp-controller="Home" asp-action="DanceElectronic">Dance And Electronic</a>
                         </div>
                         <div class="p-3 mb-2 bg-light bg-gradient text-dark ">                          
                         </div>
@@ -193,463 +198,64 @@
                         <h2 class="border-dark border-bottom">ALL EVENTS</h2>
                         <p></p>
                         <div class="row border border-dark">
-                                <div class="col-md-1">
-                                    <img class="center" src="https://i.iheart.com/v3/re/new_assets/6270752830a3cc93558d210e?ops=contain(1480,0)" />
-                                </div>
-                                <div class="col-md-1">
-                                <p></p>
-                                <h5 >Date</h5>
-                                <p></p>
-                                </div>
-                                <div class="col-md-7">
-                                    <h6 class="text-muted"> Day of Week - Time of Event Start</h6>
-                                    <h6>Name Of Event</h6>
-                                    <h6 class="text-muted">Location of Event - Venue</h6>
+                                <div class="col-md-2">
+                                    <img class="container" src="https://i.iheart.com/v3/re/new_assets/6270752830a3cc93558d210e?ops=contain(1480,0)" />
                                 </div>
                                 <div class="col-md-3">
                                     <p></p>
-                                    <button type="button" class="btn btn-primary">Find Tickets  ></button>
+                                <h5 style="margin-left: -20px; margin-top:20px ">Date</h5>
                                     <p></p>
                             </div>
+                                <div class="col-md-4">
+                                    <h6 class="text-muted" style="margin-left: -180px"> Day of Week - Time of Event Start</h6>
+                                    <h6 style="margin-left: -180px">Name Of Event</h6>
+                                    <h6 class="text-muted" style="margin-left: -180px">Location of Event - Venue</h6>
                         </div>
-                        <p></p>
-                        <div class="border border-dark row">
-                            <div class="col-md-1">
-                                <img class="center" src="https://i.iheart.com/v3/re/new_assets/6270752830a3cc93558d210e?ops=contain(1480,0)" />
-                            </div>
-                            <div class="col-md-1">
-                                <p></p>
-                                <h5>Date</h5>
-                                <p></p>
-                            </div>
-                            <div class="col-md-7">
-                                <h6 class="text-muted"> Day of Week - Time of Event Start</h6>
-                                <h6>Name Of Event</h6>
-                                <h6 class="text-muted">Location of Event - Venue</h6>
-                            </div>
                             <div class="col-md-3">
                                 <p></p>
-                                <button type="button" class="btn btn-primary">Find Tickets  ></button>
+                                    <a class="btn gradient-custom-3 text-white" asp-area="" asp-controller="Home" asp-action="EventPage">Find Tickets ></a>
                                 <p></p>
                             </div>
                         </div>
                         <p></p>
                         <div class="row border border-dark">
-                            <div class="col-md-1">
-                                <img class="center" src="https://i.iheart.com/v3/re/new_assets/6270752830a3cc93558d210e?ops=contain(1480,0)" />
-                            </div>
-                            <div class="col-md-1">
-                                <p></p>
-                                <h5>Date</h5>
-                                <p></p>
-                            </div>
-                            <div class="col-md-7">
-                                <h6 class="text-muted"> Day of Week - Time of Event Start</h6>
-                                <h6>Name Of Event</h6>
-                                <h6 class="text-muted">Location of Event - Venue</h6>
+                                <div class="col-md-2">
+                                    <img class="container" src="https://i.iheart.com/v3/re/new_assets/6270752830a3cc93558d210e?ops=contain(1480,0)" />
                             </div>
                             <div class="col-md-3">
                                 <p></p>
-                                <button type="button" class="btn btn-primary">Find Tickets  ></button>
+                                    <h5 style="margin-left: -20px; margin-top:20px ">Date</h5>
                                 <p></p>
                             </div>
+                                <div class="col-md-4">
+                                    <h6 class="text-muted" style="margin-left: -180px"> Day of Week - Time of Event Start</h6>
+                                    <h6 style="margin-left: -180px">Name Of Event</h6>
+                                    <h6 class="text-muted" style="margin-left: -180px">Location of Event - Venue</h6>
                         </div>
-                        <p></p>
-                            <div class="border border-dark row">
-                                <div class="col-md-1">
-                                    <img class="center" src="https://i.iheart.com/v3/re/new_assets/6270752830a3cc93558d210e?ops=contain(1480,0)" />
-                                </div>
-                                <div class="col-md-1">
-                                    <p></p>
-                                    <h5>Date</h5>
-                                    <p></p>
-                                </div>
-                                <div class="col-md-7">
-                                    <h6 class="text-muted"> Day of Week - Time of Event Start</h6>
-                                    <h6>Name Of Event</h6>
-                                    <h6 class="text-muted">Location of Event - Venue</h6>
-                                </div>
                                 <div class="col-md-3">
                                     <p></p>
-                                    <button type="button" class="btn btn-primary">Find Tickets  ></button>
-                                    <p></p>
-                                </div>
-                            </div>
-                            <p></p>
-                            <div class="border border-dark row">
-                                <div class="col-md-1">
-                                    <img class="center" src="https://i.iheart.com/v3/re/new_assets/6270752830a3cc93558d210e?ops=contain(1480,0)" />
-                                </div>
-                                <div class="col-md-1">
-                                    <p></p>
-                                    <h5>Date</h5>
-                                    <p></p>
-                                </div>
-                                <div class="col-md-7">
-                                    <h6 class="text-muted"> Day of Week - Time of Event Start</h6>
-                                    <h6>Name Of Event</h6>
-                                    <h6 class="text-muted">Location of Event - Venue</h6>
-                                </div>
-                                <div class="col-md-3">
-                                    <p></p>
-                                    <button type="button" class="btn btn-primary">Find Tickets  ></button>
+                                    <a class="btn gradient-custom-3 text-white" asp-area="" asp-controller="Home" asp-action="EventPage">Find Tickets ></a>
                                     <p></p>
                                 </div>
                             </div>
                             <p></p>
                             <div class="row border border-dark">
-                                <div class="col-md-1">
-                                    <img class="center" src="https://i.iheart.com/v3/re/new_assets/6270752830a3cc93558d210e?ops=contain(1480,0)" />
-                                </div>
-                                <div class="col-md-1">
-                                    <p></p>
-                                    <h5>Date</h5>
-                                    <p></p>
-                                </div>
-                                <div class="col-md-7">
-                                    <h6 class="text-muted"> Day of Week - Time of Event Start</h6>
-                                    <h6>Name Of Event</h6>
-                                    <h6 class="text-muted">Location of Event - Venue</h6>
+                                <div class="col-md-2">
+                                    <img class="container" src="https://i.iheart.com/v3/re/new_assets/6270752830a3cc93558d210e?ops=contain(1480,0)" />
                                 </div>
                                 <div class="col-md-3">
                                     <p></p>
-                                    <button type="button" class="btn btn-primary">Find Tickets  ></button>
+                                    <h5 style="margin-left: -20px; margin-top:20px ">Date</h5>
                                     <p></p>
                                 </div>
+                                <div class="col-md-4">
+                                    <h6 class="text-muted" style="margin-left: -180px"> Day of Week - Time of Event Start</h6>
+                                    <h6 style="margin-left: -180px">Name Of Event</h6>
+                                    <h6 class="text-muted" style="margin-left: -180px">Location of Event - Venue</h6>
                             </div>
-                            <p></p>
-                            <div class="border border-dark row">
-                                <div class="col-md-1">
-                                    <img class="center" src="https://i.iheart.com/v3/re/new_assets/6270752830a3cc93558d210e?ops=contain(1480,0)" />
-                                </div>
-                                <div class="col-md-1">
-                                    <p></p>
-                                    <h5>Date</h5>
-                                    <p></p>
-                                </div>
-                                <div class="col-md-7">
-                                    <h6 class="text-muted"> Day of Week - Time of Event Start</h6>
-                                    <h6>Name Of Event</h6>
-                                    <h6 class="text-muted">Location of Event - Venue</h6>
-                                </div>
                                 <div class="col-md-3">
                                     <p></p>
-                                    <button type="button" class="btn btn-primary">Find Tickets  ></button>
-                                    <p></p>
-                                </div>
-                            </div>
-                            <p></p>
-                            <div class="border border-dark row">
-                                <div class="col-md-1">
-                                    <img class="center" src="https://i.iheart.com/v3/re/new_assets/6270752830a3cc93558d210e?ops=contain(1480,0)" />
-                                </div>
-                                <div class="col-md-1">
-                                    <p></p>
-                                    <h5>Date</h5>
-                                    <p></p>
-                                </div>
-                                <div class="col-md-7">
-                                    <h6 class="text-muted"> Day of Week - Time of Event Start</h6>
-                                    <h6>Name Of Event</h6>
-                                    <h6 class="text-muted">Location of Event - Venue</h6>
-                                </div>
-                                <div class="col-md-3">
-                                    <p></p>
-                                    <button type="button" class="btn btn-primary">Find Tickets  ></button>
-                                    <p></p>
-                                </div>
-                            </div>
-                            <p></p>
-                            <div class="row border border-dark">
-                                <div class="col-md-1">
-                                    <img class="center" src="https://i.iheart.com/v3/re/new_assets/6270752830a3cc93558d210e?ops=contain(1480,0)" />
-                                </div>
-                                <div class="col-md-1">
-                                    <p></p>
-                                    <h5>Date</h5>
-                                    <p></p>
-                                </div>
-                                <div class="col-md-7">
-                                    <h6 class="text-muted"> Day of Week - Time of Event Start</h6>
-                                    <h6>Name Of Event</h6>
-                                    <h6 class="text-muted">Location of Event - Venue</h6>
-                                </div>
-                                <div class="col-md-3">
-                                    <p></p>
-                                    <button type="button" class="btn btn-primary">Find Tickets  ></button>
-                                    <p></p>
-                                </div>
-                            </div>
-                            <p></p>
-                            <div class="border border-dark row">
-                                <div class="col-md-1">
-                                    <img class="center" src="https://i.iheart.com/v3/re/new_assets/6270752830a3cc93558d210e?ops=contain(1480,0)" />
-                                </div>
-                                <div class="col-md-1">
-                                    <p></p>
-                                    <h5>Date</h5>
-                                    <p></p>
-                                </div>
-                                <div class="col-md-7">
-                                    <h6 class="text-muted"> Day of Week - Time of Event Start</h6>
-                                    <h6>Name Of Event</h6>
-                                    <h6 class="text-muted">Location of Event - Venue</h6>
-                                </div>
-                                <div class="col-md-3">
-                                    <p></p>
-                                    <button type="button" class="btn btn-primary">Find Tickets  ></button>
-                                    <p></p>
-                                </div>
-                            </div>
-                            <p></p>
-                            <div class="border border-dark row">
-                                <div class="col-md-1">
-                                    <img class="center" src="https://i.iheart.com/v3/re/new_assets/6270752830a3cc93558d210e?ops=contain(1480,0)" />
-                                </div>
-                                <div class="col-md-1">
-                                    <p></p>
-                                    <h5>Date</h5>
-                                    <p></p>
-                                </div>
-                                <div class="col-md-7">
-                                    <h6 class="text-muted"> Day of Week - Time of Event Start</h6>
-                                    <h6>Name Of Event</h6>
-                                    <h6 class="text-muted">Location of Event - Venue</h6>
-                                </div>
-                                <div class="col-md-3">
-                                    <p></p>
-                                    <button type="button" class="btn btn-primary">Find Tickets  ></button>
-                                    <p></p>
-                                </div>
-                            </div>
-                            <p></p>
-                            <div class="row border border-dark">
-                                <div class="col-md-1">
-                                    <img class="center" src="https://i.iheart.com/v3/re/new_assets/6270752830a3cc93558d210e?ops=contain(1480,0)" />
-                                </div>
-                                <div class="col-md-1">
-                                    <p></p>
-                                    <h5>Date</h5>
-                                    <p></p>
-                                </div>
-                                <div class="col-md-7">
-                                    <h6 class="text-muted"> Day of Week - Time of Event Start</h6>
-                                    <h6>Name Of Event</h6>
-                                    <h6 class="text-muted">Location of Event - Venue</h6>
-                                </div>
-                                <div class="col-md-3">
-                                    <p></p>
-                                    <button type="button" class="btn btn-primary">Find Tickets  ></button>
-                                    <p></p>
-                                </div>
-                            </div>
-                            <p></p>
-                            <div class="border border-dark row">
-                                <div class="col-md-1">
-                                    <img class="center" src="https://i.iheart.com/v3/re/new_assets/6270752830a3cc93558d210e?ops=contain(1480,0)" />
-                                </div>
-                                <div class="col-md-1">
-                                    <p></p>
-                                    <h5>Date</h5>
-                                    <p></p>
-                                </div>
-                                <div class="col-md-7">
-                                    <h6 class="text-muted"> Day of Week - Time of Event Start</h6>
-                                    <h6>Name Of Event</h6>
-                                    <h6 class="text-muted">Location of Event - Venue</h6>
-                                </div>
-                                <div class="col-md-3">
-                                    <p></p>
-                                    <button type="button" class="btn btn-primary">Find Tickets  ></button>
-                                    <p></p>
-                                </div>
-                            </div>
-                            <p></p>
-                            <div class="row border border-dark">
-                                <div class="col-md-1">
-                                    <img class="center" src="https://i.iheart.com/v3/re/new_assets/6270752830a3cc93558d210e?ops=contain(1480,0)" />
-                                </div>
-                                <div class="col-md-1">
-                                    <p></p>
-                                    <h5>Date</h5>
-                                    <p></p>
-                                </div>
-                                <div class="col-md-7">
-                                    <h6 class="text-muted"> Day of Week - Time of Event Start</h6>
-                                    <h6>Name Of Event</h6>
-                                    <h6 class="text-muted">Location of Event - Venue</h6>
-                                </div>
-                                <div class="col-md-3">
-                                    <p></p>
-                                    <button type="button" class="btn btn-primary">Find Tickets  ></button>
-                                    <p></p>
-                                </div>
-                            </div>
-                            <p></p>
-                            <div class="border border-dark row">
-                                <div class="col-md-1">
-                                    <img class="center" src="https://i.iheart.com/v3/re/new_assets/6270752830a3cc93558d210e?ops=contain(1480,0)" />
-                                </div>
-                                <div class="col-md-1">
-                                    <p></p>
-                                    <h5>Date</h5>
-                                    <p></p>
-                                </div>
-                                <div class="col-md-7">
-                                    <h6 class="text-muted"> Day of Week - Time of Event Start</h6>
-                                    <h6>Name Of Event</h6>
-                                    <h6 class="text-muted">Location of Event - Venue</h6>
-                                </div>
-                                <div class="col-md-3">
-                                    <p></p>
-                                    <button type="button" class="btn btn-primary">Find Tickets  ></button>
-                                    <p></p>
-                                </div>
-                            </div>
-                            <p></p>
-                            <div class="border border-dark row">
-                                <div class="col-md-1">
-                                    <img class="center" src="https://i.iheart.com/v3/re/new_assets/6270752830a3cc93558d210e?ops=contain(1480,0)" />
-                                </div>
-                                <div class="col-md-1">
-                                    <p></p>
-                                    <h5>Date</h5>
-                                    <p></p>
-                                </div>
-                                <div class="col-md-7">
-                                    <h6 class="text-muted"> Day of Week - Time of Event Start</h6>
-                                    <h6>Name Of Event</h6>
-                                    <h6 class="text-muted">Location of Event - Venue</h6>
-                                </div>
-                                <div class="col-md-3">
-                                    <p></p>
-                                    <button type="button" class="btn btn-primary">Find Tickets  ></button>
-                                    <p></p>
-                                </div>
-                            </div>
-                            <p></p>
-                            <div class="row border border-dark">
-                                <div class="col-md-1">
-                                    <img class="center" src="https://i.iheart.com/v3/re/new_assets/6270752830a3cc93558d210e?ops=contain(1480,0)" />
-                                </div>
-                                <div class="col-md-1">
-                                    <p></p>
-                                    <h5>Date</h5>
-                                    <p></p>
-                                </div>
-                                <div class="col-md-7">
-                                    <h6 class="text-muted"> Day of Week - Time of Event Start</h6>
-                                    <h6>Name Of Event</h6>
-                                    <h6 class="text-muted">Location of Event - Venue</h6>
-                                </div>
-                                <div class="col-md-3">
-                                    <p></p>
-                                    <button type="button" class="btn btn-primary">Find Tickets  ></button>
-                                    <p></p>
-                                </div>
-                            </div>
-                            <p></p>
-                            <div class="border border-dark row">
-                                <div class="col-md-1">
-                                    <img class="center" src="https://i.iheart.com/v3/re/new_assets/6270752830a3cc93558d210e?ops=contain(1480,0)" />
-                                </div>
-                                <div class="col-md-1">
-                                    <p></p>
-                                    <h5>Date</h5>
-                                    <p></p>
-                                </div>
-                                <div class="col-md-7">
-                                    <h6 class="text-muted"> Day of Week - Time of Event Start</h6>
-                                    <h6>Name Of Event</h6>
-                                    <h6 class="text-muted">Location of Event - Venue</h6>
-                                </div>
-                                <div class="col-md-3">
-                                    <p></p>
-                                    <button type="button" class="btn btn-primary">Find Tickets  ></button>
-                                    <p></p>
-                                </div>
-                            </div>
-                            <p></p>
-                            <div class="border border-dark row">
-                                <div class="col-md-1">
-                                    <img class="center" src="https://i.iheart.com/v3/re/new_assets/6270752830a3cc93558d210e?ops=contain(1480,0)" />
-                                </div>
-                                <div class="col-md-1">
-                                    <p></p>
-                                    <h5>Date</h5>
-                                    <p></p>
-                                </div>
-                                <div class="col-md-7">
-                                    <h6 class="text-muted"> Day of Week - Time of Event Start</h6>
-                                    <h6>Name Of Event</h6>
-                                    <h6 class="text-muted">Location of Event - Venue</h6>
-                                </div>
-                                <div class="col-md-3">
-                                    <p></p>
-                                    <button type="button" class="btn btn-primary">Find Tickets  ></button>
-                                    <p></p>
-                                </div>
-                            </div>
-                            <p></p>
-                            <div class="row border border-dark">
-                                <div class="col-md-1">
-                                    <img class="center" src="https://i.iheart.com/v3/re/new_assets/6270752830a3cc93558d210e?ops=contain(1480,0)" />
-                                </div>
-                                <div class="col-md-1">
-                                    <p></p>
-                                    <h5>Date</h5>
-                                    <p></p>
-                                </div>
-                                <div class="col-md-7">
-                                    <h6 class="text-muted"> Day of Week - Time of Event Start</h6>
-                                    <h6>Name Of Event</h6>
-                                    <h6 class="text-muted">Location of Event - Venue</h6>
-                                </div>
-                                <div class="col-md-3">
-                                    <p></p>
-                                    <button type="button" class="btn btn-primary">Find Tickets  ></button>
-                                    <p></p>
-                                </div>
-                            </div>
-                            <p></p>
-                            <div class="border border-dark row">
-                                <div class="col-md-1">
-                                    <img class="center" src="https://i.iheart.com/v3/re/new_assets/6270752830a3cc93558d210e?ops=contain(1480,0)" />
-                                </div>
-                                <div class="col-md-1">
-                                    <p></p>
-                                    <h5>Date</h5>
-                                    <p></p>
-                                </div>
-                                <div class="col-md-7">
-                                    <h6 class="text-muted"> Day of Week - Time of Event Start</h6>
-                                    <h6>Name Of Event</h6>
-                                    <h6 class="text-muted">Location of Event - Venue</h6>
-                                </div>
-                                <div class="col-md-3">
-                                    <p></p>
-                                    <button type="button" class="btn btn-primary">Find Tickets  ></button>
-                                    <p></p>
-                                </div>
-                            </div>
-                            <p></p>
-                            <div class="border border-dark row">
-                                <div class="col-md-1">
-                                    <img class="center" src="https://i.iheart.com/v3/re/new_assets/6270752830a3cc93558d210e?ops=contain(1480,0)" />
-                                </div>
-                                <div class="col-md-1">
-                                    <p></p>
-                                    <h5>Date</h5>
-                                    <p></p>
-                                </div>
-                                <div class="col-md-7">
-                                    <h6 class="text-muted"> Day of Week - Time of Event Start</h6>
-                                    <h6>Name Of Event</h6>
-                                    <h6 class="text-muted">Location of Event - Venue</h6>
-                                </div>
-                                <div class="col-md-3">
-                                    <p></p>
-                                    <button type="button" class="btn btn-primary">Find Tickets  ></button>
+                                    <a class="btn gradient-custom-3 text-white" asp-area="" asp-controller="Home" asp-action="EventPage">Find Tickets ></a>
                                     <p></p>
                                 </div>
                             </div>

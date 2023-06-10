@@ -348,8 +348,7 @@ namespace event_booking.Data.Migrations
                         .HasColumnName("EventCategoryID");
 
                     b.Property<string>("Image")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()

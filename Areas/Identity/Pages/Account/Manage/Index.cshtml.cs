@@ -95,6 +95,9 @@ namespace event_booking.Areas.Identity.Pages.Account.Manage
             }
 
             if (!ModelState.IsValid)
+
+
+
             {
                 await LoadAsync(user);
                 return Page();

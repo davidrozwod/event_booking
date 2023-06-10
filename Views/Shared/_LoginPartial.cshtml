@@ -1,27 +1,65 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@model event_booking.Models.EventUser
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
-
-    <li class="nav-item">
-        <a  class="nav-link text-light" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
-    </li>
-    <li class="nav-item">
-        <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button  type="submit" class="nav-link btn btn-link text-light">Logout</button>
-        </form>
-    </li>
+        <div class="container-fluid">
+            <form class="d-flex input-group w-auto">
+                <input type="search"
+                       class="form-control rounded"
+                       placeholder="Search"
+                       aria-label="Search"
+                       aria-describedby="search-addon" />
+                <span class="input-group-text border-0" id="search-addon">
+                    <i class="fas fa-search"></i>
+                </span>
+            </form>
+        </div>
+       
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                @await Component.InvokeAsync("UserName")
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li class="nav-item">
+                    <a class="nav-link text-black" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">My Account</a>
+                </li>
+                <li class="nav-item">
+                    <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                        <button type="submit" class="nav-link btn btn-link text-black">Logout</button>
+                    </form>
+                </li>
+                <li class="nav-item btn text-black">
+                    My Tickets
+                </li>
+                <li class="nav-item btn text-black">
+                    Create Events
+                </li>
+            </ul>
+        </div>
 }
 else
 {
+    <div class="container-fluid">
+         <form class="d-flex input-group w-auto">
+             <input type="search"
+                     class="form-control rounded"
+                     placeholder="Search"
+                     aria-label="Search"
+                     aria-describedby="search-addon" />
+             <span class="input-group-text border-0" id="search-addon">
+                <i class="fas fa-search"></i>
+            </span>
+         </form>
+    </div>
     <li class="nav-item">
-        <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Register">Register</a>
+            <a class="btn btn-dark px-3" asp-area="Identity" asp-page="/Account/Register">Register</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Login">Login</a>
+            <a class="btn btn-primary px-3" asp-area="Identity" asp-page="/Account/Login">Login</a>
     </li>
 }
 </ul>

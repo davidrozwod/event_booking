@@ -1,40 +1,20 @@
-﻿﻿<style>
-    .carousel-inner {
-    margin-top: -17px;
-}
- body{
-       background: rgb(232, 252, 252);
-       margin: 0px;
-       padding: 0px
- }
- .bottom-left {
-  position: absolute;
-  bottom: 8px;
-  left: 16px;
-}
+﻿<style>
+    .centered {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 
-.hover12 figure {
-        background: #D50000;
-}
-.hover12 figure img {
-	opacity: 1;
-	-webkit-transition: .3s ease-in-out;
-	transition: .3s ease-in-out;
-}
-.hover12 figure:hover img {
-	opacity: .5;
-}
-
-/* Flashing */
-.hover13 figure:hover img {
-	opacity: 1;
-	-webkit-animation: flash 1.5s;
-	animation: flash 1.5s;
-}
+    .bottom-left {
+        position: absolute;
+        bottom: 8px;
+        left: 16px;
+    }
 
     h1,
     h1 + p {
-        margin-left: 20px;
+        margin-left: 15px;
         font-weight: 300;
         font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
     }
@@ -51,17 +31,16 @@
         margin: 5px 15px 0;
         padding: 0;
         font-weight: 300;
-        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
     }
 
         h2 span {
             margin-left: 1em;
             color: #aaa;
-            font-size: 85%;
+            font-size: 50%;
         }
 
     h3 {
-
         margin-top: 10px;
         padding: 0;
         font-weight: 300;
@@ -89,8 +68,7 @@
         }
 
     h5 {
-        margin-top: 75px; 
-        padding: 0;
+        margin-top: 75px padding: 0;
         font-weight: 300;
         font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
     }
@@ -113,8 +91,9 @@
             color: #aaa;
             font-size: 50%;
         }
+
     p {
-        margin-top: -15px;
+        margin-left: 15px;
         padding: 0;
         font-weight: 300;
         font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
@@ -125,146 +104,328 @@
             color: #aaa;
             font-size: 85%;
         }
-    .example {
-  position: relative;
-  padding: 0;
-  width: 300px;
-  display: block;
-  cursor: pointer;
-  overflow: hidden;
-}
-</style>
-<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-    <div class="carousel-inner">
-        <div class="hover12 carousel-item active ">
-           <figure>
-               <img src="https://cdn.discordapp.com/attachments/1090451877126225987/1108902948664254636/Homepage2.png" class="d-block w-100" width="80%">
-               <div class="bottom-left text-white">
-                  <h1>Bottom Left</h1> 
-                  <h3>Bottom Left</h3> 
-                </div>
-           </figure>
-        </div>
-        <div class="hover12 carousel-item">
-            <figure>
-                <img src="https://cdn.discordapp.com/attachments/1090451877126225987/1108902948278382592/Homepage3.png" class="d-block w-100" alt="...">
-                <div class="bottom-left text-white">
-                  <h1>Bottom Left</h1> 
-                  <h3>Bottom Left</h3> 
-                </div>
-            </figure>
-        </div>
-        <div class="hover12 carousel-item ">
-            <figure>
-                <img src="https://cdn.discordapp.com/attachments/1090451877126225987/1108902949192741026/Homepage1.png" class="d-block w-100" alt="...">
-                <div class="bottom-left text-white">
-                  <h1>Bottom Left</h1> 
-                  <h3>Bottom Left</h3> 
-                </div>
-            </figure>
-        </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
-</div>
-<div class="container-fluid">
-    <center><H2>Popular Events</H2></center>
-<div class="row">
-    <div class="hover12 col-3">
-        <div>
-            <figure><img src="https://dynamicmedia.livenationinternational.com/Media/m/q/o/75f8c640-9b94-4de4-8854-7ad9d6165cdf.jpeg" class="rounded-6" width="100%" /></figure>
-            <p class="text-muted">Performances & Nightlife </p>
-            <center><h4>Denzel Curry</h4></center>
-        </div>
-    </div>
-    <div class="hover12 col-3">
-        <div>
-            <figure><img src="https://scenestr.com.au/media/k2/items/cache/57730bf7a9bf93c0495a1f10b3667005_XL.jpg" class="rounded-6" width="100%" /></figure>
-            <p class="text-muted">Performances & Nightlife</p>
-            <center><h4>Vacations</h4></center>
-        </div>
-    </div>
-    <div class="hover12 col-3">
-        <div>
-            <figure><img src="https://thetowerlight.com/wp-content/uploads/2018/12/1319_FOB_Mix_Anderson_Paak_A.jpg" class="rounded-6" width="100%" /></figure>
-            <p class="text-muted">Performances & Nightlife</p>
-            <center><h4>Anderson.Paak</h4></center>
-        </div>
-    </div>
-    <div class="hover12 col-3">
-        <figure><img src="https://dmxg5wxfqgb4u.cloudfront.net/styles/background_image_sm/s3/2020-01/UFC-Fight-Night-Auckland-Event-Hero-2020.jpg?h=d1cb525d&itok=J2RTLpW0" class="rounded-6" width="100%" /></figure>
-        <p class="text-muted">Sports & Outdoors</p>
-        <center><h4>UFC Fight Night: Felder Vs Hooker</h4></center>
-    </div>
-    <p></p>
-</div>
- <div class="row">
-        <div class="container border border-dark col-4 ">
-            <Center><h2> Latest Events </h2></Center>
-            <Center>
-                <div class="col-12 ">
-                    <div class="hover12">
-                    <figure><img src="https://dmxg5wxfqgb4u.cloudfront.net/styles/background_image_sm/s3/2020-01/UFC-Fight-Night-Auckland-Event-Hero-2020.jpg?h=d1cb525d&itok=J2RTLpW0" class="rounded-6" width="100%" /></figure>
-                        <p class="text-muted">Sports & Outdoors</p>
-                        <center><h4>UFC Fight Night: Felder Vs Hooker</h4></center>
-                    </div>
-                    <div class="hover12">
-                    <figure><img src="https://lwt-live.s3.eu-west-1.amazonaws.com/wp-content/uploads/2023/03/03112533/Ricky-Gervais-London-Palladium-1600x1000-1-1-1600x1000.jpg" class="rounded-6" width="100%" /></figure>
-                        <p class="text-muted">Comedy</p>
-                        <center><h4>Ricky Gervais: Armageddon</h4></center>
-                        <p></p>
-                    </div>
-                    <div class="hover12">
-                    <figure><img src="https://ourculturemag.com/wp-content/uploads/2023/01/FmIsf66akAADz4t-e1673385058434-696x365.jpeg" width="100%" /></figure>
-                        <p class="text-muted">Festivals and Lifestyles</p>
-                        <center><h4>Coachella 2023</h4></center>
-                        <p></p>
-                    </div>
-                   </div>
-            </Center>
-        </div>
-        <div class="col-8">
-            <Center><h2> Discover Events </h2></Center>
-            <div class="row">
-                <div class="col-6 hover12">
-                <figure><img src="https://wallpapercave.com/wp/wp4197304.jpg" width="100%" /></figure>
-                    <p class="text-muted">Family & Education</p>
-                    <center><h4>Walking with Dinosaurs</h4></center>
-                    <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</h6>
-                    <strong><h5><a href="#" class="text-primary">Find Tickets</a></h5></strong>
-                </div>
-                <div class="col-6 hover12">
-                <figure><img src=" https://scontent.fakl8-1.fna.fbcdn.net/v/t39.30808-6/246164822_4364883746921319_4196205017400528076_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=9267fe&_nc_ohc=C3Imh-Ml-wYAX-Acij1&_nc_ht=scontent.fakl8-1.fna&oh=00_AfB4MtdpCHxbU2XiHGXLvpCQB-D_XRDITGTToS78TEjp1g&oe=646A0AFD" width="100%" /></figure>
-                    <p class="text-muted">Theater & Arts</p>
-                    <center><h4>Bell Shakesphere 2023</h4></center>
-                    <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</h6>
-                    <strong><h5><a href="#" class="text-primary">Find Tickets</a></h5></strong>
-                </div>
-                <div class="row">
-                    <div class="col-6 hover12">
-                    <figure><img src="https://i.ytimg.com/vi/H8bH1v0M1GI/maxresdefault.jpg" width="100%" /></figure>
-                        <p class="text-muted">Charity & Causes</p>
-                        <center><h4>Revelmode Cringemas 2023</h4></center>
-                        <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</h6>
-                        <strong><h5><a href="#" class="text-primary">Find Tickets</a></h5></strong>
-                    </div>
-                    <div class="col-6 hover12">
 
-                        <figure><img src=" https://static01.nyt.com/images/2021/07/07/arts/06billboard-item/06billboard-item-videoSixteenByNineJumbo1600.jpg" width="100%" /></figure>
-                        <p class="text-muted">Performances & Nightlife</p>
-                        <center><h4>Call Me if you get lost Tour</h4></center>
-                        <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</h6>
-                        <strong><h5><a href="#" class="text-primary">Find Tickets</a></h5></strong>                  
+    .example {
+        position: relative;
+        padding: 0;
+        width: 300px;
+        display: block;
+        cursor: pointer;
+        overflow: hidden;
+    }
+
+    .center {
+        margin: auto;
+        width: 50%;
+        padding: 10px;
+    }
+
+    body {
+        background-image: url('https://burst.shopifycdn.com/photos/dj-crowd.jpg?width=925&format=pjpg&exif=1&iptc=1');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+
+    .gradient-custom-3 {
+        /* fallback for old browsers */
+        background: #1A237E
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1)));
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1))
+    }
+
+    .gradient-custom-4 {
+        /* fallback for old browsers */
+        background: #1A237E
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1)));
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1))
+    }
+
+    .container-overflow {
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    }
+
+    .border-botom {
+        margin-bottom: 10px;
+    }
+    /*Fade Hover Effect*/
+    .hover-fade a {
+        display: block;
+        position: relative;
+        overflow: hidden;
+        background-color: indigo;
+        border-radius: 5px;
+    }
+
+    .hover-fade img {
+        width: 100%;
+        height: auto;
+        -webkit-transition: all 0.5s ease-in-out;
+        -moz-transition: all 0.5s ease-in-out;
+        -o-transition: all 0.5s ease-in-out;
+        -ms-transition: all 0.5s ease-in-out;
+        transition: all 0.5s ease-in-out;
+
+
+    }
+
+    .hover-fade:hover img {
+        -webkit-transform: scale(1.2);
+        -moz-transform: scale(1.2);
+        -o-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+        transform: scale(1.2);
+        -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0.5)";
+        filter: alpha(opacity=0.5);
+        opacity: 0.5;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+
+
+</style>
+<html>
+<body>
+    <section class="background-radial-gradient container overflow-hidden">
+    </section>
+    <div class="container-overflow px-7">
+        <div class="row">
+            <div class="col-4">
+                <div class="container">
+                </div>
+            </div>
+            <div style="margin-top: 100px; margin-left: -50px;" class="col-8 text-white">
+                <p>Event Category</p>
+                <h1>Event Name</h1>
+            </div>
+        </div>
+        <p></p>
+        <div class="container-overflow">
+            <div class="row gx-3">
+                <div class="container-overflow px-7">
+                    <div class="col-12">
+                        <div style=" margin-bottom: -20px; margin-top:190px;" class="p-3 border bg-white">
+                            <div id="section1"></div>
+                        <div class="row">
+                                <div  class="col-8">
+                                    <center><h3 style="margin-top: 5px;" class="border-dark border-bottom"></h3></center>
+                                    <div class="row" style="margin-bottom: 15px; margin-left: 20px; ">
+                                        <center><H2 class=" border-dark border-bottom" style="margin-left:250px; margin-right:250px; margin-top: 15px;">Popular Events</H2></center>
+                                    </div>
+                                    <div class="row border-bottom">
+                                        <div class="col-3 hover-fade rounded ">
+                                            <a href="#" title="">
+                                                <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded-corners" />
+                                            </a>
+                                            <p class="text-muted">Performances & Nightlife </p>
+                                            <center><h4>Denzel Curry</h4></center>
+                                        </div>
+                                        <div class="col-3 hover-fade rounded ">
+                                            <a href="#" title="">
+                                                <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded" />
+                                            </a>
+                                            <p class="text-muted">Performances & Nightlife </p>
+                                            <center><h4>Denzel Curry</h4></center>
+                                        </div>
+                                        <div class="col-3 hover-fade rounded ">
+                                            <a href="#" title="">
+                                                <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded" />
+                                            </a>
+                                            <p class="text-muted">Performances & Nightlife </p>
+                                            <center><h4>Denzel Curry</h4></center>
+                                        </div>
+                                        <div class="col-3 hover-fade rounded ">
+                                            <a href="#" title="">
+                                                <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded" />
+                                            </a>
+                                            <p class="text-muted">Performances & Nightlife </p>
+                                            <center><h4>Denzel Curry</h4></center>
+                                        </div>
+                                        <p></p>
+                                    </div>
+                                    <div style="margin-top:20px;" class="row border-bottom">
+                                        <div class="col-3 hover-fade rounded ">
+                                            <a href="#" title="">
+                                                <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded-corners" />
+                                            </a>
+                                            <p class="text-muted">Performances & Nightlife </p>
+                                            <center><h4>Denzel Curry</h4></center>
+                                        </div>
+                                        <div class="col-3 hover-fade rounded ">
+                                            <a href="#" title="">
+                                                <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded" />
+                                            </a>
+                                            <p class="text-muted">Performances & Nightlife </p>
+                                            <center><h4>Denzel Curry</h4></center>
+                                        </div>
+                                        <div class="col-3 hover-fade rounded ">
+                                            <a href="#" title="">
+                                                <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded" />
+                                            </a>
+                                            <p class="text-muted">Performances & Nightlife </p>
+                                            <center><h4>Denzel Curry</h4></center>
+                                        </div>
+                                        <div class="col-3 hover-fade rounded ">
+                                            <a href="#" title="">
+                                                <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded" />
+                                            </a>
+                                            <p class="text-muted">Performances & Nightlife </p>
+                                            <center><h4>Denzel Curry</h4></center>
+                                        </div>
+                                        <p></p>
+                                    </div>
+                                    <div style="margin-top:20px;" class="row border-bottom">
+                                        <Center><h2 class="border-dark border-bottom" style="margin-left:250px; margin-right:250px; margin-bottom: 15px; ">Discover Events </h2></Center>
+                                        <div class="col-6 hover-fade rounded ">
+                                            <a href="#" title="">
+                                                <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded" />
+                                            </a>
+                                            <p class="text-muted">Performances & Nightlife </p>
+                                            <center><h4>Denzel Curry</h4></center>
+                                        </div>
+                                        <div class="col-6 hover-fade rounded ">
+                                            <a href="#" title="">
+                                                <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded" />
+                                            </a>
+                                            <p class="text-muted">Performances & Nightlife </p>
+                                            <center><h4>Denzel Curry</h4></center>
+                                        </div>
+                                        <p></p>
+                                    </div>
+                                    <div style="margin-top:20px;" class="row border-bottom">
+                                        <div class="col-6 hover-fade rounded ">
+                                            <a href="#" title="">
+                                                <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded" />
+                                            </a>
+                                            <p class="text-muted">Performances & Nightlife </p>
+                                            <center><h4>Denzel Curry</h4></center>
+                                        </div>
+                                        <div class="col-6 hover-fade rounded ">
+                                            <a href="#" title="">
+                                                <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded" />
+                                            </a>
+                                            <p class="text-muted">Performances & Nightlife </p>
+                                            <center><h4>Denzel Curry</h4></center>
+                                        </div>
+                                        <p></p>
+                                    </div>
+                                    <div style="margin-top:20px;" class="row border-bottom">
+                                        <Center><h2 class="border-dark border-bottom" style="margin-left:250px; margin-right:250px; margin-bottom: 15px; ">Recommended Events </h2></Center>
+                                        <div class="col-4 hover-fade rounded ">
+                                            <a href="#" title="">
+                                                <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded" />
+                                            </a>
+                                            <p class="text-muted">Performances & Nightlife </p>
+                                            <center><h4>Denzel Curry</h4></center>
+                                            <h6 class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</h6>
+                                        </div>
+                                        <div class="col-4 hover-fade rounded ">
+                                            <a href="#" title="">
+                                                <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded" />
+                                            </a>
+                                            <p class="text-muted">Performances & Nightlife </p>
+                                            <center><h4>Denzel Curry</h4></center>
+                                            <h6 class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</h6>
+
+                                        </div>
+                                        <div class="col-4 hover-fade rounded ">
+                                            <a href="#" title="">
+                                                <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded" />
+                                            </a>
+                                            <p class="text-muted">Performances & Nightlife </p>
+                                            <center><h4>Denzel Curry</h4></center>
+                                            <h6 class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</h6>
+                                        </div>
+                                        <p></p>
+                                    </div>
+                                    <div style="margin-top:20px;" class="row border-bottom">
+                                        <div class="col-4 hover-fade rounded ">
+                                            <a href="#" title="">
+                                                <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded" />
+                                            </a>
+                                            <p class="text-muted">Performances & Nightlife </p>
+                                            <center><h4>Denzel Curry</h4></center>
+                                            <h6 class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</h6>
+
+                                        </div>
+                                        <div class="col-4 hover-fade rounded ">
+                                            <a href="#" title="">
+                                                <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded" />
+                                            </a>
+                                            <p class="text-muted">Performances & Nightlife </p>
+                                            <center><h4>Denzel Curry</h4></center>
+                                            <h6 class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</h6>
+
+                                        </div>
+                                        <div class="col-4 hover-fade rounded ">
+                                            <a href="#" title="">
+                                                <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded" />
+                                            </a>
+                                            <p class="text-muted">Performances & Nightlife </p>
+                                            <center><h4>Denzel Curry</h4></center>
+                                            <h6 class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</h6>
+
+                                        </div>
+                                        <p></p>
+                                    </div>
+                                 </div> 
+                                <div style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; margin-top: -20px; margin-bottom: -10px" class="col-4 container-fluid">
+                                    <Center><h2> Latest Events </h2></Center>
+                                    <Center>
+                                        <div class="col-12 ">
+                                            <div class="col-10 hover-fade rounded ">
+                                                <a href="#" title="">
+                                                    <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded" />
+                                                </a>
+                                                <p class="text-muted">Performances & Nightlife </p>
+                                                <center><h4>Denzel Curry</h4></center>
+                                            </div>
+                                            <div class="col-10 hover-fade rounded ">
+                                                <a href="#" title="">
+                                                    <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded" />
+                                                </a>
+                                                <p class="text-muted">Performances & Nightlife </p>
+                                                <center><h4>Denzel Curry</h4></center>
+                                            </div>
+                                            <div class="col-10 hover-fade rounded ">
+                                                <a href="#" title="">
+                                                    <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded" />
+                                                </a>
+                                                <p class="text-muted">Performances & Nightlife </p>
+                                                <center><h4>Denzel Curry</h4></center>
+                                            </div>
+                                            <div class="col-10 hover-fade rounded ">
+                                                <a href="#" title="">
+                                                    <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded" />
+                                                </a>
+                                                <p class="text-muted">Performances & Nightlife </p>
+                                                <center><h4>Denzel Curry</h4></center>
+                                            </div>
+                                               <div class="col-10 hover-fade rounded ">
+                                                <a href="#" title="">
+                                                    <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded" />
+                                                </a>
+                                                <p class="text-muted">Performances & Nightlife </p>
+                                                <center><h4>Denzel Curry</h4></center>
+                                            </div>
+                                            <div class="col-10 hover-fade rounded ">
+                                                <a href="#" title="">
+                                                    <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded" />
+                                                </a>
+                                                <p class="text-muted">Performances & Nightlife </p>
+                                                <center><h4>Denzel Curry</h4></center>
+                                            </div>
+                                        </div>
+                                    </Center>
+                                </div>
+                        </div>
                     </div>
                 </div>
             </div>
-    </div>
-</div>
- 
-</div>
+        </div>
+      </div>
+</body>
+</html>

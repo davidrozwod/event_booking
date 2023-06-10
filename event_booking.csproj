@@ -27,4 +27,8 @@
     <PackageReference Include="SixLabors.ImageSharp" Version="3.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\EventCategories\" />
+  </ItemGroup>
+
 </Project>

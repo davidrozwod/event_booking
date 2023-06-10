@@ -1,0 +1,63 @@
+﻿@* EventSystem Ticket *@
+
+@{
+    ViewData["Title"] = "Create";
+    if (ViewBag.TicketsExist == true)
+    {
+        <div class="alert alert-danger">
+            <p>Tickets already created for this Event</p>
+        </div>
+    }
+
+    @if (ViewBag.TicketsExist == false)
+    {
+        <div class="alert alert-success">
+            <h3>Success</h3>
+            <p>@ViewBag.SeatsCreated seats were created.</p>
+            <p>@ViewBag.TicketsCreated tickets were created.</p>
+        </div>
+    }
+
+}
+@model event_booking.Models.Ticket
+
+<h1>Create</h1>
+
+<h4>Tickets</h4>
+<p>Creates every ticket for the event</p>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" method="post">
+            <div class="form-group">
+                <label asp-for="EventId" class="control-label"></label>
+                <select asp-for="EventId" class="form-control" asp-items="@ViewBag.EventId">
+                    <option value="">Select Event</option>
+                </select>
+                <span asp-validation-for="EventId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VenueId" class="control-label"></label>
+                <select asp-for="VenueId" class="form-control" asp-items="@ViewBag.VenueId">
+                    <option value="">Select Venue</option>
+                </select>
+                <span asp-validation-for="VenueId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BasePrice" class="control-label"></label>
+                <input asp-for="BasePrice" class="form-control" />
+                <span asp-validation-for="BasePrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<hr />
+<div>
+    <a class="btn btn-primary" asp-controller="Tickets" asp-action="Index">View Tickets</a>
+    <a class="btn btn-primary" asp-controller="Home" asp-action="PromoterArea">Back to Promoters Area</a>
+    <a class="btn btn-primary" asp-controller="Home" asp-action="EventSystem">Back to EventSystem</a>
+</div>

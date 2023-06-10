@@ -4,6 +4,14 @@
 @{
     ViewData["Title"] = "Welcome";
 }
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+<style>
+    h2 {
+        color: indigo;
+    }
 
 <style>
     h2 {
@@ -51,7 +59,7 @@
             <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
                 <div class="card bg-glass">
                     <div class="card-body px-4 py-5 px-md-5">
-                        <form>
+                        <form id="account" method="post">
                             <center>
                                 <h2 class="fw-bold mb-2 text-uppercase">Log in</h2>
                                 <p class="text-black-50 mb-5">Please enter your Email and Password</p>

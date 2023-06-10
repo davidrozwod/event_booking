@@ -259,6 +259,12 @@ namespace event_booking.Controllers
             return View();
         }
 
+        [Authorize]
+        public IActionResult EventSystem()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

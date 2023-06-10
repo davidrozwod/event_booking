@@ -71,13 +71,21 @@ namespace event_booking.Controllers.CRUDs
         [Authorize]
         public IActionResult Create()
         {
-            ViewData["DiscountId"] = new SelectList(_context.Discounts, "DiscountId", "DiscountId");
+            ViewData["DiscountId"] = new SelectList(_context.Discounts.OrderBy(d => d.DiscountName), "DiscountId", "DiscountName");
+            ViewData["EventId"] = new SelectList(_context.Events.OrderBy(e => e.Name), "EventId", "Name");
+            ViewData["EventUserId"] = new SelectList(_context.EventUsers.OrderBy(u => u.FirstName).ThenBy(u => u.LastName), "EventUserId", "FullName");
+            ViewData["PurchaseId"] = new SelectList(_context.Purchases, "PurchaseId", "PurchaseId");
+            ViewData["SeatId"] = new SelectList(_context.Seats.OrderBy(s => s.SeatNumber), "SeatId", "SeatNumber");
+            ViewData["TicketTypeId"] = new SelectList(_context.TicketTypes.OrderBy(t => t.TypeName), "TicketTypeId", "TypeName");
+            ViewData["VenueId"] = new SelectList(_context.Venues.OrderBy(v => v.Name), "VenueId", "Name");
+
+            /*            ViewData["DiscountId"] = new SelectList(_context.Discounts, "DiscountId", "DiscountId");
             ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventId");
             ViewData["EventUserId"] = new SelectList(_context.EventUsers, "EventUserId", "EventUserId");
             ViewData["PurchaseId"] = new SelectList(_context.Purchases, "PurchaseId", "PurchaseId");
             ViewData["SeatId"] = new SelectList(_context.Seats, "SeatId", "SeatId");
             ViewData["TicketTypeId"] = new SelectList(_context.TicketTypes, "TicketTypeId", "TicketTypeId");
-            ViewData["VenueId"] = new SelectList(_context.Venues, "VenueId", "VenueId");
+            ViewData["VenueId"] = new SelectList(_context.Venues, "VenueId", "VenueId");*/
             return View("~/Views/CRUDs/Tickets/Create.cshtml");
         }
 

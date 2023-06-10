@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading;
@@ -177,7 +178,13 @@ namespace event_booking.Areas.Identity.Pages.Account
                     {
                         await _userManager.AddToRoleAsync(user, role);
                     }
-                    else {
+                    else if (role == null)
+                    {
+                        role = "User";
+                        await _userManager.AddToRoleAsync(user, role);
+                    }
+                    else 
+                    {
                         throw new NotSupportedException("Please enter a user role");
                     }
 

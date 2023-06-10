@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - event_booking</title>
+    <title>@ViewData["Title"] - Eventfulnz</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/event_booking.styles.css" asp-append-version="true" />
@@ -12,7 +12,9 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-dark shadow-inner">
             <div class="container-fluid">
-                <a class="navbar-brand nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">EventfulNZ</a>
+                <a class="navbar-brand nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="https://i.ibb.co/fYKrRZZ/jamie-Logo.png" alt="Logo">
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -20,19 +22,39 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="PerformancesAndNightlife">Performances & Nightlife</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="SportsAndOutdoors">Sports & Outdoors</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="TheaterAndArts">Theatre & Arts</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Ticket">Book a Ticket</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="FamilyAndEducation">Family & Education</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="UserExclusiveFeatures">Subscribe</a>
+                        </li>
+                        <li class="nav-item">
+                            @if (User.IsInRole("Promoter") || User.IsInRole("Admin"))
+                            {
+                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="PromoterArea">Create Event</a>
+                            }
+                        </li>
+                        <li class="nav-item">
+                            <form class="d-flex input-group w-auto">
+                                <input type="search"
+                                       class="form-control rounded"
+                                       placeholder="Search"
+                                       aria-label="Search"
+                                       aria-describedby="search-addon" />
+                                <span class="input-group-text border-0" id="search-addon">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                            </form>
                         </li>
                     </ul>
-
                     <partial name="_LoginPartial" />
                 </div>
             </div>
@@ -43,10 +65,59 @@
             @RenderBody()
         </main>
     </div>
-
+    </div>
+    
+    
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - event_booking - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div class="footer">
+            <div class="row">
+                <div class="col">
+                    <h4>Events</h4>
+                    Performance & Nightlife
+                    <br>
+                    Theater & Arts
+                    <br>
+                    Sports & Outdoors
+                    <br>
+                    Festivals & Lifestyle
+                    <br>
+                    Professional Events & Government
+                    <br>
+                    Charity & Causes
+                    <br>
+                    Comedy
+                    <br>
+                    Family & Education
+                </div>
+                <div class="col">
+                    <h4>Helpful Links</h4>
+                    Your Account
+                    <br>
+                    View your tickets
+                    <br>
+                    Refund or Exchange your tickets
+                </div>
+                <div class="col">
+                    <h4>About Us</h4>
+                        <a class="text" asp-area="" asp-controller="Home" asp-action="Contact">Contact Us</a>
+                    <br>
+                    <a class="text" asp-area="" asp-controller="Home" asp-action="Policy">Terms and Conditions</a>
+                    <br>
+                        @if (User.IsInRole("Promoter"))
+                        {
+                            <a class="text" asp-area="" asp-controller="Home" asp-action="PromoterArea">Create Event</a>
+                        }
+                </div>
+            </div>
+            <hr>
+            <center>
+                <a href="https://www.facebook.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/2048px-2021_Facebook_icon.svg.png" width="40"></a>
+                <a href="https://twitter.com/" width="100"><img src="https://cdn4.iconfinder.com/data/icons/social-media-icons-the-circle-set/48/twitter_circle-512.png" width="40"></a>
+                <a href="https://www.linkedin.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/LinkedIn_icon_circle.svg/800px-LinkedIn_icon_circle.svg.png" width="40"></a>
+                <a href="https://www.instagram.com/"><img src="https://i0.wp.com/bodybeyondlimits.com.au/wp-content/uploads/2022/07/instagram-circle-icon-png-4.png?ssl=1" width="40"></a>
+            </center>
+        </div>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -55,3 +126,4 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+

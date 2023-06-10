@@ -61,19 +61,19 @@ namespace event_booking.Controllers
 
         public IActionResult PerformancesAndNightlife()
         {
-            return View();
+            return View("~/Views/EventCategories/PerformancesAndNightlife.cshtml");
         }
         public IActionResult SportsAndOutdoors()
         {
-            return View();
+            return View("~/Views/EventCategories/SportsAndOutdoors.cshtml");
         }
         public IActionResult TheaterAndArts()
         {
-            return View();
+            return View("~/Views/EventCategories/TheaterAndArts.cshtml");
         }
         public IActionResult FamilyAndEducation()
         {
-            return View();
+            return View("~/Views/EventCategories/FamilyAndEducation.cshtml");
         }
 
         [Authorize]
@@ -119,139 +119,139 @@ namespace event_booking.Controllers
 
         public IActionResult AlternativeRock()
         {
-            return View();
+            return View("~/Views/EventCategories/AlternativeRock.cshtml");
         }
         public IActionResult RapAndHipHop()
         {
-            return View();
+            return View("~/Views/EventCategories/RapAndHipHop.cshtml");
         }
         public IActionResult RBandSoul()
         {
-            return View();
+            return View("~/Views/EventCategories/RBandSoul.cshtml");
         }
         public IActionResult JazzAndBlues()
         {
-            return View();
+            return View("~/Views/EventCategories/JazzAndBlues.cshtml");
         }
 
         public IActionResult HardRockMetal()
         {
-            return View();
+            return View("~/Views/EventCategories/HardRockMetal.cshtml");
         }
 
         public IActionResult DanceElectronic()
         {
-            return View();
+            return View("~/Views/EventCategories/DanceElectronic.cshtml");
         }
 
         public IActionResult CombatSports()
         {
-            return View();
+            return View("~/Views/EventCategories/CombatSports.cshtml");
         }
 
         public IActionResult Baseball()
         {
-            return View();
+            return View("~/Views/EventCategories/Baseball.cshtml");
         }
 
         public IActionResult Basketball()
         {
-            return View();
+            return View("~/Views/EventCategories/Basketball.cshtml");
         }
 
         public IActionResult RugbyUnion()
         {
-            return View();
+            return View("~/Views/EventCategories/Basketball.cshtml");
         }
 
         public IActionResult Football()
         {
-            return View();
+            return View("~/Views/EventCategories/Football.cshtml");
         }
 
         public IActionResult Cricket()
         {
-            return View();
+            return View("~/Views/EventCategories/Cricket.cshtml");
         }
 
         public IActionResult Netball()
         {
-            return View();
+            return View("~/Views/EventCategories/Netball.cshtml");
         }
 
         public IActionResult Golf()
         {
-            return View();
+            return View("~/Views/EventCategories/Golf.cshtml");
         }
 
         public IActionResult BalletAndDance()
         {
-            return View();
+            return View("~/Views/EventCategories/BalletAndDance.cshtml");
         }
 
         public IActionResult Classical()
         {
-            return View();
+            return View("~/Views/EventCategories/Classical.cshtml");
         }
 
         public IActionResult Fashion()
         {
-            return View();
+            return View("~/Views/EventCategories/Fashion.cshtml");
         }
 
         public IActionResult MuseumAndExhibits()
         {
-            return View();
+            return View("~/Views/EventCategories/MuseumAndExhibits.cshtml");
         }
 
         public IActionResult Musicals()
         {
-            return View();
+            return View("~/Views/EventCategories/Musicals.cshtml");
         }
 
         public IActionResult Opera()
         {
-            return View();
+            return View("~/Views/EventCategories/Opera.cshtml");
         }
 
         public IActionResult Plays()
         {
-            return View();
+            return View("~/Views/EventCategories/Plays.cshtml");
         }
 
         public IActionResult ChildrensMusicAndTheater()
         {
-            return View();
+            return View("~/Views/EventCategories/ChildrensMusicAndTheater.cshtml");
         }
 
         public IActionResult Circus()
         {
-            return View();
+            return View("~/Views/EventCategories/Circus.cshtml");
         }
 
         public IActionResult FairsAndFestivals()
         {
-            return View();
+            return View("~/Views/EventCategories/FairsAndFestivals.cshtml");
         }
 
         public IActionResult FamilyAttractions ()
         {
-            return View();
+            return View("~/Views/EventCategories/FamilyAttractions.cshtml");
         }
 
         public IActionResult IceShows()
         {
-            return View();
+            return View("~/Views/EventCategories/IceShows.cshtml");
         }
 
         public IActionResult MagicShows()
         {
-            return View();
+            return View("~/Views/EventCategories/MagicShows.cshtml");
         }
 
         public IActionResult EventPage()
         {
-            return View();
+            return View("~/Views/EventCategories/EventPage.cshtml");
         }
 
         public IActionResult AdminDashboard()

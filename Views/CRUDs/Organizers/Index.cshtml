@@ -1,0 +1,66 @@
+@model IEnumerable<event_booking.Models.Organizer>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<a id="top"></a>
+<h1>Organizers</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactInfo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrganizerCategory)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Image)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactInfo)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.OrganizerCategory.CategoryName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.OrganizerId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.OrganizerId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.OrganizerId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<div class="mt-5">
+    <a class="btn btn-primary" asp-controller="Home" asp-action="PromoterArea">Back to Promoters Area</a>
+    <a class="btn btn-primary" asp-controller="Home" asp-action="CRUDs">CRUDs</a>
+    <a class="btn btn-primary" href="#top">Back to Top</a>
+</div>

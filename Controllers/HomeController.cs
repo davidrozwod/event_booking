@@ -254,6 +254,11 @@ namespace event_booking.Controllers
             return View("~/Views/EventCategories/EventPage.cshtml");
         }
 
+        public IActionResult AdminDashboard()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

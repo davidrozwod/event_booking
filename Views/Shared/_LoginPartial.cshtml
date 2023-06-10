@@ -1,5 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@using event_booking.Models
+@model event_booking.Models.EventUser
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
@@ -21,7 +21,7 @@
        
         <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                @EventUser.FullName
+                @await Component.InvokeAsync("UserName")
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li class="nav-item">

@@ -1,4 +1,4 @@
-﻿ // Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
@@ -59,8 +59,6 @@ namespace event_booking.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
-            [Display(Name = "Profile Picture")]
-            public byte[] ProfilePicture { get; set; }
         }
 
         private async Task LoadAsync(IdentityUser user)
@@ -72,23 +70,10 @@ namespace event_booking.Areas.Identity.Pages.Account.Manage
 
             Input = new InputModel
             {
-                PhoneNumber = phoneNumber,
+                PhoneNumber = phoneNumber
             };
         }
-        private async Task LoadAsync(ApplicationUser user)
-        {
-            var userName = await _userManager.GetUserNameAsync(user);
-            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-            var firstName = user.FirstName;
-            var lastName = user.LastName;
-            var profilePicture = user.ProfilePicture;
-            Username = userName;
-            Input = new InputModel
-            {
-                PhoneNumber = phoneNumber,
-                ProfilePicture = profilePicture
-            };
-        }
+
         public async Task<IActionResult> OnGetAsync()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -110,6 +95,9 @@ namespace event_booking.Areas.Identity.Pages.Account.Manage
             }
 
             if (!ModelState.IsValid)
+
+
+
             {
                 await LoadAsync(user);
                 return Page();

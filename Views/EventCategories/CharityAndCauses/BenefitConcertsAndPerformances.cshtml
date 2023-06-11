@@ -153,42 +153,46 @@
    <div class="bg-image container-overflow"
          style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
         <div class="gradient-custom-3">
-            <p class="text-white">Home/Family And Education/ Magic Shows</p>
+            <p class="text-white">Home/Family And Education/ All Events</p>
             <p></p>
-            <h1 class="text-white">Magic Shows</h1>
+            <h1 class="text-white">Family and Education</h1>
             <div class="container-fluid px-7">
                 <div class="row gx-3">
                     <div class="col-4">
                         <div class="p-3 border bg-light">
                             <center><h2 class="border-dark border-bottom">SUB CATEGORIES</h2></center>
                             <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
-                                <a class="nav-link text-black" asp-area="" asp-controller="Home" asp-action="FamilyAndEducation">All Events</a>
+                                <a class="nav-link text-black" asp-area="" asp-controller="CharityAndCauses" asp-action="Index">All Events </a>
                             </div>
                             <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
-                                <a class="nav-link text-black" asp-area="" asp-controller="Home" asp-action="ChildrensMusicAndTheater">Childrens Music and Theater</a>
+                                <a class="nav-link text-black" asp-area="" asp-controller="CharityAndCauses" asp-action="FundraisingGalasAndDinners">Fundraising Galas And Dinners</a>
                             </div>
                             <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
-                                <a class="nav-link text-black" asp-area="" asp-controller="Home" asp-action="Circus">Circus</a>
+                                <a class="nav-link text-black" asp-area="" asp-controller="CharityAndCauses" asp-action="CharityRunsAndWalks">Charity Runs And Walks</a>
                             </div>
                             <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
-                                <a class="nav-link text-black" asp-area="" asp-controller="Home" asp-action="FairsAndFestivals">Fairs And Festivals</a>
+                                <a class="nav-link text-black" asp-area="" asp-controller="CharityAndCauses" asp-action="VolunteerServiceEvents">Volunteer Service Events</a>
                             </div>
                             <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
-                                <a class="nav-link text-black" asp-area="" asp-controller="Home" asp-action="FamilyAttractions">Family Attractions</a>
+                                <a class="nav-link text-black" asp-area="" asp-controller="CharityAndCauses" asp-action="AwarenessCampaignsAndWalks">Awareness Campaigns And Walks</a>
                             </div>
                             <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
-                                <a class="nav-link text-black" asp-area="" asp-controller="Home" asp-action="IceShows">Ice Shows</a>
+                                <a class="nav-link text-black" asp-area="" asp-controller="CharityAndCauses" asp-action="BenefitConcertsAndPerformances">Benefit Concerts And Performances</a>
                             </div>
                             <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
-                                <a class="nav-link text-black" asp-area="" asp-controller="Home" asp-action="Magic Shows">Magic Shows</a>
+                                <a class="nav-link text-black" asp-area="" asp-controller="CharityAndCauses" asp-action="CommunityOutreachPrograms">Community Outreach Programs</a>
                             </div>
-                            <div class="p-3 mb-2 bg-light bg-gradient text-dark ">
+                            <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
+                                <a class="nav-link text-black" asp-area="" asp-controller="CharityAndCauses" asp-action="EnvironmentalCleanupEvents">Environmental Cleanup Events</a>
                             </div>
-                            <div class="p-3 mb-2 bg-light bg-gradient text-dark ">
+                            <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
+                                <a class="nav-link text-black" asp-area="" asp-controller="CharityAndCauses" asp-action="HumanitaritanReliefEvents">Humanitaritan Relief Events</a>
                             </div>
-                            <div class="p-3 mb-2 bg-light bg-gradient text-dark ">
+                            <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
+                                <a class="nav-link text-black" asp-area="" asp-controller="CharityAndCauses" asp-action="AnimalWelfareFundraisers">Animal Welfare Fundraisers</a>
                             </div>
-                            <div class="p-3 mb-2 bg-light bg-gradient text-dark ">
+                            <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
+                                <a class="nav-link text-black" asp-area="" asp-controller="CharityAndCauses" asp-action="SocialJusticeActivsmEvents">Social Justice Activism Events</a>
                             </div>
                         </div>
                     </div>
@@ -196,74 +200,33 @@
                         <div class="p-3 border bg-light">
                             <h2 class="border-dark border-bottom">ALL EVENTS</h2>
                             <p></p>
-                            <div class="row border border-dark">
-                                <div class="col-md-1">
-                                    <img class="center" src="https://i.iheart.com/v3/re/new_assets/6270752830a3cc93558d210e?ops=contain(1480,0)" />
+                            @foreach (var item in Model)
+                            {
+                                <div class="row mb-3 border border-dark">
+                                    <div class="col-md-2">
+                                        <img style="margin-top:4px;" src="@item.Image" alt="Event image" width="100" height="80%" />
+                                    </div>
+                                    <div class="col-md-1">
+                                        <h5 style="margin-top: 25px;">@item.StartDateTime.ToString("dd/MM")</h5>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h6 class="text-muted">@item.Name</h6>
+                                        <h6> @item.Organizer.Name</h6>
+                                        <h6 class="text-muted"> @item.EventCategory.CategoryName</h6>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p></p>
+                                        <a class="btn gradient-custom-3 text-white" asp-area="" asp-controller="ESEventsPage" asp-action="EventsPage" asp-route-id="@item.EventId">View Event ></a>
+                                        <p></p>
+                                    </div>
                                 </div>
-                                <div class="col-md-1">
-                                    <p></p>
-                                    <h5>Date</h5>
-                                    <p></p>
-                                </div>
-                                <div class="col-md-7">
-                                    <h6 class="text-muted"> Day of Week - Time of Event Start</h6>
-                                    <h6>Name Of Event</h6>
-                                    <h6 class="text-muted">Location of Event - Venue</h6>
-                                </div>
-                                <div class="col-md-3">
-                                    <p></p>
-                                    <button type="button" class="btn btn-primary">Find Tickets  ></button>
-                                    <p></p>
-                                </div>
-                            </div>
-                            <p></p>
-                            <div class="border border-dark row">
-                                <div class="col-md-1">
-                                    <img class="center" src="https://i.iheart.com/v3/re/new_assets/6270752830a3cc93558d210e?ops=contain(1480,0)" />
-                                </div>
-                                <div class="col-md-1">
-                                    <p></p>
-                                    <h5>Date</h5>
-                                    <p></p>
-                                </div>
-                                <div class="col-md-7">
-                                    <h6 class="text-muted"> Day of Week - Time of Event Start</h6>
-                                    <h6>Name Of Event</h6>
-                                    <h6 class="text-muted">Location of Event - Venue</h6>
-                                </div>
-                                <div class="col-md-3">
-                                    <p></p>
-                                    <button type="button" class="btn btn-primary">Find Tickets  ></button>
-                                    <p></p>
-                                </div>
-                            </div>
-                            <p></p>
-                            <div class="row border border-dark">
-                                <div class="col-md-1">
-                                    <img class="center" src="https://i.iheart.com/v3/re/new_assets/6270752830a3cc93558d210e?ops=contain(1480,0)" />
-                                </div>
-                                <div class="col-md-1">
-                                    <p></p>
-                                    <h5>Date</h5>
-                                    <p></p>
-                                </div>
-                                <div class="col-md-7">
-                                    <h6 class="text-muted"> Day of Week - Time of Event Start</h6>
-                                    <h6>Name Of Event</h6>
-                                    <h6 class="text-muted">Location of Event - Venue</h6>
-                                </div>
-                                <div class="col-md-3">
-                                    <p></p>
-                                    <button type="button" class="btn btn-primary">Find Tickets  ></button>
-                                    <p></p>
-                                </div>
+                            }
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-       
+        </div> 
    </div>
 </body>
 

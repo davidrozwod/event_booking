@@ -8,13 +8,13 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace event_booking.Controllers
+namespace event_booking.Controllers.EventSystem
 {
-    public class EventSystemSalesController : Controller
+    public class ESSalesController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public EventSystemSalesController(ApplicationDbContext context)
+        public ESSalesController(ApplicationDbContext context)
         {
             _context = context;
         }

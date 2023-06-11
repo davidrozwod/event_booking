@@ -255,7 +255,7 @@ namespace event_booking.Controllers
         }
 
         [Authorize]
-        public IActionResult EventSystem()
+        public IActionResult EventSystemPage()
         {
             return View();
         }

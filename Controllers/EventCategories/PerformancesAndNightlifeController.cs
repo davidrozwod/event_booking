@@ -25,9 +25,15 @@ namespace event_booking.Controllers
             return View("~/Views/EventCategories/PerformancesAndNightlife.cshtml", events);
         }
 
-        public IActionResult ConcertsAndGigs()
+        public async Task<IActionResult> ConcertsAndGigs()
         {
-            return View("~/Views/EventCategories/PerformancesAndNightlife/ConcertsAndGigs.cshtml");
+            var concertsAndGigs = await _context.Events
+                .Include(e => e.Organizer)
+                .Include(e => e.EventCategory)
+                .Where(e => e.EventCategoryId == 11)
+                .ToListAsync();
+
+            return View("~/Views/EventCategories/PerformancesAndNightlife/ConcertsAndGigs.cshtml", concertsAndGigs);
         }
 
         public IActionResult MusicFestivals()

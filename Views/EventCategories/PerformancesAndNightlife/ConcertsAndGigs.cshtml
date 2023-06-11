@@ -1,4 +1,7 @@
-﻿<style>
+﻿@* 1st sub category *@
+@model List<Event>
+
+<style>
  body{
        background: rgb(232, 252, 252);
        margin: 0px;
@@ -202,74 +205,28 @@
                         @* header *@
                         <h2 class="border-dark border-bottom">ALL EVENTS</h2>
                         <p></p>
-                            @* First Event *@
-                            <div class="row border border-dark">
-                                <div class="col-md-2">
-                                    <img class="container" src="https://i.iheart.com/v3/re/new_assets/6270752830a3cc93558d210e?ops=contain(1480,0)" />
-                                </div>
-                                <div class="col-md-3">
-                                    <p></p>
-                                    <h5 style="margin-left: -20px; margin-top:20px ">Date</h5>
-                                    <p></p>
-                                </div>
-                                <div class="col-md-4">
-                                    <h6 class="text-muted" style="margin-left: -180px"> Day of Week - Time of Event Start</h6>
-                                    <h6 style="margin-left: -180px">Name Of Event</h6>
-                                    <h6 class="text-muted" style="margin-left: -180px">Location of Event - Venue</h6>
-                                </div>
-                                <div class="col-md-3">
-                                    <p></p>
-                                    <a class="btn gradient-custom-3 text-white" asp-area="" asp-controller="Home" asp-action="EventPage">Find Tickets ></a>
-                                    <p></p>
-                                </div>
-                            </div>
-                            <p></p>
 
-                            @* Second Event *@
-                            <div class="row border border-dark">
-                                <div class="col-md-2">
-                                    <img class="container" src="https://i.iheart.com/v3/re/new_assets/6270752830a3cc93558d210e?ops=contain(1480,0)" />
+                            @foreach (var item in Model)
+                            {
+                                <div class="row mb-3 border border-dark">
+                                    <div class="col-md-2">
+                                        <img style="margin-top:4px;" src="@item.Image" alt="Event image" width="100" height="80%" />
+                                    </div>
+                                    <div class="col-md-1">
+                                        <h5 style="margin-top: 25px;">@item.StartDateTime.ToString("dd/MM")</h5>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h6 class="text-muted">@item.Name</h6>
+                                        <h6> @item.Organizer.Name</h6>
+                                        <h6 class="text-muted"> @item.EventCategory.CategoryName</h6>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p></p>
+                                        <a class="btn gradient-custom-3 text-white" asp-area="" asp-controller="Home" asp-action="EventPage">View Event ></a>
+                                        <p></p>
+                                    </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <p></p>
-                                    <h5 style="margin-left: -20px; margin-top:20px ">Date</h5>
-                                    <p></p>
-                                </div>
-                                <div class="col-md-4">
-                                    <h6 class="text-muted" style="margin-left: -180px"> Day of Week - Time of Event Start</h6>
-                                    <h6 style="margin-left: -180px">Name Of Event</h6>
-                                    <h6 class="text-muted" style="margin-left: -180px">Location of Event - Venue</h6>
-                                </div>
-                                <div class="col-md-3">
-                                    <p></p>
-                                    <a class="btn gradient-custom-3 text-white" asp-area="" asp-controller="Home" asp-action="EventPage">Find Tickets ></a>
-                                    <p></p>
-                                </div>
-                            </div>
-                            <p></p>
-
-                            @* Third Event *@
-                            <div class="row border border-dark">
-                                <div class="col-md-2">
-                                    <img class="container" src="https://i.iheart.com/v3/re/new_assets/6270752830a3cc93558d210e?ops=contain(1480,0)" />
-                                </div>
-                                <div class="col-md-3">
-                                    <p></p>
-                                    <h5 style="margin-left: -20px; margin-top:20px ">Date</h5>
-                                    <p></p>
-                                </div>
-                                <div class="col-md-4">
-                                    <h6 class="text-muted" style="margin-left: -180px"> Day of Week - Time of Event Start</h6>
-                                    <h6 style="margin-left: -180px">Name Of Event</h6>
-                                    <h6 class="text-muted" style="margin-left: -180px">Location of Event - Venue</h6>
-                                </div>
-                                <div class="col-md-3">
-                                    <p></p>
-                                    <a class="btn gradient-custom-3 text-white" asp-area="" asp-controller="Home" asp-action="EventPage">Find Tickets ></a>
-                                    <p></p>
-                                </div>
-                            </div>
-                            <p></p>
+                            }
 
                         </div>
                     </div>

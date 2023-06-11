@@ -202,22 +202,27 @@ img {
                             <h2 class="border-dark border-bottom">ALL EVENTS</h2>
                             <p></p>
 
-                                @foreach (var item in Model)
-                                {
-                                    <div class="row mb-3">
-                                        <div class="col-4">
-                                            <img src="@item.Image" alt="Event image" class="img-fluid" />
-                                        </div>
-                                        <div class="col-8">
-                                            <h3>@item.Name</h3>
-                                            <h4>Organizer: @item.Organizer.Name</h4>
-                                            <h4>Category: @item.EventCategory.CategoryName</h4>
-                                            <h4>Start Date: @item.StartDateTime.ToString("dd/MM/yyyy")</h4>
-                                            <h4>End Date: @item.EndDateTime.ToString("dd/MM/yyyy")</h4>
-                                            <p>@item.Description</p>
-                                        </div>
+                            @foreach (var item in Model)
+                            {
+                                <div class="row mb-3 border border-dark">
+                                    <div class="col-md-2">
+                                        <img style="margin-top:4px;" src="@item.Image" alt="Event image" width="100" height="80%" />
                                     </div>
-                                }
+                                    <div class="col-md-1">
+                                        <h5 style="margin-top: 25px;">@item.StartDateTime.ToString("dd/MM")</h5>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h6 class="text-muted">@item.Name</h6>
+                                        <h6> @item.Organizer.Name</h6>
+                                        <h6 class="text-muted"> @item.EventCategory.CategoryName</h6>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p></p>
+                                        <a class="btn gradient-custom-3 text-white" asp-area="" asp-controller="Home" asp-action="EventPage">View Event ></a>
+                                        <p></p>
+                                    </div>
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>

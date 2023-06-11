@@ -1,4 +1,7 @@
-﻿<style>
+﻿@* 1st sub category *@
+@model List<Event>
+
+<style>
  body{
        background: rgb(232, 252, 252);
        margin: 0px;
@@ -152,11 +155,12 @@
     <div class="bg-image container-overflow"
          style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
         <div class="gradient-custom-3">
-            <p class="text-white">Home/Performances & Nightlife/ Concert And Gigs</p>
+        <p class="text-white" >Home/Performances & Nightlife/ Alternative Rock</p>
         <p></p>
-        <h1 class="text-white">Concerts And Gigs</h1>
+        <h1 class="text-white">Alternative Rock</h1>
         <div class="container-fluid px-7">
             <div class="row gx-3">
+                @* Sidebar *@
                 <div class="col-4">
                     <div class="p-3 border bg-light">
                         <center><h2 class="border-dark border-bottom">SUB CATEGORIES</h2></center>
@@ -194,11 +198,14 @@
                                 <a class="nav-link text-black" asp-area="" asp-controller="PerformancesAndNightlife" asp-action="LiveComedyShows">Live Comedy Shows</a>
                             </div>
                     </div>
-                </div>               
+                </div>         
+                
                 <div class="col-8">
                     <div class="p-3 border bg-light">
+                        @* header *@
                         <h2 class="border-dark border-bottom">ALL EVENTS</h2>
                         <p></p>
+
                             @foreach (var item in Model)
                             {
                                 <div class="row mb-3 border border-dark">
@@ -215,11 +222,12 @@
                                     </div>
                                     <div class="col-md-3">
                                         <p></p>
-                                        <a class="btn gradient-custom-3 text-white" asp-area="" asp-controller="Home" asp-action="EventsPage">View Event ></a>
+                                        <a class="btn gradient-custom-3 text-white" asp-area="" asp-controller="Home" asp-action="EventPage">View Event ></a>
                                         <p></p>
                                     </div>
                                 </div>
                             }
+
                         </div>
                     </div>
                 </div>

@@ -23,6 +23,9 @@ public partial class Event
     [Column("EventCategoryID")]
     public int EventCategoryId { get; set; }
 
+     [Column("VenueID")]
+    public int VenueId { get; set; }
+
     [StringLength(100)]
     public string Name { get; set; } = null!;
 

@@ -205,7 +205,6 @@
                         @* header *@
                         <h2 class="border-dark border-bottom">ALL EVENTS</h2>
                         <p></p>
-
                             @foreach (var item in Model)
                             {
                                 <div class="row mb-3 border border-dark">
@@ -222,12 +221,11 @@
                                     </div>
                                     <div class="col-md-3">
                                         <p></p>
-                                        <a class="btn gradient-custom-3 text-white" asp-area="" asp-controller="Home" asp-action="EventPage">View Event ></a>
+                                        <a class="btn gradient-custom-3 text-white" asp-area="" asp-controller="ESEventsPage" asp-action="EventsPage" asp-route-id="@item.EventId">View Event ></a>
                                         <p></p>
                                     </div>
                                 </div>
                             }
-
                         </div>
                     </div>
                 </div>

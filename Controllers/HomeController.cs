@@ -117,9 +117,9 @@ namespace event_booking.Controllers
             return View();
         }
 
-        public IActionResult AlternativeRock()
+        public IActionResult ConcertsAndGigs()
         {
-            return View("~/Views/EventCategories/AlternativeRock.cshtml");
+            return View("~/Views/EventCategories/ConcertsAndGigs.cshtml");
         }
         public IActionResult RapAndHipHop()
         {
@@ -249,9 +249,9 @@ namespace event_booking.Controllers
             return View("~/Views/EventCategories/MagicShows.cshtml");
         }
 
-        public IActionResult EventPage()
+        public IActionResult EventsPage()
         {
-            return View("~/Views/EventCategories/EventPage.cshtml");
+            return View("~/Views/Home/EventsPage.cshtml");
         }
 
         public IActionResult AdminDashboard()

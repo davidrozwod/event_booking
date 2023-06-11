@@ -156,106 +156,66 @@
                 <div class="col-4">
                     <div class="p-3 border bg-light">
                         <center><h2 class="border-dark border-bottom">SUB CATEGORIES</h2></center>
-                        <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
-                           <a class="nav-link text-black" asp-area="" asp-controller="Home" asp-action="TheaterAndArts">All Events</a>
-                        </div>
-                        <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
-                           <a class="nav-link text-black" asp-area="" asp-controller="Home" asp-action="BalletAndDance">Ballet and Dance</a>
-                        </div>
-                        <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
-                            <a class="nav-link text-black" asp-area="" asp-controller="Home" asp-action="Classical">Classical</a>
-                        </div>
-                        <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
-                             <a class="nav-link text-black" asp-area="" asp-controller="Home" asp-action="Fashion">Fashion</a>
-                        </div>
-                        <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
-                             <a class="nav-link text-black" asp-area="" asp-controller="Home" asp-action="MuseumAndExhibits">Museums And Exhibits</a>
-                        </div>
-                        <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
-                             <a class="nav-link text-black" asp-area="" asp-controller="Home" asp-action="Musicals">Musicals</a>
-                        </div>
-                        <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
-                             <a class="nav-link text-black" asp-area="" asp-controller="Home" asp-action="Opera">Opera</a>
-                        </div>
-                        <div class="p-3 mb-2 bg-light bg-gradient text-dark ">                          
-                             <a class="nav-link text-black" asp-area="" asp-controller="Home" asp-action="Plays">Plays</a>
-                        </div>
-                        <div class="p-3 mb-2 bg-light bg-gradient text-dark ">
-                        </div>
-                        <div class="p-3 mb-2 bg-light bg-gradient text-dark ">
-                        </div>
-                        <div class="p-3 mb-2 bg-light bg-gradient text-dark ">
-                        </div>
-                        <div class="p-3 mb-2 bg-light bg-gradient text-dark ">
-                        </div>
+                            <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
+                                <a class="nav-link text-black" asp-area="" asp-controller="TheaterAndArts" asp-action="Index">All Events </a>
+                            </div>
+                            <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
+                                <a class="nav-link text-black" asp-area="" asp-controller="TheaterAndArts" asp-action="PlaysAndDrama"> Plays And Drama</a>
+                            </div>
+                            <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
+                                <a class="nav-link text-black" asp-area="" asp-controller="TheaterAndArts" asp-action="MusicalsAndBroadway">Musicals And Broadway</a>
+                            </div>
+                            <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
+                                <a class="nav-link text-black" asp-area="" asp-controller="TheaterAndArts" asp-action="DancePerformances">Dance Performances</a>
+                            </div>
+                            <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
+                                <a class="nav-link text-black" asp-area="" asp-controller="TheaterAndArts" asp-action="BalletAndContemporaryDance">Ballet And Contemporary Dance</a>
+                            </div>
+                            <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
+                                <a class="nav-link text-black" asp-area="" asp-controller="TheaterAndArts" asp-action="OperaAncClassicalPerformances">Opera And Classical Performances</a>
+                            </div>
+                            <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
+                                <a class="nav-link text-black" asp-area="" asp-controller="TheaterAndArts" asp-action="ImprovAndSketchComedy">Improv And Sketch Comedy</a>
+                            </div>
+                            <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
+                                <a class="nav-link text-black" asp-area="" asp-controller="TheaterAndArts" asp-action="ArtExhibitionAndGalleries">Art Exhibitions And Galleries</a>
+                            </div>
+                            <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
+                                <a class="nav-link text-black" asp-area="" asp-controller="TheaterAndArts" asp-action="StreetPerformances">Street Performances</a>
+                            </div>
+                            <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
+                                <a class="nav-link text-black" asp-area="" asp-controller="TheaterAndArts" asp-action="PuppetryAndMarionetteShows">Puppetry And MarionetteShows</a>
+                            </div>
+                            <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
+                                <a class="nav-link text-black" asp-area="" asp-controller="TheaterAndArts" asp-action="MultimediaAndExperimentalArts">Multimedia And Experimental Arts</a>
+                            </div>
                     </div>
                 </div>
                 <div class="col-8">
                     <div class="p-3 border bg-light">
                         <h2 class="border-dark border-bottom">ALL EVENTS</h2>
                         <p></p>
-                        <div class="row border border-dark">
-                                <div class="col-md-1">
-                                    <img class="center" src="https://i.iheart.com/v3/re/new_assets/6270752830a3cc93558d210e?ops=contain(1480,0)" />
+                            @foreach (var item in Model)
+                            {
+                                <div class="row mb-3 border border-dark">
+                                    <div class="col-md-2">
+                                        <img style="margin-top:4px;" src="@item.Image" alt="Event image" width="100" height="80%" />
+                                    </div>
+                                    <div class="col-md-1">
+                                        <h5 style="margin-top: 25px;">@item.StartDateTime.ToString("dd/MM")</h5>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h6 class="text-muted">@item.Name</h6>
+                                        <h6> @item.Organizer.Name</h6>
+                                        <h6 class="text-muted"> @item.EventCategory.CategoryName</h6>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p></p>
+                                        <a class="btn gradient-custom-3 text-white" asp-area="" asp-controller="ESEventsPage" asp-action="EventsPage" asp-route-id="@item.EventId">View Event ></a>
+                                        <p></p>
+                                    </div>
                                 </div>
-                                <div class="col-md-1">
-                                <p></p>
-                                <h5 >Date</h5>
-                                <p></p>
-                                </div>
-                                <div class="col-md-7">
-                                    <h6 class="text-muted"> Day of Week - Time of Event Start</h6>
-                                    <h6>Name Of Event</h6>
-                                    <h6 class="text-muted">Location of Event - Venue</h6>
-                                </div>
-                                <div class="col-md-3">
-                                    <p></p>
-                                    <button type="button" class="btn btn-primary">Find Tickets  ></button>
-                                    <p></p>
-                            </div>
-                        </div>
-                        <p></p>
-                        <div class="border border-dark row">
-                            <div class="col-md-1">
-                                <img class="center" src="https://i.iheart.com/v3/re/new_assets/6270752830a3cc93558d210e?ops=contain(1480,0)" />
-                            </div>
-                            <div class="col-md-1">
-                                <p></p>
-                                <h5>Date</h5>
-                                <p></p>
-                            </div>
-                            <div class="col-md-7">
-                                <h6 class="text-muted"> Day of Week - Time of Event Start</h6>
-                                <h6>Name Of Event</h6>
-                                <h6 class="text-muted">Location of Event - Venue</h6>
-                            </div>
-                            <div class="col-md-3">
-                                <p></p>
-                                <button type="button" class="btn btn-primary">Find Tickets  ></button>
-                                <p></p>
-                            </div>
-                        </div>
-                        <p></p>
-                        <div class="row border border-dark">
-                            <div class="col-md-1">
-                                <img class="center" src="https://i.iheart.com/v3/re/new_assets/6270752830a3cc93558d210e?ops=contain(1480,0)" />
-                            </div>
-                            <div class="col-md-1">
-                                <p></p>
-                                <h5>Date</h5>
-                                <p></p>
-                            </div>
-                            <div class="col-md-7">
-                                <h6 class="text-muted"> Day of Week - Time of Event Start</h6>
-                                <h6>Name Of Event</h6>
-                                <h6 class="text-muted">Location of Event - Venue</h6>
-                            </div>
-                            <div class="col-md-3">
-                                <p></p>
-                                <button type="button" class="btn btn-primary">Find Tickets  ></button>
-                                <p></p>
-                            </div>
-                        </div>
+                            }
                         </div>
                     </div>
                 </div>

@@ -362,6 +362,10 @@ namespace event_booking.Data.Migrations
                     b.Property<DateTime>("StartDateTime")
                         .HasColumnType("date");
 
+                    b.Property<int>("VenueId")
+                        .HasColumnType("int")
+                        .HasColumnName("VenueID");
+
                     b.HasKey("EventId");
 
                     b.HasIndex(new[] { "EventCategoryId" }, "IX_Events_EventCategoryID");

@@ -17,9 +17,12 @@ namespace event_booking.Controllers
 
         public IActionResult Index()
         {
+            var subCategoryIds = new List<int> { 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 }; // IDs of your 10 subcategories
+
             var events = _context.Events
+                .Where(e => subCategoryIds.Contains(e.EventCategory.EventCategoryId)) // Filter by subcategory ID
                 .Include(e => e.EventCategory)
-                .Include(e => e.Organizer)
+                 .Include(e => e.Organizer)
                 .ToList();
 
             return View("~/Views/EventCategories/PerformancesAndNightlife.cshtml", events);

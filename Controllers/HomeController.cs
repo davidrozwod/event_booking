@@ -249,11 +249,6 @@ namespace event_booking.Controllers
             return View("~/Views/EventCategories/MagicShows.cshtml");
         }
 
-        public IActionResult EventsPage()
-        {
-            return View("~/Views/Home/EventsPage.cshtml");
-        }
-
         public IActionResult AdminDashboard()
         {
             return View();

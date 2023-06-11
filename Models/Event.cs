@@ -55,6 +55,10 @@ public partial class Event
     [InverseProperty("Events")]
     public virtual Organizer Organizer { get; set; } = null!;
 
+    [ForeignKey("VenueId")]
+    [InverseProperty("Events")]
+    public virtual Venue Venue { get; set; } = null!;
+
     [InverseProperty("Event")]
     public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
 

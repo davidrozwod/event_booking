@@ -1,5 +1,5 @@
 ﻿﻿@{
-    ViewData["Title"] = "EventSystem";
+    ViewData["Title"] = "EventSystemPage";
 }
 
 <div class="container">
@@ -10,7 +10,7 @@
 
                 <ul class="list-group">
                 @*@if (User.IsInRole("Admin"))*@
-                <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="ESTickets" asp-action="Create">Tickets</a></li>
+                <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="ESTicketsCreate" asp-action="Create">Create Tickets</a></li>
                 <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="ESSales" asp-action="Index">Sales</a></li>
                 @*@if (User.IsInRole("Promoter"))*@
             </ul>

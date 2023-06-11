@@ -3,57 +3,175 @@
     ViewData["Title"] = "CRUDs";
 }
 
-<div class="container">
-    <div class="row">
-            <div class="col-md-8">
-                <h1 class="display-4 mt-3 mb-4 text-primary">Database</h1>
-                <h5 class="text-muted mb-5">Junction tables to come</h5>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        list-style: none;
+        font-family: 'Josefin Sans', sans-serif;
+    }
 
-                <ul class="list-group">
-                @if (User.IsInRole("Admin"))
-                {
+    body {
+        background-color: #f3f5f9;
+    }
 
+    .wrapper {
+        display: flex;
+        position: relative;
+    }
 
-                    <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="EventUsers" asp-action="Index">Event Users</a></li>
-                    <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="fff" asp-action="Index">fff</a></li>
-                    <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="fff" asp-action="Index">fff</a></li>
-                    <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="fff" asp-action="Index">fff</a></li>
-                    <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="Organizers" asp-action="Index">Organizers</a></li>
-                    <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="OrganizerCategories" asp-action="Index">OrganizerCategories</a></li>
-                    <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="Events" asp-action="Index">Events</a></li>
-                    <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="EventCategories" asp-action="Index">EventCategories</a></li>
-                    <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="Venues" asp-action="Index">Venues</a></li>
-                    <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="Seats" asp-action="Index">Seats</a></li>
-                    <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="Sections" asp-action="Index">Sections</a></li>
-                    <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="Tickets" asp-action="Index">Tickets</a></li>
-                    <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="Discounts" asp-action="Index">Discounts</a></li>
-                    <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="TicketTypes" asp-action="Index">TicketTypes</a></li>
-                    <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="GroupDiscounts" asp-action="Index">GroupDiscounts</a></li>
-                    <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="Vips" asp-action="Index">Vips</a></li>
-                    <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="Loyaltys" asp-action="Index">Loyaltys</a></li>
-                    <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="fff" asp-action="Index">fff</a></li>
-                    <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="TicketGroups" asp-action="Index">TicketGroups</a></li>
-                    <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="Sales" asp-action="Index">Sales</a></li>
-                    <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="Purchases" asp-action="Index">Purchases</a></li>
+        .wrapper .sidebar {
+            width: 200px;
+            height: 100%;
+            background: #4b4276;
+            padding: 30px 0px;
+            position: absolute;
+            float: right;
+        }
+
+            .wrapper .sidebar h2 {
+                color: #fff;
+                text-transform: uppercase;
+                text-align: center;
+                margin-bottom: 30px;
+            }
+
+            .wrapper .sidebar ul li {
+                padding: 15px;
+                border-bottom: 1px solid #bdb8d7;
+                border-bottom: 1px solid rgba(0,0,0,0.05);
+                border-top: 1px solid rgba(255,255,255,0.05);
+                text-decoration: none
+            }
+
+                .wrapper .sidebar ul li a {
+                    color: #bdb8d7;
+                    display: block;
+                    text-decoration: none
                 }
-                @if (User.IsInRole("Promoter"))
-                {
-                    <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="Events" asp-action="Index">Events</a></li>
+
+                    .wrapper .sidebar ul li a .fas {
+                        width: 25px;
+                        text-decoration: none
+                    }
+
+                .wrapper .sidebar ul li:hover {
+                    background-color: #594f8d;
+                    text-decoration: none
                 }
 
-            </ul>
+                    .wrapper .sidebar ul li:hover a {
+                        color: #fff;
+                        text-decoration: none
+                    }
 
-                <div class="mt-5">
-                    <a class="btn btn-primary" asp-controller="Home" asp-action="PromoterArea">Back to Promoters Area</a>
+        .wrapper .main_content {
+            width: 100%;
+            margin-left: 200px;
+        }
+
+            .wrapper .main_content .header {
+                padding: 20px;
+                background: #fff;
+                color: #717171;
+                border-bottom: 1px solid #e0e4e8;
+            }
+
+            .wrapper .main_content .info {
+                margin: 20px;
+                color: #717171;
+                line-height: 25px;
+            }
+
+                .wrapper .main_content .info div {
+                    margin-bottom: 20px;
+                }
+
+    img {
+        float: left;
+        width: 25px;
+        display: inline-block;
+        margin: 0px 6px 4px;
+    }
+
+    h8 {
+        font-weight: bold;
+    }
+</style>
+<div class="wrapper">
+    <div class="sidebar">
+        <h2>Eventful</h2>
+        <ul>
+            <li><img src="https://icon-library.com/images/dashboard-icon-vector/dashboard-icon-vector-2.jpg" /> <a asp-controller="Home" asp-action="PromoterArea"> Dashboard</a></li>
+            <li><img src="https://www.freeiconspng.com/thumbs/profile-icon-png/profile-icon-person-user-19.png" /> <a asp-controller="Profile" asp-action="Index"> Profile</a></li>
+            <li><img src="https://img.uxwing.com/wp-content/themes/uxwing/download/seo-marketing/announcement-icon.png" /> <a asp-controller="Home" asp-action="Events"> Events</a></li>
+            <li><img src="https://cdn-icons-png.flaticon.com/512/55/55281.png" /> <a asp-controller="Home" asp-action="Booking"> Bookings</a></li>
+            <li><img src="https://cdn.onlinewebfonts.com/svg/img_387338.png" /> <a asp-controller="Home" asp-action="Review"> Reviews</a></li>
+            <li><img src="https://cdn-icons-png.flaticon.com/512/3239/3239958.png" /><div class="popup" onclick="myFunction()"> Notifications<span class="popuptext" id="myPopup">A Notification</span></div></li>
+            <li><img src="https://icon-library.com/images/settings-wheel-icon/settings-wheel-icon-14.jpg" /> <a asp-controller="Home" asp-action="CRUDs"> CRUDs</a></li>
+            <li><img src="https://icon-library.com/images/event-icon/event-icon-7.jpg" /> <a asp-controller="Home" asp-action="EventSystemPage"> EventSystem</a></li>
+            @if (User.IsInRole("Admin"))
+            {
+                <li><img src="https://www.freeiconspng.com/thumbs/profile-icon-png/profile-icon-person-user-19.png" /> <a asp-controller="Account" asp-action="Index">Accounts</a></li>
+            }
+            <li><img src="https://cdn.icon-icons.com/icons2/2518/PNG/512/logout_icon_151219.png" /> <a asp-area="Identity" asp-page="/Account/Logout"> Logout</a></li>
+        </ul>
+    </div>
+    <div class="main_content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <h1 class="display-4 mt-3 mb-4 text-primary">Database</h1>
+                    <h5 class="text-muted mb-5">Junction tables to come</h5>
+
+                    <ul class="list-group">
+                    @if (User.IsInRole("Admin"))
+                    {
+
+
+                        <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="EventUsers" asp-action="Index">Event Users</a></li>
+                        <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="fff" asp-action="Index">fff</a></li>
+                        <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="fff" asp-action="Index">fff</a></li>
+                        <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="fff" asp-action="Index">fff</a></li>
+                        <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="Organizers" asp-action="Index">Organizers</a></li>
+                        <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="OrganizerCategories" asp-action="Index">OrganizerCategories</a></li>
+                        <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="Events" asp-action="Index">Events</a></li>
+                        <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="EventCategories" asp-action="Index">EventCategories</a></li>
+                        <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="Venues" asp-action="Index">Venues</a></li>
+                        <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="Seats" asp-action="Index">Seats</a></li>
+                        <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="Sections" asp-action="Index">Sections</a></li>
+                        <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="Tickets" asp-action="Index">Tickets</a></li>
+                        <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="Discounts" asp-action="Index">Discounts</a></li>
+                        <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="TicketTypes" asp-action="Index">TicketTypes</a></li>
+                        <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="GroupDiscounts" asp-action="Index">GroupDiscounts</a></li>
+                        <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="Vips" asp-action="Index">Vips</a></li>
+                        <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="Loyaltys" asp-action="Index">Loyaltys</a></li>
+                        <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="fff" asp-action="Index">fff</a></li>
+                        <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="TicketGroups" asp-action="Index">TicketGroups</a></li>
+                        <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="Sales" asp-action="Index">Sales</a></li>
+                        <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="Purchases" asp-action="Index">Purchases</a></li>
+                    }
+                    @if (User.IsInRole("Promoter"))
+                    {
+                        <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="Events" asp-action="Index">Events</a></li>
+                    }
+
+                </ul>
+
+                    <div class="mt-5">
+                        <a class="btn btn-primary" asp-controller="Home" asp-action="PromoterArea">Back to Promoters Area</a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-md-4 pt-15 pb-5">
-                <div class="d-flex align-items-stretch" style="height: 100%;">
-                    <div style="width: 100%; overflow: hidden; border-radius: 20%;">
-                        <img src="https://plus.unsplash.com/premium_photo-1681121352693-0a15991e025e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=435&q=80" alt="Database img" class="img-fluid" style="object-fit: cover; height: 100%;">
+                <div class="col-md-4 pt-15 pb-5">
+                    <div class="d-flex align-items-stretch" style="height: 100%;">
+                        <div style="width: 100%; overflow: hidden; border-radius: 20%;">
+                            <img src="https://plus.unsplash.com/premium_photo-1681121352693-0a15991e025e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=435&q=80" alt="Database img" class="img-fluid" style="object-fit: cover; height: 100%;">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>

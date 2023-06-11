@@ -5,13 +5,13 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
-namespace event_booking.Controllers
+namespace event_booking.Controllers.EventSystem
 {
-    public class EventSystemTicketsController : Controller
+    public class ESTicketsController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public EventSystemTicketsController(ApplicationDbContext context)
+        public ESTicketsController(ApplicationDbContext context)
         {
             _context = context;
         }

@@ -1,0 +1,61 @@
+﻿@model event_booking.Models.Ticket
+@using Newtonsoft.Json
+
+@{
+    var discountsJson = JsonConvert.SerializeObject(ViewBag.Discounts);
+}
+
+<h2>@Model.Event.Name</h2>
+<h3>Venue: @Model.Venue.Name</h3>
+<h4>Seat: @Model.Seat.SeatNumber</h4>
+
+<form asp-action="ConfirmPurchase" method="post">
+    <input type="hidden" asp-for="TicketId" />
+
+    <label for="FirstName">First Name:</label>
+    <input type="text" id="FirstName" name="FirstName" placeholder="@ViewBag.FirstName" required />
+
+    <label for="LastName">Last Name:</label>
+    <input type="text" id="LastName" name="LastName" placeholder="@ViewBag.LastName" required />
+
+    <label for="DiscountId">Discount:</label>
+    <select id="DiscountId" name="DiscountId" onchange="recalculatePrice()">
+        <option value="">Select Discount</option>
+        @foreach (var discount in ViewBag.Discounts)
+        {
+            <option value="@discount.DiscountId">@discount.DiscountName</option>
+        }
+    </select>
+
+    <label for="TicketPrice">Ticket Price:</label>
+    <input type="text" id="TicketPrice" name="TicketPrice" value="@Model.TicketPrice" readonly />
+
+    <button type="submit" class="btn btn-primary">Purchase</button>
+</form>
+
+@* Javascript for live price update functionality *@
+<script type="text/javascript">
+    function recalculatePrice() {
+        // Get the selected discount
+        var selectedDiscountId = $('#DiscountId').val();
+        var discounts = @Html.Raw(discountsJson);
+
+        // Get the discount multiplier from the selected discount
+        // Here we assume that you have a list of discounts and their multipliers somewhere in your JavaScript
+        var discountMultiplier = discounts[selectedDiscountId];
+
+        // Get the base price (this should be passed from your server-side code)
+        var basePrice = @Model.BasePrice;
+
+        // Calculate the new price
+        var newPrice = basePrice * discountMultiplier;
+
+        // Update the price in the form
+        $('#TicketPrice').val(newPrice);
+    }
+
+    // Call the function once when the page loads to set the initial price
+    $(document).ready(function () {
+        recalculatePrice();
+    });
+</script>

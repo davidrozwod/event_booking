@@ -7,11 +7,11 @@ using System.Linq;
 
 namespace event_booking.Controllers.EventSystem
 {
-    public class ESTicketsController : Controller
+    public class ESTicketsCreateController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public ESTicketsController(ApplicationDbContext context)
+        public ESTicketsCreateController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -56,6 +56,7 @@ namespace event_booking.Controllers.EventSystem
                 {
                     //Sets the limit of seats creation to 10, to prevent overloading the database.
                     //This will also limit the number of tickets that can be created.
+
                     //int seatCapacity = venue.SeatCapacity;
                     int seatCapacity = 10;
 
@@ -72,15 +73,44 @@ namespace event_booking.Controllers.EventSystem
                             .Where(s => s.VenueId == ticket.VenueId)
                             .Max(s => (int?)s.SeatNumber) ?? 0;
 
+                        // Fetch all the sections
+                        List<Section> sections = _context.Sections.ToList();
+
+                        // Calculate the number of seats per section
+                        int seatsPerSection = remainingSeatCount / sections.Count;
+
+                        // Calculate the remaining seats after even distribution
+                        int remainingSeats = remainingSeatCount % sections.Count;
+
                         // Create new seats for the remaining count starting from the next seat number
-                        for (int i = 1; i <= remainingSeatCount; i++)
+                        for (int i = 0; i < sections.Count; i++)
                         {
-                            int seatNumber = maxSeatNumber + i;
+                            for (int j = 0; j < seatsPerSection; j++)
+                            {
+                                int seatNumber = maxSeatNumber + i * seatsPerSection + j + 1;
+
+                                Seat newSeat = new Seat
+                                {
+                                    VenueId = ticket.VenueId,
+                                    SeatNumber = seatNumber,
+                                    SectionId = sections[i].SectionId  // Assign the seat to the current section
+                                };
+
+                                _context.Seats.Add(newSeat);
+                                seatsCreated++; // increment seatsCreated
+                            }
+                        }
+
+                        // Distribute remaining seats
+                        for (int i = 0; i < remainingSeats; i++)
+                        {
+                            int seatNumber = maxSeatNumber + seatsPerSection * sections.Count + i + 1;
 
                             Seat newSeat = new Seat
                             {
                                 VenueId = ticket.VenueId,
-                                SeatNumber = seatNumber
+                                SeatNumber = seatNumber,
+                                SectionId = sections[i].SectionId  // Assign the seat to the current section
                             };
 
                             _context.Seats.Add(newSeat);
@@ -135,6 +165,9 @@ namespace event_booking.Controllers.EventSystem
 
                     ViewBag.SeatsCreated = seatsCreated;
                     ViewBag.TicketsCreated = ticketsCreated;
+
+                    ViewData["EventId"] = new SelectList(_context.Events.OrderBy(e => e.Name), "EventId", "Name");
+                    ViewData["VenueId"] = new SelectList(_context.Venues, "VenueId", "Name");
                 }
 
                 return View("~/Views/EventSystem/Tickets/Create.cshtml", ticket);

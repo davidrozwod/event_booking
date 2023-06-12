@@ -36,7 +36,7 @@
 {
     <div class="ticket">
         <h5>Seat: @ticket.Seat.SeatNumber</h5>
-        <p>Ticket Price: @string.Format("{0:0.00}", ticket.TicketPrice)</p>
+        <p>Ticket Price: @string.Format("{0:0.00}", ticket.BasePrice)</p>
         <h5>Section: @ticket.Seat.Section.SectionName</h5>
         <a class="btn gradient-custom-3 text-green" asp-area="" asp-controller="ESTicketsPage" asp-action="Detail" asp-route-id="@ticket.TicketId">View Ticket</a>
     </div>

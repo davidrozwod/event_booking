@@ -147,8 +147,7 @@ namespace event_booking.Controllers.EventSystem
                                             EventId = ticket.EventId,
                                             VenueId = ticket.VenueId,
                                             SeatId = seat.SeatId,
-                                            BasePrice = ticket.BasePrice,
-                                            TicketPrice = ticket.BasePrice * seatSection.PriceMultiplier
+                                            BasePrice = ticket.BasePrice * seatSection.PriceMultiplier
                                         };
 
                                         _context.Tickets.Add(newTicket);

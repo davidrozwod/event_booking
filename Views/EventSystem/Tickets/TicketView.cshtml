@@ -1,37 +1,48 @@
-﻿@model event_booking.Models.Ticket
+﻿@model TicketPriceViewModel
 @using Newtonsoft.Json
+@using event_booking.Models.ViewModels;
 
 @{
-    var discountsJson = JsonConvert.SerializeObject(ViewBag.Discounts);
+    var discountsJson = JsonConvert.SerializeObject(Model.Discounts);
 }
 
-<h2>@Model.Event.Name</h2>
-<h3>Venue: @Model.Venue.Name</h3>
-<h4>Seat: @Model.Seat.SeatNumber</h4>
+<div class="container">
+    <header>
+        <h2>@Model.Event.Name</h2>
+        <h3>Venue: @Model.Venue.Name</h3>
+        <h4>Seat: @Model.Seat.SeatNumber</h4>
+    </header>
 
-<form asp-action="ConfirmPurchase" method="post">
-    <input type="hidden" asp-for="TicketId" />
+    <div id="ticketsContainer">
+        <div class="ticket">
+            <form id="ticketForm" asp-action="ConfirmPurchase" method="post">
+                <input type="hidden" asp-for="Ticket.TicketId" />
 
-    <label for="FirstName">First Name:</label>
-    <input type="text" id="FirstName" name="FirstName" placeholder="@ViewBag.FirstName" required />
+                <label for="FirstName">First Name:</label>
+                <input type="text" id="FirstName" name="FirstName" placeholder="@ViewBag.FirstName" required />
 
-    <label for="LastName">Last Name:</label>
-    <input type="text" id="LastName" name="LastName" placeholder="@ViewBag.LastName" required />
+                <label for="LastName">Last Name:</label>
+                <input type="text" id="LastName" name="LastName" placeholder="@ViewBag.LastName" required />
 
-    <label for="DiscountId">Discount:</label>
-    <select id="DiscountId" name="DiscountId" onchange="recalculatePrice()">
-        <option value="">Select Discount</option>
-        @foreach (var discount in ViewBag.Discounts)
-        {
-            <option value="@discount.DiscountId">@discount.DiscountName</option>
-        }
-    </select>
+                <label for="DiscountId">Discount:</label>
+                <select id="DiscountId" name="Discount" onchange="recalculatePrice()">
+                    @foreach (var discount in Model.DiscountNames)
+                    {
+                        <option value="@discount.Key">@discount.Value</option>
+                    }
+                </select>
 
-    <label for="TicketPrice">Ticket Price:</label>
-    <input type="text" id="TicketPrice" name="TicketPrice" value="@Model.TicketPrice" readonly />
+                <label for="TicketPrice">Ticket Price:</label>
+                <input type="text" id="TicketPriceDisplay" value="@Model.Ticket.TicketPrice" disabled />
+                <input type="hidden" id="TicketPrice" name="TicketPrice" value="@Model.Ticket.TicketPrice" />
 
-    <button type="submit" class="btn btn-primary">Purchase</button>
-</form>
+                <button type="submit" class="btn btn-primary">Purchase</button>
+            </form>
+        </div>
+    </div>
+
+    <button id="addTicketButton" class="btn btn-primary">Add another ticket</button>
+</div>
 
 @* Javascript for live price update functionality *@
 <script type="text/javascript">
@@ -41,16 +52,16 @@
         var discounts = @Html.Raw(discountsJson);
 
         // Get the discount multiplier from the selected discount
-        // Here we assume that you have a list of discounts and their multipliers somewhere in your JavaScript
         var discountMultiplier = discounts[selectedDiscountId];
 
         // Get the base price (this should be passed from your server-side code)
-        var basePrice = @Model.BasePrice;
+        var basePrice = @Model.Ticket.BasePrice;
 
         // Calculate the new price
         var newPrice = basePrice * discountMultiplier;
 
         // Update the price in the form
+        $('#TicketPriceDisplay').val(newPrice);
         $('#TicketPrice').val(newPrice);
     }
 
@@ -59,3 +70,19 @@
         recalculatePrice();
     });
 </script>
+
+@* Add ticket javascript *@
+<script type="text/javascript">
+    $('#addTicketButton').click(function () {
+        // Clone the first ticket form with its parent div
+        var newForm = $('.ticket').first().clone();
+
+        // Clear the form fields in the new form
+        newForm.find('input[type="text"], select').val('');
+        newForm.find('input[type="hidden"]').val('@Model.Ticket.TicketPrice');
+
+        // Append the new form to the tickets container
+        $('#ticketsContainer').append(newForm);
+    });
+</script>
+

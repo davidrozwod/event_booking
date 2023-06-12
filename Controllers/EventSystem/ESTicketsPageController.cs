@@ -4,6 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using event_booking.Models;
+using event_booking.Models.ViewModels;
+using Microsoft.AspNetCore.Http;
 
 namespace event_booking.Controllers.EventSystem
 {
@@ -63,6 +66,7 @@ namespace event_booking.Controllers.EventSystem
         //Selects a single ticket for viewing
         public async Task<IActionResult> Detail(int id)
         {
+            //Get the ticket and include the related entities
             var ticket = await _context.Tickets
                 .Include(t => t.Event)
                 .Include(t => t.Venue)
@@ -77,7 +81,11 @@ namespace event_booking.Controllers.EventSystem
                 return NotFound();
             }
 
-            ViewBag.Discounts = await _context.Discounts.ToListAsync();
+            // Get the discounts and convert them to a dictionary
+            var discounts = await _context.Discounts
+                    .ToDictionaryAsync(d => d.DiscountId, d => d.PriceMultiplier);
+            var discountNames = await _context.Discounts
+                    .ToDictionaryAsync(d => d.DiscountId, d => d.DiscountName);
 
             // get the current logged in user
             var user = await _userManager.GetUserAsync(User);
@@ -86,7 +94,7 @@ namespace event_booking.Controllers.EventSystem
             if (user == null)
             {
                 // user is not logged in, redirect to the login page
-                return RedirectToAction("Login", "Account");
+                return RedirectToAction("Home", "Index");
             }
 
             var eventUser = await _context.EventUsers.FirstOrDefaultAsync(eu => eu.EventUserId == user.Id);
@@ -99,28 +107,66 @@ namespace event_booking.Controllers.EventSystem
 
             ViewBag.CurrentUser = user;
 
-            return View("~/Views/EventSystem/Tickets/TicketView.cshtml", ticket);
+            // check if the ticket is already associated with a purchase
+            if (ticket.PurchaseId.HasValue)
+            {
+                // if the same user reloads the page, use the existing purchase
+                if (HttpContext.Session.GetInt32("PurchaseId") == ticket.PurchaseId.Value)
+                {
+                    ViewBag.Message = "This ticket is already reserved by you.";
+                }
+                else
+                {
+                    // if another user has already reserved the ticket, display a message
+                    ViewBag.Message = "This ticket is already reserved by another user.";
+                    return View("~/Views/EventSystem/Tickets/TicketView.cshtml");
+                }
+            }
+            else
+            {
+                // create a new purchase and associate it with the ticket
+                var purchase = new Purchase();
+                _context.Purchases.Add(purchase);
+                await _context.SaveChangesAsync();
+
+                ticket.PurchaseId = purchase.PurchaseId;
+                await _context.SaveChangesAsync();
+
+                // store the purchase ID in the user's session
+                HttpContext.Session.SetInt32("PurchaseId", purchase.PurchaseId);
+            }
+
+            ticket.TicketPrice = ticket.BasePrice;
+
+            var model = new TicketPriceViewModel
+            {
+                Event = ticket.Event,
+                Venue = ticket.Venue,
+                Seat = ticket.Seat,
+                Ticket = ticket,
+                Discounts = discounts,
+                DiscountNames = discountNames
+            };
+
+            return View("~/Views/EventSystem/Tickets/TicketView.cshtml", model);
         }
 
         public IActionResult ConfirmPurchase(int ticketId)
         {
             var ticket = _context.Tickets.Find(ticketId);
 
-            // Set the base price.
-            ViewBag.BasePrice = ticket.BasePrice;
+            // ...other code...
 
-            // Load all discounts and ticket types.
-            ViewBag.Discounts = _context.Discounts.ToList();
-            ViewBag.TicketTypes = _context.TicketTypes.ToList();
+            var discounts = _context.Discounts
+                .ToDictionary(d => d.DiscountId, d => d.PriceMultiplier);
 
-            // Calculate the initial ticket price.
-            var discountMultiplier = ticket.DiscountId.HasValue ? _context.Discounts.Find(ticket.DiscountId).PriceMultiplier : 1;
-            var ticketTypeMultiplier = _context.TicketTypes.Find(ticket.TicketTypeId).PriceMultiplier;
-            var ticketPrice = ticket.BasePrice * discountMultiplier * ticketTypeMultiplier;
+            var model = new TicketPriceViewModel
+            {
+                Ticket = ticket,
+                Discounts = discounts
+            };
 
-            ViewBag.TicketPrice = ticketPrice;
-
-            return View(ticket);
+            return View(model);
         }
 
     }

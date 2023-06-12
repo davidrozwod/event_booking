@@ -18,7 +18,7 @@ namespace event_booking
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+// start of services//
             //Razor pages
             builder.Services.AddRazorPages();
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
@@ -40,8 +40,18 @@ namespace event_booking
             // AuthMessageSenderOptions
             builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
 
-            //Personalized services
+            // Session state service for storing user data in session variables (e.g. shopping cart)
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(5); // Set the session timeout
+            });
+
+            // end of services//
+
             var app = builder.Build();
+
+            // Configure the HTTP request pipeline.
+            app.UseSession();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

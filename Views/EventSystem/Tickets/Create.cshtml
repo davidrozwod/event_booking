@@ -36,13 +36,13 @@
                 </select>
                 <span asp-validation-for="EventId" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="VenueId" class="control-label"></label>
                 <select asp-for="VenueId" class="form-control" asp-items="@ViewBag.VenueId">
                     <option value="">Select Venue</option>
                 </select>
                 <span asp-validation-for="VenueId" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 <label asp-for="BasePrice" class="control-label"></label>
                 <input asp-for="BasePrice" class="form-control" />

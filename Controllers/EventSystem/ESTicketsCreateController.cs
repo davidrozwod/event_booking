@@ -20,7 +20,7 @@ namespace event_booking.Controllers.EventSystem
         public IActionResult Create()
         {
             ViewData["EventId"] = new SelectList(_context.Events.OrderBy(e => e.Name), "EventId", "Name");
-            ViewData["VenueId"] = new SelectList(_context.Venues, "VenueId", "Name");
+            //ViewData["VenueId"] = new SelectList(_context.Venues, "VenueId", "Name");
             ViewData["SeatId"] = new SelectList(_context.Seats.OrderBy(s => s.SeatNumber), "SeatId", "SeatNumber");
 
             return View("~/Views/EventSystem/Tickets/Create.cshtml");
@@ -38,56 +38,76 @@ namespace event_booking.Controllers.EventSystem
 
             ModelState.Remove("Seat");
             ModelState.Remove("Event");
-            ModelState.Remove("Venue");
-            //Very simple function, and therefore can produce errors if operated outside basic parameters.
+            ModelState.Remove("Venue");            
             if (ModelState.IsValid)
             {
-                if (!ModelState.IsValid)
+                // Fetch the event
+                Event @event = _context.Events.Find(ticket.EventId);
+
+                if (@event != null)
                 {
-                    ViewData["EventId"] = new SelectList(_context.Events.OrderBy(e => e.Name), "EventId", "Name");
-                    ViewData["VenueId"] = new SelectList(_context.Venues, "VenueId", "Name");
+                    // Assign the venue ID from the event
+                    ticket.VenueId = @event.VenueId;
 
-                    return View("~/Views/EventSystem/Tickets/Create.cshtml", ticket);
-                }
+                    Venue venue = _context.Venues.Find(ticket.VenueId);
 
-                Venue venue = _context.Venues.Find(ticket.VenueId);
-
-                if (venue != null)
-                {
-                    //Sets the limit of seats creation to 10, to prevent overloading the database.
-                    //This will also limit the number of tickets that can be created.
-
-                    //int seatCapacity = venue.SeatCapacity;
-                    int seatCapacity = 10;
-
-                    // Check the current number of seats for the venue
-                    int currentSeatCount = _context.Seats
-                        .Count(s => s.VenueId == ticket.VenueId);
-
-                    if (currentSeatCount < seatCapacity)
+                    if (venue != null)
                     {
-                        int remainingSeatCount = seatCapacity - currentSeatCount;
+                        //Sets the limit of seats creation to 10, to prevent overloading the database.
+                        //This will also limit the number of tickets that can be created.
 
-                        // Get the highest seat number for the venue
-                        int maxSeatNumber = _context.Seats
-                            .Where(s => s.VenueId == ticket.VenueId)
-                            .Max(s => (int?)s.SeatNumber) ?? 0;
+                        //int seatCapacity = venue.SeatCapacity;
+                        int seatCapacity = 10;
+
+                        // Check the current number of seats for the venue
+                        int currentSeatCount = _context.Seats.Count(s => s.VenueId == ticket.VenueId);
 
                         // Fetch all the sections
                         List<Section> sections = _context.Sections.ToList();
 
-                        // Calculate the number of seats per section
-                        int seatsPerSection = remainingSeatCount / sections.Count;
+                        // Fetch all multipliers
+                        List<decimal> multipliers = sections.Select(s => s.PriceMultiplier).ToList();
 
-                        // Calculate the remaining seats after even distribution
-                        int remainingSeats = remainingSeatCount % sections.Count;
-
-                        // Create new seats for the remaining count starting from the next seat number
-                        for (int i = 0; i < sections.Count; i++)
+                        //Create seats, if the current seat count is less than the seat capacity
+                        //The SectionId is assigned to the seat based on the number of seats per section
+                        if (currentSeatCount < seatCapacity)
                         {
-                            for (int j = 0; j < seatsPerSection; j++)
+                            int remainingSeatCount = seatCapacity - currentSeatCount;
+
+                            // Get the highest seat number for the venue
+                            int maxSeatNumber = _context.Seats
+                                .Where(s => s.VenueId == ticket.VenueId)
+                                .Max(s => (int?)s.SeatNumber) ?? 0;
+
+                            // Calculate the number of seats per section
+                            int seatsPerSection = remainingSeatCount / sections.Count;
+
+                            // Calculate the remaining seats after even distribution
+                            int remainingSeats = remainingSeatCount % sections.Count;
+
+                            // Create new seats for the remaining count starting from the next seat number
+                            for (int i = 0; i < sections.Count; i++)
                             {
-                                int seatNumber = maxSeatNumber + i * seatsPerSection + j + 1;
+                                for (int j = 0; j < seatsPerSection; j++)
+                                {
+                                    int seatNumber = maxSeatNumber + i * seatsPerSection + j + 1;
+
+                                    Seat newSeat = new Seat
+                                    {
+                                        VenueId = ticket.VenueId,
+                                        SeatNumber = seatNumber,
+                                        SectionId = sections[i].SectionId  // Assign the seat to the current section
+                                    };
+
+                                    _context.Seats.Add(newSeat);
+                                    seatsCreated++; // increment seatsCreated
+                                }
+                            }
+
+                            // Distribute remaining seats
+                            for (int i = 0; i < remainingSeats; i++)
+                            {
+                                int seatNumber = maxSeatNumber + seatsPerSection * sections.Count + i + 1;
 
                                 Seat newSeat = new Seat
                                 {
@@ -99,79 +119,72 @@ namespace event_booking.Controllers.EventSystem
                                 _context.Seats.Add(newSeat);
                                 seatsCreated++; // increment seatsCreated
                             }
+
+                            _context.SaveChanges();
                         }
 
-                        // Distribute remaining seats
-                        for (int i = 0; i < remainingSeats; i++)
+                        // Check if tickets already exist for the event
+                        ticketsExist = _context.Tickets.Any(t => t.EventId == ticket.EventId);
+
+                        //If Tickets already exist display to user
+                        ViewBag.TicketsExist = ticketsExist;
+
+                        if (!ticketsExist)
                         {
-                            int seatNumber = maxSeatNumber + seatsPerSection * sections.Count + i + 1;
-
-                            Seat newSeat = new Seat
+                            // Create a ticket for each seat
+                            for (int i = 1; i <= seatCapacity; i++)
                             {
-                                VenueId = ticket.VenueId,
-                                SeatNumber = seatNumber,
-                                SectionId = sections[i].SectionId  // Assign the seat to the current section
-                            };
+                                Seat seat = _context.Seats.FirstOrDefault(s => s.VenueId == ticket.VenueId && s.SeatNumber == i);
 
-                            _context.Seats.Add(newSeat);
-                            seatsCreated++; // increment seatsCreated
+                                if (seat != null)
+                                {
+                                    Section seatSection = _context.Sections.FirstOrDefault(s => s.SectionId == seat.SectionId);
+
+                                    if (seatSection != null)
+                                    {
+                                        Ticket newTicket = new Ticket
+                                        {
+                                            EventId = ticket.EventId,
+                                            VenueId = ticket.VenueId,
+                                            SeatId = seat.SeatId,
+                                            BasePrice = ticket.BasePrice,
+                                            TicketPrice = ticket.BasePrice * seatSection.PriceMultiplier
+                                        };
+
+                                        _context.Tickets.Add(newTicket);
+                                        ticketsCreated++; // increment ticketsCreated
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            // Display a message indicating that tickets already exist for the event
+                            ModelState.AddModelError(string.Empty, "Tickets already exist for this event.");
+
+                            ViewData["EventId"] = new SelectList(_context.Events.OrderBy(e => e.Name), "EventId", "Name");
+                            ViewData["VenueId"] = new SelectList(_context.Venues, "VenueId", "Name");
+
+                            return View("~/Views/EventSystem/Tickets/Create.cshtml", ticket);
                         }
 
                         _context.SaveChanges();
-                    }
 
-                    // Check if tickets already exist for the event
-                    ticketsExist = _context.Tickets.Any(t => t.EventId == ticket.EventId);
 
-                    //If Tickets already exist display to user
-                    ViewBag.TicketsExist = ticketsExist;
-
-                    if (!ticketsExist)
-                    {
-                        // Create a ticket for each seat
-                        for (int i = 1; i <= seatCapacity; i++)
-                        {
-                            Seat seat = _context.Seats.FirstOrDefault(s => s.VenueId == ticket.VenueId && s.SeatNumber == i);
-
-                            if (seat != null)
-                            {
-                                Ticket newTicket = new Ticket
-                                {
-                                    EventId = ticket.EventId,
-                                    VenueId = ticket.VenueId,
-                                    SeatId = seat.SeatId,
-                                    BasePrice = ticket.BasePrice,
-                                    TicketPrice = ticket.TicketPrice
-                                };
-
-                                _context.Tickets.Add(newTicket);
-                                ticketsCreated++; // increment ticketsCreated
-                            }
-                        }
-                    }
-                    else
-                    {
-                        // Display a message indicating that tickets already exist for the event
-                        ModelState.AddModelError(string.Empty, "Tickets already exist for this event.");
+                        ViewBag.SeatsCreated = seatsCreated;
+                        ViewBag.TicketsCreated = ticketsCreated;
 
                         ViewData["EventId"] = new SelectList(_context.Events.OrderBy(e => e.Name), "EventId", "Name");
                         ViewData["VenueId"] = new SelectList(_context.Venues, "VenueId", "Name");
-
-                        return View("~/Views/EventSystem/Tickets/Create.cshtml", ticket);
                     }
-
-                    _context.SaveChanges();
-
-
-                    ViewBag.SeatsCreated = seatsCreated;
-                    ViewBag.TicketsCreated = ticketsCreated;
-
-                    ViewData["EventId"] = new SelectList(_context.Events.OrderBy(e => e.Name), "EventId", "Name");
-                    ViewData["VenueId"] = new SelectList(_context.Venues, "VenueId", "Name");
                 }
+
 
                 return View("~/Views/EventSystem/Tickets/Create.cshtml", ticket);
             }
+
+            ViewData["EventId"] = new SelectList(_context.Events.OrderBy(e => e.Name), "EventId", "Name");
+            //ViewData["VenueId"] = new SelectList(_context.Venues, "VenueId", "Name");
 
             return View("~/Views/EventSystem/Tickets/Create.cshtml", ticket);
         }

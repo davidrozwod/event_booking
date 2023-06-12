@@ -68,7 +68,7 @@
                 @Html.DisplayFor(modelItem => item.Discount.DiscountId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Event.EventId)
+                @Html.DisplayFor(modelItem => item.Event.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.EventUser.EventUserId)
@@ -83,7 +83,7 @@
                 @Html.DisplayFor(modelItem => item.TicketType.TicketTypeId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Venue.VenueId)
+                @Html.DisplayFor(modelItem => item.Venue.Name)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.TicketId">Edit</a> |

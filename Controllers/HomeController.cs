@@ -1,21 +1,28 @@
-﻿using event_booking.Models;
+﻿using event_booking.Data;
+using event_booking.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace event_booking.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ApplicationDbContext _context;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
         {
+            _context = context;
             _logger = logger;
         }
 
         public IActionResult Index()
         {
+            ViewBag.Events = _context.Events.ToList();
+            ViewBag.Organizers = _context.Organizers.ToList();
+            ViewBag.EventCategories = _context.EventCategories.ToList();
             return View();
         }
 

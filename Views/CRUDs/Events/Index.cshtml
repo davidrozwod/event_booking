@@ -37,6 +37,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Organizer)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VenueId)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -62,10 +65,13 @@
                 @Html.DisplayFor(modelItem => item.EarlyBirdCutoff)
             </td>
             <td>
-                    @Html.DisplayFor(modelItem => item.EventCategory.CategoryName)
+                @Html.DisplayFor(modelItem => item.EventCategory.CategoryName)
             </td>
             <td>
-                    @Html.DisplayFor(modelItem => item.Organizer.Name)
+                @Html.DisplayFor(modelItem => item.Organizer.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Venue.Name)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.EventId">Edit</a> |

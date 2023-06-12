@@ -11,6 +11,9 @@ namespace event_booking.Models.ViewModels
 
         public Ticket Ticket { get; set; }
 
+        public Purchase Purchase { get; set; }
+
+
         public Dictionary<int, string> DiscountNames { get; set; }
 
         public Dictionary<int, decimal> Discounts { get; set; }

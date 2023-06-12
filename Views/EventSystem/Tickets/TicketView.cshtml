@@ -16,32 +16,43 @@
     <div id="ticketsContainer">
         <div class="ticket">
             <form id="ticketForm" asp-action="ConfirmPurchase" method="post">
-                <input type="hidden" asp-for="Ticket.TicketId" />
+                <div id="ticketInputs">
+                    <input type="hidden" name="Tickets[0].TicketId" id="TicketId_0" />
 
-                <label for="FirstName">First Name:</label>
-                <input type="text" id="FirstName" name="FirstName" placeholder="@ViewBag.FirstName" required />
+                    <label for="FirstName">First Name:</label>
+                    <input type="text" id="FirstName" name="FirstName" placeholder="@ViewBag.FirstName" required />
 
-                <label for="LastName">Last Name:</label>
-                <input type="text" id="LastName" name="LastName" placeholder="@ViewBag.LastName" required />
+                    <label for="LastName">Last Name:</label>
+                    <input type="text" id="LastName" name="LastName" placeholder="@ViewBag.LastName" required />
 
-                <label for="DiscountId">Discount:</label>
-                <select id="DiscountId" name="Discount" onchange="recalculatePrice()">
-                    @foreach (var discount in Model.DiscountNames)
-                    {
-                        <option value="@discount.Key">@discount.Value</option>
-                    }
-                </select>
+                    <label for="DiscountId">Discount:</label>
+                    <select id="DiscountId" name="Discount" onchange="recalculatePrice()">
+                        @foreach (var discount in Model.DiscountNames)
+                        {
+                            <option value="@discount.Key">@discount.Value</option>
+                        }
+                    </select>
 
-                <label for="TicketPrice">Ticket Price:</label>
-                <input type="text" id="TicketPriceDisplay" value="@Model.Ticket.TicketPrice" disabled />
-                <input type="hidden" id="TicketPrice" name="TicketPrice" value="@Model.Ticket.TicketPrice" />
+                    <label for="TicketPrice">Ticket Price:</label>
+                    <input type="text" id="TicketPriceDisplay" value="@Model.Ticket.TicketPrice" disabled />
+                    <input type="hidden" id="TicketPrice" name="TicketPrice" value="@Model.Ticket.TicketPrice" />
+                </div>
+                <input type="hidden" id="PurchaseId" value="@Model.Purchase.PurchaseId" />
+                <input type="hidden" id="EventId" value="@Model.Event.EventId" />
+                <p id="SessionExpiryTime">@Model.Purchase.SessionExpiryTime</p>
+                }
 
-                <button type="submit" class="btn btn-primary">Purchase</button>
+                <button type="button" id="addTicketButton">Add another ticket</button>
+                <input type="submit" value="Purchase" />
             </form>
         </div>
     </div>
 
-    <button id="addTicketButton" class="btn btn-primary">Add another ticket</button>
+    <form asp-controller="ESTicketsPage" asp-action="CancelPurchase" method="post">
+        <input type="hidden" asp-for="Ticket.TicketId" />
+        <input type="submit" value="Cancel Purchase" />
+    </form>
+
 </div>
 
 @* Javascript for live price update functionality *@
@@ -73,16 +84,33 @@
 
 @* Add ticket javascript *@
 <script type="text/javascript">
-    $('#addTicketButton').click(function () {
-        // Clone the first ticket form with its parent div
-        var newForm = $('.ticket').first().clone();
+    document.getElementById('addTicketButton').addEventListener('click', () => {
+        // The PurchaseId and EventId should be stored in the frontend, either in hidden fields or JavaScript variables
+        let purchaseId = document.getElementById('PurchaseId').value;
+        let eventId = document.getElementById('EventId').value;
 
-        // Clear the form fields in the new form
-        newForm.find('input[type="text"], select').val('');
-        newForm.find('input[type="hidden"]').val('@Model.Ticket.TicketPrice');
+        fetch(`/ESTicketsPage/AddTicket?eventId=${eventId}&purchaseId=${purchaseId}`, {
+            method: 'POST',
+        })
+            .then(response => response.json())
+            .then(data => {
+                // Here you need to generate the necessary HTML for the new ticket input and append it to the form
+                const ticketInputs = document.getElementById('ticketInputs');
 
-        // Append the new form to the tickets container
-        $('#ticketsContainer').append(newForm);
+                const newInput = document.createElement('input');
+                newInput.type = 'hidden';
+                newInput.name = `Tickets[${ticketIndex}].TicketId`;
+                newInput.id = `TicketId_${ticketIndex}`;
+                newInput.value = data.TicketId;
+
+                ticketInputs.appendChild(newInput);
+
+                // Here, you update the session expiry time
+                document.getElementById('SessionExpiryTime').innerText = new Date(data.SessionExpiryTime).toLocaleString();
+
+                ticketIndex++;
+            });
     });
+
 </script>
 

@@ -46,7 +46,10 @@ namespace event_booking
                 options.IdleTimeout = TimeSpan.FromMinutes(5); // Set the session timeout
             });
 
-            // end of services//
+            // Add a hosted service that will run the cleanup task in the background
+            builder.Services.AddHostedService<ClearExpiredSessionsService>();
+
+// end of services//
 
             var app = builder.Build();
 
@@ -81,5 +84,90 @@ namespace event_booking
 
             app.Run();
         }
+    }
+}
+
+public class ClearExpiredSessionsService : IHostedService
+{
+    private readonly IServiceProvider _serviceProvider;
+
+    public ClearExpiredSessionsService(IServiceProvider serviceProvider)
+    {
+        _serviceProvider = serviceProvider;
+    }
+
+    public Task StartAsync(CancellationToken cancellationToken)
+    {
+        // Start the cleanup task
+        return Task.Run(() => ClearExpiredSessionsTask(), cancellationToken);
+    }
+
+    public Task StopAsync(CancellationToken cancellationToken)
+    {
+        // Nothing to do here
+        return Task.CompletedTask;
+    }
+
+    private async Task ClearExpiredSessionsTask()
+    {
+        using var scope = _serviceProvider.CreateScope();
+        var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+
+        while (true)
+        {
+            await ClearExpiredSessions(dbContext);
+
+            // Wait for 5 minutes before running the task again
+            await Task.Delay(TimeSpan.FromMinutes(5));
+        }
+    }
+
+    private async Task ClearExpiredSessions(ApplicationDbContext dbContext)
+    {
+        // Get the current time
+        var currentTime = DateTime.UtcNow;
+
+        // Get all purchases whose session has expired
+        var expiredPurchases = await dbContext.Purchases
+            .Where(p => p.SessionExpiryTime <= currentTime)
+            .ToListAsync();
+
+        // Clear the PurchaseId from the tickets associated with each expired session
+        foreach (var purchase in expiredPurchases)
+        {
+            var tickets = await dbContext.Tickets
+                .Where(t => t.PurchaseId == purchase.PurchaseId)
+                .ToListAsync();
+
+            foreach (var ticket in tickets)
+            {
+                ticket.PurchaseId = null;
+            }
+
+            // Remove the associated Sales before removing the Purchase
+            var sales = await dbContext.Sales
+                .Where(s => s.PurchaseId == purchase.PurchaseId)
+                .ToListAsync();
+
+            foreach (var sale in sales)
+            {
+                dbContext.Sales.Remove(sale);
+            }
+
+            // Remove the associated TicketGroup before removing the Purchase
+            var ticketGroups = await dbContext.TicketGroups
+                .Where(tg => tg.PurchaseId == purchase.PurchaseId)
+                .ToListAsync();
+
+            foreach (var ticketGroup in ticketGroups)
+            {
+                dbContext.TicketGroups.Remove(ticketGroup);
+            }
+
+            // Remove the expired purchase
+            dbContext.Purchases.Remove(purchase);
+        }
+
+        await dbContext.SaveChangesAsync();
     }
 }

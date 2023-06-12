@@ -25,6 +25,10 @@ namespace event_booking.Controllers.EventSystem
         //Index
         public async Task<IActionResult> Index(int id)
         {
+            var currentUserId = _userManager.GetUserId(User);
+
+            var purchaseId = HttpContext.Session.GetInt32("PurchaseId");
+
             var ticketsForEvent = await _context.Tickets
                 .Include(t => t.Event)
                 .Include(t => t.Venue)
@@ -32,11 +36,8 @@ namespace event_booking.Controllers.EventSystem
                 .Include(t => t.Seat.Section) // Include the Section related to the Seat
                 .Include(t => t.Discount)
                 .Include(t => t.TicketType)
-                .Where(t => t.EventId == id && t.PurchaseId == null)
+                .Where(t => t.EventId == id && (t.PurchaseId == null || t.PurchaseId == purchaseId))
                 .ToListAsync();
-
-            // Getting the id of the currently logged in user
-            var currentUserId = _userManager.GetUserId(User);
 
             // Calculating ticket price here, you can replace this with your actual calculation logic
             foreach (var ticket in ticketsForEvent)
@@ -97,6 +98,7 @@ namespace event_booking.Controllers.EventSystem
                 return RedirectToAction("Home", "Index");
             }
 
+            // logged in user is an event user, get the first and last name
             var eventUser = await _context.EventUsers.FirstOrDefaultAsync(eu => eu.EventUserId == user.Id);
 
             if (eventUser != null)
@@ -107,11 +109,13 @@ namespace event_booking.Controllers.EventSystem
 
             ViewBag.CurrentUser = user;
 
+            var purchaseId = HttpContext.Session.GetInt32("PurchaseId");
+
             // check if the ticket is already associated with a purchase
             if (ticket.PurchaseId.HasValue)
             {
                 // if the same user reloads the page, use the existing purchase
-                if (HttpContext.Session.GetInt32("PurchaseId") == ticket.PurchaseId.Value)
+                if (purchaseId == ticket.PurchaseId.Value)
                 {
                     ViewBag.Message = "This ticket is already reserved by you.";
                 }
@@ -124,16 +128,22 @@ namespace event_booking.Controllers.EventSystem
             }
             else
             {
-                // create a new purchase and associate it with the ticket
-                var purchase = new Purchase();
-                _context.Purchases.Add(purchase);
-                await _context.SaveChangesAsync();
+                Purchase purchase;
+
+                if (purchaseId.HasValue)
+                {
+                    purchase = await _context.Purchases.FindAsync(purchaseId.Value);
+                }
+                else
+                {
+                    purchase = new Purchase();
+                    _context.Purchases.Add(purchase);
+                    await _context.SaveChangesAsync();
+                    HttpContext.Session.SetInt32("PurchaseId", purchase.PurchaseId);
+                }
 
                 ticket.PurchaseId = purchase.PurchaseId;
                 await _context.SaveChangesAsync();
-
-                // store the purchase ID in the user's session
-                HttpContext.Session.SetInt32("PurchaseId", purchase.PurchaseId);
             }
 
             ticket.TicketPrice = ticket.BasePrice;

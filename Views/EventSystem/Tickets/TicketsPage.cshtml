@@ -22,6 +22,8 @@
     .btn {
         font-size: 20px;
         font-weight: bold;
+
+        .
     }
 </style>
 
@@ -36,8 +38,15 @@
 {
     <div class="ticket">
         <h5>Seat: @ticket.Seat.SeatNumber</h5>
-        <p>Ticket Price: @string.Format("{0:0.00}", ticket.TicketPrice)</p>
+        <p>Ticket Price: @string.Format("{0:0.00}", ticket.BasePrice)</p>
         <h5>Section: @ticket.Seat.Section.SectionName</h5>
+
+        @* If user can see this ticket, it is associated to the user *@
+        @if (ticket.PurchaseId != null)
+        {
+            <p class="text-danger">This ticket is already in your cart!</p>
+        }
+
         <a class="btn gradient-custom-3 text-green" asp-area="" asp-controller="ESTicketsPage" asp-action="Detail" asp-route-id="@ticket.TicketId">View Ticket</a>
     </div>
 }

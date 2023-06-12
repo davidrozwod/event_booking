@@ -35,5 +35,8 @@ public partial class Venue
     [InverseProperty("Venue")]
     public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
 
+    [InverseProperty("Venue")]
+    public virtual ICollection<Event> Events { get; set; } = new List<Event>();
+
     public virtual ICollection<EventUser> EventUsers { get; set; } = new List<EventUser>();
 }

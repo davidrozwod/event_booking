@@ -1,4 +1,6 @@
 ﻿@model Event
+
+                                @* Image is in the style *@
 <style>
     .centered {
         position: absolute;
@@ -120,7 +122,7 @@
         width: 50%;
         padding: 10px;
     }
-
+                                    @* Image *@
     body {
         background-image: url('@Model.Image');
         background-repeat: no-repeat;
@@ -165,6 +167,7 @@
                     <center><img style=" margin-top: 30px; margin-bottom: 30px;" src="@Model.Image" height="150px" width="250px" /></center>
                 </div>
             </div>
+                                @* Event Category Name, Event Name *@
             <div style="margin-top: 80px; margin-left: -50px;" class="col-8 text-white">
                 <p> @Model.EventCategory.CategoryName</p>
                 <h1>@Model.Name</h1>
@@ -196,9 +199,11 @@
                                     <div style="box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 26px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;" class="container-fluid bg-light">
                                         <div class="col-12">
                                             <div class="row mb-3 border border-dark">
+                            @* Start date *@
                                                 <div class="col-md-1">
                                                     <h5 style="margin-top: 25px;">@Model.StartDateTime.ToString("dd/MM")</h5>
                                                 </div>
+                            @* Event Name, Organizer Name Event Category Name *@
                                                 <div class="col-md-8">
                                                     <h6 class="text-muted">@Model.Name</h6>
                                                     <h6>@Model.Organizer.Name</h6>
@@ -221,6 +226,7 @@
                                 <div style="margin-left: 100px;" class="col-1">
                                     <h1 style="margin-top: 50px;" class="border-bottom border-dark"> About</h1>
                                 </div>
+                            @* Event Description *@
                                 <div style="margin-top: 40px;margin-left: 80px;" class="row col-5">
                                     <p>@Model.Description</p>
                                 </div>

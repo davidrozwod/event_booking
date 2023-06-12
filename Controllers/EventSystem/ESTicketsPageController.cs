@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using event_booking.Models;
 using event_booking.Models.ViewModels;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 
 namespace event_booking.Controllers.EventSystem
 {
@@ -65,6 +66,7 @@ namespace event_booking.Controllers.EventSystem
 
         //
         //Selects a single ticket for viewing
+        [Authorize]
         public async Task<IActionResult> Detail(int id)
         {
             //Get the ticket and include the related entities
@@ -90,13 +92,6 @@ namespace event_booking.Controllers.EventSystem
 
             // get the current logged in user
             var user = await _userManager.GetUserAsync(User);
-
-            // check if the user is logged in
-            if (user == null)
-            {
-                // user is not logged in, redirect to the login page
-                return RedirectToAction("Home", "Index");
-            }
 
             // logged in user is an event user, get the first and last name
             var eventUser = await _context.EventUsers.FirstOrDefaultAsync(eu => eu.EventUserId == user.Id);

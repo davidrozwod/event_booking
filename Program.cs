@@ -87,38 +87,66 @@ namespace event_booking
     }
 }
 
+// ClearExpiredSessionsService IHostedService
 public class ClearExpiredSessionsService : IHostedService
 {
     private readonly IServiceProvider _serviceProvider;
+    private readonly ILogger<ClearExpiredSessionsService> _logger;
 
-    public ClearExpiredSessionsService(IServiceProvider serviceProvider)
+    public ClearExpiredSessionsService(IServiceProvider serviceProvider, ILogger<ClearExpiredSessionsService> logger)
     {
         _serviceProvider = serviceProvider;
+        _logger = logger;
     }
 
     public Task StartAsync(CancellationToken cancellationToken)
     {
-        // Start the cleanup task
-        return Task.Run(() => ClearExpiredSessionsTask(), cancellationToken);
+        try
+        {
+            _logger.LogInformation("Starting ClearExpiredSessionsService.");
+
+            // Start the cleanup task
+            Task.Run(() => ClearExpiredSessionsTask(), cancellationToken);
+
+            // Immediately return a completed task
+            return Task.CompletedTask;
+        }
+        catch (Exception ex)
+        {
+            // Log the exception
+            _logger.LogError(ex, "Error starting ClearExpiredSessionsService.");
+            throw;
+        }
     }
 
+    //Stops the service
     public Task StopAsync(CancellationToken cancellationToken)
     {
         // Nothing to do here
         return Task.CompletedTask;
     }
 
+    // Runs every 5 minutes
     private async Task ClearExpiredSessionsTask()
     {
-        using var scope = _serviceProvider.CreateScope();
-        var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-
-        while (true)
+        try
         {
-            await ClearExpiredSessions(dbContext);
+            using var scope = _serviceProvider.CreateScope();
+            var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 
-            // Wait for 5 minutes before running the task again
-            await Task.Delay(TimeSpan.FromMinutes(5));
+            while (true)
+            {
+                await ClearExpiredSessions(dbContext);
+
+                // Wait for 5 minutes before running the task again
+                await Task.Delay(TimeSpan.FromMinutes(5));
+            }
+        }
+        catch (Exception ex)
+        {
+            // Log the exception
+            _logger.LogError(ex, "Error in ClearExpiredSessionsTask.");
+            throw;
         }
     }
 
@@ -135,6 +163,11 @@ public class ClearExpiredSessionsService : IHostedService
         // Clear the PurchaseId from the tickets associated with each expired session
         foreach (var purchase in expiredPurchases)
         {
+            if (purchase == null)
+            {
+                continue;
+            }
+
             var tickets = await dbContext.Tickets
                 .Where(t => t.PurchaseId == purchase.PurchaseId)
                 .ToListAsync();

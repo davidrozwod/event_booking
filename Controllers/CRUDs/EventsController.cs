@@ -34,18 +34,37 @@ namespace event_booking.Controllers.CRUDs
             if (currentUser != null && User.IsInRole("Promoter"))
             {
                 var applicationDbContext = _context.Events.Include(e => e.EventCategory).Include(f => f.Organizer).Where(e => e.CreatedByUserId == currentUser.Id);
+
+                // Explicitly load the Venue for each Event that has a VenueId not equal to 0
+                var eventsWithVenue = applicationDbContext.Where(e => e.VenueId != 0).ToList();
+
+                foreach (var currentEvent in eventsWithVenue)
+                {
+                    _context.Entry(currentEvent).Reference(e => e.Venue).Load();
+                }
+
                 return View("~/Views/CRUDs/Events/Index.cshtml", await applicationDbContext.ToListAsync());
             }
             else if (currentUser != null && User.IsInRole("Admin"))
             {
                 var applicationDbContext = _context.Events.Include(e => e.EventCategory).Include(f => f.Organizer);
+
+                // Explicitly load the Venue for each Event that has a VenueId not equal to 0
+                var eventsWithVenue = applicationDbContext.Where(e => e.VenueId != 0).ToList();
+
+                foreach (var currentEvent in eventsWithVenue)
+                {
+                    _context.Entry(currentEvent).Reference(e => e.Venue).Load();
+                }
+
                 return View("~/Views/CRUDs/Events/Index.cshtml", await applicationDbContext.ToListAsync());
             }
-            else 
+            else
             {
                 TempData["ErrorMessage"] = "Access restricted to admin and promoter accounts.";
                 return Redirect("/Identity/Account/Login");
             }
+
         }
 
         // GET: Events/Details/5
@@ -91,7 +110,7 @@ namespace event_booking.Controllers.CRUDs
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> Create([Bind("EventId,OrganizerId,EventCategoryId,Name,Description,StartDateTime,EndDateTime,Image,EarlyBirdCutoff")] Event @event)
+        public async Task<IActionResult> Create([Bind("EventId,OrganizerId,EventCategoryId,Name,Description,StartDateTime,EndDateTime,Image,EarlyBirdCutoff, VenueId")] Event @event)
         {
             ModelState.Remove("Organizer");
             ModelState.Remove("EventCategory");
@@ -126,8 +145,10 @@ namespace event_booking.Controllers.CRUDs
             {
                 return NotFound();
             }
+            
             ViewBag.Organizers = _context.Organizers.ToList();
             ViewBag.EventCategories = _context.EventCategories.ToList();
+            ViewBag.Venues = _context.Venues.ToList().OrderBy(v => v.Name);
             return View("~/Views/CRUDs/Events/Edit.cshtml", @event);
         }
 
@@ -137,7 +158,7 @@ namespace event_booking.Controllers.CRUDs
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> Edit(int id, [Bind("EventId,OrganizerId,EventCategoryId,Name,Description,StartDateTime,EndDateTime,Image,EarlyBirdCutoff")] Event @event)
+        public async Task<IActionResult> Edit(int id, [Bind("EventId,OrganizerId,EventCategoryId,Name,Description,StartDateTime,EndDateTime,Image,EarlyBirdCutoff, VenueId")] Event @event)
         {
             if (id != @event.EventId)
             {
@@ -146,6 +167,7 @@ namespace event_booking.Controllers.CRUDs
 
             ModelState.Remove("Organizer");
             ModelState.Remove("EventCategory");
+            ModelState.Remove("Venue");
             if (ModelState.IsValid)
             {
                 try
@@ -166,8 +188,8 @@ namespace event_booking.Controllers.CRUDs
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EventCategoryId"] = new SelectList(_context.EventCategories, "EventCategoryId", "EventCategoryId", @event.EventCategoryId);
-            ViewData["OrganizerId"] = new SelectList(_context.Organizers, "OrganizerId", "OrganizerId", @event.OrganizerId);
+            /*ViewData["EventCategoryId"] = new SelectList(_context.EventCategories, "EventCategoryId", "EventCategoryId", @event.EventCategoryId);
+            ViewData["OrganizerId"] = new SelectList(_context.Organizers, "OrganizerId", "OrganizerId", @event.OrganizerId);*/
             return View("~/Views/CRUDs/Events/Edit.cshtml", @event);
         }
 

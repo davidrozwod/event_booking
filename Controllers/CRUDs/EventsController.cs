@@ -33,12 +33,30 @@ namespace event_booking.Controllers.CRUDs
 
             if (currentUser != null && User.IsInRole("Promoter"))
             {
-                var applicationDbContext = _context.Events.Include(e => e.EventCategory).Include(f => f.Organizer).Include(v => v.Venue).Where(e => e.CreatedByUserId == currentUser.Id);
+                var applicationDbContext = _context.Events.Include(e => e.EventCategory).Include(f => f.Organizer).Where(e => e.CreatedByUserId == currentUser.Id);
+
+                // Explicitly load the Venue for each Event that has a VenueId not equal to 0
+                var eventsWithVenue = applicationDbContext.Where(e => e.VenueId != 0).ToList();
+
+                foreach (var currentEvent in eventsWithVenue)
+                {
+                    _context.Entry(currentEvent).Reference(e => e.Venue).Load();
+                }
+
                 return View("~/Views/CRUDs/Events/Index.cshtml", await applicationDbContext.ToListAsync());
             }
             else if (currentUser != null && User.IsInRole("Admin"))
             {
-                var applicationDbContext = _context.Events.Include(e => e.EventCategory).Include(f => f.Organizer).Include(v => v.Venue);
+                var applicationDbContext = _context.Events.Include(e => e.EventCategory).Include(f => f.Organizer);
+
+                // Explicitly load the Venue for each Event that has a VenueId not equal to 0
+                var eventsWithVenue = applicationDbContext.Where(e => e.VenueId != 0).ToList();
+
+                foreach (var currentEvent in eventsWithVenue)
+                {
+                    _context.Entry(currentEvent).Reference(e => e.Venue).Load();
+                }
+
                 return View("~/Views/CRUDs/Events/Index.cshtml", await applicationDbContext.ToListAsync());
             }
             else

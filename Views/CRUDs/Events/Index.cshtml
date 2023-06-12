@@ -70,9 +70,17 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Organizer.Name)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Venue.Name)
-            </td>
+                <td>
+                    @if (item.Venue != null)
+                    {
+                        @Html.DisplayFor(modelItem => item.Venue.Name)
+                    }
+                    else
+                    {
+                        @:No venue
+                    }
+                </td>
+
             <td>
                 <a asp-action="Edit" asp-route-id="@item.EventId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.EventId">Details</a> |

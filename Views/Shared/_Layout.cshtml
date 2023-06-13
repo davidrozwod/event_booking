@@ -21,27 +21,41 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        <li>
+                            <a class="nav-link text-white" asp-area="" asp-controller="PerformancesAndNightlife" asp-action="Index">Performances & Nightlife</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Event_Category">Categories</a>
+                        <li>
+                            <a class="nav-link text-white" asp-area="" asp-controller="TheaterAndArts" asp-action="Index">Theater & Arts</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Ticket">Book a Ticket</a>
+                        <li>
+                            <a class="nav-link text-white" asp-area="" asp-controller="SportsAndOutdoors" asp-action="Index">Sports & Outdoors</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="UserExclusiveFeatures">Subscribe</a>
-                        </li>
-                        <li class="nav-item">
-                            @if (User.IsInRole("Promoter") || User.IsInRole("Admin"))
-                            {
-                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="PromoterArea">Create Event</a>
-                            }
-                        </li>
+                        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                            <ul class="navbar-nav">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Other
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                                        <li>
+                                            <a class="nav-link text-white" asp-area="" asp-controller="FestivalsAndLifestyle" asp-action="Index">Festivals & Lifestyle</a>
+                                        </li>
+                                        <li>
+                                            <a class="nav-link text-white" asp-area="" asp-controller="ProfessionalAndGovernment" asp-action="Index">Professional Events & Government</a>
+                                        </li>
+                                        <li>
+                                            <a class="nav-link text-white" asp-area="" asp-controller="CharityAndCauses" asp-action="Index">Charity & Causes</a>
+                                        </li>
+                                        <li>
+                                            <a class="nav-link text-white" asp-area="" asp-controller="Comedy" asp-action="Index">Comedy</a>
+                                        </li>
+                                        <li>
+                                            <a class="nav-link text-white" asp-area="" asp-controller="FamilyAndEducation" asp-action="Index">Family & Education</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
@@ -57,61 +71,136 @@
     </div>
     
     
-    <footer style="margin-bottom: -70px;" class="border-top footer text-muted bg-dark">
-        <div class="container">
-            <div class="footer">
-            <div class="row">
-                <div style="margin-top: 25px;" class="col">
-                    <h4>Events</h4>
-                    Performance & Nightlife
-                    <br>
-                    Theater & Arts
-                    <br>
-                    Sports & Outdoors
-                    <br>
-                    Festivals & Lifestyle
-                    <br>
-                    Professional Events & Government
-                    <br>
-                    Charity & Causes
-                    <br>
-                    Comedy
-                    <br>
-                    Family & Education
+    <style>
+        a {
+            text-decoration: none;
+        }
+    </style>
+    <footer class="bg-dark text-center text-lg-start text-white" style="margin-bottom: -100px">
+        <div class="container-fluid p-4">
+            <div class="row my-4">
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0" style="padding-left:25px;">
+                    <ul class="list-unstyled">
+
+                       <li class="rounded-circle bg-white shadow-1-strong d-flex align-items-center justify-content-center mb-4 mx-auto" style="width: 150px; height: 150px;">
+                        <img src="https://www.baxterscatering.co.nz/wp-content/uploads/2015/10/Event-Catering.png" height="120"
+                             loading="lazy" />
+                       </li>
+
+                        <li class="text-center">
+                        Eventful is the business
+                        to be with to find exclusive events all with a reasonable price.
+                        </li>
+                        <p></p>
+                        <li class="text-center">
+                            <a class="text-white ps-2" href="https://www.facebook.com/">
+                            <i class="fab fa-facebook-square fa-lg" style="margin-right: 10px;" href="https://www.facebook.com"></i>
+                            </a>
+                            <a class="text-white ps-2" href="https://www.instagram.com/">
+                            <i class="fab fa-instagram fa-lg" style="margin-right: 10px;" href="https://www.instagram.com/"></i>
+                            </a>
+                            <a class="text-white ps-2" href="https://www.twitter.com/">
+                            <i class="fab fa-twitter fa-lg" style="margin-right: 10px;" href="https://twitter.com/"></i>
+                            </a>
+                            <a class="text-white ps-2" href="https://www.linkedid.com/">
+                            <i class="fab fa-linkedin fa-lg" style="margin-right: 10px;" href="https://www.linkedin.com/"></i>
+                            </a>
+                    </ul>
+
                 </div>
-                    <div style="margin-top: 25px;" class="col">
-                    <h4>Helpful Links</h4>
-                    Your Account
-                    <br>
-                    View your tickets
-                    <br>
-                    Refund or Exchange your tickets
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase mb-4">Events</h5>
+
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a class="text-white" asp-controller="PerformancesAndNightlife" asp-action="Index">Performance & Nightlife</a>
+                        </li>
+                        <li class="mb-2">
+                            <a class="text-white" asp-controller="TheaterAndArts" asp-action="Index">Theater & Arts</a>
+                        </li>
+                        <li class="mb-2">
+                            <a class="text-white" asp-controller="SportsAndOutdoors" asp-action="Index">Sports & Outdoors</a>
+                        </li>
+                        <li class="mb-2">
+                            <a class="text-white" asp-controller="FestivalsAndLifestyle" asp-action="Index">Festivals & Lifestyle</a>
+                        </li>
+                        <li class="mb-2">
+                            <a class="text-white" asp-controller="ProfessionalAndGovernment" asp-action="Index">Professional Events & Government</a>
+                        </li>
+                        <li class="mb-2">
+                            <a class="text-white" asp-controller="CharityAndCauses" asp-action="Index">Charity & Causes</a>
+                        </li>
+                        <li class="mb-2">
+                            <a class="text-white" asp-controller="Comedy" asp-action="Index">Comedy</a>
+                        </li>
+                        <li class="mb-2">
+                            <a class="text-white" asp-controller="FamilyAndEducation" asp-action="Index">Family & Education</a>
+                        </li>
+                    </ul>
                 </div>
-                <div style="margin-top: 25px;" class="col">
-                    <h4>About Us</h4>
-                        <a class="text" asp-area="" asp-controller="Home" asp-action="Contact">Contact Us</a>
-                    <br>
-                    <a class="text" asp-area="" asp-controller="Home" asp-action="Policy">Terms and Conditions</a>
-                    <br>
-                        @if (User.IsInRole("Promoter"))
-                        {
-                            <a class="text" asp-area="" asp-controller="Home" asp-action="PromoterArea">Create Event</a>
-                        }
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase mb-4">General</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a class="text-white" asp-controller="Home" asp-action="RedirectAccount">Your Account</a>
+                        </li>
+                        <li class="mb-2">
+                            <a class="text-white" asp-controller="Home" asp-action="Ticket">View your tickets</a>
+                        </li>
+
+                        <li class="mb-2">
+                            <a href="#!" class="text-white">Refund or Exchange your tickets</a>
+                        </li>
+                        <li class="mb-2">
+                            <a class="text-white" asp-controller="Home" asp-action="Policy">Terms & Conditions</a>
+                        </li>
+                        <li class="mb-2">
+                            @if (User.IsInRole("Promoter") || User.IsInRole("Admin"))
+                            {
+                                <a class="text-white" asp-controller="Home" asp-action="PromoterArea">Create Event</a>
+                            }
+                        </li>
+                        <li class="mb-2">
+                            <a class="text-white" asp-controller="Home" asp-action="Contact">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase mb-4" style="margin-left:10px;">Contact</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <p><i class="fas fa-map-marker-alt pe-2"></i>Warsaw, 57 Street, Poland</p>
+                        </li>
+                        <li class="mb-2">
+                            <p><i class="fas fa-phone-alt pe-2"></i>+ 01 234 567 89</p>
+                        </li>
+                        <li class="mb-2">
+                            <p><i class="fas fa-envelope pe-2 mb-0"></i>contact@example.com</p>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <hr>
-            <center>
-                <a href="https://www.facebook.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/2048px-2021_Facebook_icon.svg.png" width="40"></a>
-                <a href="https://twitter.com/" width="100"><img src="https://cdn4.iconfinder.com/data/icons/social-media-icons-the-circle-set/48/twitter_circle-512.png" width="40"></a>
-                <a href="https://www.linkedin.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/LinkedIn_icon_circle.svg/800px-LinkedIn_icon_circle.svg.png" width="40"></a>
-                <a href="https://www.instagram.com/"><img src="https://i0.wp.com/bodybeyondlimits.com.au/wp-content/uploads/2022/07/instagram-circle-icon-png-4.png?ssl=1" width="40"></a>
-            </center>
         </div>
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+            © 2023 Copyright:
+            <a class="text-white" href="https://eventfulnz.com/">Eventful.com</a>
+            <br>
+            <br>
+            <i style='font-size:30px' class='fab fa-cc-mastercard'></i>
+            <i style='font-size:30px' class='fab fa-cc-stripe'></i>
+            <i style='font-size:30px' class='fab fa-cc-visa'></i>
+            <i style='font-size:30px' class='fab fa-cc-paypal'></i>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <style>
+        body {
+            overflow-x: hidden;
+
+        }</style>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

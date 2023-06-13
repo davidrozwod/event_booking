@@ -21,27 +21,41 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        <li>
+                            <a class="nav-link text-white" asp-area="" asp-controller="PerformancesAndNightlife" asp-action="Index">Performances & Nightlife</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Event_Category">Categories</a>
+                        <li>
+                            <a class="nav-link text-white" asp-area="" asp-controller="TheaterAndArts" asp-action="Index">Theater & Arts</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Ticket">Book a Ticket</a>
+                        <li>
+                            <a class="nav-link text-white" asp-area="" asp-controller="SportsAndOutdoors" asp-action="Index">Sports & Outdoors</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="UserExclusiveFeatures">Subscribe</a>
-                        </li>
-                        <li class="nav-item">
-                            @if (User.IsInRole("Promoter") || User.IsInRole("Admin"))
-                            {
-                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="PromoterArea">Create Event</a>
-                            }
-                        </li>
+                        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                            <ul class="navbar-nav">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Other
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                                        <li>
+                                            <a class="nav-link text-white" asp-area="" asp-controller="FestivalsAndLifestyle" asp-action="Index">Festivals & Lifestyle</a>
+                                        </li>
+                                        <li>
+                                            <a class="nav-link text-white" asp-area="" asp-controller="ProfessionalAndGovernment" asp-action="Index">Professional Events & Government</a>
+                                        </li>
+                                        <li>
+                                            <a class="nav-link text-white" asp-area="" asp-controller="CharityAndCauses" asp-action="Index">Charity & Causes</a>
+                                        </li>
+                                        <li>
+                                            <a class="nav-link text-white" asp-area="" asp-controller="Comedy" asp-action="Index">Comedy</a>
+                                        </li>
+                                        <li>
+                                            <a class="nav-link text-white" asp-area="" asp-controller="FamilyAndEducation" asp-action="Index">Family & Education</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

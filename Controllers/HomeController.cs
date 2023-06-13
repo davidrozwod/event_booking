@@ -272,5 +272,10 @@ namespace event_booking.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        public IActionResult RedirectAccount()
+        {
+
+            return Redirect("/Identity/Account/Manage");
+        }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model TicketPriceViewModel
+﻿@model event_booking.Models.ViewModels.TicketPriceViewModel
 @using Newtonsoft.Json
 @using event_booking.Models.ViewModels;
 
@@ -10,32 +10,35 @@
     <header>
         <h2>@Model.Event.Name</h2>
         <h3>Venue: @Model.Venue.Name</h3>
-        <h4>Seat: @Model.Seat.SeatNumber</h4>
     </header>
 
     <div id="ticketsContainer">
         <div class="ticket">
             <form id="ticketForm" asp-action="ConfirmPurchase" method="post">
                 <div id="ticketInputs">
-                    <input type="hidden" name="Tickets[0].TicketId" id="TicketId_0" />
+                        <h5>Seat: @Model.Seat.SeatNumber</h5>                                  
 
-                    <label for="FirstName">First Name:</label>
-                    <input type="text" id="FirstName" name="FirstName" placeholder="@ViewBag.FirstName" required />
+                    <div>
+                        <input type="hidden" name="Tickets[0].TicketId" id="TicketId_0" />
 
-                    <label for="LastName">Last Name:</label>
-                    <input type="text" id="LastName" name="LastName" placeholder="@ViewBag.LastName" required />
+                        <label for="FirstName">First Name:</label>
+                        <input type="text" id="FirstName" name="FirstName" placeholder="@ViewBag.FirstName" required />
+                        <label for="LastName">Last Name:</label>
 
-                    <label for="DiscountId">Discount:</label>
-                    <select id="DiscountId" name="Discount" onchange="recalculatePrice()">
-                        @foreach (var discount in Model.DiscountNames)
-                        {
-                            <option value="@discount.Key">@discount.Value</option>
-                        }
-                    </select>
+                        <input type="text" id="LastName" name="LastName" placeholder="@ViewBag.LastName" required />
+                        <label for="DiscountId">Discount:</label>
 
-                    <label for="TicketPrice">Ticket Price:</label>
-                    <input type="text" id="TicketPriceDisplay" value="@Model.Ticket.TicketPrice" disabled />
-                    <input type="hidden" id="TicketPrice" name="TicketPrice" value="@Model.Ticket.TicketPrice" />
+                        <select id="DiscountId" name="Discount" onchange="recalculatePrice()">
+                            @foreach (var discount in Model.DiscountNames)
+                            {
+                                <option value="@discount.Key">@discount.Value</option>
+                            }
+                        </select>
+
+                        <label for="TicketPrice">Ticket Price:</label>
+                        <input type="text" id="TicketPriceDisplay" value="@Model.Ticket.TicketPrice" disabled />
+                        <input type="hidden" id="TicketPrice" name="TicketPrice" value="@Model.Ticket.TicketPrice" />
+                    </div>
                 </div>
                 <input type="hidden" id="PurchaseId" value="@Model.Purchase.PurchaseId" />
                 <input type="hidden" id="EventId" value="@Model.Event.EventId" />
@@ -84,33 +87,36 @@
 
 @* Add ticket javascript *@
 <script type="text/javascript">
+    // Keep track of the number of tickets
+    var ticketIndex = 1;
+
     document.getElementById('addTicketButton').addEventListener('click', () => {
-        // The PurchaseId and EventId should be stored in the frontend, either in hidden fields or JavaScript variables
-        let purchaseId = document.getElementById('PurchaseId').value;
-        let eventId = document.getElementById('EventId').value;
+        // The ticketsContainer should contain all the ticket forms
+        const ticketsContainer = document.getElementById('ticketsContainer');
 
-        fetch(`/ESTicketsPage/AddTicket?eventId=${eventId}&purchaseId=${purchaseId}`, {
-            method: 'POST',
-        })
-            .then(response => response.json())
-            .then(data => {
-                // Here you need to generate the necessary HTML for the new ticket input and append it to the form
-                const ticketInputs = document.getElementById('ticketInputs');
+        // Clone the first ticket form and reset its fields
+        const newTicketForm = ticketsContainer.children[0].cloneNode(true);
+        const inputs = newTicketForm.getElementsByTagName('input');
+        for (let i = 0; i < inputs.length; i++) {
+            inputs[i].value = '';
+        }
 
-                const newInput = document.createElement('input');
-                newInput.type = 'hidden';
-                newInput.name = `Tickets[${ticketIndex}].TicketId`;
-                newInput.id = `TicketId_${ticketIndex}`;
-                newInput.value = data.TicketId;
+        // Update the name attributes to use the new ticketIndex
+        const labels = newTicketForm.getElementsByTagName('label');
+        for (let i = 0; i < labels.length; i++) {
+            const forAttr = labels[i].getAttribute('for');
+            labels[i].setAttribute('for', forAttr + '_' + ticketIndex);
+        }
 
-                ticketInputs.appendChild(newInput);
+        const selects = newTicketForm.getElementsByTagName('select');
+        for (let i = 0; i < selects.length; i++) {
+            selects[i].setAttribute('name', selects[i].getAttribute('name') + '_' + ticketIndex);
+        }
 
-                // Here, you update the session expiry time
-                document.getElementById('SessionExpiryTime').innerText = new Date(data.SessionExpiryTime).toLocaleString();
+        // Append the new ticket form to the container
+        ticketsContainer.appendChild(newTicketForm);
 
-                ticketIndex++;
-            });
+        ticketIndex++;
     });
-
 </script>
 

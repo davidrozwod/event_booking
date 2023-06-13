@@ -34,7 +34,7 @@ namespace event_booking.Controllers.EventSystem
                 .Include(t => t.Event)
                 .Include(t => t.Venue)
                 .Include(t => t.Seat)
-                .Include(t => t.Seat.Section) // Include the Section related to the Seat
+                .Include(t => t.Seat.Section) // Includes the Section related to the Seat
                 .Include(t => t.Discount)
                 .Include(t => t.TicketType)
                 .Where(t => t.EventId == id && (t.PurchaseId == null || t.PurchaseId == purchaseId))
@@ -46,12 +46,7 @@ namespace event_booking.Controllers.EventSystem
                 // Using base price as ticket price
                 ticket.TicketPrice = ticket.BasePrice * ticket.Seat.Section.PriceMultiplier;
 
-                // Applying discounts and ticket types if they exist
-                if (ticket.Discount != null)
-                {
-                    ticket.TicketPrice *= ticket.Discount.PriceMultiplier;
-                }
-
+                // Loyalty and early bird discounts
                 if (ticket.TicketType != null)
                 {
                     ticket.TicketPrice *= ticket.TicketType.PriceMultiplier;
@@ -60,8 +55,23 @@ namespace event_booking.Controllers.EventSystem
                 ticket.EventUserId = currentUserId;
             }
 
+            //Using the viewmodel
+            var ticketsForEventViewModel = ticketsForEvent.Select(ticket => new TicketPriceViewModel
+            {
+                Event = ticket.Event,
+                Venue = ticket.Venue,
+                Seat = ticket.Seat,
+                Ticket = ticket,
+                Discount = ticket.Discount,
+                TicketType = ticket.TicketType,
+                Purchase = ticket.Purchase,
+                Discounts = ticket.Discount != null ? new Dictionary<int, decimal> { { ticket.Discount.DiscountId, ticket.Discount.PriceMultiplier } } : new Dictionary<int, decimal>(),
+                DiscountNames = ticket.Discount != null ? new Dictionary<int, string> { { ticket.Discount.DiscountId, ticket.Discount.DiscountName } } : new Dictionary<int, string>(),
+
+            }).ToList();
+
             // Pass the list of tickets to the view
-            return View("~/Views/EventSystem/Tickets/TicketsPage.cshtml", ticketsForEvent);
+            return View("~/Views/EventSystem/Tickets/TicketsPage.cshtml", ticketsForEventViewModel);
         }
 
         //

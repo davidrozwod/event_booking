@@ -58,7 +58,7 @@
    font-size: 85%;
    }
    h5 {
-   margin-top: 75px padding: 0;
+   padding: 0;
    font-weight: 300;
    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
    }
@@ -104,17 +104,17 @@
    }
    .gradient-custom-3 {
    /* fallback for old browsers */
-   background: #1A237E
+   background: #1A237E;
    /* Chrome 10-25, Safari 5.1-6 */
-   background: -webkit-linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1)));
+   background: -webkit-linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1));
    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
    background: linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1))
    }
    .gradient-custom-4 {
    /* fallback for old browsers */
-   background: #1A237E
+   background: #1A237E;
    /* Chrome 10-25, Safari 5.1-6 */
-   background: -webkit-linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1)));
+   background: -webkit-linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1));
    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
    background: linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1))
    }
@@ -138,7 +138,6 @@
    -webkit-transition: all 0.5s ease-in-out;
    -moz-transition: all 0.5s ease-in-out;
    -o-transition: all 0.5s ease-in-out;
-   -ms-transition: all 0.5s ease-in-out;
    transition: all 0.5s ease-in-out;
    }
    .hover-fade:hover img {
@@ -147,8 +146,6 @@
    -o-transform: scale(1.2);
    -ms-transform: scale(1.2);
    transform: scale(1.2);
-   -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0.5)";
-   filter: alpha(opacity=0.5);
    opacity: 0.5;
    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
    }
@@ -182,10 +179,10 @@
                <div class="container-overflow px-7">
                   <div class="col-12">
                      <div style=" margin-bottom: -20px; margin-top:0px;" class="p-3 border bg-white">
-                        <div id="eventCarousel" class="carousel slide" data-ride="carousel" style=" margin-top: -17px; margin-bottom: -16px; margin-left: -17px; margin-right: -16px">
+                        <div id="eventCarousel" class="carousel slide" data-ride="carousel" style=" margin-top: -17px; margin-bottom: -16px; margin-left: -17px; margin-right: -17px">
                             <div class="carousel-inner">
                                     @{
-                                        var randomEvent = ((List<Event>)ViewBag.Events).OrderBy(x => Guid.NewGuid()).Take(4).ToList();
+                                        var randomEvent = ((List<Event>)ViewBag.Events).OrderBy(x => Guid.NewGuid()).Take(20).ToList();
                                         for (int i = 0; i < randomEvent.Count; i++)
                                         {
                                             var events = randomEvent[i];
@@ -334,7 +331,7 @@
                                  <p></p>
                               </div>
                            </div>
-                           <div style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; margin-top: -20px; margin-bottom: -20px" class="col-3 container-fluid">
+                            <div style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; margin-top: -20px; margin-bottom: -20px; margin-right: -17px;" class="col-3 container-fluid">
                               <Center>
                                  <h2> Latest Events </h2>
                               </Center>

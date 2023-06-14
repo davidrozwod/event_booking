@@ -172,6 +172,32 @@
         margin: 0;
     }
 
+    /* Position child elements relative to this element */
+    .aspect-ratio-box {
+        position: relative;
+    }
+
+        /* Create a pseudo element that uses padding-bottom to take up space */
+        .aspect-ratio-box::after {
+            display: block;
+            content: '';
+            /* 16:9 aspect ratio */
+            padding-bottom: 56.25%;
+        }
+
+        /* Image is positioned absolutely relative to the parent element */
+        .aspect-ratio-box img {
+            /* Image should match parent box size */
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .carousel-caption{
+            margin-bottom: 500px;
+        }
+
 </style>
 <body>
          <div class="container-overflow">
@@ -180,7 +206,7 @@
                   <div class="col-12">
                      <div style=" margin-bottom: -20px; margin-top:0px;" class="p-3 border bg-white">
                         <div id="eventCarousel" class="carousel slide" data-ride="carousel" style=" margin-top: -17px; margin-bottom: -16px; margin-left: -17px; margin-right: -17px">
-                            <div class="carousel-inner">
+                            <div class="carousel-inner" style="max-height: 300px;">
                                     @{
                                         var randomEvent = ((List<Event>)ViewBag.Events).OrderBy(x => Guid.NewGuid()).Take(20).ToList();
                                         for (int i = 0; i < randomEvent.Count; i++)
@@ -227,9 +253,12 @@
                                  )ViewBag.Events).OrderBy(x => Guid.NewGuid()).Take(4);
                                  foreach (var @events in randomEvents)
                                  {
-                                 <div class="col-3 hover-fade rounded ">
+                                 <div class="col-3 hover-fade rounded">
+                                    
                                     <a asp-controller="ESEventsPage" asp-action="EventsPage" asp-route-id="@events.EventId">
+                                    <div class="aspect-ratio-box">
                                     <img src="@events.Image" class="rounded" />
+                                    </div>
                                     </a>
                                     <center>
                                        <p class="text-muted">@events.EventCategory.CategoryName</p>
@@ -251,8 +280,11 @@
                                  {
                                  <div class="col-3 hover-fade rounded ">
                                     <a asp-controller="ESEventsPage" asp-action="EventsPage" asp-route-id="@events.EventId">
+                                    <div class="aspect-ratio-box">
                                     <img src="@events.Image" class="rounded" />
+                                    </div>
                                     </a>
+                                    
                                     <center>
                                        <p class="text-muted">@events.EventCategory.CategoryName</p>
                                     </center>
@@ -279,7 +311,9 @@
                                  {
                                  <div class="col-6 hover-fade rounded">
                                     <a asp-controller="ESEventsPage" asp-action="EventsPage" asp-route-id="@events.EventId">
+                                    <div class="aspect-ratio-box">
                                     <img src="@events.Image" class="rounded" />
+                                    </div>
                                     </a>
                                     <center>
                                        <p class="text-muted">@events.EventCategory.CategoryName</p>
@@ -311,7 +345,9 @@
                                  string startDate = @events.StartDateTime.ToString("dd/MM/yyyy");
                                  <div class="col-4 hover-fade rounded">
                                     <a asp-controller="ESEventsPage" asp-action="EventsPage" asp-route-id="@events.EventId">
+                                    <div class="aspect-ratio-box">
                                     <img src="@events.Image" class="rounded" />
+                                    </div>
                                     </a>
                                     <p></p>
                                     <center>
@@ -340,13 +376,15 @@
                                     @{
                                     var latestEvents = ((List
                                     <Event>
-                                    )ViewBag.Events).OrderByDescending(e => e.StartDateTime).Take(8);
+                                    )ViewBag.Events).OrderByDescending(e => e.StartDateTime).Take(9);
                                     foreach (var @events in latestEvents)
                                     {
                                     <div class="col-10 hover-fade rounded">
-                                       <a asp-controller="ESEventsPage" asp-action="EventsPage" asp-route-id="@events.EventId">
-                                       <img src="@events.Image" class="rounded" />
-                                       </a>
+                                    <a asp-controller="ESEventsPage" asp-action="EventsPage" asp-route-id="@events.EventId">
+                                    <div class="aspect-ratio-box">
+                                    <img src="@events.Image" class="rounded" />
+                                    </div>
+                                    </a>
                                        <br>
                                        <div>
                                           <center>

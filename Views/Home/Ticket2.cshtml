@@ -2,8 +2,9 @@
 @{
     ViewData["Title"] = "Ticket2";
 }
-
-<h1>Order Successful!</h1>
+<div>
+    <h4 class="display-4">Order Successful!</h4>
+</div>
 <hr />
 <h5>Receipt</h5>
 <div class="row">
@@ -20,61 +21,78 @@
         <p>0612</p>
     </div>
 </div>
+
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Tickets</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Sub-Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">Adult</th>
+            <td>$50.00</td>
+            <td>1</td>
+            <td>$50.00</td>
+        </tr>
+        <tr>
+            <th scope="row">Total</th>
+            <td></td>
+            <td></td>
+            <td>$50.00</td>
+        </tr>
+    </tbody>
+</table>
+
+<br />
+<div>
+    <h4 class="display-4">Download</h4>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">No</th>
+            <th scope="col">Ticket Type</th>
+            <th scope="col">Name</th>
+            <th scope="col">E-Ticket</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">900137</th>
+            <td>Adult</td>
+            <td>Mr John Smith</td>
+            <td>Download</td>
+        </tr>
+    </tbody>
+</table>
+
 <style>
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
+    thead,
+    tfoot {
+        background-color: lightblue;
+        color: DarkSlateGrey;
+    }
 
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
+    tbody {
+    }
 
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
+    table {
+        border-collapse: collapse;
+    }
+
+    td,
+    th {
+        padding: 5px 10px;
+    }
+
+    h4 {
+        color: rgba(108, 11, 113, 1);
+    }
 </style>
-<br />
-<table>
-  <tr>
-    <th>Tickets</th>
-    <th>Price</th>
-    <th>Quantity</th>
-    <th>Cost</th>
-  </tr>
-  <tr>
-    <td>Adult</td>
-    <td>$50.00</td>
-    <td>1</td>
-    <td>$50.00</td>
-  </tr>
-  <tr>
-    <td>Total</td>
-    <td></td>
-    <td></td>
-    <td>$50.00</td>
-  </tr>
-
-</table>
-<br />
-<h3>Download Tickets</h3>
-
-<table>
-  <tr>
-    <th>No</th>
-    <th>Ticket Type</th>
-    <th>Name</th>
-    <th>E-Ticket</th>
-  </tr>
-  <tr>
-    <td>900137</td>
-    <td>Adult</td>
-    <td>Mr John Smith</td>
-    <td>Download</td>
-  </tr>
-
-
-</table>
-

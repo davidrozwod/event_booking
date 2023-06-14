@@ -1,5 +1,8 @@
 ﻿@model event_booking.Models.Event
 <style>
+    .item image{
+        width: 100%;
+    }
    .centered {
    position: absolute;
    top: 50%;
@@ -190,7 +193,7 @@
 
                                             <div class="carousel-item @activeClass">
 
-                                                <div class="banner-container" style="background-image: url('@events.Image');">
+                                                <div class="banner-container" style="background-image: url('@events.Image');" height="600px">
                                                     <a asp-controller="ESEventsPage" asp-action="EventsPage" asp-route-id="@events.EventId" class="banner-container">
                                                     </a>
                                                 </div>

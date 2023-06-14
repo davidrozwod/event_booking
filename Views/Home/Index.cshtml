@@ -185,7 +185,7 @@
             display: block;
             content: '';
             /* 16:9 aspect ratio */
-            padding-bottom: 56.25%;
+            padding-bottom: 62.5%;
         }
 
         /* Image is positioned absolutely relative to the parent element */
@@ -196,6 +196,7 @@
             top: 0;
             width: 100%;
             height: 100%;
+            object-fit: cover;
         }
         .carousel-caption{
             margin-bottom: 500px;
@@ -217,12 +218,13 @@
                                             var events = randomEvent[i];
                                             var activeClass = i == 0 ? "active" : "";
 
-                                            <div class="carousel-item @activeClass">
+                                            <div class="carousel-item  @activeClass">
 
-                                                <div class="banner-container" style="background-image: url('@events.Image');" height="600px">
                                                     <a asp-controller="ESEventsPage" asp-action="EventsPage" asp-route-id="@events.EventId" class="banner-container">
+                                                    <div class="banner-container aspect-ratio-box">
+                                                        <img src="@events.Image" class="rounded" />
+                                                    </div>
                                                     </a>
-                                                </div>
                                                 <div class="carousel-caption">
                                                     <h4>@events.Name</h4>
                                                     <p class="text-muted">@events.EventCategory.CategoryName</p>

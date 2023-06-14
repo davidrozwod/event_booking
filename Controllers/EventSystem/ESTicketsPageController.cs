@@ -34,7 +34,7 @@ namespace event_booking.Controllers.EventSystem
                 .Include(t => t.Event)
                 .Include(t => t.Venue)
                 .Include(t => t.Seat)
-                .Include(t => t.Seat.Section) // Include the Section related to the Seat
+                .Include(t => t.Seat.Section) // Includes the Section related to the Seat
                 .Include(t => t.Discount)
                 .Include(t => t.TicketType)
                 .Where(t => t.EventId == id && (t.PurchaseId == null || t.PurchaseId == purchaseId))
@@ -46,12 +46,7 @@ namespace event_booking.Controllers.EventSystem
                 // Using base price as ticket price
                 ticket.TicketPrice = ticket.BasePrice * ticket.Seat.Section.PriceMultiplier;
 
-                // Applying discounts and ticket types if they exist
-                if (ticket.Discount != null)
-                {
-                    ticket.TicketPrice *= ticket.Discount.PriceMultiplier;
-                }
-
+                // Loyalty and early bird discounts
                 if (ticket.TicketType != null)
                 {
                     ticket.TicketPrice *= ticket.TicketType.PriceMultiplier;
@@ -60,8 +55,23 @@ namespace event_booking.Controllers.EventSystem
                 ticket.EventUserId = currentUserId;
             }
 
+            //Using the viewmodel
+            var ticketsForEventViewModel = ticketsForEvent.Select(ticket => new TicketPriceViewModel
+            {
+                Event = ticket.Event,
+                Venue = ticket.Venue,
+                Seat = ticket.Seat,
+                Ticket = ticket,
+                Discount = ticket.Discount,
+                TicketType = ticket.TicketType,
+                Purchase = ticket.Purchase,
+                Discounts = ticket.Discount != null ? new Dictionary<int, decimal> { { ticket.Discount.DiscountId, ticket.Discount.PriceMultiplier } } : new Dictionary<int, decimal>(),
+                DiscountNames = ticket.Discount != null ? new Dictionary<int, string> { { ticket.Discount.DiscountId, ticket.Discount.DiscountName } } : new Dictionary<int, string>(),
+
+            }).ToList();
+
             // Pass the list of tickets to the view
-            return View("~/Views/EventSystem/Tickets/TicketsPage.cshtml", ticketsForEvent);
+            return View("~/Views/EventSystem/Tickets/TicketsPage.cshtml", ticketsForEventViewModel);
         }
 
         //
@@ -132,6 +142,8 @@ namespace event_booking.Controllers.EventSystem
                 else
                 {
                     purchase = new Purchase();
+                    // Set the session expiry time to the current time plus 5 minutes
+                    purchase.SessionExpiryTime = DateTime.UtcNow.AddMinutes(5);
                     _context.Purchases.Add(purchase);
                     await _context.SaveChangesAsync();
                     HttpContext.Session.SetInt32("PurchaseId", purchase.PurchaseId);
@@ -156,23 +168,129 @@ namespace event_booking.Controllers.EventSystem
             return View("~/Views/EventSystem/Tickets/TicketView.cshtml", model);
         }
 
-        public IActionResult ConfirmPurchase(int ticketId)
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> AddTicket(int eventId, int purchaseId)
         {
-            var ticket = _context.Tickets.Find(ticketId);
+            // Get the purchase
+            var purchase = await _context.Purchases.FindAsync(purchaseId);
 
-            // ...other code...
-
-            var discounts = _context.Discounts
-                .ToDictionary(d => d.DiscountId, d => d.PriceMultiplier);
-
-            var model = new TicketPriceViewModel
+            if (purchase == null)
             {
-                Ticket = ticket,
-                Discounts = discounts
+                return NotFound();
+            }
+
+            // Update the session expiry time
+            purchase.SessionExpiryTime = DateTime.UtcNow.AddMinutes(5);
+            await _context.SaveChangesAsync();
+
+            // Get an available ticket for the event
+            var ticket = await _context.Tickets
+                .Where(t => t.EventId == eventId && t.PurchaseId == null)
+                .FirstOrDefaultAsync();
+
+            if (ticket == null)
+            {
+                return NotFound();
+            }
+
+            // Assign the purchaseId to the ticket
+            ticket.PurchaseId = purchaseId;
+            await _context.SaveChangesAsync();
+
+            // Return the ticket object as JSON
+            return Json(new { TicketId = ticket.TicketId, SessionExpiryTime = purchase.SessionExpiryTime });
+        }
+
+
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> CancelPurchase(int ticketId)
+        {
+            // Get the ticket
+            var ticket = await _context.Tickets.FindAsync(ticketId);
+
+            // If ticket doesn't exist, redirect to not found page
+            if (ticket == null)
+            {
+                return NotFound();
+            }
+
+            // If the ticket isn't associated with a purchase, redirect to a suitable page
+            if (!ticket.PurchaseId.HasValue)
+            {
+                return RedirectToAction("Index");
+            }
+
+            // Get the current user
+            var user = await _userManager.GetUserAsync(User);
+
+            // Check if the current user is the one who reserved the ticket
+            if (HttpContext.Session.GetInt32("PurchaseId") != ticket.PurchaseId.Value)
+            {
+                return Unauthorized(); // Or redirect to a suitable page
+            }
+
+            // Nullify the PurchaseId of the ticket
+            ticket.PurchaseId = null;
+            await _context.SaveChangesAsync();
+
+            // Clear the PurchaseId from the user's session
+            HttpContext.Session.Remove("PurchaseId");
+
+            // Redirect back to the list of available tickets
+            return RedirectToAction("Index");
+        }
+
+        /*
+        // Selects all tickets for the current user
+        [Authorize]
+        public async Task<IActionResult> MyTickets()
+        {
+            // Get the current user
+            var user = await _userManager.GetUserAsync(User);
+
+            // Check if the user is logged in
+            if (user == null)
+            {
+                // User is not logged in, redirect to the login page
+                return RedirectToAction("Home", "Index");
+            }
+
+            // Get the PurchaseId from the user's session
+            var purchaseId = HttpContext.Session.GetInt32("PurchaseId");
+
+            // If there's no PurchaseId in the session, redirect to a suitable page
+            if (!purchaseId.HasValue)
+            {
+                return RedirectToAction("Index"); // Or any other suitable page
+            }
+
+            // Get all tickets associated with the PurchaseId
+            var tickets = await _context.Tickets
+                .Include(t => t.Event)
+                .Include(t => t.Venue)
+                .Include(t => t.Seat).ThenInclude(s => s.Section)
+                .Include(t => t.Discount)
+                .Include(t => t.EventUser)
+                .Include(t => t.TicketType)
+                .Where(t => t.PurchaseId == purchaseId.Value)
+                .ToListAsync();
+
+            // Get the session expiry time
+            var purchase = await _context.Purchases.FindAsync(purchaseId.Value);
+            var expiryTime = purchase?.SessionExpiryTime;
+
+            // Pass the tickets and expiry time to the view
+            var model = new Ticket
+            {
+                Tickets = tickets,
+                SessionExpiryTime = expiryTime
             };
 
             return View(model);
-        }
+        }*/
 
     }
 }

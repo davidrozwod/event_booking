@@ -46,6 +46,9 @@ public partial class Ticket
     [Column("DiscountID")]
     public int? DiscountId { get; set; }
 
+    [Column("GroupDiscountID")]
+    public int? GroupDiscountId { get; set; }
+
     [Column("TicketTypeID")]
     public int? TicketTypeId { get; set; }
 
@@ -85,5 +88,11 @@ public partial class Ticket
     [InverseProperty("Tickets")]
     public virtual Venue Venue { get; set; } = null!;
 
+    [ForeignKey("GroupDiscountId")]
+    [InverseProperty("Tickets")]
+    public virtual GroupDiscount? GroupDiscount { get; set; }
+
     public virtual ICollection<Vip> Vips { get; set; } = new List<Vip>();
+
+
 }

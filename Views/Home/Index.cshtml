@@ -1,4 +1,6 @@
-﻿<style>
+﻿@model event_booking.Models.Event
+
+<style>
     .centered {
         position: absolute;
         top: 50%;
@@ -120,13 +122,6 @@
         padding: 10px;
     }
 
-    body {
-        background-image: url('https://burst.shopifycdn.com/photos/dj-crowd.jpg?width=925&format=pjpg&exif=1&iptc=1');
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-size: cover;
-    }
-
     .gradient-custom-3 {
         /* fallback for old browsers */
         background: #1A237E
@@ -169,8 +164,6 @@
         -o-transition: all 0.5s ease-in-out;
         -ms-transition: all 0.5s ease-in-out;
         transition: all 0.5s ease-in-out;
-
-
     }
 
     .hover-fade:hover img {
@@ -185,23 +178,17 @@
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     }
 
-
 </style>
 <html>
 <body>
-    <section class="background-radial-gradient container overflow-hidden">
-    </section>
-    <div class="container-overflow px-7">
-        <div class="row">
-            <div class="col-4">
-                <div class="container">
-                </div>
-            </div>
-            <div style="margin-top: 100px; margin-left: -50px;" class="col-8 text-white">
-                <p>Event Category</p>
-                <h1>Event Name</h1>
+    <div style="margin-bottom: -205px" id="carouselExampleSlidesOnly" class="carousel slide" data-mdb-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://mdbcdn.b-cdn.net/img/new/slides/041.webp" class="d-block w-100" alt="Wild Landscape" height="600px" />
             </div>
         </div>
+    </div>
+    <div class="container-overflow px-7">
         <p></p>
         <div class="container-overflow">
             <div class="row gx-3">
@@ -209,170 +196,93 @@
                     <div class="col-12">
                         <div style=" margin-bottom: -20px; margin-top:190px;" class="p-3 border bg-white">
                             <div id="section1"></div>
-                        <div class="row">
-                                <div  class="col-9">
+                            <div class="row">
+                                <div class="col-8">
                                     <center><h3 style="margin-top: 5px;" class="border-dark border-bottom"></h3></center>
                                     <div class="row" style="margin-bottom: 15px; margin-left: 20px; ">
                                         <center><H2 class=" border-dark border-bottom" style="margin-left:250px; margin-right:250px; margin-top: 15px;">Popular Events</H2></center>
                                     </div>
                                     <div class="row border-bottom">
-                                        <div class="col-3 hover-fade rounded ">
-                                            <a href="#" title="">
-                                                <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded-corners" />
-                                            </a>
-                                            <p class="text-muted">Performances & Nightlife </p>
-                                            <center><h4>Denzel Curry</h4></center>
-                                        </div>
-                                        <div class="col-3 hover-fade rounded ">
-                                            <a href="#" title="">
-                                                <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded" />
-                                            </a>
-                                            <p class="text-muted">Performances & Nightlife </p>
-                                            <center><h4>Denzel Curry</h4></center>
-                                        </div>
-                                        <div class="col-3 hover-fade rounded ">
-                                            <a href="#" title="">
-                                                <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded" />
-                                            </a>
-                                            <p class="text-muted">Performances & Nightlife </p>
-                                            <center><h4>Denzel Curry</h4></center>
-                                        </div>
-                                        <div class="col-3 hover-fade rounded ">
-                                            <a href="#" title="">
-                                                <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded" />
-                                            </a>
-                                            <p class="text-muted">Performances & Nightlife </p>
-                                            <center><h4>Denzel Curry</h4></center>
-                                        </div>
-                                        <p></p>
+                                        @{
+                                            var randomEvents = ((List<Event>)ViewBag.Events).OrderBy(x => Guid.NewGuid()).Take(4);
+                                            foreach (var @events in randomEvents)
+                                            {
+
+                                                <div class="col-3 hover-fade rounded ">
+                                                    <a asp-controller="ESEventsPage" asp-action="EventsPage" asp-route-id="@events.EventId">
+                                                        <img src="@events.Image" class="rounded" />
+                                                    </a>
+                                                    <center><p class="text-muted">@events.EventCategory.CategoryName</p></center>
+                                                    <center><h4>@events.Name</h4></center>
+                                                </div>
+                                                
+                                            }
+                                            <p></p>
+                                        }
                                     </div>
                                     <div style="margin-top:20px;" class="row border-bottom">
-                                        <div class="col-3 hover-fade rounded ">
-                                            <a href="#" title="">
-                                                <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded-corners" />
-                                            </a>
-                                            <p class="text-muted">Performances & Nightlife </p>
-                                            <center><h4>Denzel Curry</h4></center>
-                                        </div>
-                                        <div class="col-3 hover-fade rounded ">
-                                            <a href="#" title="">
-                                                <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded" />
-                                            </a>
-                                            <p class="text-muted">Performances & Nightlife </p>
-                                            <center><h4>Denzel Curry</h4></center>
-                                        </div>
-                                        <div class="col-3 hover-fade rounded ">
-                                            <a href="#" title="">
-                                                <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded" />
-                                            </a>
-                                            <p class="text-muted">Performances & Nightlife </p>
-                                            <center><h4>Denzel Curry</h4></center>
-                                        </div>
-                                        <div class="col-3 hover-fade rounded ">
-                                            <a href="#" title="">
-                                                <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded" />
-                                            </a>
-                                            <p class="text-muted">Performances & Nightlife </p>
-                                            <center><h4>Denzel Curry</h4></center>
-                                        </div>
-                                        <p></p>
+                                        @{
+                                            var randomEvents2 = ((List<Event>)ViewBag.Events).OrderBy(x => Guid.NewGuid()).Take(4);
+                                            foreach (var @events in randomEvents2)
+                                            {
+
+                                                <div class="col-3 hover-fade rounded ">
+                                                    <a asp-controller="ESEventsPage" asp-action="EventsPage" asp-route-id="@events.EventId">
+                                                        <img src="@events.Image" class="rounded" />
+                                                    </a>
+                                                    <center><p class="text-muted">@events.EventCategory.CategoryName</p></center>
+                                                    <center><h4>@events.Name</h4></center>
+                                                </div>
+                                            }
+                                            <p></p>
+                                        }
                                     </div>
                                     <div style="margin-top:20px;" class="row border-bottom">
                                         <Center><h2 class="border-dark border-bottom" style="margin-left:250px; margin-right:250px; margin-bottom: 15px; ">Discover Events </h2></Center>
-                                        <div class="col-6 hover-fade rounded ">
-                                            <a href="#" title="">
-                                                <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded" />
-                                            </a>
-                                            <p class="text-muted">Performances & Nightlife </p>
-                                            <center><h4>Denzel Curry</h4></center>
-                                        </div>
-                                        <div class="col-6 hover-fade rounded ">
-                                            <a href="#" title="">
-                                                <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded" />
-                                            </a>
-                                            <p class="text-muted">Performances & Nightlife </p>
-                                            <center><h4>Denzel Curry</h4></center>
-                                        </div>
+                                        <Center><p class="text-muted">Randomly selected</p></Center>
+                                        @{
+                                            var randomEvents3 = ((List<Event>)ViewBag.Events).OrderBy(x => Guid.NewGuid()).Take(4);
+                                            foreach (var @events in randomEvents3)
+                                            {
+                                                <div class="col-6 hover-fade rounded">
+                                                     <a asp-controller="ESEventsPage" asp-action="EventsPage" asp-route-id="@events.EventId">
+                                                        <img src="@events.Image" class="rounded" />
+                                                    </a>
+                                                    <center><p class="text-muted">@events.EventCategory.CategoryName</p></center>
+                                                    <center><h4>@events.Name</h4></center>
+                                                </div>
+                                            }
+                                        }
                                         <p></p>
                                     </div>
                                     <div style="margin-top:20px;" class="row border-bottom">
-                                        <div class="col-6 hover-fade rounded ">
-                                            <a href="#" title="">
-                                                <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded" />
-                                            </a>
-                                            <p class="text-muted">Performances & Nightlife </p>
-                                            <center><h4>Denzel Curry</h4></center>
-                                        </div>
-                                        <div class="col-6 hover-fade rounded ">
-                                            <a href="#" title="">
-                                                <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded" />
-                                            </a>
-                                            <p class="text-muted">Performances & Nightlife </p>
-                                            <center><h4>Denzel Curry</h4></center>
-                                        </div>
+                                        <Center><h2 class="border-dark border-bottom" style="margin-left:250px; margin-right:250px; margin-bottom: 15px; ">Upcoming Events </h2></Center>
+                                        <Center><p class="text-muted">Taking place in the next fortnight</p></Center>
+                                        @{
+                                            var upcomingEvents = ((List<Event>)ViewBag.Events)
+                                            .Where(e => e.StartDateTime > DateTime.Now && e.StartDateTime <= DateTime.Now.AddDays(14))
+                                            .Take(6);
+                                            foreach (var @events in upcomingEvents)
+                                            {
+                                                string description = @events.Description.Length > 125 ? @events.Description.Substring(0, 125) + "..." : @events.Description;
+                                                string startDate = @events.StartDateTime.ToString("dd/MM/yyyy");
+                                                <div class="col-4 hover-fade rounded">
+                                                    <a asp-controller="ESEventsPage" asp-action="EventsPage" asp-route-id="@events.EventId">
+                                                        <img src="@events.Image" class="rounded" />
+                                                    </a>
+                                                    <p></p>
+                                                    <center><h6 class="text-muted">@startDate</h6></center>
+                                                    <p></p>
+                                                    <center><h4>@events.Name</h4></center>
+                                                    <center><h6 class="text-muted">@description</h6></center>
+                                                    <br>
+                                                </div>
+                                            }
+                                        }
                                         <p></p>
                                     </div>
-                                    <div style="margin-top:20px;" class="row border-bottom">
-                                        <Center><h2 class="border-dark border-bottom" style="margin-left:250px; margin-right:250px; margin-bottom: 15px; ">Recommended Events </h2></Center>
-                                        <div class="col-4 hover-fade rounded ">
-                                            <a href="#" title="">
-                                                <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded" />
-                                            </a>
-                                            <p class="text-muted">Performances & Nightlife </p>
-                                            <center><h4>Denzel Curry</h4></center>
-                                            <h6 class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</h6>
-                                        </div>
-                                        <div class="col-4 hover-fade rounded ">
-                                            <a href="#" title="">
-                                                <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded" />
-                                            </a>
-                                            <p class="text-muted">Performances & Nightlife </p>
-                                            <center><h4>Denzel Curry</h4></center>
-                                            <h6 class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</h6>
-
-                                        </div>
-                                        <div class="col-4 hover-fade rounded ">
-                                            <a href="#" title="">
-                                                <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded" />
-                                            </a>
-                                            <p class="text-muted">Performances & Nightlife </p>
-                                            <center><h4>Denzel Curry</h4></center>
-                                            <h6 class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</h6>
-                                        </div>
-                                        <p></p>
-                                    </div>
-                                    <div style="margin-top:20px;" class="row border-bottom">
-                                        <div class="col-4 hover-fade rounded ">
-                                            <a href="#" title="">
-                                                <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded" />
-                                            </a>
-                                            <p class="text-muted">Performances & Nightlife </p>
-                                            <center><h4>Denzel Curry</h4></center>
-                                            <h6 class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</h6>
-
-                                        </div>
-                                        <div class="col-4 hover-fade rounded ">
-                                            <a href="#" title="">
-                                                <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded" />
-                                            </a>
-                                            <p class="text-muted">Performances & Nightlife </p>
-                                            <center><h4>Denzel Curry</h4></center>
-                                            <h6 class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</h6>
-
-                                        </div>
-                                        <div class="col-4 hover-fade rounded ">
-                                            <a href="#" title="">
-                                                <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded" />
-                                            </a>
-                                            <p class="text-muted">Performances & Nightlife </p>
-                                            <center><h4>Denzel Curry</h4></center>
-                                            <h6 class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</h6>
-
-                                        </div>
-                                        <p></p>
-                                    </div>
-                                 </div> 
-                                <div style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; margin-top: -20px; margin-bottom: -20px" class="col-3 container-fluid">
+                                </div>
+                                <div style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; margin-top: -20px; margin-bottom: -20px" class="col-4 container-fluid">
                                     <Center><h2> Latest Events </h2></Center>
                                     <Center>
                                         <div class="col-12 ">
@@ -404,7 +314,7 @@
                                                 <p class="text-muted">Performances & Nightlife </p>
                                                 <center><h4>Denzel Curry</h4></center>
                                             </div>
-                                               <div class="col-10 hover-fade rounded ">
+                                            <div class="col-10 hover-fade rounded ">
                                                 <a href="#" title="">
                                                     <img src="https://burst.shopifycdn.com/photos/dark-dj-set.jpg?width=925&format=pjpg&exif=1&iptc=1/" class="rounded" />
                                                 </a>
@@ -421,11 +331,11 @@
                                         </div>
                                     </Center>
                                 </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-      </div>
 </body>
 </html>

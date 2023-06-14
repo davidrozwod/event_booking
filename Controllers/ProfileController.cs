@@ -66,7 +66,7 @@ namespace event_booking.Controllers
                 IdentityUser = user
             };
 
-            return View("~/Views/Home/Profile.cshtml", profileViewModel);
+            return View("~/Areas/Identity/Pages/Account/Profile.cshtml", profileViewModel);
         }
 
         // POST: EventUser/Edit

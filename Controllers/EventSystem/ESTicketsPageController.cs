@@ -24,7 +24,7 @@ namespace event_booking.Controllers.EventSystem
 
         //
         //Index
-        public async Task<IActionResult> Index(int id)
+        /*public async Task<IActionResult> Index(int id)
         {
             var currentUserId = _userManager.GetUserId(User);
 
@@ -62,7 +62,157 @@ namespace event_booking.Controllers.EventSystem
 
             // Pass the list of tickets to the view
             return View("~/Views/EventSystem/Tickets/TicketsPage.cshtml", ticketsForEvent);
+        }*/
+        /*public async Task<IActionResult> Index(int id)
+        {
+            var currentUserId = _userManager.GetUserId(User);
+
+            var purchaseId = HttpContext.Session.GetInt32("PurchaseId");
+
+            var allTickets = await _context.Tickets
+                .Include(t => t.Event)
+                .Include(t => t.Venue)
+                .Include(t => t.Seat)
+                .Include(t => t.Seat.Section) // Include the Section related to the Seat
+                .Include(t => t.Discount)
+                .Include(t => t.TicketType)
+                .Where(t => t.EventId == id && (t.PurchaseId == null || t.PurchaseId == purchaseId))
+                .ToListAsync();
+
+            // Use GroupBy to group tickets by their section
+            var ticketsGroupedBySection = allTickets.GroupBy(t => t.Seat.Section.SectionId);
+
+            var ticketsForEvent = new List<Ticket>();
+
+            foreach (var group in ticketsGroupedBySection)
+            {
+                // Select the first ticket from each section
+                var firstTicket = group.First();
+
+                // Using base price as ticket price
+                firstTicket.TicketPrice = firstTicket.BasePrice * firstTicket.Seat.Section.PriceMultiplier;
+
+                // Applying discounts and ticket types if they exist
+                if (firstTicket.Discount != null)
+                {
+                    firstTicket.TicketPrice *= firstTicket.Discount.PriceMultiplier;
+                }
+
+                if (firstTicket.TicketType != null)
+                {
+                    firstTicket.TicketPrice *= firstTicket.TicketType.PriceMultiplier;
+                }
+
+                firstTicket.EventUserId = currentUserId;
+
+                // Add this ticket to the final list
+                ticketsForEvent.Add(firstTicket);
+            }
+
+            // Pass the list of tickets to the view
+            return View("~/Views/EventSystem/Tickets/TicketsPage.cshtml", ticketsForEvent);
+        }*/
+
+        public async Task<IActionResult> Index(int id, int? sectionId = null, int? groupDiscountId = null)
+        {
+            var currentUserId = _userManager.GetUserId(User);
+            var purchaseId = HttpContext.Session.GetInt32("PurchaseId");
+
+            var ticketsForEvent = await _context.Tickets
+                .Include(t => t.Event)
+                .Include(t => t.Venue)
+                .Include(t => t.Seat)
+                .Include(t => t.Seat.Section) // Include the Section of the Seat
+                .Include(t => t.Discount)
+                .Include(t => t.TicketType)
+                .Where(t => t.EventId == id && (t.PurchaseId == null || t.PurchaseId == purchaseId))
+                .ToListAsync();
+
+            //Viewbags
+            //Section dropdown
+            var sections = await _context.Sections.ToListAsync();
+            ViewBag.Sections = sections;
+
+            // If a section has been selected, filter the tickets
+            if (sectionId.HasValue)
+            {
+                ticketsForEvent = ticketsForEvent.Where(t => t.Seat.Section.SectionId == sectionId.Value).ToList();
+            }
+            else
+            {
+                // If no section has been selected yet, select the first one by default
+                ViewBag.SelectedSectionId = sections.FirstOrDefault()?.SectionId;
+                ticketsForEvent = ticketsForEvent.Where(t => t.Seat.Section.SectionId == ViewBag.SelectedSectionId).ToList();
+            }
+
+            // Pass the list of tickets to the view
+            ViewBag.SelectedSectionId = sectionId;
+
+            // Pass the number of tickets to the view
+            ViewBag.TicketCount = ticketsForEvent.Count;
+
+            // If there are any tickets for the selected section, use the event and venue from the first ticket
+            if (ticketsForEvent.Any())
+            {
+                ViewBag.EventName = ticketsForEvent[0].Event.Name;
+                ViewBag.VenueName = ticketsForEvent[0].Venue.Name;
+            }
+            else
+            {
+                // If no tickets are available for the selected section, retrieve the event and venue directly from the database
+                var eventObj = await _context.Events.FindAsync(id);
+                ViewBag.EventName = eventObj.Name;
+                var venueObj = await _context.Venues.FindAsync(eventObj.VenueId);
+                ViewBag.VenueName = venueObj.Name;
+            }
+
+            // Pass the list of discounts to the view
+            ViewBag.GroupDiscounts = await _context.GroupDiscounts.ToListAsync();
+
+            // Set the selected group discount ID
+            ViewBag.SelectedGroupDiscountId = groupDiscountId;
+
+            // Get the minimum requirements for adult and children tickets from the selected group discount
+            var selectedGroupDiscount = await _context.GroupDiscounts.FindAsync(groupDiscountId);
+            var minimumAdultTickets = selectedGroupDiscount?.MinimumAdults ?? 0;
+            var minimumChildrenTickets = selectedGroupDiscount?.MinimumChildren ?? 0;
+
+            // Check if there are enough tickets available for the required group size
+            if (ticketsForEvent.Count >= (minimumAdultTickets + minimumChildrenTickets))
+            {
+                // Select the required number of tickets
+                var selectedTickets = ticketsForEvent.Take(minimumAdultTickets + minimumChildrenTickets);
+
+                // Update the PurchaseId of the selected tickets
+                foreach (var ticket in selectedTickets)
+                {
+                    ticket.PurchaseId = purchaseId;
+                }
+
+                // Use the selected tickets as needed (e.g., store them in ViewBag or pass them to the view)
+                ViewBag.SelectedTickets = selectedTickets;
+            }
+            else
+            {
+                // Display an error message indicating that there are not enough tickets available
+                ViewBag.Error = "Not enough tickets available for the selected group discount.";
+
+                // Reset the selected group discount to prevent the dropdown from retaining the invalid selection
+                groupDiscountId = null;
+            }
+
+            /*// If there are any tickets, calculate the ticket price of the first one
+            if (ticketsForEvent.Any())
+            {
+                var ticket = ticketsForEvent.First();
+                ticket.TicketPrice = ticket.BasePrice * ticket.Seat.Section.PriceMultiplier;
+            }*/
+            return View("~/Views/EventSystem/Tickets/TicketsPage.cshtml", ticketsForEvent);
         }
+
+
+
+
 
         //
         //Selects a single ticket for viewing

@@ -8,6 +8,7 @@ using event_booking.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 
+[Authorize(Roles = "Admin")]
 public class JunctionTicketVipsController : Controller
 {
     private readonly ApplicationDbContext _applicationDbContext;
@@ -19,7 +20,7 @@ public class JunctionTicketVipsController : Controller
         _userManager = userManager;
     }
 
-    [Authorize]
+    
     public async Task<IActionResult> Index()
     {
         var currentUser = await _userManager.GetUserAsync(User);
@@ -35,14 +36,14 @@ public class JunctionTicketVipsController : Controller
         }
     }
 
-    [Authorize]
+    
     public IActionResult Create()
     {
         return View();
     }
 
     [HttpPost]
-    [Authorize]
+    
     public async Task<IActionResult> Create(Dictionary<string, object> junctionTicketVip)
     {
         // Perform necessary validations and populate the dictionary object with the required values
@@ -51,7 +52,7 @@ public class JunctionTicketVipsController : Controller
         return RedirectToAction("Index");
     }
 
-    [Authorize]
+    
     public async Task<IActionResult> Edit(int ticketId, int vipId)
     {
         var junctionTicketVip = await _applicationDbContext.Set<Dictionary<string, object>>().FromSqlRaw("SELECT * FROM Junction_Ticket_VIP WHERE TicketId = {ticketId} AND VipId = {vipId}", ticketId, vipId).FirstOrDefaultAsync();
@@ -65,7 +66,7 @@ public class JunctionTicketVipsController : Controller
     }
 
     [HttpPost]
-    [Authorize]
+    
     public async Task<IActionResult> Edit(Dictionary<string, object> junctionTicketVip)
     {
         // Perform necessary validations and update the dictionary object with the modified values
@@ -74,7 +75,7 @@ public class JunctionTicketVipsController : Controller
         return RedirectToAction("Index");
     }
 
-    [Authorize]
+    
     public async Task<IActionResult> Delete(int ticketId, int vipId)
     {
         await _applicationDbContext.Database.ExecuteSqlRawAsync("DELETE FROM Junction_Ticket_VIP WHERE TicketId = {ticketId} AND VipId = {vipId}", ticketId, vipId);

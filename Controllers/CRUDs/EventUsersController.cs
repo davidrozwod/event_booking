@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace event_booking.Controllers.CRUDs
 {
+    [Authorize(Roles = "Admin")]
     public class EventUsersController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -24,7 +25,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: EventUsers
-        [Authorize]
+        
         public async Task<IActionResult> Index()
         {
             var currentUser = await _userManager.GetUserAsync(User);
@@ -42,7 +43,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: EventUsers/Details/5
-        [Authorize]
+        
         public async Task<IActionResult> Details(string id)
         {
             if (id == null || _context.EventUsers == null)
@@ -62,7 +63,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: EventUsers/Create
-        [Authorize]
+        
         public IActionResult Create()
         {
             /*ViewData["EventUserId"] = new SelectList(_context.Users, "Id", "Id");
@@ -83,7 +84,7 @@ namespace event_booking.Controllers.CRUDs
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        
         public async Task<IActionResult> Create([Bind("EventUserId,FirstName,LastName,Age,Picture,Document")] EventUser eventUser)
         {
             if (ModelState.IsValid)
@@ -97,7 +98,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: EventUsers/Edit/5
-        [Authorize]
+        
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null || _context.EventUsers == null)
@@ -119,7 +120,7 @@ namespace event_booking.Controllers.CRUDs
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        
         public async Task<IActionResult> Edit(string id, [Bind("EventUserId,FirstName,LastName,Age,Picture,Document")] EventUser eventUser)
         {
             if (id != eventUser.EventUserId)
@@ -152,7 +153,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: EventUsers/Delete/5
-        [Authorize]
+        
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null || _context.EventUsers == null)
@@ -174,7 +175,7 @@ namespace event_booking.Controllers.CRUDs
         // POST: EventUsers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
             if (_context.EventUsers == null)
@@ -191,7 +192,7 @@ namespace event_booking.Controllers.CRUDs
             return RedirectToAction(nameof(Index));
         }
 
-        [Authorize]
+        
         private bool EventUserExists(string id)
         {
           return (_context.EventUsers?.Any(e => e.EventUserId == id)).GetValueOrDefault();

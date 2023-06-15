@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace event_booking.Controllers.CRUDs
 {
+    [Authorize(Roles = "Admin")]
     public class GroupDiscountsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -25,7 +26,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: GroupDiscounts
-        [Authorize]
+        
         public async Task<IActionResult> Index()
         {
             var currentUser = await _userManager.GetUserAsync(User);
@@ -43,7 +44,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: GroupDiscounts/Details/5
-        [Authorize]
+        
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.GroupDiscounts == null)
@@ -62,7 +63,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: GroupDiscounts/Create
-        [Authorize]
+        
         public IActionResult Create()
         {
             return View("~/Views/CRUDs/GroupDiscounts/Create.cshtml");
@@ -73,7 +74,7 @@ namespace event_booking.Controllers.CRUDs
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        
         public async Task<IActionResult> Create([Bind("GroupDiscountId,GroupName,MinimumAdults,MinimumChildren,PriceMultiplier")] GroupDiscount groupDiscount)
         {
             if (ModelState.IsValid)
@@ -86,7 +87,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: GroupDiscounts/Edit/5
-        [Authorize]
+        
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.GroupDiscounts == null)
@@ -107,7 +108,7 @@ namespace event_booking.Controllers.CRUDs
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        
         public async Task<IActionResult> Edit(int id, [Bind("GroupDiscountId,GroupName,MinimumAdults,MinimumChildren,PriceMultiplier")] GroupDiscount groupDiscount)
         {
             if (id != groupDiscount.GroupDiscountId)
@@ -139,7 +140,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: GroupDiscounts/Delete/5
-        [Authorize]
+        
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.GroupDiscounts == null)
@@ -160,7 +161,7 @@ namespace event_booking.Controllers.CRUDs
         // POST: GroupDiscounts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.GroupDiscounts == null)
@@ -177,7 +178,7 @@ namespace event_booking.Controllers.CRUDs
             return RedirectToAction(nameof(Index));
         }
 
-        [Authorize]
+        
         private bool GroupDiscountExists(int id)
         {
           return (_context.GroupDiscounts?.Any(e => e.GroupDiscountId == id)).GetValueOrDefault();

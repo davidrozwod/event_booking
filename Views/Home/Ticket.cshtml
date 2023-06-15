@@ -1,12 +1,22 @@
-﻿@{
+﻿@model event_booking.Models.ViewModels.TicketPriceViewModel
+@using Newtonsoft.Json
+@using event_booking.Models.ViewModels;
+
+@{
     ViewData["Title"] = "View Ticket";
 }
+<header>
+    <h2>@Model.Event.Name</h2>
+    <h3>Venue: @Model.Venue.Name</h3>
+</header>
 
 <link rel="stylesheet" href="style.css" />
 <script src="script.js" defer></script>
 <div>
     <h4 class="display-4">Buy a ticket to an event</h4>
 </div>
+
+<!-- progressbar -->
 <div class="progressbar">
     <div class="progress gradient-custom-4" id="progress"></div>
 
@@ -18,7 +28,8 @@
 </div>
 
 <!-- Steps -->
-<div class="form-step form-step-active">
+<!-- Step 1 Book -->
+<form class="form-step form-step-active">
     <table class="table">
         <thead>
             <tr>
@@ -89,8 +100,10 @@
     <div class="btns-group">
             <button class=" text-white btn btn-lg gradient-custom-4 btn-next">Next</button>
     </div>
-</div>
-<div class="form-step">
+</form>
+
+<!-- Step 2 Details -->
+<form class="form-step">
     <div class="row g-2">
         <div class="col-md">
             <div class="form-floating">
@@ -138,8 +151,10 @@
         <button class=" text-white btn btn-lg gradient-custom-4 btn-prev">Prev</button>
         <button class=" text-white btn btn-lg gradient-custom-4 btn-next">Next</button>
     </div>
-</div>
-<div class="form-step">
+</form>
+
+<!-- Step 3 Review -->
+<form class="form-step">
     <table class="table">
         <thead>
             <tr>
@@ -211,8 +226,10 @@
         <button class=" text-white btn btn-lg gradient-custom-4 btn-prev">Prev</button>
         <button class=" text-white btn btn-lg gradient-custom-4 btn-next">Next</button>
     </div>
-</div>
-<div class="form-step">
+</form>
+
+<!-- Step 4 Payment -->
+<form class="form-step">
     <div class="row g-2">
         <div class="col-md">
             <div class="form-floating">
@@ -280,8 +297,9 @@
     <div class="btns-group">
         <a asp-area="" asp-controller="Home" asp-action="Ticket2"><input type="submit" value="Submit" class="text-white btn btn-lg gradient-custom-4" /> </a>
     </div>
-</div>
+</form>
 
+<!-- Scripts -->
 <script>
     const prevBtns = document.querySelectorAll(".btn-prev");
     const nextBtns = document.querySelectorAll(".btn-next");
@@ -331,6 +349,8 @@
             ((progressActive.length - 1) / (progressSteps.length - 1)) * 100 + "%";
     }
 </script>
+
+<!-- Style -->
 <style>
     :root {
         --primary-color: rgb(11, 78, 179);

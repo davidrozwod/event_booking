@@ -138,7 +138,7 @@
                     <h5 class="text-uppercase mb-4">General</h5>
                     <ul class="list-unstyled">
                         <li class="mb-2">
-                            <a class="text-white" asp-controller="Home" asp-action="RedirectAccount">Your Account</a>
+                            <a class="text-white" asp-controller="Profile" asp-action="Index">Your Account</a>
                         </li>
                         <li class="mb-2">
                             <a class="text-white" asp-controller="Home" asp-action="Ticket">View your tickets</a>
@@ -153,7 +153,7 @@
                         <li class="mb-2">
                             @if (User.IsInRole("Promoter") || User.IsInRole("Admin"))
                             {
-                                <a class="text-white" asp-controller="Home" asp-action="PromoterArea">Create Event</a>
+                                <a class="text-white" asp-controller="Events" asp-action="Index">Create Event</a>
                             }
                         </li>
                         <li class="mb-2">

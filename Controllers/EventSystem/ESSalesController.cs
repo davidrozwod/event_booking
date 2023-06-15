@@ -1,15 +1,18 @@
 ﻿using event_booking.Data;
 using event_booking.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Data;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace event_booking.Controllers.EventSystem
 {
+    [Authorize(Roles = "Admin, Promoter")]
     public class ESSalesController : Controller
     {
         private readonly ApplicationDbContext _context;

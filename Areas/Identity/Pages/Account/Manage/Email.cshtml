@@ -1,24 +1,21 @@
 ﻿@page
 @model EmailModel
 @{
+    Layout = null;
+}
+@{
     ViewData["Title"] = "Manage Email";
     ViewData["ActivePage"] = ManageNavPages.Email;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 <style>
-    .container-fluid {
-        padding:15px;        
+    * {
+        margin: 0;
+        box-sizing: border-box;
+        list-style: none;
+        font-family: 'Josefin Sans', sans-serif;
     }
-
-    body{
-        background-color: lightgray;
-    }
-
-    .bg-image {
-        margin-left: -90px;
-        margin-bottom: 0px;
-
-    }
-
 
     .gradient-custom-3 {
         /* fallback for old browsers */
@@ -29,58 +26,157 @@
         background: linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1))
     }
 
-    .gradient-custom-4 {
-        /* fallback for old browsers */
-        background: #1A237E
-        /* Chrome 10-25, Safari 5.1-6 */
-        background: -webkit-linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1)));
-        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-        background: linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1))
+    body {
+        background-color: #f3f5f9;
     }
 
+    .wrapper {
+        display: flex;
+        position: relative;
+        width:100%;
+    }
+
+        .wrapper .sidebar {
+            width: 200px;
+            height: 100%;
+            background: #4b4276;
+            padding: 30px 0px;
+            position: relative;
+            float: right;
+        }
+
+            .wrapper .sidebar h2 {
+                color: #fff;
+                text-transform: uppercase;
+                text-align: center;
+                margin-bottom: 30px;
+            }
+
+            .wrapper .sidebar ul li {
+                padding: 40px;
+                border-bottom: 1px solid #bdb8d7;
+                border-bottom: 1px solid rgba(0,0,0,0.05);
+                border-top: 1px solid rgba(255,255,255,0.05);
+                text-decoration: none
+            }
+
+                .wrapper .sidebar ul li a {
+                    color: gradient-custom-3;
+                    display: block;
+                    text-decoration: none
+                }
+
+                    .wrapper .sidebar ul li a .fas {
+                        width: 25px;
+                        text-decoration: none
+                    }
+
+                .wrapper .sidebar ul li:hover {
+                    background-color: #594f8d;
+                    text-decoration: none
+                }
+
+                    .wrapper .sidebar ul li:hover a {
+                        color: #fff;
+                        text-decoration: none
+                    }
+
+
+        .wrapper .main_content {
+            width: 100%;
+            margin-left: 300px;
+            margin-right: 300px;
+            margin-top: 175px;
+        }
+
+            .wrapper .main_content .header {
+                padding: 20px;
+                background: #fff;
+                color: #717171;
+                border-bottom: 1px solid #e0e4e8;
+            }
+
+            .wrapper .main_content .info {
+                margin: 20px;
+                color: #717171;
+                line-height: 25px;
+            }
+
+                .wrapper .main_content .info div {
+                    margin-bottom: 20px;
+                }
+    img {
+        float: left;
+        width: 25px;
+        display: inline-block;
+        margin: 0px 6px 4px;
+    }
+
+    .white-box {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        padding: 10px;
+    }
 </style>
-<section class="vh-100 bg-image"
-         style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
-    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
-        <div class="container-fluid bg-white col-11">
-<h3>@ViewData["Title"]</h3>
-<partial name="_StatusMessage" for="StatusMessage" />
-<div class="row">
-    <div class="col-md-6">
-        <form id="email-form" method="post">
-            <div asp-validation-summary="All" class="text-danger" role="alert"></div>
-            @if (Model.IsEmailConfirmed)
-            {
-                <div class="form-floating mb-3 input-group">
-                    <input asp-for="Email" class="form-control" placeholder="Please enter your email." disabled />
-                        <div class="input-group-append">
-                            <span class="h-100 input-group-text text-success font-weight-bold">✓</span>
+
+
+
+
+
+<body>
+    <div class="wrapper">
+        <div class="sidebar">
+            <h2> @await Component.InvokeAsync("UserName") </h2>
+            <ul>
+                <li><img src="https://www.freeiconspng.com/thumbs/profile-icon-png/profile-icon-person-user-19.png" /> <a asp-controller="Profile" asp-action="Index"> Profile</a></li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" id="email" href="/Identity/Account/Manage/Email">Change Email</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" id="email" href="/Identity/Account/Manage/ChangePassword">Change Password</a>
+                </li>
+            </ul>
+        </div>
+        <div class="main_content">
+            <div class="white-box">
+                <div>
+                    <partial name="_StatusMessage" for="StatusMessage" />
+                    <form id="email-form" method="post">
+                        @if (Model.IsEmailConfirmed)
+                        {
+                            <div class="form-floating mb-3 input-group">
+                                <input asp-for="Email" class="form-control" placeholder="Please enter your email." disabled />
+                                <div class="input-group-append">
+                                    <span class="h-100 input-group-text text-success font-weight-bold">✓</span>
+                                </div>
+                                <label asp-for="Email" class="form-label"></label>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="form-floating mb-3">
+                                <input asp-for="Email" class="form-control" placeholder="Please enter your email." disabled />
+                                <label asp-for="Email" class="form-label"></label>
+                                <button id="email-verification" type="submit" asp-page-handler="SendVerificationEmail" class="btn btn-link">Send verification email</button>
+                            </div>
+                        }
+                        <div class="form-floating mb-3">
+                            <input asp-for="Input.NewEmail" class="form-control" autocomplete="email" aria-required="true" placeholder="Please enter new email." />
+                            <label asp-for="Input.NewEmail" class="form-label"></label>
+                            <span asp-validation-for="Input.NewEmail" class="text-danger"></span>
                         </div>
-                    <label asp-for="Email" class="form-label"></label>
+                        <button id="change-email-button" type="submit" asp-page-handler="ChangeEmail" class="w-100 btn btn-lg btn-primary">Change email</button>
+                    </form>
                 </div>
-            }
-            else
-            {
-                <div class="form-floating mb-3">
-                    <input asp-for="Email" class="form-control" placeholder="Please enter your email." disabled />
-                    <label asp-for="Email" class="form-label"></label>
-                    <button id="email-verification" type="submit" asp-page-handler="SendVerificationEmail" class="btn btn-link">Send verification email</button>
-                </div>
-            }
-            <div class="form-floating mb-3">
-                <input asp-for="Input.NewEmail" class="form-control" autocomplete="email" aria-required="true" placeholder="Please enter new email." />
-                <label asp-for="Input.NewEmail" class="form-label"></label>
-                <span asp-validation-for="Input.NewEmail" class="text-danger"></span>
-            </div>
-            <button id="change-email-button" type="submit" asp-page-handler="ChangeEmail" class="w-100 btn btn-lg btn-primary">Change email</button>
-        </form>
-    </div>
             </div>
         </div>
+    </div>
 
-</div>
-</section>
+
+</body>
 
 @section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

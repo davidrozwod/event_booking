@@ -137,8 +137,6 @@ namespace event_booking.Controllers
             var identityUser = await _userManager.FindByIdAsync(eventUser.EventUserId);
             if (identityUser != null)
             {
-                identityUser.Email = profileViewModel.IdentityUser.Email;
-                identityUser.UserName = profileViewModel.IdentityUser.Email;
                 await _userManager.UpdateAsync(identityUser);
             }
 

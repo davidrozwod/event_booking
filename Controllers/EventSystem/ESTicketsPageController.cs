@@ -22,7 +22,7 @@ namespace event_booking.Controllers.EventSystem
             _userManager = userManager;
         }
 
-        public async Task<IActionResult> Index(int id, int? sectionId = null, int? groupDiscountId = null)
+        public async Task<IActionResult> Index(int id, int? sectionId = null, int? groupDiscountId = null, Dictionary<int, int> discountTicketCounts = null)
         {
             var currentUserId = _userManager.GetUserId(User);
             var purchaseId = HttpContext.Session.GetInt32("PurchaseId");
@@ -37,7 +37,8 @@ namespace event_booking.Controllers.EventSystem
                 .Where(t => t.EventId == id && (t.PurchaseId == null || t.PurchaseId == purchaseId))
                 .ToListAsync();
 
-            //Viewbags
+            //
+            //SECTION
             //Section dropdown
             var sections = await _context.Sections.ToListAsync();
             ViewBag.Sections = sections;
@@ -75,6 +76,8 @@ namespace event_booking.Controllers.EventSystem
                 ViewBag.VenueName = venueObj.Name;
             }
 
+            //
+            // GROUP DISCOUNTS
             // Pass the list of discounts to the view
             ViewBag.GroupDiscounts = await _context.GroupDiscounts.ToListAsync();
 
@@ -161,7 +164,35 @@ namespace event_booking.Controllers.EventSystem
                 groupDiscountId = null;
             }
 
-                return View("~/Views/EventSystem/Tickets/TicketsPage.cshtml", ticketsForEvent);
+            // 
+            if (discountTicketCounts != null)
+            {
+                foreach (var entry in discountTicketCounts)
+                {
+                    var discount = await _context.Discounts.FindAsync(entry.Key);
+                    var quantity = entry.Value;
+                    var totalPrice = quantity * discount.PriceMultiplier;
+
+                    // Handle totalPrice as needed
+                }
+            }
+
+            if (discountTicketCounts != null)
+            {
+                foreach (var entry in discountTicketCounts)
+                {
+                    var discount = await _context.Discounts.FindAsync(entry.Key);
+                    var quantity = entry.Value;
+                    var totalPrice = quantity * discount.PriceMultiplier;
+
+                    // Handle totalPrice as needed
+                }
+            }
+
+            ViewBag.Discounts = await _context.Discounts.ToListAsync();
+
+
+            return View("~/Views/EventSystem/Tickets/TicketsPage.cshtml", ticketsForEvent);
         }
 
 

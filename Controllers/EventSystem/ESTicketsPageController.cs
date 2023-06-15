@@ -22,97 +22,6 @@ namespace event_booking.Controllers.EventSystem
             _userManager = userManager;
         }
 
-        //
-        //Index
-        /*public async Task<IActionResult> Index(int id)
-        {
-            var currentUserId = _userManager.GetUserId(User);
-
-            var purchaseId = HttpContext.Session.GetInt32("PurchaseId");
-
-            var ticketsForEvent = await _context.Tickets
-                .Include(t => t.Event)
-                .Include(t => t.Venue)
-                .Include(t => t.Seat)
-                .Include(t => t.Seat.Section) // Include the Section related to the Seat
-                .Include(t => t.Discount)
-                .Include(t => t.TicketType)
-                .Where(t => t.EventId == id && (t.PurchaseId == null || t.PurchaseId == purchaseId))
-                .ToListAsync();
-
-            // Calculating ticket price here, you can replace this with your actual calculation logic
-            foreach (var ticket in ticketsForEvent)
-            {
-                // Using base price as ticket price
-                ticket.TicketPrice = ticket.BasePrice * ticket.Seat.Section.PriceMultiplier;
-
-                // Applying discounts and ticket types if they exist
-                if (ticket.Discount != null)
-                {
-                    ticket.TicketPrice *= ticket.Discount.PriceMultiplier;
-                }
-
-                if (ticket.TicketType != null)
-                {
-                    ticket.TicketPrice *= ticket.TicketType.PriceMultiplier;
-                }
-
-                ticket.EventUserId = currentUserId;
-            }
-
-            // Pass the list of tickets to the view
-            return View("~/Views/EventSystem/Tickets/TicketsPage.cshtml", ticketsForEvent);
-        }*/
-        /*public async Task<IActionResult> Index(int id)
-        {
-            var currentUserId = _userManager.GetUserId(User);
-
-            var purchaseId = HttpContext.Session.GetInt32("PurchaseId");
-
-            var allTickets = await _context.Tickets
-                .Include(t => t.Event)
-                .Include(t => t.Venue)
-                .Include(t => t.Seat)
-                .Include(t => t.Seat.Section) // Include the Section related to the Seat
-                .Include(t => t.Discount)
-                .Include(t => t.TicketType)
-                .Where(t => t.EventId == id && (t.PurchaseId == null || t.PurchaseId == purchaseId))
-                .ToListAsync();
-
-            // Use GroupBy to group tickets by their section
-            var ticketsGroupedBySection = allTickets.GroupBy(t => t.Seat.Section.SectionId);
-
-            var ticketsForEvent = new List<Ticket>();
-
-            foreach (var group in ticketsGroupedBySection)
-            {
-                // Select the first ticket from each section
-                var firstTicket = group.First();
-
-                // Using base price as ticket price
-                firstTicket.TicketPrice = firstTicket.BasePrice * firstTicket.Seat.Section.PriceMultiplier;
-
-                // Applying discounts and ticket types if they exist
-                if (firstTicket.Discount != null)
-                {
-                    firstTicket.TicketPrice *= firstTicket.Discount.PriceMultiplier;
-                }
-
-                if (firstTicket.TicketType != null)
-                {
-                    firstTicket.TicketPrice *= firstTicket.TicketType.PriceMultiplier;
-                }
-
-                firstTicket.EventUserId = currentUserId;
-
-                // Add this ticket to the final list
-                ticketsForEvent.Add(firstTicket);
-            }
-
-            // Pass the list of tickets to the view
-            return View("~/Views/EventSystem/Tickets/TicketsPage.cshtml", ticketsForEvent);
-        }*/
-
         public async Task<IActionResult> Index(int id, int? sectionId = null, int? groupDiscountId = null)
         {
             var currentUserId = _userManager.GetUserId(User);
@@ -172,6 +81,12 @@ namespace event_booking.Controllers.EventSystem
             // Set the selected group discount ID
             ViewBag.SelectedGroupDiscountId = groupDiscountId;
 
+            // Retrieve the group discount based on the groupDiscountId
+            var groupDiscount = await _context.GroupDiscounts.FindAsync(groupDiscountId);
+
+            // Assign the group discount to the ViewBag
+            ViewBag.GroupDiscount = groupDiscount;
+
             // Get the minimum requirements for adult and children tickets from the selected group discount
             var selectedGroupDiscount = await _context.GroupDiscounts.FindAsync(groupDiscountId);
             var minimumAdultTickets = selectedGroupDiscount?.MinimumAdults ?? 0;
@@ -189,6 +104,41 @@ namespace event_booking.Controllers.EventSystem
                     ticket.PurchaseId = purchaseId;
                 }
 
+                int adultTicketsCount = 0;
+                int childTicketsCount = 0;
+
+                foreach (var ticket in selectedTickets)
+                {
+                    if (adultTicketsCount < minimumAdultTickets)
+                    {
+                        ticket.DiscountId = 1;
+                        adultTicketsCount++;
+                    }
+                    else if (childTicketsCount < minimumChildrenTickets)
+                    {
+                        ticket.DiscountId = 5;
+                        childTicketsCount++;
+                    }
+                    // Here you should calculate the ticket price using ticket.BasePrice and the corresponding price multiplier from the discounts
+                    // You should retrieve the discount by ticket.DiscountId and use its price multiplier
+                    var discount = await _context.Discounts.FindAsync(ticket.DiscountId);
+                    ticket.TicketPrice = ticket.BasePrice * discount.PriceMultiplier;
+                }
+
+                // Update the PurchaseId of the selected tickets
+                foreach (var ticket in selectedTickets)
+                {
+                    ticket.PurchaseId = purchaseId;
+                }
+
+                // Decrease the number of available tickets
+                ViewBag.TicketCount = ticketsForEvent.Count - selectedTickets.Count();
+
+                ViewBag.AdultTickets = adultTicketsCount;
+                ViewBag.ChildTickets = childTicketsCount;
+                ViewBag.AdultSubtotal = selectedTickets.Where(t => t.DiscountId == 1).Sum(t => t.TicketPrice);
+                ViewBag.ChildSubtotal = selectedTickets.Where(t => t.DiscountId == 5).Sum(t => t.TicketPrice);
+
                 // Use the selected tickets as needed (e.g., store them in ViewBag or pass them to the view)
                 ViewBag.SelectedTickets = selectedTickets;
             }
@@ -201,20 +151,24 @@ namespace event_booking.Controllers.EventSystem
                 groupDiscountId = null;
             }
 
-            /*// If there are any tickets, calculate the ticket price of the first one
-            if (ticketsForEvent.Any())
+            if (ticketsForEvent.Count < (minimumAdultTickets + minimumChildrenTickets))
             {
-                var ticket = ticketsForEvent.First();
-                ticket.TicketPrice = ticket.BasePrice * ticket.Seat.Section.PriceMultiplier;
-            }*/
-            return View("~/Views/EventSystem/Tickets/TicketsPage.cshtml", ticketsForEvent);
+                ModelState.AddModelError("", "Not enough tickets available for the selected group discount.");
+                // Display an error message indicating that there are not enough tickets available
+                ViewBag.Error = "Not enough tickets available for the selected group discount.";
+
+                // Reset the selected group discount to prevent the dropdown from retaining the invalid selection
+                groupDiscountId = null;
+            }
+
+                return View("~/Views/EventSystem/Tickets/TicketsPage.cshtml", ticketsForEvent);
         }
 
 
 
 
 
-        //
+        /*//
         //Selects a single ticket for viewing
         [Authorize]
         public async Task<IActionResult> Detail(int id)
@@ -305,7 +259,9 @@ namespace event_booking.Controllers.EventSystem
 
             return View("~/Views/EventSystem/Tickets/TicketView.cshtml", model);
         }
+        */
 
+        /*
         public IActionResult ConfirmPurchase(int ticketId)
         {
             var ticket = _context.Tickets.Find(ticketId);
@@ -322,7 +278,7 @@ namespace event_booking.Controllers.EventSystem
             };
 
             return View(model);
-        }
+        }*/
 
     }
 }

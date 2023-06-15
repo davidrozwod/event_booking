@@ -4,7 +4,20 @@
 
 @{
     var sectionList = ViewBag.Sections as List<event_booking.Models.Section>;
+
+    @if (!string.IsNullOrEmpty(ViewBag.Error))
+    {
+        <div class="alert alert-danger">
+            @ViewBag.Error
+        </div>
+    }
 }
+
+<style>
+    .group{
+        border: 1px solid black;
+    }
+</style>
         @* Header *@
 <h2>Tickets Available</h2>
     <h3>@ViewBag.EventName</h3>
@@ -15,7 +28,7 @@
 <form method="get">
     <div class="row">
 
-        @* Add a dropdown list for the sections *@
+        @* Add a DROPDOWN list for the SECTIONS *@
         <div class="col-auto mr-auto">
             <h5>Section: </h5>
         </div>
@@ -48,47 +61,56 @@
         <div class="col-auto mr-auto">
             <h5>Tickets available: @ViewBag.TicketCount</h5>
         </div>
+
     </div>
 
         @*                                            *@
-        @* Add a dropdown list for the groupdiscounts *@
-    <div class="row">
-        <div class="col-auto mr-auto">
-            <h5>Group Option: </h5>
-        </div>
-        <div class="col-auto mr-auto">
-
+        @* Add a DROPDOWN list for the GROUPDISCOUNTS *@
+    <div class="group">
+        <div class="row">
+            <div class="col-auto mr-auto">
+                <h5>Group Discounts: </h5>
+            </div>
+            <div class="col-auto mr-auto">
                 <select name="groupDiscountId" onchange="this.form.submit()">
+                    <option value="" selected="@(ViewBag.SelectedGroupDiscountId == null)">Choose Group Discount</option>
                     @foreach (var discount in ViewBag.GroupDiscounts)
                     {
-                        <option value="@discount.GroupDiscountId"selected="@(discount.GroupDiscountId == ViewBag.SelectedGroupDiscountId)">@discount.GroupName</option>
+                        <option value="@discount.GroupDiscountId" selected="@(discount.GroupDiscountId == ViewBag.SelectedGroupDiscountId)">@discount.GroupName</option>
                     }
                 </select>
-                @*<input type="hidden" name="groupDiscountId" value="@ViewBag.SelectedGroupDiscountId" />*@
-
+                    @*<input type="hidden" name="groupDiscountId" value="@ViewBag.SelectedGroupDiscountId" />*@
+            </div>
         </div>
 
+        @* Show the discount for the group discount *@
+        <div class="row">
+            @if (ViewBag.AdultTickets > 0)
+            {
+                    <div class="col-auto mr-auto">
+                        <h2>Adult Tickets</h2>
+                    </div>
+                    <div class="col-auto mr-auto">
+                        <p>Quantity: @ViewBag.AdultTickets</p>
+                    </div>
+                    <div class="col-auto mr-auto">
+                        <p>Subtotal: @string.Format("{0:0.00}", ViewBag.AdultSubtotal)</p>
+                    </div>
+            }
+        </div>
+        <div class="row">
+            @if (ViewBag.ChildTickets > 0)
+            {
+                    <div class="col-auto mr-auto">
+                        <h2>Child Tickets</h2>
+                    </div>
+                    <div class="col-auto mr-auto">
+                        <p>Quantity: @ViewBag.ChildTickets</p>
+                    </div>
+                    <div class="col-auto mr-auto">
+                        <p>Subtotal: @string.Format("{0:0.00}", ViewBag.ChildSubtotal)</p>
+                    </div>
+            }
+        </div>
     </div>
 </form>
-
-<!-- Add a dropdown list for the sections -->
-@*<form method="get">
-        <select name="sectionId" onchange="this.form.submit()">
-            <option value="">All Sections</option>
-            @foreach (var sec in sectionList)
-            {
-                <option value="@sec.SectionId">@sec.SectionName</option>
-            }
-        </select>
-    </form>*@
-<!-- Add a dropdown list for the sections -->
-
-@*
-<div class="ticket">
-    <h5>Seat: @ticket.Seat.SeatNumber</h5>
-    <p>Ticket Price: @string.Format("{0:0.00}", ticket.BasePrice)</p>
-    <h5>Section: @ticket.Seat.Section.SectionName</h5>
-
-    Bas
-    <a class="btn gradient-custom-3 text-green" asp-area="" asp-controller="ESTicketsPage" asp-action="Detail" asp-route-id="@ticket.TicketId">View Ticket</a>
-</div>*@

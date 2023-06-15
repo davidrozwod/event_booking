@@ -5,15 +5,7 @@
     ViewData["Title"] = "Booking";
 }
 
-@if (TempData["ErrorMessage"] != null)
-{
-    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
-}
 
-@if (TempData["SuccessMessage"] != null)
-{
-    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
-}
 
 <style>
     * {
@@ -194,6 +186,15 @@
     </div>
     <div class="main_content">
         <div class="header">Welcome to the Admin Dashboard</div>
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+        }
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+        }
         <div class="info">
             <div class="container">
                 <div class="row">

@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace event_booking.Controllers.CRUDs
 {
+    [Authorize(Roles = "Admin")]
     public class TicketGroupsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -25,7 +26,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: TicketGroups
-        [Authorize]
+        
         public async Task<IActionResult> Index()
         {
             var currentUser = await _userManager.GetUserAsync(User);
@@ -43,7 +44,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: TicketGroups/Details/5
-        [Authorize]
+        
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.TicketGroups == null)
@@ -64,7 +65,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: TicketGroups/Create
-        [Authorize]
+        
         public IActionResult Create()
         {
             ViewData["GroupDiscountId"] = new SelectList(_context.GroupDiscounts, "GroupDiscountId", "GroupDiscountId");
@@ -77,7 +78,7 @@ namespace event_booking.Controllers.CRUDs
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        
         public async Task<IActionResult> Create([Bind("TicketGroupId,PurchaseId,GroupDiscountId")] TicketGroup ticketGroup)
         {
             if (ModelState.IsValid)
@@ -92,7 +93,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: TicketGroups/Edit/5
-        [Authorize]
+        
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.TicketGroups == null)
@@ -115,7 +116,7 @@ namespace event_booking.Controllers.CRUDs
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        
         public async Task<IActionResult> Edit(int id, [Bind("TicketGroupId,PurchaseId,GroupDiscountId")] TicketGroup ticketGroup)
         {
             if (id != ticketGroup.TicketGroupId)
@@ -149,7 +150,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: TicketGroups/Delete/5
-        [Authorize]
+        
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.TicketGroups == null)
@@ -172,7 +173,7 @@ namespace event_booking.Controllers.CRUDs
         // POST: TicketGroups/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.TicketGroups == null)
@@ -189,7 +190,7 @@ namespace event_booking.Controllers.CRUDs
             return RedirectToAction(nameof(Index));
         }
 
-        [Authorize]
+        
         private bool TicketGroupExists(int id)
         {
           return (_context.TicketGroups?.Any(e => e.TicketGroupId == id)).GetValueOrDefault();

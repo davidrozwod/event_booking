@@ -29,4 +29,7 @@ public partial class GroupDiscount
     //Relationships
     [InverseProperty("GroupDiscount")]
     public virtual ICollection<TicketGroup> TicketGroups { get; set; } = new List<TicketGroup>();
+
+    [InverseProperty("GroupDiscount")]
+    public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
 }

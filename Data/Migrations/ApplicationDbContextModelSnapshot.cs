@@ -680,6 +680,10 @@ namespace event_booking.Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<int?>("GroupDiscountId")
+                        .HasColumnType("int")
+                        .HasColumnName("GroupDiscountID");
+
                     b.Property<string>("LastName")
                         .HasMaxLength(50)
                         .IsUnicode(false)
@@ -705,6 +709,8 @@ namespace event_booking.Data.Migrations
                         .HasColumnName("VenueID");
 
                     b.HasKey("TicketId");
+
+                    b.HasIndex("GroupDiscountId");
 
                     b.HasIndex(new[] { "DiscountId" }, "IX_Tickets_DiscountID");
 
@@ -1078,6 +1084,10 @@ namespace event_booking.Data.Migrations
                         .HasForeignKey("EventUserId")
                         .HasConstraintName("FK_Tickets_EventUser_3");
 
+                    b.HasOne("event_booking.Models.GroupDiscount", "GroupDiscount")
+                        .WithMany("Tickets")
+                        .HasForeignKey("GroupDiscountId");
+
                     b.HasOne("event_booking.Models.Purchase", "Purchase")
                         .WithMany("Tickets")
                         .HasForeignKey("PurchaseId")
@@ -1105,6 +1115,8 @@ namespace event_booking.Data.Migrations
                     b.Navigation("Event");
 
                     b.Navigation("EventUser");
+
+                    b.Navigation("GroupDiscount");
 
                     b.Navigation("Purchase");
 
@@ -1172,6 +1184,8 @@ namespace event_booking.Data.Migrations
             modelBuilder.Entity("event_booking.Models.GroupDiscount", b =>
                 {
                     b.Navigation("TicketGroups");
+
+                    b.Navigation("Tickets");
                 });
 
             modelBuilder.Entity("event_booking.Models.Organizer", b =>

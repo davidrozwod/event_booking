@@ -49,7 +49,10 @@ namespace event_booking
             // Add a hosted service that will run the cleanup task in the background
             builder.Services.AddHostedService<ClearExpiredSessionsService>();
 
-// end of services//
+            //Search service initialization
+            builder.Services.AddScoped<EventSearchService>();
+
+            // end of services//
 
             var app = builder.Build();
 

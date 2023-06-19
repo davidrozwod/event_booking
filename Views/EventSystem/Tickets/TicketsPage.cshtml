@@ -131,42 +131,47 @@
                 </div>
             }
             <p></p>
-            <div class="btns-group">
-                <button class=" text-white btn btn-lg gradient-custom-4 btn-next">Next</button>
-            </div>
+
         </form>
+    <div class="btns-group">
+        <button class=" text-white btn btn-lg gradient-custom-4 btn-next">Next</button>
+    </div>
 
 <!-- STEP 2 -->
 <!-- DETAILS -->
 
-    <div class="form-step">
+    <form class="form-step" method="post" action="/ESTicketsPage/Details">
         <div class="row g-2">
             <div class="col-md">
                 <div class="form-floating">
-                    <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
+                    <input type="text" name="FirstName" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
                     <label for="floatingInputGrid">First Name</label>
                 </div>
             </div>
             <div class="col-md">
                 <div class="form-floating">
-                    <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
+                    <input type="text" name="LastName" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
                     <label for="floatingInputGrid">Last Name</label>
                 </div>
             </div>
         </div>
         <p></p>
         <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" />
+            <input type="email" name="Email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" />
             <label for="floatingInputGrid">Email</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" />
+            <input type="tel" name="PhoneNumber" class="form-control" id="floatingInputGrid" placeholder="name@example.com" />
             <label for="floatingInputGrid">Phone Number</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInputGrid" name="StreetAddress" placeholder="Enter your street address">
+            <label for="floatingInputGrid">Street Address</label>
         </div>
         <div class="row g-2">
             <div class="col-md">
                 <div class="form-floating">
-                    <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example">
+                    <select name="Country" class="form-select" id="floatingSelectGrid" aria-label="Floating label select example">
                         <option selected>Pick your Location</option>
                         <option value="1">This Place</option>
                         <option value="2">That Place</option>
@@ -177,19 +182,19 @@
             </div>
             <div class="col-md">
                 <div class="form-floating">
-                    <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
+                    <input type="email" name="PostalCode" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
                     <label for="floatingInputGrid">Postal Code</label>
                 </div>
             </div>
         </div>
         <p></p>
         <div class="btns-group">
-            <button class=" text-white btn btn-lg gradient-custom-4 btn-prev">Prev</button>
-            <button class=" text-white btn btn-lg gradient-custom-4 btn-next">Next</button>
+            <button class=" text-white btn btn-lg gradient-custom-4 btn-prev" name="button">Prev</button>
+            <button class=" text-white btn btn-lg gradient-custom-4 btn-next" name="button">Next</button>
         </div>
-    </div>
+    </form>
 
-<!-- STEP 1 -->
+<!-- STEP 3 -->
 <!-- REVIEW -->
     <div class="form-step">
         <table class="table">
@@ -275,7 +280,7 @@
         </div>
         <p></p>
 
-<!-- STEP 1 -->
+<!-- STEP 4 -->
 <!-- PAYMENT -->
 
         <div class="row g-2">

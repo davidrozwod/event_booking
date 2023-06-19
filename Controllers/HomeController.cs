@@ -11,11 +11,13 @@ namespace event_booking.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly ILogger<HomeController> _logger;
+        private readonly EventSearchService _eventSearchService;
 
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context, EventSearchService eventSearchService)
         {
             _context = context;
             _logger = logger;
+            _eventSearchService = eventSearchService;
         }
 
         public IActionResult Index()
@@ -268,5 +270,24 @@ namespace event_booking.Controllers
 
             return Redirect("/Identity/Account/Manage");
         }
+
+        public IActionResult Search()
+        {
+            return PartialView("_SearchResults", null);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Search(string searchTerm)
+        {
+            if (string.IsNullOrEmpty(searchTerm))
+            {
+                return RedirectToAction("Index");
+            }
+
+            var events = await _eventSearchService.SearchEvents(searchTerm);
+            return View("_SearchResults", events);
+        }
+
+
     }
 }

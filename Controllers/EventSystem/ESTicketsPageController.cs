@@ -27,7 +27,23 @@ namespace event_booking.Controllers.EventSystem
         public async Task<IActionResult> Index(string button, int id, int? sectionId = null, int? groupDiscountId = null, Dictionary<int, int> discountTicketCounts = null)
         {
             var currentUserId = _userManager.GetUserId(User);
-            var purchaseId = HttpContext.Session.GetInt32("PurchaseId");
+
+            // Create a random number generator
+            Random random = new Random();
+
+            // Generate ten random numbers
+            int[] randomNumbers = new int[10];
+            for (int i = 0; i < 10; i++)
+            {
+                randomNumbers[i] = random.Next(1, 100);
+            }
+
+            // Print the random numbers
+            foreach (int number in randomNumbers)
+            {
+                Console.WriteLine(number);
+            }
+            var purchaseId = random;
 
             var ticketsForEvent = await _context.Tickets
                 .Include(t => t.Event)

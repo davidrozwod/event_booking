@@ -1,0 +1,214 @@
+﻿<style>
+    .gradient-custom-3 {
+        /* fallback for old browsers */
+        background: #1A237E
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1)));
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1))
+    }
+    /* Custom styles */
+    body {
+        padding-top: 50px;
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+    }
+
+    .custom-sidebar {
+        position: fixed;
+        right: -400px; /* Start off-screen */
+        top: 0;
+        bottom: 0;
+        z-index: 100;
+        width: 400px; /* Updated width */
+        padding: 20px;
+        background-color: #333;
+        color: #fff;
+        overflow-x: hidden;
+        transition: 0.5s;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    }
+
+        .custom-sidebar.active {
+            right: 0; /* Slide in */
+        }
+
+    .custom-sidebar-heading {
+        margin-bottom: 20px;
+    }
+
+        .custom-sidebar-heading h1 {
+            margin: 0;
+            padding: 0;
+            font-size: 40px;
+            color: #fff;
+        }
+
+    .custom-sidebar-links {
+        margin-top: 20px;
+    }
+
+    .custom-sidebar a {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        margin-bottom: 10px;
+        text-decoration: none;
+        color: #fff;
+        transition: 0.3s;
+    }
+
+        .custom-sidebar a:hover {
+            background-color: #555;
+        }
+
+    .custom-sidebar .dropdown-toggle::after {
+        display: inline-block;
+        margin-left: 5px;
+        vertical-align: 0.255em;
+        content: "";
+        border-top: 0.3em solid;
+        border-right: 0.3em solid transparent;
+        border-bottom: 0;
+        border-left: 0.3em solid transparent;
+    }
+
+    .custom-sidebar .dropdown-menu {
+        background-color: #333;
+        border: none;
+    }
+
+    .custom-sidebar .dropdown-item {
+        color: #fff;
+    }
+
+        .custom-sidebar .dropdown-item:hover {
+            background-color: #555;
+        }
+
+    .custom-content {
+        margin-right: 420px; /* Updated margin */
+        padding: 20px;
+        transition: 0.5s;
+    }
+
+        .custom-content.shift {
+            margin-right: 770px; /* Updated margin */
+        }
+
+    .custom-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(5px);
+        z-index: 99;
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.5s;
+    }
+
+        .custom-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+    h1, p {
+        color: #333;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+        .btn-primary:hover {
+            background-color: #0069d9;
+            border-color: #0062cc;
+        }
+
+    .custom-sidebarCollapse {
+        color: #fff;
+    }
+
+        .custom-sidebarCollapse.active {
+            color: #007bff;
+        }
+
+    .closeCustomSidebar {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        color: #fff;
+        cursor: pointer;
+    }
+</style>
+
+<!-- Custom Sidebar -->
+<button class="btn gradient-custom-3 custom-sidebarCollapse">Welcome,  @await Component.InvokeAsync("UserName")</button>
+
+<div class="custom-sidebar">
+    <div class="custom-sidebar-heading">
+        <a class="navbar-brand nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">
+            <img src="https://i.ibb.co/fYKrRZZ/jamie-Logo.png" alt="Logo">
+        </a>
+        <div style="margin-top: 10px;" class="dropdown-divider text-white"></div>
+    </div>
+    <div class="custom-sidebar-links">
+        <div style="margin-top: 20px; margin-bottom: 20px;" class="custom-sidebar-dropdown">
+            <h5><a style="margin-top: 20px; margin-bottom: 20px; margin-left:-5px;" href="#dropdownMenu" data-toggle="collapse" aria-expanded="false"><i style="margin-right: 10px;" class="fas fa-user"></i>View Profile</a></h5>
+            <div class="collapse" id="dropdownMenu">
+                <a class=" dropdown-item nav-link text-white" asp-controller="Profile" asp-action="Index"> Profile</a>
+                <a class="text-white" href=" /Identity/Account/Manage/Email">Change Email</a>
+                <a class="text-white" href="/Identity/Account/Manage/ChangePassword">Change Password</a>
+            </div>
+            <div style="margin-top: 20px;" class="dropdown-divider text-white"></div>
+        </div>
+        <li class="nav-item">
+            @if (User.IsInRole("Promoter") || User.IsInRole("Admin"))
+            {
+                <h5><a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="PromoterArea"><i style="margin-right: 10px;" class="fas fa-newspaper"></i>Promoters Dashboard</a></h5>
+            }
+        </li>
+        <div style="margin-top: 20px;" class="dropdown-divider text-white"></div>
+        <li style="margin-top: 20px;" class="nav-item">
+            <form class="form-inline text-Danger " asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button type="submit" class="nav-link btn btn-link "><h5><i style="margin-right: 10px;" class=" fas fa-sign-out-alt"></i>Logout</h5></button>
+            </form>
+        </li>
+        <div style="margin-top: 20px;" class="dropdown-divider text-white"></div>
+    </div>
+    <span class="closeCustomSidebar">&times;</span>
+</div>
+
+<div class="custom-overlay"></div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Toggle the custom sidebar
+        $(".custom-sidebarCollapse").on("click", function () {
+            $(".custom-sidebar").toggleClass("active");
+            $(".custom-content").toggleClass("shift");
+            $(".custom-overlay").toggleClass("active");
+        });
+
+        // Close the custom sidebar
+        $(".closeCustomSidebar").on("click", function () {
+            $(".custom-sidebar").removeClass("active");
+            $(".custom-content").removeClass("shift");
+            $(".custom-overlay").removeClass("active");
+        });
+
+        // Close the custom sidebar when clicking outside it
+        $(".custom-overlay").on("click", function () {
+            $(".custom-sidebar").removeClass("active");
+            $(".custom-content").removeClass("shift");
+            $(".custom-overlay").removeClass("active");
+        });
+    });
+</script>

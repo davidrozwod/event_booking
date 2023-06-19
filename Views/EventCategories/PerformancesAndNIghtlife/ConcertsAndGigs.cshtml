@@ -1,14 +1,12 @@
-﻿@* 1st sub category *@
-@model List<Event>
-
+﻿@**@
 <style>
- body{
-       background: rgb(232, 252, 252);
-       margin: 0px;
-       padding:0px;
+    body {
+        background: rgb(232, 252, 252);
+        margin: 0px;
+        padding: 0px;
         grid-column-gap: 25px;
         column-gap: 25px;
- }
+    }
 
     body {
         background-image: url('https://images.unsplash.com/photo-1511447333015-45b65e60f6d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=955&q=80');
@@ -16,17 +14,20 @@
         background-attachment: fixed;
         background-size: cover;
     }
+
     .centered {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
     }
- .bottom-left {
-  position: absolute;
-  bottom: 8px;
-  left: 16px;
-}
+
+    .bottom-left {
+        position: absolute;
+        bottom: 8px;
+        left: 16px;
+    }
+
     h1,
     h1 + p {
         margin-left: 15px;
@@ -46,7 +47,7 @@
         margin: 5px 15px 0;
         padding: 0;
         font-weight: 300;
-        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
     }
 
         h2 span {
@@ -56,7 +57,6 @@
         }
 
     h3 {
-
         margin-top: 10px;
         padding: 0;
         font-weight: 300;
@@ -107,6 +107,7 @@
             color: #aaa;
             font-size: 50%;
         }
+
     p {
         margin-left: 15px;
         padding: 0;
@@ -119,14 +120,15 @@
             color: #aaa;
             font-size: 85%;
         }
+
     .example {
-  position: relative;
-  padding: 0;
-  width: 300px;
-  display: block;
-  cursor: pointer;
-  overflow: hidden;
-}
+        position: relative;
+        padding: 0;
+        width: 300px;
+        display: block;
+        cursor: pointer;
+        overflow: hidden;
+    }
 
     .center {
         margin: auto;
@@ -151,20 +153,15 @@
         /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         background: linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1))
     }
-
-    img {
-        margin-bottom: -42px;
-    }
 </style>
 <html>
 <body>
     <section class="background-radial-gradient overflow-hidden">
-        <p class="text-white">Home/Performances & Nightlife/ Concerts and Gigs</p>
+        <p class="text-white">Home/Performances & Nightlife/ Concerts and Gigs </p>
         <p></p>
         <h1 style="font-size:300%; margin-left:20px;" class="row text-white  fw-bold mb-2  text-uppercase">Concerts and Gigs</h1>
         <div class="container-fluid px-7">
             <div class="row gx-3">
-                @* Sidebar *@
                 <div class="col-4">
                     <div class="p-3 border bg-light">
                         <center><h2 class="border-dark border-bottom">SUB CATEGORIES</h2></center>
@@ -205,7 +202,6 @@
                 </div>
                 <div class="col-8">
                     <div class="p-3 border bg-light">
-                        @* header *@
                         <h2 class="border-dark border-bottom">ALL EVENTS</h2>
                         <p></p>
                         @foreach (var item in Model)

@@ -11,10 +11,10 @@
         background: linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1))
     }
 </style>
-<ul class="navbar-nav">
+<ul  class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
-        <div class="container-fluid">
+        <div style="margin-top: 13px;" class="container-fluid">
             <form method="get" asp-controller="Home" asp-action="Search" class="d-flex input-group w-auto">
                 <input type="text"
                        class="form-control rounded"
@@ -27,27 +27,10 @@
             </form>
         </div>
 
-        <div class="dropdown">
-            <button class="btn gradient-custom-3 text-white dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                Welcome,  @await Component.InvokeAsync("UserName")
-            </button>
-            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton1">
-                <li class="nav-item">
-                    <a class="nav-link text-white" asp-controller="Profile" asp-action="Index"><i style="margin-right: 10px;" class="fas fa-user"></i>Profile</a>
-                </li>
-                <li class="nav-item">
-                    @if (User.IsInRole("Promoter") || (User.IsInRole("Admin")))
-                    {
-                        <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="PromoterArea"><i style="margin-right: 10px;" class="fas fa-chart-bar"></i>Dashboard</a>
-                    }
-                </li>
-
-                <li class="nav-item">
-                    <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                        <button type="submit" class="nav-link btn btn-link text-danger"><i style="margin-right: 10px;" class="fas fa-sign-out-alt"></i>Logout</button>
-                    </form>
-                </li>
-            </ul>
+        <div class="custom-sidebar-wrapper">
+            <div class="custom-sidebar-container">
+                <partial name="_Sidebar" />
+            </div>
         </div>
     }
     else
@@ -73,4 +56,16 @@
             <a class="btn gradient-custom-3 text-white" asp-area="Identity" asp-page="/Account/Login">Login</a>
         </li>
     }
+    <script>
+        $(document).ready(function () {
+            // Load the sidebar content into the placeholder using AJAX
+            $.ajax({
+                url: "/Shared/_Sidebar",
+                method: "GET",
+                success: function (result) {
+                    $("#sidebar-placeholder").html(result);
+                }
+            });
+        });
+    </script>
 </ul>

@@ -1,12 +1,15 @@
 ﻿using event_booking.Data;
 using event_booking.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 using System.Linq;
 
 namespace event_booking.Controllers.EventSystem
 {
+    [Authorize(Roles = "Admin, Promoter")]
     public class ESTicketsCreateController : Controller
     {
         private readonly ApplicationDbContext _context;

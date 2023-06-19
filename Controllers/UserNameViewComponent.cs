@@ -1,8 +1,10 @@
 ﻿using event_booking.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
+[Authorize]
 public class UserNameViewComponent : ViewComponent
 {
     private readonly UserManager<IdentityUser> _userManager;

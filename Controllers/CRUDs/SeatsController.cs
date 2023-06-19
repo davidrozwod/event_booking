@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace event_booking.Controllers.CRUDs
 {
+    [Authorize(Roles = "Admin")]
     public class SeatsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -24,7 +25,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: Seats
-        [Authorize]
+        
         public async Task<IActionResult> Index()
         {
             var currentUser = await _userManager.GetUserAsync(User);
@@ -42,7 +43,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: Seats/Details/5
-        [Authorize]
+        
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Seats == null)
@@ -63,7 +64,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: Seats/Create
-        [Authorize]
+        
         public IActionResult Create()
         {
             ViewData["SectionId"] = new SelectList(_context.Sections, "SectionId", "SectionId");
@@ -76,7 +77,7 @@ namespace event_booking.Controllers.CRUDs
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        
         public async Task<IActionResult> Create([Bind("SeatId,VenueId,SectionId,SeatNumber")] Seat seat)
         {
             ModelState.Remove("Venue");
@@ -92,7 +93,7 @@ namespace event_booking.Controllers.CRUDs
             return View("~/Views/CRUDs/Seats/Create.cshtml", seat);
         }
 
-        [Authorize]
+        
         // GET: Seats/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -117,7 +118,7 @@ namespace event_booking.Controllers.CRUDs
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        
         public async Task<IActionResult> Edit(int id, [Bind("SeatId,VenueId,SectionId,SeatNumber")] Seat seat)
         {
             if (id != seat.SeatId)
@@ -153,7 +154,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: Seats/Delete/5
-        [Authorize]
+        
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Seats == null)
@@ -176,7 +177,7 @@ namespace event_booking.Controllers.CRUDs
         // POST: Seats/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Seats == null)
@@ -193,7 +194,7 @@ namespace event_booking.Controllers.CRUDs
             return RedirectToAction(nameof(Index));
         }
 
-        [Authorize]
+        
         private bool SeatExists(int id)
         {
           return (_context.Seats?.Any(e => e.SeatId == id)).GetValueOrDefault();

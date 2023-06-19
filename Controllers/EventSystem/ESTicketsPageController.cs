@@ -152,7 +152,8 @@ namespace event_booking.Controllers.EventSystem
                 groupDiscountId = null;
             }
 
-            // 
+            //
+            // Individual TICKET purchases
             if (discountTicketCounts != null)
             {
                 foreach (var entry in discountTicketCounts)
@@ -181,6 +182,14 @@ namespace event_booking.Controllers.EventSystem
 
 
             return View("~/Views/EventSystem/Tickets/TicketsPage.cshtml", ticketsForEvent);
+        }
+
+        [HttpPost]
+        public IActionResult Details(string FirstName, string LastName, string Email, string PhoneNumber, string Country, string PostalCode)
+        {
+            // Process the form data here
+
+            return RedirectToAction("Index"); // Redirect to the desired page after processing
         }
 
 

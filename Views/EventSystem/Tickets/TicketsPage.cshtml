@@ -238,6 +238,9 @@
     }
 }
 
+<!-- STEP 1 -->
+<!-- BOOK -->
+
         @* Header *@
 <h1 class="display-4">@ViewBag.EventName</h1>  
 <h1 class="display-4">@ViewBag.VenueName</h1>
@@ -335,7 +338,9 @@
             <button class=" text-white btn btn-lg gradient-custom-4 btn-next">Next</button>
         </div>
     </div>
+</form>
 
+    @*                                                                *@
     @* Show the individual discounts for the discounts in the section *@
     @foreach (var discount in ViewBag.Discounts)
     {
@@ -360,60 +365,64 @@
         </div>
     }
 
+<!-- STEP 2 -->
+<!-- DETAILS -->
+
+<form method="post" action="/ESTicketsPage/Details">
+    <div class="form-step">
+        <div class="row g-2">
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
+                    <label for="floatingInputGrid">First Name</label>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
+                    <label for="floatingInputGrid">Last Name</label>
+                </div>
+            </div>
+        </div>
+        <p></p>
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" />
+            <label for="floatingInputGrid">Email</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" />
+            <label for="floatingInputGrid">Phone Number</label>
+        </div>
+        <div class="row g-2">
+            <div class="col-md">
+                <div class="form-floating">
+                    <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example">
+                        <option selected>Pick your Location</option>
+                        <option value="1">This Place</option>
+                        <option value="2">That Place</option>
+                        <option value="3">That other area</option>
+                    </select>
+                    <label for="floatingSelectGrid">Country</label>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
+                    <label for="floatingInputGrid">Postal Code</label>
+                </div>
+            </div>
+        </div>
+        <p></p>
+        <div class="btns-group">
+            <button class=" text-white btn btn-lg gradient-custom-4 btn-prev">Prev</button>
+            <button class=" text-white btn btn-lg gradient-custom-4 btn-next">Next</button>
+        </div>
+    </div>
 </form>
 
+<!-- STEP 3 -->
+<!-- REVIEW -->
 
-<!-- Steps -->
-
-<div class="form-step">
-    <div class="row g-2">
-        <div class="col-md">
-            <div class="form-floating">
-                <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
-                <label for="floatingInputGrid">First Name</label>
-            </div>
-        </div>
-        <div class="col-md">
-            <div class="form-floating">
-                <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
-                <label for="floatingInputGrid">Last Name</label>
-            </div>
-        </div>
-    </div>
-    <p></p>
-    <div class="form-floating mb-3">
-        <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" />
-        <label for="floatingInputGrid">Email</label>
-    </div>
-    <div class="form-floating mb-3">
-        <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" />
-        <label for="floatingInputGrid">Phone Number</label>
-    </div>
-    <div class="row g-2">
-        <div class="col-md">
-            <div class="form-floating">
-                <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example">
-                    <option selected>Pick your Location</option>
-                    <option value="1">This Place</option>
-                    <option value="2">That Place</option>
-                    <option value="3">That other area</option>
-                </select>
-                <label for="floatingSelectGrid">Country</label>
-            </div>
-        </div>
-        <div class="col-md">
-            <div class="form-floating">
-                <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
-                <label for="floatingInputGrid">Postal Code</label>
-            </div>
-        </div>
-    </div>
-    <p></p>
-    <div class="btns-group">
-        <button class=" text-white btn btn-lg gradient-custom-4 btn-prev">Prev</button>
-        <button class=" text-white btn btn-lg gradient-custom-4 btn-next">Next</button>
-    </div>
-</div>
 <div class="form-step">
     <table class="table">
         <thead>
@@ -487,6 +496,10 @@
         <button class=" text-white btn btn-lg gradient-custom-4 btn-next">Next</button>
     </div>
 </div>
+
+<!-- STEP 4 -->
+<!-- PAYMENT -->
+
 <div class="form-step">
     <div class="row g-2">
         <div class="col-md">

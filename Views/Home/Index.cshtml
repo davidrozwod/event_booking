@@ -201,13 +201,22 @@
         .carousel-caption{
             margin-bottom: 500px;
         }
-        .carousel-inner {
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+    .img-container {
+        display: inline-block;
+        position: relative;
+    }
+
+        .img-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            box-shadow: 0px -1220px 360px -280px black inset;
         }
 
-    .box-shad {
-        box-shadow: 0 10px 20px #777 inset, 0 0 200px #000 inset, 0 0 150px #000 inset, 0 0 100px #000 inset;
-    }
 </style>
 <head>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
@@ -217,7 +226,7 @@
             <div class="row gx-3">
                <div class="container-overflow px-7">
                   <div class="col-12">
-                     <div style=" margin-bottom: -15px; margin-top:0px;" class="p-3 border bg-white">
+                     <div style=" margin-bottom: -15px; margin-top:0px; " class="p-3 border bg-white">
                         <div id="eventCarousel" class="carousel slide carousel-fade" data-ride="carousel" style=" margin-top: -17px; margin-bottom: -16px; margin-left: -17px; margin-right: -17px">
                             <div class="carousel-inner" style="max-height: 300px;">
                                     @{
@@ -230,13 +239,13 @@
                                             <div class="carousel-item  @activeClass">
 
                                                     <a asp-controller="ESEventsPage" asp-action="EventsPage" asp-route-id="@events.EventId" class="banner-container">
-                                                    <div class="banner-container aspect-ratio-box">
+                                                    <div class=" img-container banner-container aspect-ratio-box">
                                                         <img src="@events.Image" class="rounded" />
                                                     </div>
                                                     </a>
-                                                <div class="carousel-caption">
-                                                    <h4>@events.Name</h4>
-                                                    <p class="text-muted">@events.EventCategory.CategoryName</p>
+                                                <div  class="carousel-caption">
+                                                     <h4 style="margin-top: -80px;">@events.Name</h4>
+                                                     <p>" class="text-muted">@events.EventCategory.CategoryName</p>
                                                 </div>
                                             </div>
                                         }

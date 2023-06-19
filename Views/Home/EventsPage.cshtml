@@ -124,10 +124,22 @@
     }
                                     @* Image *@
     body {
+        position: relative;
+    }
+
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         background-image: url('@Model.Image');
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-size: cover;
+        filter: brightness(40%) blur(2px); /* Add the desired filter effects */
+        z-index: -1;
     }
 
     .gradient-custom-3 {
@@ -158,7 +170,7 @@
 </style>
 <html>
 <body>
-    <section style="filter: blur(60px)" class="background-radial-gradient container overflow-hidden">
+    <section class="background-radial-gradient container overflow-hidden">
     </section>
     <div class="container-overflow px-7">
         <div class="row">

@@ -24,11 +24,6 @@ namespace event_booking.Controllers.EventSystem
 
         public async Task<IActionResult> Index(string button, int id, int? sectionId = null, int? groupDiscountId = null, Dictionary<int, int> discountTicketCounts = null)
         {
-            if (!string.IsNullOrEmpty(button))
-            {
-                return View();
-            }
-
             var currentUserId = _userManager.GetUserId(User);
             var purchaseId = HttpContext.Session.GetInt32("PurchaseId");
 
@@ -189,7 +184,7 @@ namespace event_booking.Controllers.EventSystem
             return View("~/Views/EventSystem/Tickets/TicketsPage.cshtml", ticketsForEvent);
         }
 
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> Details(string FirstName, string LastName, string Email, string PhoneNumber, string StreetAddress, string Country, string PostalCode)
         {
             //Gets logged in user

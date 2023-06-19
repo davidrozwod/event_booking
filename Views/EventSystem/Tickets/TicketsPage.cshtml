@@ -18,6 +18,7 @@
         <div class="progress-step" data-title="Review"></div>
         <div class="progress-step" data-title="Payment"></div>
     </div>
+</div>
 
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
@@ -35,7 +36,8 @@
 
 <!-- STEP 1 -->
 <!-- BOOK -->
-    <form class="form-step form-step-active" method="get">
+<div class="form-step form-step-active">
+    <form method="get">
 
             <table class="table">
                 <thead>
@@ -87,7 +89,7 @@
                     <td></td>
                     </tr>
                     <tr>
-                         @if (ViewBag.AdultTickets > 0)
+                            @if (ViewBag.AdultTickets > 0)
                         {
                             <th scope="row">Adult Ticket</th>
                             <td></td>
@@ -96,7 +98,7 @@
                         }     
                     </tr>
                     <tr>
-                         @if (ViewBag.ChildTickets > 0)
+                            @if (ViewBag.ChildTickets > 0)
                         {
                             <th scope="row">Child Ticket</th>
                             <td></td>
@@ -131,20 +133,21 @@
                 </div>
             }
             <p></p>
-            <div class="btns-group">
-                <button class=" text-white btn btn-lg gradient-custom-4 btn-next">Next</button>
-            </div>
     </form>
+    <div class="btns-group">
+        <button class=" text-white btn btn-lg gradient-custom-4 btn-next">Next</button>
+    </div>
+</div>
 
 <!-- STEP 2 -->
 <!-- DETAILS -->
 
-    <div class="form-step">
-        @if (TempData["ErrorMessage"] != null)
+<div class="form-step">
+        @*@if (TempData["ErrorMessage"] != null)
         {
             <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
-        }
-    <form class="form-step" method="post" action="/ESTicketsPage/Details">
+        }*@
+    <form method="post" action="/ESTicketsPage/Details">
         <div class="row g-2">
             <div class="col-md">
                 <div class="form-floating">
@@ -193,97 +196,100 @@
             </div>
         </div>
         <p></p>
-        <div class="btns-group">
-            <button class=" text-white btn btn-lg gradient-custom-4 btn-prev" name="button">Prev</button>
-            <button class=" text-white btn btn-lg gradient-custom-4 btn-next" name="button">Next</button>
-        </div>
     </form>
+    <div class="btns-group">
+        <button class=" text-white btn btn-lg gradient-custom-4 btn-prev" name="button">Prev</button>
+        <button class=" text-white btn btn-lg gradient-custom-4 btn-next" name="button">Next</button>
+    </div>
+</div>
 
 <!-- STEP 3 -->
 <!-- REVIEW -->
-    <div class="form-step">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Tickets</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Sub-Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">Adult</th>
-                    <td>$0</td>
-                    <td>
-                        <div class="data-list-input">
-                            <select class="data-list-input" style="width:70px;">
-                                <option value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                            </select>
-                        </div>
-                    </td>
-                    <td>$0</td>
-                </tr>
-                <tr>
-                    <th scope="row">Child</th>
-                    <td>$0</td>
-                    <td>
-                        <div class="data-list-input">
-                            <select class="data-list-input" style="width:70px;">
-                                <option value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                            </select>
-                        </div>
-                    </td>
-                    <td>$0</td>
-                </tr>
-                <tr>
-                    <th scope="row">Under 6</th>
-                    <td>$0</td>
-                    <td>
-                        <div class="data-list-input">
-                            <select class="data-list-input" style="width:70px;">
-                                <option value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                            </select>
-                        </div>
-                    </td>
-                    <td>$0</td>
-                </tr>
-            </tbody>
-        </table>
-        <p></p>
-        <div class="btns-group">
-            <button class=" text-white btn btn-lg gradient-custom-4 btn-prev">Prev</button>
-            <button class=" text-white btn btn-lg gradient-custom-4 btn-next">Next</button>
-        </div>
+<div class="form-step">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Tickets</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Sub-Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Adult</th>
+                <td>$0</td>
+                <td>
+                    <div class="data-list-input">
+                        <select class="data-list-input" style="width:70px;">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>
+                </td>
+                <td>$0</td>
+            </tr>
+            <tr>
+                <th scope="row">Child</th>
+                <td>$0</td>
+                <td>
+                    <div class="data-list-input">
+                        <select class="data-list-input" style="width:70px;">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>
+                </td>
+                <td>$0</td>
+            </tr>
+            <tr>
+                <th scope="row">Under 6</th>
+                <td>$0</td>
+                <td>
+                    <div class="data-list-input">
+                        <select class="data-list-input" style="width:70px;">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>
+                </td>
+                <td>$0</td>
+            </tr>
+        </tbody>
+    </table>
+    <p></p>
+    <div class="btns-group">
+        <button class=" text-white btn btn-lg gradient-custom-4 btn-prev">Prev</button>
+        <button class=" text-white btn btn-lg gradient-custom-4 btn-next">Next</button>
     </div>
-    <div class="form-step">
-        <div class="row g-2">
-            <div class="col-md">
-                <div class="form-floating">
-                    <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
-                    <label for="floatingInputGrid">Card Number</label>
-                </div>
+</div>
+<div class="form-step">
+    <div class="row g-2">
+        <div class="col-md">
+            <div class="form-floating">
+                <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
+                <label for="floatingInputGrid">Card Number</label>
             </div>
         </div>
-        <p></p>
+    </div>
+    <p></p>
+</div>
+
 
 <!-- STEP 4 -->
 <!-- PAYMENT -->

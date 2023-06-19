@@ -1,13 +1,25 @@
 ﻿@* Ticket page preperation page *@
 @* used to prepare the code for merging into home/ticket *@
 @model List<event_booking.Models.Ticket>
-<br />
-<br />
-<br />
 <div class="container">
+    <br />
+    <br />
     @* Header *@
-    <h1 class="display-4">Buy Tickets to @ViewBag.EventName</h1>  
-    <h1 class="display-6">@ViewBag.VenueName</h1>
+    <img class="rounded-circle bg-white" style="width: 180px; height: 180px;" src="https://media.istockphoto.com/id/1204524500/vector/event-icon.jpg?s=612x612&w=0&k=20&c=7iW3d_jqCePuvHIXAL_lmUyENlY4XY2cAghukUuszNg=" />
+    <br />
+    <div2>
+        <h1 class="display-5">@ViewBag.EventName</h1>
+        <h1 class="display-6">@ViewBag.VenueName</h1>
+    </div2>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    
 
     <div class="progressbar">
         <div class="progress gradient-custom-4" id="progress"></div>
@@ -38,103 +50,112 @@
 <!-- BOOK -->
 <div class="form-step form-step-active">
     <form method="get">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Tickets</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Sub-Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">Section</th>
-                <td>
-                    @if (Model.Any())
-                    {
-                        var ticket = Model.First();
-                        <div class="ticket">
-                            <p>Starting Price: @string.Format("{0:0.00}", ticket.BasePrice)</p>
-                        </div>
-                    }
-                    else
-                    {
-                        <p class="alert-danger">No tickets available in this section.</p>
-                    }
-                </td>
-                    <td>
-                        <select name="sectionId" onchange="this.form.submit()">
-                            @foreach (var sec in sectionList)
+        <div class="card">
+            <div class="container"">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Tickets</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Sub-Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Section</th>
+                        <td>
+                            @if (Model.Any())
                             {
-                                <option value="@sec.SectionId" selected="@(sec.SectionId == ViewBag.SelectedSectionId)">@sec.SectionName</option>
+                                var ticket = Model.First();
+                                <div class="ticket">
+                                    <p>Starting Price: @string.Format("{0:0.00}", ticket.BasePrice)</p>
+                                </div>
                             }
-                        </select>
-                    </td>
-                <td>Tickets available: @ViewBag.TicketCount</td>
-                </tr>
-                <tr>
-                    <th scope="row">Group Discounts</th>
-                    <td></td>
-                    <td>
-                        <select name="groupDiscountId" onchange="this.form.submit()">
-                            <option value="" selected="@(ViewBag.SelectedGroupDiscountId == null)">Choose Group Discount</option>
-                            @foreach (var discount in ViewBag.GroupDiscounts)
+                            else
                             {
-                                <option value="@discount.GroupDiscountId" selected="@(discount.GroupDiscountId == ViewBag.SelectedGroupDiscountId)">@discount.GroupName</option>
+                                <p class="alert-danger">No tickets available in this section.</p>
                             }
-                        </select>
-                    </td>
-                <td></td>
-                </tr>
-                <tr>
-                        @if (ViewBag.AdultTickets > 0)
-                    {
-                        <th scope="row">Adult Ticket</th>
+                        </td>
+                            <td>
+                                <select name="sectionId" onchange="this.form.submit()">
+                                    @foreach (var sec in sectionList)
+                                    {
+                                        <option value="@sec.SectionId" selected="@(sec.SectionId == ViewBag.SelectedSectionId)">@sec.SectionName</option>
+                                    }
+                                </select>
+                            </td>
+                        <td>Tickets available: @ViewBag.TicketCount</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Group Discounts</th>
+                            <td></td>
+                            <td>
+                                <select name="groupDiscountId" onchange="this.form.submit()">
+                                    <option value="" selected="@(ViewBag.SelectedGroupDiscountId == null)">Choose Group Discount</option>
+                                    @foreach (var discount in ViewBag.GroupDiscounts)
+                                    {
+                                        <option value="@discount.GroupDiscountId" selected="@(discount.GroupDiscountId == ViewBag.SelectedGroupDiscountId)">@discount.GroupName</option>
+                                    }
+                                </select>
+                            </td>
                         <td></td>
-                        <td>@ViewBag.AdultTickets</td>
-                        <td>@string.Format("{0:0.00}", ViewBag.AdultSubtotal)</td>    
-                    }     
-                </tr>
-                <tr>
-                        @if (ViewBag.ChildTickets > 0)
-                    {
-                        <th scope="row">Child Ticket</th>
-                        <td></td>
-                        <td>@ViewBag.ChildTickets</td>
-                        <td>@string.Format("{0:0.00}", ViewBag.ChildSubtotal)</td>
-                    }
+                        </tr>
+                        <tr>
+                                @if (ViewBag.AdultTickets > 0)
+                            {
+                                <th scope="row">Adult Ticket</th>
+                                <td></td>
+                                <td>@ViewBag.AdultTickets</td>
+                                <td>@string.Format("{0:0.00}", ViewBag.AdultSubtotal)</td>    
+                            }     
+                        </tr>
+                        <tr>
+                                @if (ViewBag.ChildTickets > 0)
+                            {
+                                <th scope="row">Child Ticket</th>
+                                <td></td>
+                                <td>@ViewBag.ChildTickets</td>
+                                <td>@string.Format("{0:0.00}", ViewBag.ChildSubtotal)</td>
+                            }
                     
-                </tr>
-            </tbody>
-        </table>
-        @* Show the individual discounts for the discounts in the section *@
-        @foreach (var discount in ViewBag.Discounts)
-        {
-            <div class="row">
-                <div class="col-auto mr-auto">
-                    <h5>@discount.DiscountName</h5>
-                </div>
-                <div class="col-auto mr-auto">
-                    <select id="quantity-@discount.DiscountId" name="discountTicketCounts[@discount.DiscountId]" onchange="updateTotal(@discount.DiscountId, @discount.PriceMultiplier)">
-                        @for (int i = 0; i <= ViewBag.TicketCount; i++)
-                        {
-                            <option value="@i">@i</option>
-                        }
-                    </select>
-                </div>
-                <div class="col-auto mr-auto">
-                    <p>Individual Price: @string.Format("{0:0.00}", @discount.PriceMultiplier)</p>
-                </div>
-                <div class="col-auto mr-auto">
-                    <p id="total-@discount.DiscountId">Total Price: 0.00</p>
-                </div>
+                        </tr>
+                    </tbody>
+                </table>
+                @* Show the individual discounts for the discounts in the section *@
+                @foreach (var discount in ViewBag.Discounts)
+                {
+                    <div class="row">
+                        <div class="col-auto mr-auto">
+                            <h5>@discount.DiscountName</h5>
+                        </div>
+                        <div class="col-auto mr-auto">
+                            <select id="quantity-@discount.DiscountId" name="discountTicketCounts[@discount.DiscountId]" onchange="updateTotal(@discount.DiscountId, @discount.PriceMultiplier)">
+                                @for (int i = 0; i <= ViewBag.TicketCount; i++)
+                                {
+                                    <option value="@i">@i</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-auto mr-auto">
+                            <p>Individual Price: @string.Format("{0:0.00}", @discount.PriceMultiplier)</p>
+                        </div>
+                        <div class="col-auto mr-auto">
+                            <p id="total-@discount.DiscountId">Total Price: 0.00</p>
+                        </div>
+                    </div>
+                }
+                <p></p>
             </div>
-        }
+        </div>
+        <br>
+        <br />
         <p></p>
     </form>
-    <div class="btns-group">
-        <button class=" text-white btn btn-lg gradient-custom-4 btn-next">Next</button>
+    <div class="container">
+        <div class="btns-group">
+            <button class=" text-white btn btn-lg gradient-custom-4 btn-next">Next</button>
+        </div>
     </div>
 </div>
 
@@ -342,8 +363,18 @@
         <p></p>
     </form>
     <div class="btns-group">
-        <a asp-area="" asp-controller="Home" asp-action="Ticket2"><input type="submit" value="Submit" class="text-white btn btn-lg gradient-custom-4" /> </a>
+        <a asp-area="" asp-controller="ESTicketsPage" asp-action="Ticket2"><input type="submit" value="Submit" class="text-white btn btn-lg gradient-custom-4" /> </a>
     </div>
+    <form asp-action="Ticket2" method="post">
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            <input type="hidden" asp-for="@Model[i].TicketId" />
+            <input type="hidden" asp-for="@Model[i].PurchaseId" />
+            <input type="hidden" asp-for="@Model[i].DiscountId" />
+            <!-- more fields as needed... -->
+        }
+        <input type="submit" value="Submit" />
+    </form>
 </div>
 
 
@@ -397,6 +428,10 @@
     }
 </script>
 <style>
+    body {
+        background-color: Lavender;
+    }
+
     :root {
         --primary-color: rgb(11, 78, 179);
     }
@@ -443,9 +478,10 @@
             transform: translateY(-50%);
             height: 4px;
             width: 100%;
-            background-color: #dcdcdc;
+            background-color: white;
             z-index: -1;
         }
+
 
     .progress {
         width: 0%;
@@ -455,7 +491,7 @@
     .progress-step {
         width: 2.1875rem;
         height: 2.1875rem;
-        background-color: #dcdcdc;
+        background-color: white;
         border-radius: 50%;
         display: flex;
         justify-content: center;
@@ -530,11 +566,13 @@
 
     thead,
     tfoot {
-        background-color: lightblue;
-        color: DarkSlateGrey;
+        font-size: 20px;
+        background-color: rgba(0, 9, 75, 0.8);
+        color: white;
     }
 
     tbody {
+        font-size: 15px;
     }
 
     table {
@@ -544,6 +582,7 @@
     td,
     th {
         padding: 5px 10px;
+        text-align: left;
     }
 
     a {
@@ -554,8 +593,31 @@
         color: rgba(108, 11, 113, 1);
     }
 
-    .group {
-        border: 1px solid black;
+    img {
+        float: left;
+    }
+
+    div2 {
+        float: right;
+    }
+
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        
+    }
+
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+
+    .container {
+        padding: 20px 20px;
     }
 </style>
+
+
 

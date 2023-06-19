@@ -8,6 +8,7 @@ using event_booking.Models;
 using event_booking.Models.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
+using SendGrid.Helpers.Mail;
 
 namespace event_booking.Controllers.EventSystem
 {
@@ -22,6 +23,7 @@ namespace event_booking.Controllers.EventSystem
             _userManager = userManager;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Index(string button, int id, int? sectionId = null, int? groupDiscountId = null, Dictionary<int, int> discountTicketCounts = null)
         {
             var currentUserId = _userManager.GetUserId(User);
@@ -180,9 +182,28 @@ namespace event_booking.Controllers.EventSystem
 
             ViewBag.Discounts = await _context.Discounts.ToListAsync();
 
+           /*if()
+
+
+                    var purchaseId = HttpContext.Session.GetInt32("PurchaseId");
+
+                    // Retrieve all tickets that are associated with this purchase
+                    var ticketsForEvent = await _context.Tickets
+                        .Where(t => t.PurchaseId == purchaseId)
+                        .ToListAsync();
+
+                    // Save changes to the database
+                    _context.UpdateRange(ticketsForEvent);
+                    await _context.SaveChangesAsync();
+
+                    // Redirect to another action or return a view
+                    return View("~/Views/Home/Ticket2.cshtml");
+                }*/
+
 
             return View("~/Views/EventSystem/Tickets/TicketsPage.cshtml", ticketsForEvent);
         }
+
 
         [HttpGet]
         public async Task<IActionResult> Details(string FirstName, string LastName, string Email, string PhoneNumber, string StreetAddress, string Country, string PostalCode)
@@ -200,117 +221,139 @@ namespace event_booking.Controllers.EventSystem
             return RedirectToAction("Index"); // Redirect to the desired page after processing
         }
 
-        /*//
-        //Selects a single ticket for viewing
-        [Authorize]
-        public async Task<IActionResult> Detail(int id)
+    [HttpPost]
+    public async Task<IActionResult> Ticket2(IEnumerable<Ticket> updatedTickets)
+    {
+        foreach (var updatedTicket in updatedTickets)
         {
-            //Get the ticket and include the related entities
-            var ticket = await _context.Tickets
-                .Include(t => t.Event)
-                .Include(t => t.Venue)
-                .Include(t => t.Seat).ThenInclude(s => s.Section)
-                .Include(t => t.Discount)
-                .Include(t => t.EventUser)
-                .Include(t => t.TicketType)
-                .FirstOrDefaultAsync(t => t.TicketId == id);
-
-            if (ticket == null)
+            var ticket = await _context.Tickets.FindAsync(updatedTicket.TicketId);
+            if (ticket != null)
             {
-                return NotFound();
+                // Only update the PurchaseId and DiscountId here because the other fields might be altered unintentionally
+                ticket.PurchaseId = updatedTicket.PurchaseId;
+                ticket.DiscountId = updatedTicket.DiscountId;
+
+                _context.Tickets.Update(ticket);
             }
+        }
 
-            // Get the discounts and convert them to a dictionary
-            var discounts = await _context.Discounts
-                    .ToDictionaryAsync(d => d.DiscountId, d => d.PriceMultiplier);
-            var discountNames = await _context.Discounts
-                    .ToDictionaryAsync(d => d.DiscountId, d => d.DiscountName);
+        await _context.SaveChangesAsync();
 
-            // get the current logged in user
-            var user = await _userManager.GetUserAsync(User);
+            // Redirect to another action or return a view
+            return View("~/Views/Home/Ticket2.cshtml");
+    }
 
-            // logged in user is an event user, get the first and last name
-            var eventUser = await _context.EventUsers.FirstOrDefaultAsync(eu => eu.EventUserId == user.Id);
+    /*//
+    //Selects a single ticket for viewing
+    [Authorize]
+    public async Task<IActionResult> Detail(int id)
+    {
+        //Get the ticket and include the related entities
+        var ticket = await _context.Tickets
+            .Include(t => t.Event)
+            .Include(t => t.Venue)
+            .Include(t => t.Seat).ThenInclude(s => s.Section)
+            .Include(t => t.Discount)
+            .Include(t => t.EventUser)
+            .Include(t => t.TicketType)
+            .FirstOrDefaultAsync(t => t.TicketId == id);
 
-            if (eventUser != null)
+        if (ticket == null)
+        {
+            return NotFound();
+        }
+
+        // Get the discounts and convert them to a dictionary
+        var discounts = await _context.Discounts
+                .ToDictionaryAsync(d => d.DiscountId, d => d.PriceMultiplier);
+        var discountNames = await _context.Discounts
+                .ToDictionaryAsync(d => d.DiscountId, d => d.DiscountName);
+
+        // get the current logged in user
+        var user = await _userManager.GetUserAsync(User);
+
+        // logged in user is an event user, get the first and last name
+        var eventUser = await _context.EventUsers.FirstOrDefaultAsync(eu => eu.EventUserId == user.Id);
+
+        if (eventUser != null)
+        {
+            ViewBag.FirstName = eventUser.FirstName;
+            ViewBag.LastName = eventUser.LastName;
+        }
+
+        ViewBag.CurrentUser = user;
+
+        var purchaseId = HttpContext.Session.GetInt32("PurchaseId");
+
+        // check if the ticket is already associated with a purchase
+        if (ticket.PurchaseId.HasValue)
+        {
+            // if the same user reloads the page, use the existing purchase
+            if (purchaseId == ticket.PurchaseId.Value)
             {
-                ViewBag.FirstName = eventUser.FirstName;
-                ViewBag.LastName = eventUser.LastName;
-            }
-
-            ViewBag.CurrentUser = user;
-
-            var purchaseId = HttpContext.Session.GetInt32("PurchaseId");
-
-            // check if the ticket is already associated with a purchase
-            if (ticket.PurchaseId.HasValue)
-            {
-                // if the same user reloads the page, use the existing purchase
-                if (purchaseId == ticket.PurchaseId.Value)
-                {
-                    ViewBag.Message = "This ticket is already reserved by you.";
-                }
-                else
-                {
-                    // if another user has already reserved the ticket, display a message
-                    ViewBag.Message = "This ticket is already reserved by another user.";
-                    return View("~/Views/EventSystem/Tickets/TicketView.cshtml");
-                }
+                ViewBag.Message = "This ticket is already reserved by you.";
             }
             else
             {
-                Purchase purchase;
+                // if another user has already reserved the ticket, display a message
+                ViewBag.Message = "This ticket is already reserved by another user.";
+                return View("~/Views/EventSystem/Tickets/TicketView.cshtml");
+            }
+        }
+        else
+        {
+            Purchase purchase;
 
-                if (purchaseId.HasValue)
-                {
-                    purchase = await _context.Purchases.FindAsync(purchaseId.Value);
-                }
-                else
-                {
-                    purchase = new Purchase();
-                    _context.Purchases.Add(purchase);
-                    await _context.SaveChangesAsync();
-                    HttpContext.Session.SetInt32("PurchaseId", purchase.PurchaseId);
-                }
-
-                ticket.PurchaseId = purchase.PurchaseId;
+            if (purchaseId.HasValue)
+            {
+                purchase = await _context.Purchases.FindAsync(purchaseId.Value);
+            }
+            else
+            {
+                purchase = new Purchase();
+                _context.Purchases.Add(purchase);
                 await _context.SaveChangesAsync();
+                HttpContext.Session.SetInt32("PurchaseId", purchase.PurchaseId);
             }
 
-            ticket.TicketPrice = ticket.BasePrice;
-
-            var model = new TicketPriceViewModel
-            {
-                Event = ticket.Event,
-                Venue = ticket.Venue,
-                Seat = ticket.Seat,
-                Ticket = ticket,
-                Discounts = discounts,
-                DiscountNames = discountNames
-            };
-
-            return View("~/Views/EventSystem/Tickets/TicketView.cshtml", model);
+            ticket.PurchaseId = purchase.PurchaseId;
+            await _context.SaveChangesAsync();
         }
-        */
 
-        /*
-        public IActionResult ConfirmPurchase(int ticketId)
+        ticket.TicketPrice = ticket.BasePrice;
+
+        var model = new TicketPriceViewModel
         {
-            var ticket = _context.Tickets.Find(ticketId);
+            Event = ticket.Event,
+            Venue = ticket.Venue,
+            Seat = ticket.Seat,
+            Ticket = ticket,
+            Discounts = discounts,
+            DiscountNames = discountNames
+        };
 
-            // ...other code...
-
-            var discounts = _context.Discounts
-                .ToDictionary(d => d.DiscountId, d => d.PriceMultiplier);
-
-            var model = new TicketPriceViewModel
-            {
-                Ticket = ticket,
-                Discounts = discounts
-            };
-
-            return View(model);
-        }*/
-
+        return View("~/Views/EventSystem/Tickets/TicketView.cshtml", model);
     }
+    */
+
+    /*
+    public IActionResult ConfirmPurchase(int ticketId)
+    {
+        var ticket = _context.Tickets.Find(ticketId);
+
+        // ...other code...
+
+        var discounts = _context.Discounts
+            .ToDictionary(d => d.DiscountId, d => d.PriceMultiplier);
+
+        var model = new TicketPriceViewModel
+        {
+            Ticket = ticket,
+            Discounts = discounts
+        };
+
+        return View(model);
+    }*/
+
+}
 }

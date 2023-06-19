@@ -11,7 +11,7 @@
 <div class="row">
     <div class="col">
         <time datetime="{{CURRENT_DATE}}"></time>
-        <p>Order No: SL397826</p>
+        <p>Order No: SL#@ViewData["PurchaseId"]EFNZ198</p>
     </div>
     <div class="col">
         <strong><p>Billed To</p></strong>
@@ -62,8 +62,8 @@
   <tr>
     <td>900137</td>
     <td>Adult</td>
-        <td>(ViewData["FirstName"] + " " + ViewData["LastName"])</td>
-    <td>Download</td>
+        <td>@(ViewData["FirstName"] + " " + ViewData["LastName"])</td>
+    <td>View E-Ticket</td>// make link to e-ticket
   </tr>
 </table>
 <script>

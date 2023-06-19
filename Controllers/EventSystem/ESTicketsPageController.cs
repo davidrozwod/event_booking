@@ -27,7 +27,26 @@ namespace event_booking.Controllers.EventSystem
         public async Task<IActionResult> Index(string button, int id, int? sectionId = null, int? groupDiscountId = null, Dictionary<int, int> discountTicketCounts = null)
         {
             var currentUserId = _userManager.GetUserId(User);
+            Purchase purchase;
+
+            // Get the PurchaseId from the session, if any
             var purchaseId = HttpContext.Session.GetInt32("PurchaseId");
+
+            if (purchaseId.HasValue)
+            {
+                // If the PurchaseId exists in the session, find the Purchase
+                purchase = await _context.Purchases.FindAsync(purchaseId.Value);
+            }
+            else
+            {
+                // If the PurchaseId does not exist in the session, create a new Purchase
+                purchase = new Purchase();
+                // Set the session expiry time to the current time plus 5 minutes
+                purchase.SessionExpiryTime = DateTime.UtcNow.AddMinutes(5);
+                _context.Purchases.Add(purchase);
+                await _context.SaveChangesAsync();
+                HttpContext.Session.SetInt32("PurchaseId", purchase.PurchaseId);
+            }
 
             var ticketsForEvent = await _context.Tickets
                 .Include(t => t.Event)
@@ -229,14 +248,14 @@ namespace event_booking.Controllers.EventSystem
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound();
+                return RedirectToAction("~/Areas/Identity/Pages/Account/Login.cshtml");
             }
 
             //Matches logged in user to the EventUser
             var eventUser = await _context.EventUsers.FirstOrDefaultAsync(e => e.EventUserId == user.Id);
             if (eventUser == null)
             {
-                return NotFound();
+                return RedirectToAction("~/Areas/Identity/Pages/Account/Login.cshtml");
             }
 
             //Updates the Profile View with the logged in user's information
@@ -244,8 +263,12 @@ namespace event_booking.Controllers.EventSystem
             ViewData["UserName"] = eventUser.UserName;
             ViewData["FirstName"] = eventUser.FirstName;
             ViewData["LastName"] = eventUser.LastName;
+            ViewData["Email"] = user.Email;
             ViewData["Age"] = eventUser.Age;
             ViewData["Document"] = eventUser.Document;
+
+            var purchaseId = HttpContext.Session.GetInt32("PurchaseId");
+            ViewData["PurchaseId"] = purchaseId;
 
 
             foreach (var updatedTicket in updatedTickets)

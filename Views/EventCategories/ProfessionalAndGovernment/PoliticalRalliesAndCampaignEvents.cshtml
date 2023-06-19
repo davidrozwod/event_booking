@@ -158,82 +158,82 @@
 <html>
 <body>
     <section class="background-radial-gradient overflow-hidden">
-    </section>
-    <p class="text-white">Home/Professional and Government/ Political Rallies and Campaign Events</p>
-            <p></p>
-            <h1 class="text-white">Political Rallies and Campaign Events</h1>
-            <div class="container-fluid px-7">
-                <div class="row gx-3">
-                    <div class="col-4">
-                        <div class="p-3 border bg-light">
-                            <center><h2 class="border-dark border-bottom">SUB CATEGORIES</h2></center>
-                            <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
-                                <a class="nav-link text-black" asp-area="" asp-controller="ProfessionalAndGovernment" asp-action="Index">All Events </a>
-                            </div>
-                            <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
-                                <a class="nav-link text-black" asp-area="" asp-controller="ProfessionalAndGovernment" asp-action="IndustryConferencesAndSummits">Industry Conferences And Summits </a>
-                            </div>
-                            <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
-                                <a class="nav-link text-black" asp-area="" asp-controller="ProfessionalAndGovernment" asp-action="WorkshopsAndTrainingSessions">Workshops And Training Sessions</a>
-                            </div>
-                            <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
-                                <a class="nav-link text-black" asp-area="" asp-controller="ProfessionalAndGovernment" asp-action="ProductLaunchesAndDemonstrations">Product Launches And Demonstrations</a>
-                            </div>
-                            <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
-                                <a class="nav-link text-black" asp-area="" asp-controller="ProfessionalAndGovernment" asp-action="BusinessNetworkingEvents">Business Networking Events</a>
-                            </div>
-                            <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
-                                <a class="nav-link text-black" asp-area="" asp-controller="ProfessionalAndGovernment" asp-action="AcademicResearchPresentation">Academic Research Presentation</a>
-                            </div>
-                            <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
-                                <a class="nav-link text-black" asp-area="" asp-controller="ProfessionalAndGovernment" asp-action="PanelDiscussionsAndTalks">Pane lDiscussions And Talks</a>
-                            </div>
-                            <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
-                                <a class="nav-link text-black" asp-area="" asp-controller="ProfessionalAndGovernment" asp-action="TradeShowsAndExhibition">Trade Shows And Exhibition</a>
-                            </div>
-                            <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
-                                <a class="nav-link text-black" asp-area="" asp-controller="ProfessionalAndGovernment" asp-action="GovernmentConferencesAndForums">Government Conferences And Forums</a>
-                            </div>
-                            <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
-                                <a class="nav-link text-black" asp-area="" asp-controller="ProfessionalAndGovernment" asp-action="PoliticalRalliesAndCampaignEvents">Political Rallies And Campaign Events</a>
-                            </div>
-                            <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
-                                <a class="nav-link text-black" asp-area="" asp-controller="ProfessionalAndGovernment" asp-action="ProfessionalAssociationMeetings">Professional Association Meetings</a>
-                            </div>
+        <p class="text-white">Home/Professional and Government/ Political Rallies and Campaign Events</p>
+        <p></p>
+        <h1 class="text-white">Political Rallies and Campaign Events</h1>
+        <div class="container-fluid px-7">
+            <div class="row gx-3">
+                <div class="col-4">
+                    <div class="p-3 border bg-light">
+                        <center><h2 class="border-dark border-bottom">SUB CATEGORIES</h2></center>
+                        <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
+                            <a class="nav-link text-black" asp-area="" asp-controller="ProfessionalAndGovernment" asp-action="Index">All Events </a>
                         </div>
-                    </div>
-                    <div class="col-8">
-                        <div class="p-3 border bg-light">
-                            <h2 class="border-dark border-bottom">ALL EVENTS</h2>
-                            <p></p>
-                            @foreach (var item in Model)
-                            {
-                                <div class="row mb-3 border border-dark">
-                                    <div class="col-md-2">
-                                        <img style="margin-top:4px;" src="@item.Image" alt="Event image" width="100" height="80%" />
-                                    </div>
-                                    <div class="col-md-1">
-                                        <h5 style="margin-top: 25px;">@item.StartDateTime.ToString("dd/MM")</h5>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="text-muted">@item.Name</h6>
-                                        <h6> @item.Organizer.Name</h6>
-                                        <h6 class="text-muted"> @item.EventCategory.CategoryName</h6>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <p></p>
-                                        <a class="btn gradient-custom-3 text-white" asp-area="" asp-controller="ESEventsPage" asp-action="EventsPage" asp-route-id="@item.EventId">View Event ></a>
-                                        <p></p>
-                                    </div>
-                                </div>
-                            }
-                            </div>
+                        <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
+                            <a class="nav-link text-black" asp-area="" asp-controller="ProfessionalAndGovernment" asp-action="IndustryConferencesAndSummits">Industry Conferences And Summits </a>
+                        </div>
+                        <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
+                            <a class="nav-link text-black" asp-area="" asp-controller="ProfessionalAndGovernment" asp-action="WorkshopsAndTrainingSessions">Workshops And Training Sessions</a>
+                        </div>
+                        <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
+                            <a class="nav-link text-black" asp-area="" asp-controller="ProfessionalAndGovernment" asp-action="ProductLaunchesAndDemonstrations">Product Launches And Demonstrations</a>
+                        </div>
+                        <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
+                            <a class="nav-link text-black" asp-area="" asp-controller="ProfessionalAndGovernment" asp-action="BusinessNetworkingEvents">Business Networking Events</a>
+                        </div>
+                        <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
+                            <a class="nav-link text-black" asp-area="" asp-controller="ProfessionalAndGovernment" asp-action="AcademicResearchPresentation">Academic Research Presentation</a>
+                        </div>
+                        <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
+                            <a class="nav-link text-black" asp-area="" asp-controller="ProfessionalAndGovernment" asp-action="PanelDiscussionsAndTalks">Pane lDiscussions And Talks</a>
+                        </div>
+                        <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
+                            <a class="nav-link text-black" asp-area="" asp-controller="ProfessionalAndGovernment" asp-action="TradeShowsAndExhibition">Trade Shows And Exhibition</a>
+                        </div>
+                        <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
+                            <a class="nav-link text-black" asp-area="" asp-controller="ProfessionalAndGovernment" asp-action="GovernmentConferencesAndForums">Government Conferences And Forums</a>
+                        </div>
+                        <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
+                            <a class="nav-link text-black" asp-area="" asp-controller="ProfessionalAndGovernment" asp-action="PoliticalRalliesAndCampaignEvents">Political Rallies And Campaign Events</a>
+                        </div>
+                        <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
+                            <a class="nav-link text-black" asp-area="" asp-controller="ProfessionalAndGovernment" asp-action="ProfessionalAssociationMeetings">Professional Association Meetings</a>
                         </div>
                     </div>
                 </div>
+                <div class="col-8">
+                    <div class="p-3 border bg-light">
+                        <h2 class="border-dark border-bottom">ALL EVENTS</h2>
+                        <p></p>
+                        @foreach (var item in Model)
+                        {
+                            <div class="row mb-3 border border-dark">
+                                <div class="col-md-2">
+                                    <img style="margin-top:4px;" src="@item.Image" alt="Event image" width="100" height="80%" />
+                                </div>
+                                <div class="col-md-1">
+                                    <h5 style="margin-top: 25px;">@item.StartDateTime.ToString("dd/MM")</h5>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6 class="text-muted">@item.Name</h6>
+                                    <h6> @item.Organizer.Name</h6>
+                                    <h6 class="text-muted"> @item.EventCategory.CategoryName</h6>
+                                </div>
+                                <div class="col-md-3">
+                                    <p></p>
+                                    <a class="btn gradient-custom-3 text-white" asp-area="" asp-controller="ESEventsPage" asp-action="EventsPage" asp-route-id="@item.EventId">View Event ></a>
+                                    <p></p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
             </div>
-        </div> 
-   </div>
+        </div>
+        </div>
+        </div>
+        </div>
+    </section>
 </body>
 
 </html>

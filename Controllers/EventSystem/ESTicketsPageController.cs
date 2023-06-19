@@ -182,23 +182,23 @@ namespace event_booking.Controllers.EventSystem
 
             ViewBag.Discounts = await _context.Discounts.ToListAsync();
 
-           /*if()
+            /*if()
 
 
-                    var purchaseId = HttpContext.Session.GetInt32("PurchaseId");
+                     var purchaseId = HttpContext.Session.GetInt32("PurchaseId");
 
-                    // Retrieve all tickets that are associated with this purchase
-                    var ticketsForEvent = await _context.Tickets
-                        .Where(t => t.PurchaseId == purchaseId)
-                        .ToListAsync();
+                     // Retrieve all tickets that are associated with this purchase
+                     var ticketsForEvent = await _context.Tickets
+                         .Where(t => t.PurchaseId == purchaseId)
+                         .ToListAsync();
 
-                    // Save changes to the database
-                    _context.UpdateRange(ticketsForEvent);
-                    await _context.SaveChangesAsync();
+                     // Save changes to the database
+                     _context.UpdateRange(ticketsForEvent);
+                     await _context.SaveChangesAsync();
 
-                    // Redirect to another action or return a view
-                    return View("~/Views/Home/Ticket2.cshtml");
-                }*/
+                     // Redirect to another action or return a view
+                     return View("~/Views/Home/Ticket2.cshtml");
+                 }*/
 
 
             return View("~/Views/EventSystem/Tickets/TicketsPage.cshtml", ticketsForEvent);
@@ -215,33 +215,35 @@ namespace event_booking.Controllers.EventSystem
                 return NotFound();
             }
 
-            
+
             // Process the form data here
 
             return RedirectToAction("Index"); // Redirect to the desired page after processing
         }
 
-    [HttpPost]
-    public async Task<IActionResult> Ticket2(IEnumerable<Ticket> updatedTickets)
-    {
-        foreach (var updatedTicket in updatedTickets)
+        [HttpPost]
+        public async Task<IActionResult> Ticket2(IEnumerable<Ticket> updatedTickets)
         {
-            var ticket = await _context.Tickets.FindAsync(updatedTicket.TicketId);
-            if (ticket != null)
+            foreach (var updatedTicket in updatedTickets)
             {
-                // Only update the PurchaseId and DiscountId here because the other fields might be altered unintentionally
-                ticket.PurchaseId = updatedTicket.PurchaseId;
-                ticket.DiscountId = updatedTicket.DiscountId;
+                var ticket = await _context.Tickets.FindAsync(updatedTicket.TicketId);
+                if (ticket != null)
+                {
+                    // Only update the PurchaseId and DiscountId here because the other fields might be altered unintentionally
+                    ticket.PurchaseId = updatedTicket.PurchaseId;
+                    ticket.DiscountId = updatedTicket.DiscountId;
 
-                _context.Tickets.Update(ticket);
+                    _context.Tickets.Update(ticket);
+                }
             }
-        }
 
-        await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
 
             // Redirect to another action or return a view
             return View("~/Views/Home/Ticket2.cshtml");
+        }
     }
+}
 
     /*//
     //Selects a single ticket for viewing
@@ -354,9 +356,7 @@ namespace event_booking.Controllers.EventSystem
 
         return View(model);
     }*/
-
-}
-=======
+/*
 ﻿using event_booking.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -650,7 +650,3 @@ namespace event_booking.Controllers.EventSystem
 
             return View(model);
         }*/
-
-    }
->>>>>>> development
-}

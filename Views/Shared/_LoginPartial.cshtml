@@ -1,4 +1,4 @@
-﻿@using Microsoft.AspNetCore.Identity
+﻿﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 <style>
@@ -12,24 +12,24 @@
     }
 </style>
 <ul class="navbar-nav">
-@if (SignInManager.IsSignedIn(User))
-{
+    @if (SignInManager.IsSignedIn(User))
+    {
         <div class="container-fluid">
-            <form class="d-flex input-group w-auto">
-                <input type="search"
+            <form method="get" asp-controller="Home" asp-action="Search" class="d-flex input-group w-auto">
+                <input type="text"
                        class="form-control rounded"
+                       name="searchTerm"
                        placeholder="Search"
-                       aria-label="Search"
                        aria-describedby="search-addon" />
-                <span class="input-group-text border-0" id="search-addon">
+                <button type="submit" class=" input-group-text border-0" id="search-addon">
                     <i class="fas fa-search"></i>
-                </span>
+                </button>
             </form>
         </div>
-       
+
         <div class="dropdown">
             <button class="btn gradient-custom-3 text-white dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              Welcome,  @await Component.InvokeAsync("UserName")
+                Welcome,  @await Component.InvokeAsync("UserName")
             </button>
             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton1">
                 <li class="nav-item">
@@ -49,9 +49,9 @@
                 </li>
             </ul>
         </div>
-}
-else
-{
+    }
+    else
+    {
 
         <div class="container-fluid">
             <form method="get" asp-controller="Home" asp-action="Search" class="d-flex input-group w-auto">
@@ -66,11 +66,11 @@ else
             </form>
         </div>
 
-    <li class="nav-item">
+        <li class="nav-item">
             <a class="btn btn-dark px-3" asp-area="Identity" asp-page="/Account/Register">Register</a>
-    </li>
-    <li class="nav-item">
+        </li>
+        <li class="nav-item">
             <a class="btn gradient-custom-3 text-white" asp-area="Identity" asp-page="/Account/Login">Login</a>
-    </li>
-}
+        </li>
+    }
 </ul>

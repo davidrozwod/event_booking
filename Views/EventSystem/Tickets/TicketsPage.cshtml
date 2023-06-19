@@ -33,7 +33,9 @@
         }
     }
 
-        <div class="form-step form-step-active">
+<!-- STEP 1 -->
+<!-- BOOK -->
+    <form class="form-step form-step-active" method="get">
 
             <table class="table">
                 <thead>
@@ -132,10 +134,10 @@
             <div class="btns-group">
                 <button class=" text-white btn btn-lg gradient-custom-4 btn-next">Next</button>
             </div>
-        </div>
+        </form>
 
-
-    <!-- Steps -->
+<!-- STEP 2 -->
+<!-- DETAILS -->
 
     <div class="form-step">
         @if (TempData["ErrorMessage"] != null)
@@ -191,6 +193,9 @@
             <button class=" text-white btn btn-lg gradient-custom-4 btn-next">Next</button>
         </div>
     </div>
+
+<!-- STEP 1 -->
+<!-- REVIEW -->
     <div class="form-step">
         <table class="table">
             <thead>
@@ -274,6 +279,10 @@
             </div>
         </div>
         <p></p>
+
+<!-- STEP 1 -->
+<!-- PAYMENT -->
+
         <div class="row g-2">
             <div class="col-md">
                 <div class="form-floating">

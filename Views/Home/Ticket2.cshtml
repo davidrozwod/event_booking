@@ -1,4 +1,5 @@
-﻿
+﻿@model event_booking.Models.EventUser
+
 @{
     ViewData["Title"] = "Ticket2";
 }
@@ -9,16 +10,13 @@
 <h5>Receipt</h5>
 <div class="row">
     <div class="col">
-        <p>19th May 2023</p>
-        <p>Order No: SL397826</p>
+        <time datetime="{{CURRENT_DATE}}"></time>
+        <p>Order No: SL#@ViewData["PurchaseId"]EFNZ198</p>
     </div>
     <div class="col">
         <strong><p>Billed To</p></strong>
-        <p>Mr Jones Smith</p>
-        <p>119 Queen Street,</p>
-        <p>Auckland,</p>
-        <p>New Zealand</p>
-        <p>0612</p>
+        <p>@(ViewData["FirstName"] + " " + ViewData["LastName"])</p>
+        <p>@ViewData["Email"]</p>
     </div>
 </div>
 
@@ -54,45 +52,24 @@
     <h4 class="display-4">Download</h4>
 </div>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">No</th>
-            <th scope="col">Ticket Type</th>
-            <th scope="col">Name</th>
-            <th scope="col">E-Ticket</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th scope="row">900137</th>
-            <td>Adult</td>
-            <td>Mr John Smith</td>
-            <td>Download</td>
-        </tr>
-    </tbody>
+<table>
+    <tr>
+        <th>No</th>
+        <th>Ticket Type</th>
+        <th>Name</th>
+        <th>E-Ticket</th>
+    </tr>
+    <tr>
+        <td>900137</td>
+        <td>Adult</td>
+        <td>@(ViewData["FirstName"] + " " + ViewData["LastName"])</td>
+        <td>View E-Ticket</td>// make link to e-ticket
+    </tr>
 </table>
-
-<style>
-    thead,
-    tfoot {
-        background-color: lightblue;
-        color: DarkSlateGrey;
-    }
-
-    tbody {
-    }
-
-    table {
-        border-collapse: collapse;
-    }
-
-    td,
-    th {
-        padding: 5px 10px;
-    }
-
-    h4 {
-        color: rgba(108, 11, 113, 1);
-    }
-</style>
+<script>
+    // JavaScript code to set the current date in the <time> element
+    var currentDate = new Date();
+    var dateString = currentDate.toISOString().split('T')[0];
+    document.querySelector("time").setAttribute("datetime", dateString);
+    document.querySelector("time").textContent = dateString;
+</script>

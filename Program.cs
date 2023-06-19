@@ -52,7 +52,7 @@ namespace event_booking
             //Search service initialization
             builder.Services.AddScoped<EventSearchService>();
 
-            // end of services//
+// end of services//
 
             var app = builder.Build();
 

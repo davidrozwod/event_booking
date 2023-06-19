@@ -60,7 +60,7 @@ namespace event_booking.Controllers.EventSystem
                         //This will also limit the number of tickets that can be created.
 
                         //int seatCapacity = venue.SeatCapacity;
-                        int seatCapacity = 10;
+                        int seatCapacity = 60;
 
                         // Check the current number of seats for the venue
                         int currentSeatCount = _context.Seats.Count(s => s.VenueId == ticket.VenueId);

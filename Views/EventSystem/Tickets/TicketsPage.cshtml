@@ -146,7 +146,7 @@
         {
             <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
         }*@
-    <form method="post" action="/ESTicketsPage/Details">
+    <form method="get" action="/ESTicketsPage/Details">
         <div class="row g-2">
             <div class="col-md">
                 <div class="form-floating">
@@ -205,98 +205,95 @@
 <!-- STEP 3 -->
 <!-- REVIEW -->
 <div class="form-step">
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Tickets</th>
-                <th scope="col">Price</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Sub-Total</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">Adult</th>
-                <td>$0</td>
-                <td>
-                    <div class="data-list-input">
-                        <select class="data-list-input" style="width:70px;">
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                        </select>
-                    </div>
-                </td>
-                <td>$0</td>
-            </tr>
-            <tr>
-                <th scope="row">Child</th>
-                <td>$0</td>
-                <td>
-                    <div class="data-list-input">
-                        <select class="data-list-input" style="width:70px;">
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                        </select>
-                    </div>
-                </td>
-                <td>$0</td>
-            </tr>
-            <tr>
-                <th scope="row">Under 6</th>
-                <td>$0</td>
-                <td>
-                    <div class="data-list-input">
-                        <select class="data-list-input" style="width:70px;">
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                        </select>
-                    </div>
-                </td>
-                <td>$0</td>
-            </tr>
-        </tbody>
-    </table>
-    <p></p>
+    <form method="get" action="/ESTicketsPage/Details">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Tickets</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Sub-Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Adult</th>
+                    <td>$0</td>
+                    <td>
+                        <div class="data-list-input">
+                            <select class="data-list-input" style="width:70px;">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td>$0</td>
+                </tr>
+                <tr>
+                    <th scope="row">Child</th>
+                    <td>$0</td>
+                    <td>
+                        <div class="data-list-input">
+                            <select class="data-list-input" style="width:70px;">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td>$0</td>
+                </tr>
+                <tr>
+                    <th scope="row">Under 6</th>
+                    <td>$0</td>
+                    <td>
+                        <div class="data-list-input">
+                            <select class="data-list-input" style="width:70px;">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td>$0</td>
+                </tr>
+            </tbody>
+        </table>
+        <p></p>
+    </form>
     <div class="btns-group">
         <button class=" text-white btn btn-lg gradient-custom-4 btn-prev">Prev</button>
         <button class=" text-white btn btn-lg gradient-custom-4 btn-next">Next</button>
     </div>
 </div>
 
-
-
-
-
 <!-- STEP 4 -->
 <!-- PAYMENT -->
-<div>
-    <div>
-        <div class="form-step">
-            <div class="row g-2">
-                <div class="col-md">
-                    <div class="form-floating">
-                        <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
-                        <label for="floatingInputGrid">Card Number</label>
-                    </div>
+
+<div class="form-step">
+    <form method="get" action="/ESTicketsPage/Details">
+        <div class="row g-2">
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
+                    <label for="floatingInputGrid">Card Number</label>
                 </div>
             </div>
-            <p></p>
         </div>
+        <p></p>        
         <div class="row g-2">
             <div class="col-md">
                 <div class="form-floating">
@@ -352,11 +349,12 @@
 
         </div>
         <p></p>
-        <div class="btns-group">
-            <a asp-area="" asp-controller="Home" asp-action="Ticket2"><input type="submit" value="Submit" class="text-white btn btn-lg gradient-custom-4" /> </a>
-        </div>
+    </form>
+    <div class="btns-group">
+        <a asp-area="" asp-controller="Home" asp-action="Ticket2"><input type="submit" value="Submit" class="text-white btn btn-lg gradient-custom-4" /> </a>
     </div>
 </div>
+
 
 <script>
     const prevBtns = document.querySelectorAll(".btn-prev");

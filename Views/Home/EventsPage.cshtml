@@ -181,8 +181,8 @@
             </div>
                                 @* Event Category Name, Event Name *@
             <div style="margin-top: 80px; margin-left: -50px;" class="col-8 text-white">
-                <p> @Model.EventCategory.CategoryName</p>
-                <h1>@Model.Name</h1>
+                <p class="text-white"> @Model.EventCategory.CategoryName</p>
+                <h1 class="text-white">@Model.Name</h1>
             </div>
         </div>
         <p></p>
@@ -211,11 +211,11 @@
                                     <div style="box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 26px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;" class="container-fluid bg-light">
                                         <div class="col-12">
                                             <div class="row mb-3 border border-dark">
-                            @* Start date *@
+                                                @* Start date *@
                                                 <div class="col-md-1">
                                                     <h5 style="margin-top: 25px;">@Model.StartDateTime.ToString("dd/MM")</h5>
                                                 </div>
-                            @* Event Name, Organizer Name Event Category Name *@
+                                                  @* Event Name, Organizer Name Event Category Name *@
                                                 <div class="col-md-8">
                                                     <h6 class="text-muted">@Model.Name</h6>
                                                     <h6>@Model.Organizer.Name</h6>

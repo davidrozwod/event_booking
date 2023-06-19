@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace event_booking.Controllers.CRUDs
 {
+    [Authorize(Roles = "Admin")]
     public class EventCategoriesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -23,7 +24,7 @@ namespace event_booking.Controllers.CRUDs
             _userManager = userManager;
         }
 
-        [Authorize]
+        
         // GET: EventCategories
         public async Task<IActionResult> Index()
         {
@@ -43,7 +44,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: EventCategories/Details/5
-        [Authorize]
+        
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.EventCategories == null)
@@ -62,7 +63,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: EventCategories/Create
-        [Authorize]
+        
         public IActionResult Create()
         {
             return View("~/Views/CRUDs/EventCategories/Create.cshtml");
@@ -73,7 +74,7 @@ namespace event_booking.Controllers.CRUDs
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        
         public async Task<IActionResult> Create([Bind("EventCategoryId,CategoryName")] EventCategory eventCategory)
         {
             if (ModelState.IsValid)
@@ -86,7 +87,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: EventCategories/Edit/5
-        [Authorize]
+        
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.EventCategories == null)
@@ -107,7 +108,7 @@ namespace event_booking.Controllers.CRUDs
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        
         public async Task<IActionResult> Edit(int id, [Bind("EventCategoryId,CategoryName")] EventCategory eventCategory)
         {
             if (id != eventCategory.EventCategoryId)
@@ -139,7 +140,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: EventCategories/Delete/5
-        [Authorize]
+        
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.EventCategories == null)
@@ -160,7 +161,7 @@ namespace event_booking.Controllers.CRUDs
         // POST: EventCategories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.EventCategories == null)
@@ -177,7 +178,7 @@ namespace event_booking.Controllers.CRUDs
             return RedirectToAction(nameof(Index));
         }
 
-        [Authorize]
+        
         private bool EventCategoryExists(int id)
         {
           return (_context.EventCategories?.Any(e => e.EventCategoryId == id)).GetValueOrDefault();

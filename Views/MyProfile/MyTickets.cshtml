@@ -1,0 +1,64 @@
+﻿@*@model IEnumerable<event_booking.Models.Purchase>
+
+@{
+    ViewData["Title"] = "My Tickets";
+}
+
+<body>
+    <h2>My Tickets</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Ticket</th>
+                <th>Expiry Time</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.PurchaseId</td>
+                    <td id="expiryTime@item.PurchaseId">@item.SessionExpiryTime</td>
+                    <td>
+                        <div id="timer@item.PurchaseId"></div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a href="/Profile/Index" class="btn btn-primary">Back</a>
+
+    @section Scripts {
+        <script>
+            @foreach (var item in Model)
+            {
+                <text>
+                const expiryTime = new Date("@item.SessionExpiryTime").getTime();
+                const now = new Date().getTime();
+                const diff = expiryTime - now;
+
+                let timer = document.getElementById('timer@item.PurchaseId');
+                let countDownDate = new Date().getTime() + diff;
+
+                let x = setInterval(function() {
+                    let now = new Date().getTime();
+                    let distance = countDownDate - now;
+                    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                    timer.innerHTML = minutes + "m " + seconds + "s ";
+
+                    if (distance < 0) {
+                        clearInterval(x);
+                        timer.innerHTML = "EXPIRED";
+                    }
+                }, 1000);
+                </text>
+            }
+        </script>
+    }
+</body>
+*@

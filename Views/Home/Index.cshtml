@@ -1,5 +1,8 @@
 ﻿@model event_booking.Models.Event
 <style>
+    .item image{
+        width: 100%;
+    }
    .centered {
    position: absolute;
    top: 50%;
@@ -27,8 +30,8 @@
    margin: 5px 15px 0;
    padding: 0;
    font-weight: 300;
-   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
-   }
+   font-family: 'Montserrat', sans-serif;
+    }
    h2 span {
    margin-left: 1em;
    color: #aaa;
@@ -38,7 +41,7 @@
    margin-top: 10px;
    padding: 0;
    font-weight: 300;
-   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+        font-family: 'Roboto', sans-serif
    }
    h3 span {
    margin-left: 1em;
@@ -50,7 +53,7 @@
    margin-top: -10px;
    padding: 0;
    font-weight: 300;
-   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+        font-family: 'Roboto', sans-serif
    }
    h4 span {
    margin-left: 1em;
@@ -60,7 +63,7 @@
    h5 {
    padding: 0;
    font-weight: 300;
-   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+   font-family: 'Roboto', sans-serif
    }
    h5 span {
    margin-left: 1em;
@@ -71,7 +74,7 @@
    margin: 5px 5px 0;
    padding: 0;
    font-weight: 300;
-   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+        font-family: 'Roboto', sans-serif
    }
    h6 span {
    margin-left: 1em;
@@ -82,7 +85,7 @@
    margin-left: 15px;
    padding: 0;
    font-weight: 300;
-   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+        font-family: 'Roboto', sans-serif
    }
    p span {
    margin-left: 1em;
@@ -172,15 +175,51 @@
         margin: 0;
     }
 
+    /* Position child elements relative to this element */
+    .aspect-ratio-box {
+        position: relative;
+    }
+
+        /* Create a pseudo element that uses padding-bottom to take up space */
+        .aspect-ratio-box::after {
+            display: block;
+            content: '';
+            /* 16:9 aspect ratio */
+            padding-bottom: 62.5%;
+        }
+
+        /* Image is positioned absolutely relative to the parent element */
+        .aspect-ratio-box img {
+            /* Image should match parent box size */
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .carousel-caption{
+            margin-bottom: 500px;
+        }
+        .carousel-inner {
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        }
+
+    .box-shad {
+        box-shadow: 0 10px 20px #777 inset, 0 0 200px #000 inset, 0 0 150px #000 inset, 0 0 100px #000 inset;
+    }
 </style>
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+</head>
 <body>
          <div class="container-overflow">
             <div class="row gx-3">
                <div class="container-overflow px-7">
                   <div class="col-12">
-                     <div style=" margin-bottom: -20px; margin-top:0px;" class="p-3 border bg-white">
-                        <div id="eventCarousel" class="carousel slide" data-ride="carousel" style=" margin-top: -17px; margin-bottom: -16px; margin-left: -17px; margin-right: -17px">
-                            <div class="carousel-inner">
+                     <div style=" margin-bottom: -15px; margin-top:0px;" class="p-3 border bg-white">
+                        <div id="eventCarousel" class="carousel slide carousel-fade" data-ride="carousel" style=" margin-top: -17px; margin-bottom: -16px; margin-left: -17px; margin-right: -17px">
+                            <div class="carousel-inner" style="max-height: 300px;">
                                     @{
                                         var randomEvent = ((List<Event>)ViewBag.Events).OrderBy(x => Guid.NewGuid()).Take(20).ToList();
                                         for (int i = 0; i < randomEvent.Count; i++)
@@ -188,12 +227,13 @@
                                             var events = randomEvent[i];
                                             var activeClass = i == 0 ? "active" : "";
 
-                                            <div class="carousel-item @activeClass">
+                                            <div class="carousel-item  @activeClass">
 
-                                                <div class="banner-container" style="background-image: url('@events.Image');">
                                                     <a asp-controller="ESEventsPage" asp-action="EventsPage" asp-route-id="@events.EventId" class="banner-container">
+                                                    <div class="banner-container aspect-ratio-box">
+                                                        <img src="@events.Image" class="rounded" />
+                                                    </div>
                                                     </a>
-                                                </div>
                                                 <div class="carousel-caption">
                                                     <h4>@events.Name</h4>
                                                     <p class="text-muted">@events.EventCategory.CategoryName</p>
@@ -227,9 +267,12 @@
                                  )ViewBag.Events).OrderBy(x => Guid.NewGuid()).Take(4);
                                  foreach (var @events in randomEvents)
                                  {
-                                 <div class="col-3 hover-fade rounded ">
+                                 <div class="col-3 hover-fade rounded">
+                                    
                                     <a asp-controller="ESEventsPage" asp-action="EventsPage" asp-route-id="@events.EventId">
+                                    <div class="aspect-ratio-box">
                                     <img src="@events.Image" class="rounded" />
+                                    </div>
                                     </a>
                                     <center>
                                        <p class="text-muted">@events.EventCategory.CategoryName</p>
@@ -251,8 +294,11 @@
                                  {
                                  <div class="col-3 hover-fade rounded ">
                                     <a asp-controller="ESEventsPage" asp-action="EventsPage" asp-route-id="@events.EventId">
+                                    <div class="aspect-ratio-box">
                                     <img src="@events.Image" class="rounded" />
+                                    </div>
                                     </a>
+                                    
                                     <center>
                                        <p class="text-muted">@events.EventCategory.CategoryName</p>
                                     </center>
@@ -268,9 +314,6 @@
                                  <Center>
                                     <h2 class="border-dark border-bottom" style="margin-left:250px; margin-right:250px; margin-bottom: 15px; ">Discover Events </h2>
                                  </Center>
-                                 <Center>
-                                    <p class="text-muted">Randomly selected</p>
-                                 </Center>
                                  @{
                                  var randomEvents3 = ((List
                                  <Event>
@@ -279,7 +322,9 @@
                                  {
                                  <div class="col-6 hover-fade rounded">
                                     <a asp-controller="ESEventsPage" asp-action="EventsPage" asp-route-id="@events.EventId">
+                                    <div class="aspect-ratio-box">
                                     <img src="@events.Image" class="rounded" />
+                                    </div>
                                     </a>
                                     <center>
                                        <p class="text-muted">@events.EventCategory.CategoryName</p>
@@ -296,9 +341,6 @@
                                  <Center>
                                     <h2 class="border-dark border-bottom" style="margin-left:250px; margin-right:250px; margin-bottom: 15px; ">Upcoming Events </h2>
                                  </Center>
-                                 <Center>
-                                    <p class="text-muted">Taking place in the next fortnight</p>
-                                 </Center>
                                  @{
                                  var upcomingEvents = ((List
                                  <Event>
@@ -311,7 +353,9 @@
                                  string startDate = @events.StartDateTime.ToString("dd/MM/yyyy");
                                  <div class="col-4 hover-fade rounded">
                                     <a asp-controller="ESEventsPage" asp-action="EventsPage" asp-route-id="@events.EventId">
+                                    <div class="aspect-ratio-box">
                                     <img src="@events.Image" class="rounded" />
+                                    </div>
                                     </a>
                                     <p></p>
                                     <center>
@@ -340,13 +384,15 @@
                                     @{
                                     var latestEvents = ((List
                                     <Event>
-                                    )ViewBag.Events).OrderByDescending(e => e.StartDateTime).Take(8);
+                                    )ViewBag.Events).OrderByDescending(e => e.StartDateTime).Take(9);
                                     foreach (var @events in latestEvents)
                                     {
                                     <div class="col-10 hover-fade rounded">
-                                       <a asp-controller="ESEventsPage" asp-action="EventsPage" asp-route-id="@events.EventId">
-                                       <img src="@events.Image" class="rounded" />
-                                       </a>
+                                    <a asp-controller="ESEventsPage" asp-action="EventsPage" asp-route-id="@events.EventId">
+                                    <div class="aspect-ratio-box">
+                                    <img src="@events.Image" class="rounded" />
+                                    </div>
+                                    </a>
                                        <br>
                                        <div>
                                           <center>

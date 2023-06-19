@@ -119,10 +119,12 @@
 <style>
     .profile-picture {
         float: right;
+        margin-top: 2px;
         margin-left: 20px;
-        border-radius: 50%;
-        height: 170px;
-        width: 170px;
+        margin-right: 10px;
+        border-radius: 60%;
+        height: 150px;
+        width: 150px;
     }
 
 
@@ -159,11 +161,17 @@
     }
 
     .Document-Img {
-        margin-left: 10px;
+        margin-left: 100px;
         border-radius: 10%;
-        height: 200px;
-        width: 340px;
+        height: 100px;
+        width: 170px;
     }
+
+    .mt-3 {
+        margin-left: 300px;
+    }
+
+
 </style>
 
 
@@ -186,9 +194,8 @@
             <div class="Profile-Dashboard">
                 @if (!string.IsNullOrEmpty(profilePicture))
                 {
-                    <img src="@profilePicture" alt="Profile Picture" class="profile-picture" />
+                    <img src="@profilePicture" alt="Profile Picture" class="profile-picture"/>
                 }
-
                 <div class="profile-box">
                     @* ID *@
                     <div class="info">
@@ -238,70 +245,74 @@
                 </div>
             </div>
 
-            @* Main content - Edit *@
-          <div class="white-box">
-            <div class="row edit">
-                <div class="col-md-6">
-                    <form asp-action="Index" asp-controller="Profile" enctype="multipart/form-data">
-                        <input type="hidden" asp-for="EventUser.EventUserId" />
+            <div class="white-box">
+                <div class="row edit">
+                    <div class="col-md-12">
+                        <form asp-action="Index" asp-controller="Profile" enctype="multipart/form-data">
+                            <input type="hidden" asp-for="EventUser.EventUserId" />
 
-                        @* UserName *@
-                        <div class="form-group">
-                            <label asp-for="EventUser.UserName" class="control-label"></label>
-                            <input asp-for="EventUser.UserName" class="form-control" />
-                            <span asp-validation-for="EventUser.UserName" class="text-danger"></span>
-                        </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <!-- UserName -->
+                                    <div class="form-group">
+                                        <label asp-for="EventUser.UserName" class="control-label"></label>
+                                        <input asp-for="EventUser.UserName" class="form-control" />
+                                        <span asp-validation-for="EventUser.UserName" class="text-danger"></span>
+                                    </div>
 
-                        @* Email *@
-                        <div class="form-group">
-                            <label asp-for="IdentityUser.Email" class="control-label"></label>
-                            <input asp-for="IdentityUser.Email" class="form-control" />
-                            <span asp-validation-for="IdentityUser.Email" class="text-danger"></span>
-                        </div>
+                                    <!-- Email -->
+                                    <div class="form-group">
+                                        <label asp-for="IdentityUser.Email" class="control-label"></label>
+                                        <input asp-for="IdentityUser.Email" class="form-control" />
+                                        <span asp-validation-for="IdentityUser.Email" class="text-danger"></span>
+                                    </div>
 
-                        @* FirstName *@
-                        <div class="form-group">
-                            <label asp-for="EventUser.FirstName" class="control-label"></label>
-                            <input asp-for="EventUser.FirstName" class="form-control" />
-                            <span asp-validation-for="EventUser.FirstName" class="text-danger"></span>
-                        </div>
+                                    <!-- FirstName -->
+                                    <div class="form-group">
+                                        <label asp-for="EventUser.FirstName" class="control-label"></label>
+                                        <input asp-for="EventUser.FirstName" class="form-control" />
+                                        <span asp-validation-for="EventUser.FirstName" class="text-danger"></span>
+                                    </div>
 
-                        @* LastName *@
-                        <div class="form-group">
-                            <label asp-for="EventUser.LastName" class="control-label"></label>
-                            <input asp-for="EventUser.LastName" class="form-control" />
-                            <span asp-validation-for="EventUser.LastName" class="text-danger"></span>
-                        </div>
+                                    <!-- LastName -->
+                                    <div class="form-group">
+                                        <label asp-for="EventUser.LastName" class="control-label"></label>
+                                        <input asp-for="EventUser.LastName" class="form-control" />
+                                        <span asp-validation-for="EventUser.LastName" class="text-danger"></span>
+                                    </div>
+                                </div>
 
-                        @* Age *@
-                        <div class="form-group">
-                            <label asp-for="EventUser.Age" class="control-label"></label>
-                            <input asp-for="EventUser.Age" class="form-control" />
-                            <span asp-validation-for="EventUser.Age" class="text-danger"></span>
-                        </div>
+                                <div class="col-md-6">
+                                    <!-- Age -->
+                                    <div class="form-group">
+                                        <label asp-for="EventUser.Age" class="control-label"></label>
+                                        <input asp-for="EventUser.Age" class="form-control" />
+                                        <span asp-validation-for="EventUser.Age" class="text-danger"></span>
+                                    </div>
 
-                        @* Picture *@
-                        <div class="form-group">
-                            <label asp-for="EventUser.Picture" class="control-label"></label>
-                            <input asp-for="EventUser.Picture" class="form-control" />
-                            <span asp-validation-for="EventUser.Picture" class="text-danger"></span>
-                        </div>
+                                    <!-- Picture -->
+                                    <div class="form-group">
+                                        <label asp-for="EventUser.Picture" class="control-label"></label>
+                                        <input asp-for="EventUser.Picture" class="form-control" />
+                                        <span asp-validation-for="EventUser.Picture" class="text-danger"></span>
+                                    </div>
 
-                        @* Document *@
-                        <div class="form-group">
-                            <label asp-for="EventUser.Document" class="control-label" id="documentLabel">Document: @(!string.IsNullOrEmpty(Model.EventUser.DocumentFileName) ? Model.EventUser.DocumentFileName : "No Document Provided")</label>
-                            <input type="file" name="document" class="form-control-file" id="documentInput" />
-                            <span asp-validation-for="EventUser.Document" class="text-danger"></span>
-                        </div>
+                                    <!-- Document -->
+                                    <div class="form-group">
+                                        <label asp-for="EventUser.Document" class="control-label" id="documentLabel">Document: @(!string.IsNullOrEmpty(Model.EventUser.DocumentFileName) ? Model.EventUser.DocumentFileName : "No Document Provided")</label>
+                                        <input type="file" name="document" class="form-control-file" id="documentInput" />
+                                        <span asp-validation-for="EventUser.Document" class="text-danger"></span>
+                                    </div>
 
-                        @* Document Image*@
-                        @if (!string.IsNullOrEmpty(Model.EventUser.DocumentFileName))
-                        {
-                            <div class="d-flex p-2 bd-highlight">
-                                <img class="Document-Img" src="@Url.Action("DisplayImage", "Profile")" alt="Uploaded Document" />
+                                    <!-- Document Image -->
+                                    @if (!string.IsNullOrEmpty(Model.EventUser.DocumentFileName))
+                                    {
+                                        <div class="d-flex p-2 bd-highlight">
+                                            <img class="Document-Img" src="@Url.Action("DisplayImage", "Profile")" alt="Uploaded Document"/>
+                                        </div>
+                                    }
+                                </div>
                             </div>
-                        }
-
                         <div class="mt-3 d-flex justify-content-start">
                             @* Save Button *@
                             <div class="form-group me-4">

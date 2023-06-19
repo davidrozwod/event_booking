@@ -33,18 +33,18 @@
             </button>
             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton1">
                 <li class="nav-item">
-                    <a class="nav-link text-white" asp-controller="Profile" asp-action="Index">Profile</a>
+                    <a class="nav-link text-white" asp-controller="Profile" asp-action="Index"><i style="margin-right: 10px;" class="fas fa-user"></i>Profile</a>
                 </li>
                 <li class="nav-item">
                     @if (User.IsInRole("Promoter") || (User.IsInRole("Admin")))
                     {
-                        <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="PromoterArea">Dashboard</a>
+                        <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="PromoterArea"><i style="margin-right: 10px;" class="fas fa-chart-bar"></i>Dashboard</a>
                     }
                 </li>
 
                 <li class="nav-item">
                     <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                        <button type="submit" class="nav-link btn btn-link text-white">Logout</button>
+                        <button type="submit" class="nav-link btn btn-link text-danger"><i style="margin-right: 10px;" class="fas fa-sign-out-alt"></i>Logout</button>
                     </form>
                 </li>
             </ul>

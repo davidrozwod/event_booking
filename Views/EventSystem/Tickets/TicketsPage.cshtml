@@ -7,7 +7,7 @@
 <div class="container">
     @* Header *@
     <h1 class="display-4">Buy Tickets to @ViewBag.EventName</h1>  
-    <h1 class="display-4">@ViewBag.VenueName</h1>
+    <h1 class="display-6">@ViewBag.VenueName</h1>
 
     <div class="progressbar">
         <div class="progress gradient-custom-4" id="progress"></div>
@@ -138,11 +138,16 @@
     <!-- Steps -->
 
     <div class="form-step">
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+        }
         <div class="row g-2">
             <div class="col-md">
                 <div class="form-floating">
                     <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
                     <label for="floatingInputGrid">First Name</label>
+
                 </div>
             </div>
             <div class="col-md">

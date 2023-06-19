@@ -9,6 +9,7 @@ using event_booking.Models.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
 using SendGrid.Helpers.Mail;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace event_booking.Controllers.EventSystem
 {
@@ -16,11 +17,14 @@ namespace event_booking.Controllers.EventSystem
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly IEmailSender _emailSender;
 
-        public ESTicketsPageController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
+
+        public ESTicketsPageController(ApplicationDbContext context, UserManager<IdentityUser> userManager, IEmailSender emailSender)
         {
             _context = context;
             _userManager = userManager;
+            _emailSender = emailSender;
         }
 
         [HttpGet]
@@ -266,6 +270,11 @@ namespace event_booking.Controllers.EventSystem
             }
 
             await _context.SaveChangesAsync();
+            // Send email to the user
+            string subject = "Here's your ticket: " + purchaseId;
+            string message = ""; // You can customize the message here
+
+            await _emailSender.SendEmailAsync(user.Email, subject, message);
 
             // Redirect to another action or return a view
             return View("~/Views/Home/Ticket2.cshtml");

@@ -11,11 +11,13 @@ namespace event_booking.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly ILogger<HomeController> _logger;
+        private readonly EventSearchService _eventSearchService;
 
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context, EventSearchService eventSearchService)
         {
             _context = context;
             _logger = logger;
+            _eventSearchService = eventSearchService;
         }
 
         public IActionResult Index()
@@ -51,16 +53,6 @@ namespace event_booking.Controllers
             return View();
         }
 
-        public IActionResult Ticket3()
-        {
-            return View();
-        }
-
-        public IActionResult Ticket4()
-        {
-            return View();
-        }
-
         public IActionResult Event_Category()
         {
             return View();
@@ -83,7 +75,7 @@ namespace event_booking.Controllers
             return View("~/Views/EventCategories/FamilyAndEducation.cshtml");
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin, Promoter")]
         public IActionResult PromoterArea()
         {
             return View();
@@ -94,31 +86,31 @@ namespace event_booking.Controllers
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin, Promoter")]
         public IActionResult Booking()
         {
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin, Promoter")]
         public IActionResult Events()
         {
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin, Promoter")]
         public IActionResult Review()
         {
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin, Promoter")]
         public IActionResult CRUDs()
         {
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IActionResult RegisterAccount()
         {
             return View();
@@ -256,6 +248,7 @@ namespace event_booking.Controllers
             return View("~/Views/EventCategories/MagicShows.cshtml");
         }
 
+        [Authorize(Roles = "Admin, Promoter")]
         public IActionResult AdminDashboard()
         {
             return View();
@@ -277,5 +270,24 @@ namespace event_booking.Controllers
 
             return Redirect("/Identity/Account/Manage");
         }
+
+        public IActionResult Search()
+        {
+            return PartialView("_SearchResults", null);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Search(string searchTerm)
+        {
+            if (string.IsNullOrEmpty(searchTerm))
+            {
+                return RedirectToAction("Index");
+            }
+
+            var events = await _eventSearchService.SearchEvents(searchTerm);
+            return View("_SearchResults", events);
+        }
+
+
     }
 }

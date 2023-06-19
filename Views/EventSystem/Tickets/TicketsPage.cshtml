@@ -1,19 +1,336 @@
 ﻿@* Ticket page preperation page *@
 @* used to prepare the code for merging into home/ticket *@
 @model List<event_booking.Models.Ticket>
+<br />
+<br />
+<br />
+<div class="container">
+    @* Header *@
+    <h1 class="display-4">Buy Tickets to @ViewBag.EventName</h1>  
+    <h1 class="display-4">@ViewBag.VenueName</h1>
 
-<div class="progressbar">
-    <div class="progress gradient-custom-4" id="progress"></div>
+    <div class="progressbar">
+        <div class="progress gradient-custom-4" id="progress"></div>
 
-    <div class="progress-step progress-step-active"
-         data-title="Book"></div>
-    <div class="progress-step" data-title="Details"></div>
-    <div class="progress-step" data-title="Review"></div>
-    <div class="progress-step" data-title="Payment"></div>
+        <div class="progress-step progress-step-active"
+             data-title="Book"></div>
+        <div class="progress-step" data-title="Details"></div>
+        <div class="progress-step" data-title="Review"></div>
+        <div class="progress-step" data-title="Payment"></div>
+    </div>
+
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+
+    @{
+        var sectionList = ViewBag.Sections as List<event_booking.Models.Section>;
+
+        @if (!string.IsNullOrEmpty(ViewBag.Error))
+        {
+            <div class="alert alert-danger">
+                @ViewBag.Error
+            </div>
+        }
+    }
+
+<!-- STEP 1 -->
+<!-- BOOK -->
+        <div class="form-step form-step-active">
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Tickets</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Sub-Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Section</th>
+                    <td>
+                        @if (Model.Any())
+                        {
+                            var ticket = Model.First();
+                            <div class="ticket">
+                                <p>Starting Price: @string.Format("{0:0.00}", ticket.BasePrice)</p>
+                            </div>
+                        }
+                        else
+                        {
+                            <p class="alert-danger">No tickets available in this section.</p>
+                        }
+                    </td>
+                        <td>
+                            <select name="sectionId" onchange="this.form.submit()">
+                                @foreach (var sec in sectionList)
+                                {
+                                    <option value="@sec.SectionId" selected="@(sec.SectionId == ViewBag.SelectedSectionId)">@sec.SectionName</option>
+                                }
+                            </select>
+                        </td>
+                    <td>Tickets available: @ViewBag.TicketCount</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Group Discounts</th>
+                        <td></td>
+                        <td>
+                            <select name="groupDiscountId" onchange="this.form.submit()">
+                                <option value="" selected="@(ViewBag.SelectedGroupDiscountId == null)">Choose Group Discount</option>
+                                @foreach (var discount in ViewBag.GroupDiscounts)
+                                {
+                                    <option value="@discount.GroupDiscountId" selected="@(discount.GroupDiscountId == ViewBag.SelectedGroupDiscountId)">@discount.GroupName</option>
+                                }
+                            </select>
+                        </td>
+                    <td></td>
+                    </tr>
+                    <tr>
+                         @if (ViewBag.AdultTickets > 0)
+                        {
+                            <th scope="row">Adult Ticket</th>
+                            <td></td>
+                            <td>@ViewBag.AdultTickets</td>
+                            <td>@string.Format("{0:0.00}", ViewBag.AdultSubtotal)</td>    
+                        }     
+                    </tr>
+                    <tr>
+                         @if (ViewBag.ChildTickets > 0)
+                        {
+                            <th scope="row">Child Ticket</th>
+                            <td></td>
+                            <td>@ViewBag.ChildTickets</td>
+                            <td>@string.Format("{0:0.00}", ViewBag.ChildSubtotal)</td>
+                        }
+                    
+                    </tr>
+                </tbody>
+            </table>
+            @* Show the individual discounts for the discounts in the section *@
+            @foreach (var discount in ViewBag.Discounts)
+            {
+                <div class="row">
+                    <div class="col-auto mr-auto">
+                        <h5>@discount.DiscountName</h5>
+                    </div>
+                    <div class="col-auto mr-auto">
+                        <select id="quantity-@discount.DiscountId" name="discountTicketCounts[@discount.DiscountId]" onchange="updateTotal(@discount.DiscountId, @discount.PriceMultiplier)">
+                            @for (int i = 0; i <= ViewBag.TicketCount; i++)
+                            {
+                                <option value="@i">@i</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-auto mr-auto">
+                        <p>Individual Price: @string.Format("{0:0.00}", @discount.PriceMultiplier)</p>
+                    </div>
+                    <div class="col-auto mr-auto">
+                        <p id="total-@discount.DiscountId">Total Price: 0.00</p>
+                    </div>
+                </div>
+            }
+            <p></p>
+            <div class="btns-group">
+                <button class=" text-white btn btn-lg gradient-custom-4 btn-next">Next</button>
+            </div>
+        </div>
+
+<!-- STEP 2 -->
+<!-- DETAILS -->
+
+    <div class="form-step">
+        <div class="row g-2">
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
+                    <label for="floatingInputGrid">First Name</label>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
+                    <label for="floatingInputGrid">Last Name</label>
+                </div>
+            </div>
+        </div>
+        <p></p>
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" />
+            <label for="floatingInputGrid">Email</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" />
+            <label for="floatingInputGrid">Phone Number</label>
+        </div>
+        <div class="row g-2">
+            <div class="col-md">
+                <div class="form-floating">
+                    <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example">
+                        <option selected>Pick your Location</option>
+                        <option value="1">This Place</option>
+                        <option value="2">That Place</option>
+                        <option value="3">That other area</option>
+                    </select>
+                    <label for="floatingSelectGrid">Country</label>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
+                    <label for="floatingInputGrid">Postal Code</label>
+                </div>
+            </div>
+        </div>
+        <p></p>
+        <div class="btns-group">
+            <button class=" text-white btn btn-lg gradient-custom-4 btn-prev">Prev</button>
+            <button class=" text-white btn btn-lg gradient-custom-4 btn-next">Next</button>
+        </div>
+    </div>
+    <div class="form-step">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Tickets</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Sub-Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Adult</th>
+                    <td>$0</td>
+                    <td>
+                        <div class="data-list-input">
+                            <select class="data-list-input" style="width:70px;">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td>$0</td>
+                </tr>
+                <tr>
+                    <th scope="row">Child</th>
+                    <td>$0</td>
+                    <td>
+                        <div class="data-list-input">
+                            <select class="data-list-input" style="width:70px;">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td>$0</td>
+                </tr>
+                <tr>
+                    <th scope="row">Under 6</th>
+                    <td>$0</td>
+                    <td>
+                        <div class="data-list-input">
+                            <select class="data-list-input" style="width:70px;">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td>$0</td>
+                </tr>
+            </tbody>
+        </table>
+        <p></p>
+        <div class="btns-group">
+            <button class=" text-white btn btn-lg gradient-custom-4 btn-prev">Prev</button>
+            <button class=" text-white btn btn-lg gradient-custom-4 btn-next">Next</button>
+        </div>
+    </div>
+    <div class="form-step">
+        <div class="row g-2">
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
+                    <label for="floatingInputGrid">Card Number</label>
+                </div>
+            </div>
+        </div>
+        <p></p>
+        <div class="row g-2">
+            <div class="col-md">
+                <div class="form-floating">
+                    <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example">
+                        <option selected>Card Expiry Date</option>
+                        <option value="1">01</option>
+                        <option value="2">02</option>
+                        <option value="3">03</option>
+                        <option value="4">04</option>
+                        <option value="5">05</option>
+                        <option value="6">06</option>
+                        <option value="7">07</option>
+                        <option value="8">08</option>
+                        <option value="9">09</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>
+                    <label for="floatingSelectGrid">Month</label>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="form-floating">
+                    <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example">
+                        <option value="1">23</option>
+                        <option value="2">24</option>
+                        <option value="3">25</option>
+                        <option value="4">26</option>
+                        <option value="5">27</option>
+                        <option value="6">28</option>
+                    </select>
+                    <label for="floatingSelectGrid">Year</label>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" />
+                <label for="floatingInputGrid">Cardholder Name</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" />
+                <label for="floatingInputGrid">Card Security Code</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" />
+                <label for="floatingInputGrid">Billing Address</label>
+            </div>
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
+                    <label for="floatingInputGrid">Billing Postal Code</label>
+                </div>
+            </div>
+
+        </div>
+        <p></p>
+        <div class="btns-group">
+            <a asp-area="" asp-controller="Home" asp-action="Ticket2"><input type="submit" value="Submit" class="text-white btn btn-lg gradient-custom-4" /> </a>
+        </div>
+    </div>
 </div>
-
-<link rel="stylesheet" href="style.css" />
-<script src="script.js" defer></script>
 
 <script>
     const prevBtns = document.querySelectorAll(".btn-prev");
@@ -226,347 +543,4 @@
         border: 1px solid black;
     }
 </style>
-
-@{
-    var sectionList = ViewBag.Sections as List<event_booking.Models.Section>;
-
-    @if (!string.IsNullOrEmpty(ViewBag.Error))
-    {
-        <div class="alert alert-danger">
-            @ViewBag.Error
-        </div>
-    }
-}
-
-<!-- STEP 1 -->
-<!-- BOOK -->
-
-        @* Header *@
-<h1 class="display-4">@ViewBag.EventName</h1>  
-<h1 class="display-4">@ViewBag.VenueName</h1>
-
-        @*                                      *@
-        @* Add a dropdown list for the sections *@
-<form method="get">
-    <div class="row">
-
-        @* Add a DROPDOWN list for the SECTIONS *@
-        <div class="col-auto mr-auto">
-            <h4>Section: </h4>
-        </div>
-        <div class="col-auto mr-auto">
-                <select name="sectionId" onchange="this.form.submit()">
-                    @foreach (var sec in sectionList)
-                    {
-                        <option value="@sec.SectionId" selected="@(sec.SectionId == ViewBag.SelectedSectionId)">@sec.SectionName</option>
-                    }
-                </select>
-        </div>
-
-        @* Show the starting price of the tickets in the section *@
-        <div class="col-auto mr-auto">
-            @if (Model.Any())
-            {
-                var ticket = Model.First();
-                <div class="ticket">
-                    <p>Starting Price: @string.Format("{0:0.00}", ticket.BasePrice)</p>
-                </div>
-            }
-            else
-            {
-                <p class="alert-danger">No tickets available in this section.</p>
-            }
-        </div>
-
-        @* Show the number of tickets available in the section *@
-        <div class="col-auto mr-auto">
-            <h5>Tickets available: @ViewBag.TicketCount</h5>
-        </div>
-
-    </div>
-
-        @*                                            *@
-        @* Add a DROPDOWN list for the GROUPDISCOUNTS *@
-    <div class="form-step form-step-active">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Tickets</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Sub-Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">Group Discounts</th>
-                    <td></td>
-                    <td>
-                        <select name="groupDiscountId" onchange="this.form.submit()">
-                            <option value="" selected="@(ViewBag.SelectedGroupDiscountId == null)">Choose Group Discount</option>
-                            @foreach (var discount in ViewBag.GroupDiscounts)
-                            {
-                                <option value="@discount.GroupDiscountId" selected="@(discount.GroupDiscountId == ViewBag.SelectedGroupDiscountId)">@discount.GroupName</option>
-                            }
-                        </select>
-                    </td>
-                    <td></td>
-                </tr>
-                <tr>
-                     @if (ViewBag.AdultTickets > 0)
-                    {
-                        <th scope="row">Adult Ticket</th>
-                        <td></td>
-                        <td>@ViewBag.AdultTickets</td>
-                        <td>@string.Format("{0:0.00}", ViewBag.AdultSubtotal)</td>    
-                    }     
-                </tr>
-                <tr>
-                     @if (ViewBag.ChildTickets > 0)
-                    {
-                        <th scope="row">Child Ticket</th>
-                        <td></td>
-                        <td>@ViewBag.ChildTickets</td>
-                        <td>@string.Format("{0:0.00}", ViewBag.ChildSubtotal)</td>
-                    }
-                    
-                </tr>
-            </tbody>
-        </table>
-        <p></p>
-        <div class="btns-group">
-            <button class=" text-white btn btn-lg gradient-custom-4 btn-next">Next</button>
-        </div>
-    </div>
-</form>
-
-    @*                                                                *@
-    @* Show the individual discounts for the discounts in the section *@
-    @foreach (var discount in ViewBag.Discounts)
-    {
-        <div class="row">
-            <div class="col-auto mr-auto">
-                <h5>@discount.DiscountName</h5>
-            </div>
-            <div class="col-auto mr-auto">
-                <select id="quantity-@discount.DiscountId" name="discountTicketCounts[@discount.DiscountId]" onchange="updateTotal(@discount.DiscountId, @discount.PriceMultiplier)">
-                    @for (int i = 0; i <= ViewBag.TicketCount; i++)
-                    {
-                        <option value="@i">@i</option>
-                    }
-                </select>
-            </div>
-            <div class="col-auto mr-auto">
-                <p>Individual Price: @string.Format("{0:0.00}", @discount.PriceMultiplier)</p>
-            </div>
-            <div class="col-auto mr-auto">
-                <p id="total-@discount.DiscountId">Total Price: 0.00</p>
-            </div>
-        </div>
-    }
-
-<!-- STEP 2 -->
-<!-- DETAILS -->
-
-<form method="post" action="/ESTicketsPage/Details">
-    <div class="form-step">
-        <div class="row g-2">
-            <div class="col-md">
-                <div class="form-floating">
-                    <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
-                    <label for="floatingInputGrid">First Name</label>
-                </div>
-            </div>
-            <div class="col-md">
-                <div class="form-floating">
-                    <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
-                    <label for="floatingInputGrid">Last Name</label>
-                </div>
-            </div>
-        </div>
-        <p></p>
-        <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" />
-            <label for="floatingInputGrid">Email</label>
-        </div>
-        <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" />
-            <label for="floatingInputGrid">Phone Number</label>
-        </div>
-        <div class="row g-2">
-            <div class="col-md">
-                <div class="form-floating">
-                    <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example">
-                        <option selected>Pick your Location</option>
-                        <option value="1">This Place</option>
-                        <option value="2">That Place</option>
-                        <option value="3">That other area</option>
-                    </select>
-                    <label for="floatingSelectGrid">Country</label>
-                </div>
-            </div>
-            <div class="col-md">
-                <div class="form-floating">
-                    <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
-                    <label for="floatingInputGrid">Postal Code</label>
-                </div>
-            </div>
-        </div>
-        <p></p>
-        <div class="btns-group">
-            <button class=" text-white btn btn-lg gradient-custom-4 btn-prev">Prev</button>
-            <button class=" text-white btn btn-lg gradient-custom-4 btn-next">Next</button>
-        </div>
-    </div>
-</form>
-
-<!-- STEP 3 -->
-<!-- REVIEW -->
-
-<div class="form-step">
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Tickets</th>
-                <th scope="col">Price</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Sub-Total</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">Adult</th>
-                <td>$0</td>
-                <td>
-                    <div class="data-list-input">
-                        <select class="data-list-input" style="width:70px;">
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                        </select>
-                    </div>
-                </td>
-                <td>$0</td>
-            </tr>
-            <tr>
-                <th scope="row">Child</th>
-                <td>$0</td>
-                <td>
-                    <div class="data-list-input">
-                        <select class="data-list-input" style="width:70px;">
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                        </select>
-                    </div>
-                </td>
-                <td>$0</td>
-            </tr>
-            <tr>
-                <th scope="row">Under 6</th>
-                <td>$0</td>
-                <td>
-                    <div class="data-list-input">
-                        <select class="data-list-input" style="width:70px;">
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                        </select>
-                    </div>
-                </td>
-                <td>$0</td>
-            </tr>
-        </tbody>
-    </table>
-    <p></p>
-    <div class="btns-group">
-        <button class=" text-white btn btn-lg gradient-custom-4 btn-prev">Prev</button>
-        <button class=" text-white btn btn-lg gradient-custom-4 btn-next">Next</button>
-    </div>
-</div>
-
-<!-- STEP 4 -->
-<!-- PAYMENT -->
-
-<div class="form-step">
-    <div class="row g-2">
-        <div class="col-md">
-            <div class="form-floating">
-                <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
-                <label for="floatingInputGrid">Card Number</label>
-            </div>
-        </div>
-    </div>
-    <p></p>
-    <div class="row g-2">
-        <div class="col-md">
-            <div class="form-floating">
-                <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example">
-                    <option selected>Card Expiry Date</option>
-                    <option value="1">01</option>
-                    <option value="2">02</option>
-                    <option value="3">03</option>
-                    <option value="4">04</option>
-                    <option value="5">05</option>
-                    <option value="6">06</option>
-                    <option value="7">07</option>
-                    <option value="8">08</option>
-                    <option value="9">09</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                </select>
-                <label for="floatingSelectGrid">Month</label>
-            </div>
-        </div>
-        <div class="col-md">
-            <div class="form-floating">
-                <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example">
-                    <option value="1">23</option>
-                    <option value="2">24</option>
-                    <option value="3">25</option>
-                    <option value="4">26</option>
-                    <option value="5">27</option>
-                    <option value="6">28</option>
-                </select>
-                <label for="floatingSelectGrid">Year</label>
-            </div>
-        </div>
-        <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" />
-            <label for="floatingInputGrid">Cardholder Name</label>
-        </div>
-        <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" />
-            <label for="floatingInputGrid">Card Security Code</label>
-        </div>
-        <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" />
-            <label for="floatingInputGrid">Billing Address</label>
-        </div>
-        <div class="col-md">
-            <div class="form-floating">
-                <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
-                <label for="floatingInputGrid">Billing Postal Code</label>
-            </div>
-        </div>
-
-    </div>
-    <p></p>
-    <div class="btns-group">
-        <a asp-area="" asp-controller="Home" asp-action="Ticket2"><input type="submit" value="Submit" class="text-white btn btn-lg gradient-custom-4" /> </a>
-    </div>
-</div>
 

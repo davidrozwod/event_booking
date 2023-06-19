@@ -371,9 +371,8 @@
         </div>
         <p></p>
     </form>
-    <div class="btns-group">
-        <a asp-area="" asp-controller="ESTicketsPage" asp-action="Ticket2"><input type="submit" value="Submit" class="text-white btn btn-lg gradient-custom-4" /> </a>
-    </div>
+
+
     <form asp-action="Ticket2" method="post">
         @for (int i = 0; i < Model.Count; i++)
         {
@@ -382,7 +381,7 @@
             <input type="hidden" asp-for="@Model[i].DiscountId" />
             <!-- more fields as needed... -->
         }
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Submit" class="text-white btn btn-lg gradient-custom-4" />
     </form>
 </div>
 

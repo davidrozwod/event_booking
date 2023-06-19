@@ -224,6 +224,30 @@ namespace event_booking.Controllers.EventSystem
         [HttpPost]
         public async Task<IActionResult> Ticket2(IEnumerable<Ticket> updatedTickets)
         {
+
+            //Gets logged in user
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            //Matches logged in user to the EventUser
+            var eventUser = await _context.EventUsers.FirstOrDefaultAsync(e => e.EventUserId == user.Id);
+            if (eventUser == null)
+            {
+                return NotFound();
+            }
+
+            //Updates the Profile View with the logged in user's information
+            ViewData["ProfilePicture"] = eventUser.Picture;
+            ViewData["UserName"] = eventUser.UserName;
+            ViewData["FirstName"] = eventUser.FirstName;
+            ViewData["LastName"] = eventUser.LastName;
+            ViewData["Age"] = eventUser.Age;
+            ViewData["Document"] = eventUser.Document;
+
+
             foreach (var updatedTicket in updatedTickets)
             {
                 var ticket = await _context.Tickets.FindAsync(updatedTicket.TicketId);

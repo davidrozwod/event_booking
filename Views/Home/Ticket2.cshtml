@@ -15,8 +15,8 @@
     </div>
     <div class="col">
         <strong><p>Billed To</p></strong>
-        <p>username</p>
-        <p></p>
+        <p>@(ViewData["FirstName"] + " " + ViewData["LastName"])</p>
+        <p>@ViewData["Email"]</p>
     </div>
 </div>
 
@@ -62,7 +62,7 @@
   <tr>
     <td>900137</td>
     <td>Adult</td>
-    <td>username</td>
+        <td>(ViewData["FirstName"] + " " + ViewData["LastName"])</td>
     <td>Download</td>
   </tr>
 </table>

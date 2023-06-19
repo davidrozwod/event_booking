@@ -1,0 +1,27 @@
+﻿@model List<Event>
+
+@{
+    ViewData["Title"] = "Search";
+}
+
+<form method="get" asp-action="Search">
+    <input type="text" name="searchTerm" placeholder="Enter a search term" />
+    <button type="submit">Search</button>
+</form>
+
+@if (Model != null && Model.Count > 0)
+{
+    <h3>Search Results</h3>
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li>@item.Name</li>
+        }
+    </ul>
+}
+
+
+
+@section Scripts {
+    <partial name="_LoginPartial" />
+}

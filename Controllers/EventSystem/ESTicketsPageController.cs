@@ -22,7 +22,7 @@ namespace event_booking.Controllers.EventSystem
             _userManager = userManager;
         }
 
-        public async Task<IActionResult> Index(int id, int? sectionId = null, int? groupDiscountId = null, Dictionary<int, int> discountTicketCounts = null)
+        public async Task<IActionResult> Index(string button, int id, int? sectionId = null, int? groupDiscountId = null, Dictionary<int, int> discountTicketCounts = null)
         {
             var currentUserId = _userManager.GetUserId(User);
             var purchaseId = HttpContext.Session.GetInt32("PurchaseId");
@@ -184,17 +184,21 @@ namespace event_booking.Controllers.EventSystem
             return View("~/Views/EventSystem/Tickets/TicketsPage.cshtml", ticketsForEvent);
         }
 
-        [HttpPost]
-        public IActionResult Details(string FirstName, string LastName, string Email, string PhoneNumber, string Country, string PostalCode)
+        [HttpGet]
+        public async Task<IActionResult> Details(string FirstName, string LastName, string Email, string PhoneNumber, string StreetAddress, string Country, string PostalCode)
         {
+            //Gets logged in user
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            
             // Process the form data here
 
             return RedirectToAction("Index"); // Redirect to the desired page after processing
         }
-
-
-
-
 
         /*//
         //Selects a single ticket for viewing

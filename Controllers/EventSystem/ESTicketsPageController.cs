@@ -37,6 +37,9 @@ namespace event_booking.Controllers.EventSystem
                 .Where(t => t.EventId == id && (t.PurchaseId == null || t.PurchaseId == purchaseId))
                 .ToListAsync();
 
+            ViewBag.EventName = ticketsForEvent[0].Event.Name;
+            ViewBag.VenueName = ticketsForEvent[0].Venue.Name;
+
             //
             //SECTION
             //Section dropdown
@@ -60,21 +63,6 @@ namespace event_booking.Controllers.EventSystem
 
             // Pass the number of tickets to the view
             ViewBag.TicketCount = ticketsForEvent.Count;
-
-            // If there are any tickets for the selected section, use the event and venue from the first ticket
-            if (ticketsForEvent.Any())
-            {
-                ViewBag.EventName = ticketsForEvent[0].Event.Name;
-                ViewBag.VenueName = ticketsForEvent[0].Venue.Name;
-            }
-            else
-            {
-                // If no tickets are available for the selected section, retrieve the event and venue directly from the database
-                var eventObj = await _context.Events.FindAsync(id);
-                ViewBag.EventName = eventObj.Name;
-                var venueObj = await _context.Venues.FindAsync(eventObj.VenueId);
-                ViewBag.VenueName = venueObj.Name;
-            }
 
             //
             // GROUP DISCOUNTS

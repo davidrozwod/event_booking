@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace event_booking.Controllers.CRUDs
 {
+    [Authorize(Roles = "Admin")]
     public class SalesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -24,7 +25,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: Sales
-        [Authorize]
+        
         public async Task<IActionResult> Index()
         {
             var currentUser = await _userManager.GetUserAsync(User);
@@ -42,7 +43,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: Sales/Details/5
-        [Authorize]
+        
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Sales == null)
@@ -63,7 +64,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: Sales/Create
-        [Authorize]
+        
         public IActionResult Create()
         {
             ViewData["EventUserId"] = new SelectList(_context.EventUsers, "EventUserId", "EventUserId");
@@ -76,7 +77,7 @@ namespace event_booking.Controllers.CRUDs
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        
         public async Task<IActionResult> Create([Bind("SaleId,EventUserId,PurchaseId,SaleDate,SalePrice")] Sale sale)
         {
             if (ModelState.IsValid)
@@ -91,7 +92,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: Sales/Edit/5
-        [Authorize]
+        
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Sales == null)
@@ -114,7 +115,7 @@ namespace event_booking.Controllers.CRUDs
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        
         public async Task<IActionResult> Edit(int id, [Bind("SaleId,EventUserId,PurchaseId,SaleDate,SalePrice")] Sale sale)
         {
             if (id != sale.SaleId)
@@ -148,7 +149,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: Sales/Delete/5
-        [Authorize]
+        
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Sales == null)
@@ -171,7 +172,7 @@ namespace event_booking.Controllers.CRUDs
         // POST: Sales/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Sales == null)
@@ -188,7 +189,7 @@ namespace event_booking.Controllers.CRUDs
             return RedirectToAction(nameof(Index));
         }
 
-        [Authorize]
+        
         private bool SaleExists(int id)
         {
           return (_context.Sales?.Any(e => e.SaleId == id)).GetValueOrDefault();

@@ -51,16 +51,6 @@ namespace event_booking.Controllers
             return View();
         }
 
-        public IActionResult Ticket3()
-        {
-            return View();
-        }
-
-        public IActionResult Ticket4()
-        {
-            return View();
-        }
-
         public IActionResult Event_Category()
         {
             return View();
@@ -83,7 +73,7 @@ namespace event_booking.Controllers
             return View("~/Views/EventCategories/FamilyAndEducation.cshtml");
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin, Promoter")]
         public IActionResult PromoterArea()
         {
             return View();
@@ -94,31 +84,31 @@ namespace event_booking.Controllers
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin, Promoter")]
         public IActionResult Booking()
         {
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin, Promoter")]
         public IActionResult Events()
         {
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin, Promoter")]
         public IActionResult Review()
         {
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin, Promoter")]
         public IActionResult CRUDs()
         {
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IActionResult RegisterAccount()
         {
             return View();
@@ -256,6 +246,7 @@ namespace event_booking.Controllers
             return View("~/Views/EventCategories/MagicShows.cshtml");
         }
 
+        [Authorize(Roles = "Admin, Promoter")]
         public IActionResult AdminDashboard()
         {
             return View();

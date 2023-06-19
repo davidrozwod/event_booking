@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace event_booking.Controllers.CRUDs
 {
+    [Authorize(Roles = "Admin")]
     public class OrganizerCategoriesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -24,7 +25,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: OrganizerCategories
-        [Authorize]
+        
         public async Task<IActionResult> Index()
         {
             var currentUser = await _userManager.GetUserAsync(User);
@@ -43,7 +44,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: OrganizerCategories/Details/5
-        [Authorize]
+        
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.OrganizerCategories == null)
@@ -62,7 +63,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: OrganizerCategories/Create
-        [Authorize]
+        
         public IActionResult Create()
         {
             return View("~/Views/CRUDs/OrganizerCategories/Create.cshtml");
@@ -73,7 +74,7 @@ namespace event_booking.Controllers.CRUDs
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        
         public async Task<IActionResult> Create([Bind("OrganizerCategoryId,CategoryName")] OrganizerCategory organizerCategory)
         {
             if (ModelState.IsValid)
@@ -86,7 +87,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: OrganizerCategories/Edit/5
-        [Authorize]
+        
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.OrganizerCategories == null)
@@ -107,7 +108,7 @@ namespace event_booking.Controllers.CRUDs
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        
         public async Task<IActionResult> Edit(int id, [Bind("OrganizerCategoryId,CategoryName")] OrganizerCategory organizerCategory)
         {
             if (id != organizerCategory.OrganizerCategoryId)
@@ -139,7 +140,7 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: OrganizerCategories/Delete/5
-        [Authorize]
+        
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.OrganizerCategories == null)
@@ -160,7 +161,7 @@ namespace event_booking.Controllers.CRUDs
         // POST: OrganizerCategories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.OrganizerCategories == null)
@@ -177,7 +178,7 @@ namespace event_booking.Controllers.CRUDs
             return RedirectToAction(nameof(Index));
         }
 
-        [Authorize]
+        
         private bool OrganizerCategoryExists(int id)
         {
           return (_context.OrganizerCategories?.Any(e => e.OrganizerCategoryId == id)).GetValueOrDefault();

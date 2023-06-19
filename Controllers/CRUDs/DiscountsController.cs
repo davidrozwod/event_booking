@@ -10,8 +10,10 @@ using event_booking.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 
+
 namespace event_booking.Controllers.CRUDs
 {
+    [Authorize(Roles = "Admin")]
     public class DiscountsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -24,7 +26,6 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: Discounts
-        [Authorize]
         public async Task<IActionResult> Index()
         {
             var currentUser = await _userManager.GetUserAsync(User);
@@ -44,7 +45,6 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: Discounts/Details/5
-        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Discounts == null)
@@ -63,7 +63,6 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: Discounts/Create
-        [Authorize]
         public IActionResult Create()
         {
             return View("~/Views/CRUDs/Discounts/Create.cshtml");
@@ -74,7 +73,6 @@ namespace event_booking.Controllers.CRUDs
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
         public async Task<IActionResult> Create([Bind("DiscountId,DiscountName,PriceMultiplier")] Discount discount)
         {
             if (ModelState.IsValid)
@@ -87,7 +85,6 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: Discounts/Edit/5
-        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Discounts == null)
@@ -108,7 +105,6 @@ namespace event_booking.Controllers.CRUDs
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("DiscountId,DiscountName,PriceMultiplier")] Discount discount)
         {
             if (id != discount.DiscountId)
@@ -140,7 +136,6 @@ namespace event_booking.Controllers.CRUDs
         }
 
         // GET: Discounts/Delete/5
-        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Discounts == null)
@@ -161,7 +156,6 @@ namespace event_booking.Controllers.CRUDs
         // POST: Discounts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Discounts == null)
@@ -177,7 +171,6 @@ namespace event_booking.Controllers.CRUDs
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        [Authorize]
         private bool DiscountExists(int id)
         {
           return (_context.Discounts?.Any(e => e.DiscountId == id)).GetValueOrDefault();

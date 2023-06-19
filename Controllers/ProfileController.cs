@@ -16,6 +16,7 @@ using SixLabors.ImageSharp.Advanced;
 
 namespace event_booking.Controllers
 {
+    [Authorize]
     public class ProfileController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -30,7 +31,7 @@ namespace event_booking.Controllers
         }
 
         // GET: EventUser
-        [Authorize]
+        
         public async Task<IActionResult> Index()
         {
             //Gets logged in user
@@ -72,7 +73,7 @@ namespace event_booking.Controllers
         // POST: EventUser/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        
         public async Task<IActionResult> Index(ProfileViewModel profileViewModel, IFormFile document)
         {
             // Get the EventUser from the view model
@@ -137,8 +138,6 @@ namespace event_booking.Controllers
             var identityUser = await _userManager.FindByIdAsync(eventUser.EventUserId);
             if (identityUser != null)
             {
-                identityUser.Email = profileViewModel.IdentityUser.Email;
-                identityUser.UserName = profileViewModel.IdentityUser.Email;
                 await _userManager.UpdateAsync(identityUser);
             }
 
@@ -185,7 +184,7 @@ namespace event_booking.Controllers
         // POST: EventUser/Delete
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        
         public async Task<IActionResult> Delete()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -213,7 +212,7 @@ namespace event_booking.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        [Authorize]
+        
         private bool EventUserExists(string id)
         {
             return _context.EventUsers.Any(e => e.EventUserId == id);

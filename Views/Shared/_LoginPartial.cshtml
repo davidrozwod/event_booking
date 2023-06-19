@@ -1,4 +1,4 @@
-﻿@using Microsoft.AspNetCore.Identity
+﻿﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 <style>
@@ -33,21 +33,21 @@
             </button>
             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton1">
                 <li class="nav-item">
-                    <a class="nav-link text-white" asp-controller="Profile" asp-action="Index"> Profile</a>
-                </li>               
+                    <a class="nav-link text-white" asp-controller="Profile" asp-action="Index">Profile</a>
+                </li>
                 <li class="nav-item">
-                    <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                        <button type="submit" class="nav-link btn btn-link text-white">Logout</button>
-                    </form>
+                    @if (User.IsInRole("Promoter") || (User.IsInRole("Admin")))
+                    {
+                        <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="PromoterArea">Dashboard</a>
+                    }
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="UserExclusiveFeatures">Subscribe</a>
                 </li>
                 <li class="nav-item">
-                    @if (User.IsInRole("Promoter") || User.IsInRole("Admin"))
-                    {
-                        <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="PromoterArea">Promoters Dashboard</a>
-                    }
+                    <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                        <button type="submit" class="nav-link btn btn-link text-white">Logout</button>
+                    </form>
                 </li>
             </ul>
         </div>

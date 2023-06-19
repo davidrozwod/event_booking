@@ -1,4 +1,4 @@
-﻿
+﻿@model List<event_booking.Models.Ticket>
 @{
     ViewData["Title"] = "Ticket2";
 }
@@ -7,17 +7,14 @@
 <hr />
 <h5>Receipt</h5>
 <div class="row">
-    <div class="col">
-        <p>19th May 2023</p>
+    <div onload="displayDate()" class="col">
+        <p><span id="date"></span></p>
         <p>Order No: SL397826</p>
     </div>
     <div class="col">
         <strong><p>Billed To</p></strong>
-        <p>Mr Jones Smith</p>
-        <p>119 Queen Street,</p>
-        <p>Auckland,</p>
-        <p>New Zealand</p>
-        <p>0612</p>
+        <p>@await Component.InvokeAsync("UserName")</p>
+        <p>@User.Identity?.Name</p>
     </div>
 </div>
 <style>
@@ -71,10 +68,16 @@ tr:nth-child(even) {
   <tr>
     <td>900137</td>
     <td>Adult</td>
-    <td>Mr John Smith</td>
+    <td> @await Component.InvokeAsync("UserName")</td>
     <td>Download</td>
   </tr>
 
 
 </table>
-
+<script>
+    function displayDate() {
+        var currentDate = new Date();
+        var dateString = currentDate.toDateString();
+        document.getElementById("date").innerHTML = dateString;
+    }
+</script>

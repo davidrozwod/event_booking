@@ -211,28 +211,19 @@
                 <tr>
                     <th scope="col">Tickets</th>
                     <th scope="col">Price</th>
-                    <th scope="col">Quantity</th>
+                    <th scope="col">Quantity</th>                      
                     <th scope="col">Sub-Total</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <th scope="row">Adult</th>
-                    <td>$0</td>
-                    <td>
-                        <div class="data-list-input">
-                            <select class="data-list-input" style="width:70px;">
-                                <option value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                            </select>
-                        </div>
-                    </td>
-                    <td>$0</td>
+                   @if (ViewBag.AdultTickets > 0)
+                   {
+                        <th scope="row">Adult Ticket</th>
+                        <td></td>
+                        <td>@ViewBag.AdultTickets</td>
+                        <td>@string.Format("{0:0.00}", ViewBag.AdultSubtotal)</td>    
+                    }     
                 </tr>
                 <tr>
                     <th scope="row">Child</th>

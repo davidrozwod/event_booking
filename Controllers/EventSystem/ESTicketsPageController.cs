@@ -8,7 +8,10 @@ using event_booking.Models;
 using event_booking.Models.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
+<<<<<<< HEAD
+=======
 using SendGrid.Helpers.Mail;
+>>>>>>> d69d13c78044838ab64b51cfd422921cec12a163
 
 namespace event_booking.Controllers.EventSystem
 {
@@ -23,6 +26,13 @@ namespace event_booking.Controllers.EventSystem
             _userManager = userManager;
         }
 
+<<<<<<< HEAD
+        public async Task<IActionResult> Index(int id, int? sectionId = null, int? groupDiscountId = null, Dictionary<int, int> discountTicketCounts = null)
+        {
+            var currentUserId = _userManager.GetUserId(User);
+            var purchaseId = HttpContext.Session.GetInt32("PurchaseId");
+
+=======
         [HttpGet]
         public async Task<IActionResult> Index(string button, int id, int? sectionId = null, int? groupDiscountId = null, Dictionary<int, int> discountTicketCounts = null)
         {
@@ -48,6 +58,7 @@ namespace event_booking.Controllers.EventSystem
                 HttpContext.Session.SetInt32("PurchaseId", purchase.PurchaseId);
             }
 
+>>>>>>> d69d13c78044838ab64b51cfd422921cec12a163
             var ticketsForEvent = await _context.Tickets
                 .Include(t => t.Event)
                 .Include(t => t.Venue)
@@ -201,6 +212,8 @@ namespace event_booking.Controllers.EventSystem
 
             ViewBag.Discounts = await _context.Discounts.ToListAsync();
 
+<<<<<<< HEAD
+=======
             /*if()
 
 
@@ -219,13 +232,19 @@ namespace event_booking.Controllers.EventSystem
                      return View("~/Views/Home/Ticket2.cshtml");
                  }*/
 
+>>>>>>> d69d13c78044838ab64b51cfd422921cec12a163
 
             return View("~/Views/EventSystem/Tickets/TicketsPage.cshtml", ticketsForEvent);
         }
 
+<<<<<<< HEAD
+        [HttpPost]
+        public IActionResult Details(string FirstName, string LastName, string Email, string PhoneNumber, string Country, string PostalCode)
+=======
 
         [HttpGet]
         public async Task<IActionResult> Details(string FirstName, string LastName, string Email, string PhoneNumber, string StreetAddress, string Country, string PostalCode)
+>>>>>>> d69d13c78044838ab64b51cfd422921cec12a163
         {
             //Gets logged in user
             var user = await _userManager.GetUserAsync(User);
@@ -240,6 +259,13 @@ namespace event_booking.Controllers.EventSystem
             return RedirectToAction("Index"); // Redirect to the desired page after processing
         }
 
+<<<<<<< HEAD
+
+
+
+
+        /*//
+=======
         [HttpPost]
         public async Task<IActionResult> Ticket2(IEnumerable<Ticket> updatedTickets)
         {
@@ -481,6 +507,7 @@ namespace event_booking.Controllers.EventSystem
         }
 
         //
+>>>>>>> d69d13c78044838ab64b51cfd422921cec12a163
         //Selects a single ticket for viewing
         [Authorize]
         public async Task<IActionResult> Detail(int id)
@@ -548,8 +575,11 @@ namespace event_booking.Controllers.EventSystem
                 else
                 {
                     purchase = new Purchase();
+<<<<<<< HEAD
+=======
                     // Set the session expiry time to the current time plus 5 minutes
                     purchase.SessionExpiryTime = DateTime.UtcNow.AddMinutes(5);
+>>>>>>> d69d13c78044838ab64b51cfd422921cec12a163
                     _context.Purchases.Add(purchase);
                     await _context.SaveChangesAsync();
                     HttpContext.Session.SetInt32("PurchaseId", purchase.PurchaseId);
@@ -573,6 +603,31 @@ namespace event_booking.Controllers.EventSystem
 
             return View("~/Views/EventSystem/Tickets/TicketView.cshtml", model);
         }
+<<<<<<< HEAD
+        */
+
+        /*
+        public IActionResult ConfirmPurchase(int ticketId)
+        {
+            var ticket = _context.Tickets.Find(ticketId);
+
+            // ...other code...
+
+            var discounts = _context.Discounts
+                .ToDictionary(d => d.DiscountId, d => d.PriceMultiplier);
+
+            var model = new TicketPriceViewModel
+            {
+                Ticket = ticket,
+                Discounts = discounts
+            };
+
+            return View(model);
+        }*/
+
+    }
+}
+=======
 
         [HttpPost]
         [Authorize]
@@ -697,3 +752,4 @@ namespace event_booking.Controllers.EventSystem
 
             return View(model);
         }*/
+>>>>>>> d69d13c78044838ab64b51cfd422921cec12a163

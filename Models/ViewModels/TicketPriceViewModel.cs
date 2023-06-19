@@ -1,4 +1,5 @@
 ﻿using event_booking.Models;
+using System.Collections.Generic;
 
 namespace event_booking.Models.ViewModels
 {    public class TicketPriceViewModel
@@ -21,7 +22,8 @@ namespace event_booking.Models.ViewModels
 
         public Dictionary<int, decimal> Discounts { get; set; }
 
-        public List<Ticket> Tickets { get; set; }
-        public EventUser EventUser { get; set; }
+        public List<Section> Section { get; set; }
+
+        public List<GroupDiscount> GroupDiscounts { get; set; }
     }
 }

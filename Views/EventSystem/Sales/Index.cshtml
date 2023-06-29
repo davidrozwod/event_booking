@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+@model IEnumerable<Sale>
+
+<h1>Shopping Cart</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EventUser.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SaleDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SalePrice)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EventUser.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SaleDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SalePrice)
+                </td>
+                <td>
+                    <form asp-action="RemoveFromCart" asp-route-saleId="@item.SaleId" method="post">
+                        <button type="submit" class="btn btn-danger">Remove</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (Model.Any())
+{
+    <form asp-action="Checkout">
+        <button type="submit" class="btn btn-primary">Checkout</button>
+    </form>
+}

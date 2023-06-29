@@ -1,0 +1,33 @@
+﻿﻿@{
+    ViewData["Title"] = "EventSystemPage";
+}
+
+<div class="container">
+    <div class="row">
+            <div class="col-md-8">
+                <h1 class="display-4 mt-3 mb-4 text-primary">Events</h1>
+                <h5 class="text-muted mb-5">Event and Ticket creation</h5>
+
+                <ul class="list-group">
+                @if (User.IsInRole("Admin") || User.IsInRole("Promoter"))
+                {
+                    <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="Events" asp-action="Index">Events</a></li>
+                    <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="ESTicketsCreate" asp-action="Create">Create Tickets</a></li>
+                    <li class="list-group-item"><a class="text-decoration-none text-dark" asp-controller="ESSales" asp-action="Index">Sales</a></li>
+                }
+            </ul>
+
+                <div class="mt-5">
+                    <a class="btn btn-primary" asp-controller="Home" asp-action="PromoterArea">Back to Promoters Area</a>
+                </div>
+            </div>
+
+            <div class="col-md-4 pt-15 pb-5">
+                <div class="d-flex align-items-stretch" style="height: 100%;">
+                    <div style="width: 100%; overflow: hidden; border-radius: 20%;">
+                        <img src="https://plus.unsplash.com/premium_photo-1681121352693-0a15991e025e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=435&q=80" alt="Database img" class="img-fluid" style="object-fit: cover; height: 100%;">
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>

@@ -1,0 +1,125 @@
+﻿@page
+@using event_booking.Models
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@model RegisterModel
+@{
+}
+<style>
+    h2 {
+        color: indigo;
+    }
+
+    <style >
+    h2 {
+        color: indigo;
+    }
+
+    a {
+        text-decoration: none;
+        color: hsl(218, 81%, 75%);
+    }
+
+    body {
+        background-image: url('https://images.unsplash.com/photo-1511447333015-45b65e60f6d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=955&q=80');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+
+    .gradient-custom-4 {
+        /* fallback for old browsers */
+        background: #1A237E;
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1));
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1));
+    }
+
+</style>
+
+    <section class="background-radial-gradient overflow-hidden">
+    <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+        <div class="row gx-lg-5 align-items-center mb-5">
+            <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
+                <div class="card bg-glass">
+                    <div class="card-body px-4 py-5 px-md-5">
+                        <center><h2 style="margin-left:0;" class="center fw-bold mb-2 text-uppercase">Register An Account</h2></center>
+                        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                                    @if (!SignInManager.IsSignedIn(User))
+                                    {
+                                    <div>
+                                        <p style="text-align:center;">
+                                            Already Have an account? <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl">Sign In</a>
+                                        </p>
+                                    </div>
+                                    }
+                                <hr />
+                                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                                <div class="row g-2">
+                                    <div class="form-floating col-md">
+                                        <input asp-for="Input.FirstName" class="form-control" />
+                                        <label asp-for="Input.FirstName">First Name</label>
+                                        <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-floating col-md">
+                                        <input asp-for="Input.LastName" class="form-control" />
+                                        <label asp-for="Input.LastName">Last Name</label>
+                                        <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <p></p>
+                                <div class="form-floating mb-3">
+                                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                                    <label asp-for="Input.Email">Email</label>
+                                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                                    <label asp-for="Input.Password">Password</label>
+                                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                                    <label asp-for="Input.ConfirmPassword">Confirm Password</label>
+                                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                                </div>
+                                <p></p>
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                    <div class="form-floating mb-3">
+                                        <select asp-for="Input.Role" class="form-control">
+                                            <option value="">Select a role</option>
+                                            <option value="@UserRole.User">User</option>
+                                            <option value="@UserRole.Promoter">Promoter</option>
+                                            <option value="@UserRole.Admin">Admin</option>
+                                        </select>
+                                    </div>
+                                    }
+                                <p></p>
+                                <button id="registerSubmit" type="submit" class="btn-block w-100 btn-lg gradient-custom-4 text-white">Register</button>
+                            </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
+                <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 75%)">
+                    Your go-to <br />
+                    <span style="color: hsl(218, 81%, 95%)" >Event Website</span>
+                </h1>
+                <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">
+                    Uncover millions of events right here in New Zealand
+                    , get tip offs about your favorite scenes, artists, arts, teams, and more, you will
+                    always be getting afforable secure ticketing with any event. Eventful is the business
+                    to be with to find exclusive events all with a reasonable price. Log in now to uncover
+                    a world filled with events tailored to your liking right here at Eventful
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Section: Design Block -->
+    @section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

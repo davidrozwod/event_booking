@@ -1,0 +1,111 @@
+﻿@page
+@using Microsoft.AspNetCore.Http.Features
+@model TwoFactorAuthenticationModel
+@{
+    ViewData["Title"] = "Two-factor authentication (2FA)";
+    ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
+}
+<style>
+    .container-fluid {
+        padding: 15px;
+    }
+
+    body {
+        background-color: lightgray;
+    }
+
+    .bg-image {
+        margin-left: -90px;
+        margin-bottom: 0px;
+    }
+
+    .gradient-custom-3 {
+        /* fallback for old browsers */
+        background: #1A237E
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1)));
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1))
+    }
+
+    .gradient-custom-4 {
+        /* fallback for old browsers */
+        background: #1A237E
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1)));
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1))
+    }
+
+</style>
+<section class="vh-100 bg-image"
+         style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
+    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+        <div class="container-fluid bg-white col-11">
+            <partial name="_StatusMessage" for="StatusMessage" />
+<h3>@ViewData["Title"]</h3>
+@{
+    var consentFeature = HttpContext.Features.Get<ITrackingConsentFeature>();
+    @if (consentFeature?.CanTrack ?? true)
+    {
+        @if (Model.Is2faEnabled)
+        {
+            if (Model.RecoveryCodesLeft == 0)
+            {
+                <div class="alert alert-danger">
+                    <strong>You have no recovery codes left.</strong>
+                    <p>You must <a asp-page="./GenerateRecoveryCodes">generate a new set of recovery codes</a> before you can log in with a recovery code.</p>
+                </div>
+            }
+            else if (Model.RecoveryCodesLeft == 1)
+            {
+                <div class="alert alert-danger">
+                    <strong>You have 1 recovery code left.</strong>
+                    <p>You can <a asp-page="./GenerateRecoveryCodes">generate a new set of recovery codes</a>.</p>
+                </div>
+            }
+            else if (Model.RecoveryCodesLeft <= 3)
+            {
+                <div class="alert alert-warning">
+                    <strong>You have @Model.RecoveryCodesLeft recovery codes left.</strong>
+                    <p>You should <a asp-page="./GenerateRecoveryCodes">generate a new set of recovery codes</a>.</p>
+                </div>
+            }
+
+            if (Model.IsMachineRemembered)
+            {
+                <form method="post" style="display: inline-block">
+                    <button type="submit" class="btn btn-primary">Forget this browser</button>
+                </form>
+            }
+            <a asp-page="./Disable2fa" class="btn btn-primary">Disable 2FA</a>
+            <a asp-page="./GenerateRecoveryCodes" class="btn btn-primary">Reset recovery codes</a>
+        }
+
+        <h4>Authenticator app</h4>
+        @if (!Model.HasAuthenticator)
+        {
+            <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn btn-primary">Add authenticator app</a>
+        }
+        else
+        {
+            <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn btn-primary">Set up authenticator app</a>
+            <a id="reset-authenticator" asp-page="./ResetAuthenticator" class="btn btn-primary">Reset authenticator app</a>
+        }
+    }
+    else
+    {
+        <div class="alert alert-danger">
+            <strong>Privacy and cookie policy have not been accepted.</strong>
+            <p>You must accept the policy before you can enable two factor authentication.</p>
+        </div>
+    }
+}
+        </div>
+    </div>
+</section>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

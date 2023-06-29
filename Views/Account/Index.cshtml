@@ -1,0 +1,238 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model List<IdentityUser>
+
+@{
+    ViewData["Title"] = "Booking";
+}
+
+
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        list-style: none;
+        font-family: 'Josefin Sans', sans-serif;
+    }
+
+    body {
+        background-color: #f3f5f9;
+    }
+
+    .wrapper {
+        display: flex;
+        position: relative;
+    }
+
+        .wrapper .sidebar {
+            width: 200px;
+            height: 100%;
+            background: #4b4276;
+            padding: 30px 0px;
+            position: absolute;
+            float: right;
+        }
+
+            .wrapper .sidebar h2 {
+                color: #fff;
+                text-transform: uppercase;
+                text-align: center;
+                margin-bottom: 30px;
+            }
+
+            .wrapper .sidebar ul li {
+                padding: 15px;
+                border-bottom: 1px solid #bdb8d7;
+                border-bottom: 1px solid rgba(0,0,0,0.05);
+                border-top: 1px solid rgba(255,255,255,0.05);
+                text-decoration: none
+            }
+
+                .wrapper .sidebar ul li a {
+                    color: #bdb8d7;
+                    display: block;
+                    text-decoration: none
+                }
+
+                    .wrapper .sidebar ul li a .fas {
+                        width: 25px;
+                        text-decoration: none
+                    }
+
+                .wrapper .sidebar ul li:hover {
+                    background-color: #594f8d;
+                    text-decoration: none
+                }
+
+                    .wrapper .sidebar ul li:hover a {
+                        color: #fff;
+                        text-decoration: none
+                    }
+
+        .wrapper .main_content {
+            width: 100%;
+            margin-left: 200px;
+        }
+
+            .wrapper .main_content .header {
+                padding: 20px;
+                background: #fff;
+                color: #717171;
+                border-bottom: 1px solid #e0e4e8;
+            }
+
+            .wrapper .main_content .info {
+                margin: 20px;
+                color: #717171;
+                line-height: 25px;
+            }
+
+                .wrapper .main_content .info div {
+                    margin-bottom: 20px;
+                }
+
+    img {
+        float: left;
+        width: 25px;
+        display: inline-block;
+        margin: 0px 6px 4px;
+    }
+
+    p {
+        font-size: 12px;
+    }
+
+    h4 {
+        font-weight: bold;
+    }
+</style>
+<style>
+    .popup {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        color: #bdb8d7;
+    }
+
+        /* The actual popup */
+        .popup .popuptext {
+            visibility: hidden;
+            width: 160px;
+            background-color: #555;
+            color: #bdb8d7;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px 0;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -80px;
+        }
+
+            /* Popup arrow */
+            .popup .popuptext::after {
+                content: "";
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                margin-left: -5px;
+                border-width: 5px;
+                border-style: solid;
+                border-color: #555 transparent transparent transparent;
+                color: #bdb8d7;
+            }
+
+        /* Toggle this class - hide and show the popup */
+        .popup .show {
+            visibility: visible;
+            -webkit-animation: fadeIn 1s;
+            animation: fadeIn 1s;
+        }
+
+    .password-hash {
+        max-width: 150px; /* Adjust the maximum width as needed */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+</style>
+
+<script>
+    function myFunction() {
+        var popup = document.getElementById("myPopup");
+        popup.classList.toggle("show");
+    }
+</script>
+<div class="wrapper">
+    <div class="sidebar">
+        <h2>Eventful</h2>
+        <ul>
+            <li><img src="https://icon-library.com/images/dashboard-icon-vector/dashboard-icon-vector-2.jpg" /> <a asp-controller="Home" asp-action="PromoterArea"> Dashboard</a></li>
+            <li><img src="https://icon-library.com/images/event-icon/event-icon-7.jpg" /> <a asp-controller="Home" asp-action="EventSystemPage"> Events</a></li>
+            @if (User.IsInRole("Admin"))
+            {
+                <li><img src="https://www.freeiconspng.com/thumbs/profile-icon-png/profile-icon-person-user-19.png" /> <a asp-controller="Account" asp-action="Index">Accounts</a></li>
+                <li><img src="https://icon-library.com/images/settings-wheel-icon/settings-wheel-icon-14.jpg" /> <a asp-controller="Home" asp-action="CRUDs"> CRUDs</a></li>
+            }
+            <li><img src="https://cdn.icon-icons.com/icons2/2518/PNG/512/logout_icon_151219.png" /> <a asp-area="Identity" asp-page="/Account/Logout"> Logout</a></li>
+        </ul>
+    </div>
+    <div class="main_content">
+        <div class="header">Welcome to the Admin Dashboard</div>
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+        }
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+        }
+        <div class="info">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="border">
+                            <h4>Users</h4>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Email</th>
+                                        <th>Password</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var users in Model)
+                                    {
+                                        <tr>
+                                            <td>@users.Id</td>
+                                            <td>@users.Email</td>
+                                            <td class="password-hash">@users.PasswordHash</td>
+                                            <td>
+                                                <form method="post" asp-controller="Account" asp-action="Delete">
+                                                    <input type="hidden" name="id" value="@users.Id" />
+                                                    <button type="submit">Delete</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <div class="mt-5">
+                                <a class="btn btn-primary" asp-area="Identity" asp-page="/Account/Register">Create Account</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

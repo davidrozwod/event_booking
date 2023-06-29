@@ -1,0 +1,240 @@
+﻿<style>
+ body{
+       background: rgb(232, 252, 252);
+       margin: 0px;
+       padding:0px;
+       grid-column-gap: 25px;
+       column-gap: 25px;
+ }
+
+    body {
+        background-image: url('https://images.unsplash.com/photo-1511447333015-45b65e60f6d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=955&q=80');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+    .centered {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .bg {
+        width: 100%;
+        z-index: 0;
+    }
+ .bottom-left {
+  position: absolute;
+  bottom: 8px;
+  left: 16px;
+}
+    h1,
+    h1 + p {
+        margin-left: 15px;
+        font-weight: 300;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    }
+
+        h1 + p a {
+            color: #333;
+        }
+
+            h1 + p a:hover {
+                text-decoration: none;
+            }
+
+    h2 {
+        margin: 5px 15px 0;
+        padding: 0;
+        font-weight: 300;
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    }
+
+        h2 span {
+            margin-left: 1em;
+            color: #aaa;
+            font-size: 50%;
+        }
+
+    h3 {
+
+        margin-top: 10px;
+        padding: 0;
+        font-weight: 300;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    }
+
+        h3 span {
+            margin-left: 1em;
+            color: #aaa;
+            font-size: 85%;
+        }
+
+    h4 {
+        margin: 5px 5px 0;
+        margin-top: -10px;
+        padding: 0;
+        font-weight: 300;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    }
+
+        h4 span {
+            margin-left: 1em;
+            color: #aaa;
+            font-size: 85%;
+        }
+
+    h5 {
+        margin-top: 75px padding: 0;
+        font-weight: 300;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    }
+
+        h5 span {
+            margin-left: 1em;
+            color: #aaa;
+            font-size: 20%;
+        }
+
+    h6 {
+        margin: 5px 5px 0;
+        padding: 0;
+        font-weight: 300;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    }
+
+        h6 span {
+            margin-left: 1em;
+            color: #aaa;
+            font-size: 50%;
+        }
+    p {
+        margin-left: 15px;
+        padding: 0;
+        font-weight: 300;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    }
+
+        p span {
+            margin-left: 1em;
+            color: #aaa;
+            font-size: 85%;
+        }
+    .example {
+  position: relative;
+  padding: 0;
+  width: 300px;
+  display: block;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+    .center {
+        margin: auto;
+        width: 50%;
+        padding: 10px;
+    }
+
+     .gradient-custom-3 {
+        /* fallback for old browsers */
+        background: #1A237E
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1)));
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1))
+    }
+
+    .gradient-custom-4 {
+        /* fallback for old browsers */
+        background: #1A237E
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1)));
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1))
+    }
+</style>
+<html>
+<body>
+    <section class="background-radial-gradient overflow-hidden">
+        <p class="text-white">Home/Festivals And Lifestyles/ Home and Garden Shows</p>
+        <p></p>
+        <h1 style="font-size:300%; margin-left:20px;" class="row text-white  fw-bold mb-2  text-uppercase">Home and Garden Shows</h1>
+        <div class="container-fluid px-7">
+            <div class="row gx-3">
+                <div class="col-4">
+                    <div class="p-3 border bg-light">
+                        <center><h2 class="border-dark border-bottom">SUB CATEGORIES</h2></center>
+                        <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
+                            <a class="nav-link text-black" asp-area="" asp-controller="FestivalsAndLifestyle" asp-action="Index">All Events </a>
+                        </div>
+                        <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
+                            <a class="nav-link text-black" asp-area="" asp-controller="FestivalsAndLifestyle" asp-action="FoodAndWineFestivals">Food And Wine Festivals </a>
+                        </div>
+                        <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
+                            <a class="nav-link text-black" asp-area="" asp-controller="FestivalsAndLifestyle" asp-action="FashionShowsAndRunways">Fashion Shows And Runways</a>
+                        </div>
+                        <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
+                            <a class="nav-link text-black" asp-area="" asp-controller="FestivalsAndLifestyle" asp-action="ArtAndCultureFestivals">Art And Culture Festivals</a>
+                        </div>
+                        <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
+                            <a class="nav-link text-black" asp-area="" asp-controller="FestivalsAndLifestyle" asp-action="FilmAndDocumentaryFestivals">Film And Documentary Festivals</a>
+                        </div>
+                        <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
+                            <a class="nav-link text-black" asp-area="" asp-controller="FestivalsAndLifestyle" asp-action="MusicFestivalsAndOutdoorConcerts">Music Festivals And Outdoor Concerts</a>
+                        </div>
+                        <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
+                            <a class="nav-link text-black" asp-area="" asp-controller="FestivalsAndLifestyle" asp-action="WellnessRetreatsAndYogaFestivals">Wellness Retreats And Yoga Festivals</a>
+                        </div>
+                        <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
+                            <a class="nav-link text-black" asp-area="" asp-controller="FestivalsAndLifestyle" asp-action="TechnologyAndInnovationExpos">Technology And Innovation Expos</a>
+                        </div>
+                        <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
+                            <a class="nav-link text-black" asp-area="" asp-controller="FestivalsAndLifestyle" asp-action="TravelAndAdventureExpos">Travel And Adventure Expos</a>
+                        </div>
+                        <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
+                            <a class="nav-link text-black" asp-area="" asp-controller="FestivalsAndLifestyle" asp-action="LiteraryAndBookFairs">Literary And Book Fairs</a>
+                        </div>
+                        <div class="p-3 mb-2 bg-light bg-gradient text-dark border-bottom">
+                            <a class="nav-link text-black" asp-area="" asp-controller="FestivalsAndLifestyle" asp-action="HomeAndGardenShows">Home And Garden Shows</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-8">
+                    <div class="p-3 border bg-light">
+                        <h2 class="border-dark border-bottom">ALL EVENTS</h2>
+                        <p></p>
+                        @foreach (var item in Model)
+                        {
+                            <div class="row mb-3 border border-dark">
+                                <div class="col-md-2">
+                                    <img style="margin-top:4px;" src="@item.Image" alt="Event image" width="100" height="80%" />
+                                </div>
+                                <div class="col-md-1">
+                                    <h5 style="margin-top: 25px;">@item.StartDateTime.ToString("dd/MM")</h5>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6 class="text-muted">@item.Name</h6>
+                                    <h6> @item.Organizer.Name</h6>
+                                    <h6 class="text-muted"> @item.EventCategory.CategoryName</h6>
+                                </div>
+                                <div class="col-md-3">
+                                    <p></p>
+                                    <a class="btn gradient-custom-3 text-white" asp-area="" asp-controller="ESEventsPage" asp-action="EventsPage" asp-route-id="@item.EventId">View Event ></a>
+                                    <p></p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+
+        </div>
+    </section>
+        
+</body>
+
+</html>

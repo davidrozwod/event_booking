@@ -1,0 +1,498 @@
+﻿@model event_booking.Models.ViewModels.TicketPriceViewModel
+@using Newtonsoft.Json
+@using event_booking.Models.ViewModels;
+
+@{
+    ViewData["Title"] = "View Ticket";
+}
+<header>
+    <h2>@Model.Event.Name</h2>
+    <h3>Venue: @Model.Venue.Name</h3>
+</header>
+
+<link rel="stylesheet" href="style.css" />
+<script src="script.js" defer></script>
+<div>
+    <h4 class="display-4">Buy a ticket to an event</h4>
+</div>
+
+<!-- progressbar -->
+<div class="progressbar">
+    <div class="progress gradient-custom-4" id="progress"></div>
+
+    <div class="progress-step progress-step-active"
+         data-title="Book"></div>
+    <div class="progress-step" data-title="Details"></div>
+    <div class="progress-step" data-title="Review"></div>
+    <div class="progress-step" data-title="Payment"></div>
+</div>
+
+<!-- Steps -->
+<!-- Step 1 Book -->
+<form class="form-step form-step-active">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Tickets</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Sub-Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Adult</th>
+                <td>$0</td>
+                <td>
+                    <div class="data-list-input">
+                        <select class="data-list-input" style="width:70px;">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>
+                </td>
+                <td>$0</td>
+            </tr>
+            <tr>
+                <th scope="row">Child</th>
+                <td>$0</td>
+                <td>
+                    <div class="data-list-input">
+                        <select class="data-list-input" style="width:70px;">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>
+                </td>
+                <td>$0</td>
+            </tr>
+            <tr>
+                <th scope="row">Under 6</th>
+                <td>$0</td>
+                <td>
+                    <div class="data-list-input">
+                        <select class="data-list-input" style="width:70px;">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>
+                </td>
+                <td>$0</td>
+            </tr>
+        </tbody>
+    </table>
+    <p></p>
+    <div class="">
+        <a href="#" class="btn btn-next width-50 ml-auto">Next</a>
+    </div>
+</form>
+
+<!-- Step 2 Details -->
+<form class="form-step">
+    <div class="row g-2">
+        <div class="col-md">
+            <div class="form-floating">
+                <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
+                <label for="floatingInputGrid">First Name</label>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="form-floating">
+                <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
+                <label for="floatingInputGrid">Last Name</label>
+            </div>
+        </div>
+    </div>
+    <p></p>
+    <div class="form-floating mb-3">
+        <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" />
+        <label for="floatingInputGrid">Email</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" />
+        <label for="floatingInputGrid">Phone Number</label>
+    </div>
+    <div class="row g-2">
+        <div class="col-md">
+            <div class="form-floating">
+                <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example">
+                    <option selected>Pick your Location</option>
+                    <option value="1">This Place</option>
+                    <option value="2">That Place</option>
+                    <option value="3">That other area</option>
+                </select>
+                <label for="floatingSelectGrid">Country</label>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="form-floating">
+                <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
+                <label for="floatingInputGrid">Postal Code</label>
+            </div>
+        </div>
+    </div>
+    <p></p>
+    <div class="btns-group">
+        <a href="#" class="btn btn-prev">Previous</a>
+        <a href="#" class="btn btn-next">Next</a>
+    </div>
+</form>
+
+<!-- Step 3 Review -->
+<form class="form-step">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Tickets</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Sub-Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Adult</th>
+                <td>$0</td>
+                <td>
+                    <div class="data-list-input">
+                        <select class="data-list-input" style="width:70px;">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>
+                </td>
+                <td>$0</td>
+            </tr>
+            <tr>
+                <th scope="row">Child</th>
+                <td>$0</td>
+                <td>
+                    <div class="data-list-input">
+                        <select class="data-list-input" style="width:70px;">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>
+                </td>
+                <td>$0</td>
+            </tr>
+            <tr>
+                <th scope="row">Under 6</th>
+                <td>$0</td>
+                <td>
+                    <div class="data-list-input">
+                        <select class="data-list-input" style="width:70px;">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>
+                </td>
+                <td>$0</td>
+            </tr>
+        </tbody>
+    </table>
+    <p></p>
+    <div class="btns-group">
+        <a href="#" class="btn btn-prev">Previous</a>
+        <a href="#" class="btn btn-next">Next</a>
+    </div>
+</form>
+
+<!-- Step 4 Payment -->
+<form class="form-step">
+    <div class="row g-2">
+        <div class="col-md">
+            <div class="form-floating">
+                <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
+                <label for="floatingInputGrid">Card Number</label>
+            </div>
+        </div>
+    </div>
+    <p></p>
+    <div class="row g-2">
+        <div class="col-md">
+            <div class="form-floating">
+                <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example">
+                    <option selected>Card Expiry Date</option>
+                    <option value="1">01</option>
+                    <option value="2">02</option>
+                    <option value="3">03</option>
+                    <option value="4">04</option>
+                    <option value="5">05</option>
+                    <option value="6">06</option>
+                    <option value="7">07</option>
+                    <option value="8">08</option>
+                    <option value="9">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                </select>
+                <label for="floatingSelectGrid">Month</label>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="form-floating">
+                <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example">
+                    <option value="1">23</option>
+                    <option value="2">24</option>
+                    <option value="3">25</option>
+                    <option value="4">26</option>
+                    <option value="5">27</option>
+                    <option value="6">28</option>
+                </select>
+                <label for="floatingSelectGrid">Year</label>
+            </div>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" />
+            <label for="floatingInputGrid">Cardholder Name</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" />
+            <label for="floatingInputGrid">Card Security Code</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" />
+            <label for="floatingInputGrid">Billing Address</label>
+        </div>
+        <div class="col-md">
+            <div class="form-floating">
+                <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
+                <label for="floatingInputGrid">Billing Postal Code</label>
+            </div>
+        </div>
+
+    </div>
+    <p></p>
+    <div class="btns-group">
+        <a href="#" class="btn btn-prev">Previous</a>
+        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Ticket2"><input type="submit" value="Submit" class="btn" /> </a>
+    </div>
+</form>
+
+<!-- Scripts -->
+<script>
+    const prevBtns = document.querySelectorAll(".btn-prev");
+    const nextBtns = document.querySelectorAll(".btn-next");
+    const progress = document.getElementById("progress");
+    const formSteps = document.querySelectorAll(".form-step");
+    const progressSteps = document.querySelectorAll(".progress-step");
+
+    let formStepsNum = 0;
+
+    nextBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            formStepsNum++;
+            updateFormSteps();
+            updateProgressbar();
+        });
+    });
+
+    prevBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            formStepsNum--;
+            updateFormSteps();
+            updateProgressbar();
+        });
+    });
+
+    function updateFormSteps() {
+        formSteps.forEach((formStep) => {
+            formStep.classList.contains("form-step-active") &&
+                formStep.classList.remove("form-step-active");
+        });
+
+        formSteps[formStepsNum].classList.add("form-step-active");
+    }
+
+    function updateProgressbar() {
+        progressSteps.forEach((progressStep, idx) => {
+            if (idx < formStepsNum + 1) {
+                progressStep.classList.add("progress-step-active");
+            } else {
+                progressStep.classList.remove("progress-step-active");
+            }
+        });
+
+        const progressActive = document.querySelectorAll(".progress-step-active");
+
+        progress.style.width =
+            ((progressActive.length - 1) / (progressSteps.length - 1)) * 100 + "%";
+    }
+</script>
+
+<!-- Style -->
+<style>
+    :root {
+        --primary-color: rgb(11, 78, 179);
+    }
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+
+    /* Global Stylings */
+    label {
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    input {
+        display: block;
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ccc;
+        border-radius: 0.25rem;
+    }
+
+
+
+    .text-center {
+        text-align: center;
+    }
+
+    /* Progressbar */
+    .progressbar {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        counter-reset: step;
+        margin: 2rem 0 4rem;
+    }
+
+        .progressbar::before,
+        .progress {
+            content: "";
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 4px;
+            width: 100%;
+            background-color: #dcdcdc;
+            z-index: -1;
+        }
+
+    .progress {
+        background-color: var(--primary-color);
+        width: 0%;
+        transition: 0.3s;
+    }
+
+    .progress-step {
+        width: 2.1875rem;
+        height: 2.1875rem;
+        background-color: #dcdcdc;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .progress-step::before {
+            counter-increment: step;
+            content: counter(step);
+        }
+
+        .progress-step::after {
+            content: attr(data-title);
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+    .progress-step-active {
+        background-color: var(--primary-color);
+        color: #f3f3f3;
+    }
+
+
+
+    .form-step {
+        display: none;
+        transform-origin: top;
+        animation: animate 0.5s;
+    }
+
+    .form-step-active {
+        display: block;
+    }
+
+    .input-group {
+        margin: 2rem 0;
+    }
+
+
+    /* Button */
+    .btns-group {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .btn {
+        padding: 0.75rem;
+        display: block;
+        text-decoration: none;
+        background-color: var(--primary-color);
+        color: #f3f3f3;
+        text-align: center;
+        border-radius: 0.25rem;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+        .btn:hover {
+            box-shadow: 0 0 0 2px #fff, 0 0 0 3px var(--primary-color);
+        }
+</style>
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>

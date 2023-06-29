@@ -1,0 +1,427 @@
+﻿
+@{
+    ViewData["Title"] = "Events";
+}
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        list-style: none;
+        font-family: 'Josefin Sans', sans-serif;
+    }
+
+
+    body {
+        background-color: #f3f5f9;
+    }
+
+    .wrapper {
+        display: flex;
+        position: relative;
+    }
+
+        .wrapper .sidebar {
+            width: 200px;
+            height: 100%;
+            padding: 10px 0px;
+            position: absolute;
+            float: right;
+            background-color: black;
+        }
+
+            .wrapper .sidebar h2 {
+                color: #fff;
+                text-transform: uppercase;
+                text-align: center;
+                margin-bottom: 30px;
+            }
+
+            .wrapper .sidebar ul li {
+                padding: 20px;
+                text-decoration: none
+            }
+
+                .wrapper .sidebar ul li a {
+                    color: #fff;
+                    text-decoration: none
+                }
+
+
+                .wrapper .sidebar ul li:hover {
+                    background-color: #594f8d;
+                    text-decoration: none
+                }
+
+                    .wrapper .sidebar ul li:hover a {
+                        color: #fff;
+                        text-decoration: none
+                    }
+
+        .wrapper .main_content {
+            width: 100%;
+            margin-left: 200px;
+        }
+
+            .wrapper .main_content .info {
+                margin: 20px;
+            }
+
+            .wrapper .main_content .header {
+                padding: 10px;
+                background-color: rgba(108, 11, 113, 1);
+                color: #fff;
+                }
+
+    img {
+        float: left;
+        width: 25px;
+        display: inline-block;
+        margin: 0px 6px 4px;
+    }
+
+    h8 {
+        font-weight: bold;
+        color: rgba(0, 9, 75, 0.8);
+    }
+
+    labels,
+    xValues,
+    yValues {
+        color: rgba(0, 9, 75, 0.8);
+    }
+
+
+    h4,
+    div {
+        color: rgba(108, 11, 113, 1);
+    }
+
+    .gradient-custom-4 {
+        /* fallback for old browsers */
+        background: #1A237E
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1)));
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1))
+    }
+
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        width: 100%;
+    }
+
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+    
+    .container {
+        padding: 2px 16px;
+    }
+
+
+    button {
+        float: right;
+        background-color: rgba(108, 11, 113, 1);
+        border: none;
+        padding: 1px 1px 0px;
+        cursor: pointer;
+    }
+
+    .button1 {
+        border: none;
+    }
+
+        .button1:hover {
+            background-color: blue;
+            border: none;
+        }
+
+    .popup {
+        position: relative;
+        cursor: pointer;
+    }
+
+        /* The actual popup */
+        .popup .popuptext {
+            visibility: hidden;
+            width: 150px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            position: absolute;
+            left: 50%;
+            margin-left: -180px;
+            margin-bottom: -100px;
+        }
+
+            /* Popup arrow */
+            .popup .popuptext::after {
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                border-style: solid;
+                border-color: #555 transparent transparent transparent;
+            }
+
+        /* Toggle this class - hide and show the popup */
+        .popup .show {
+            visibility: visible;
+            animation: fadeIn 1s;
+        }
+</style>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .row {
+        display: flex;
+    }
+
+    .column {
+        flex: 5%;
+        padding: 0px;
+    }
+
+    .button3 {
+        border: none;
+        float: right;
+        border: none;
+        padding: 1px 1px 0px;
+        cursor: pointer;
+    }
+
+    button3:hover {
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+    }
+
+    thead,
+    tfoot {
+        background-color: lightblue;
+        color: DarkSlateGrey;
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    h4 {
+        color: rgba(108, 11, 113, 1);
+    }
+</style>
+
+
+<script>
+    function myFunction() {
+        var popup = document.getElementById("myPopup");
+        popup.classList.toggle("show");
+    }
+</script>
+
+    <div class="wrapper">
+    <div class="sidebar gradient-custom-4">
+            <h2>Eventful</h2>
+        <ul>
+            <li><img src="https://icon-library.com/images/dashboard-icon-vector/dashboard-icon-vector-2.jpg" /> <a asp-controller="Home" asp-action="PromoterArea"> Dashboard</a></li>
+            <li><img src="https://www.freeiconspng.com/thumbs/profile-icon-png/profile-icon-person-user-19.png" /> <a asp-controller="Profile" asp-action="Index"> Profile</a></li>
+            <li><img src="https://img.uxwing.com/wp-content/themes/uxwing/download/seo-marketing/announcement-icon.png" /> <a asp-controller="Home" asp-action="Events"> Events</a></li>
+            <li><img src="https://cdn-icons-png.flaticon.com/512/55/55281.png" /> <a asp-controller="Home" asp-action="Booking"> Bookings</a></li>
+            <li><img src="https://cdn.onlinewebfonts.com/svg/img_387338.png" /> <a asp-controller="Home" asp-action="Review"> Reviews</a></li>
+            <li><img src="https://cdn-icons-png.flaticon.com/512/3239/3239958.png" /><div class="popup" onclick="myFunction()"> Notifications<span class="popuptext" id="myPopup">A Notification</span></div></li>
+            <li><img src="https://icon-library.com/images/settings-wheel-icon/settings-wheel-icon-14.jpg" /> <a asp-controller="Home" asp-action="CRUDs"> CRUDs</a></li>
+            <li><img src="https://icon-library.com/images/event-icon/event-icon-7.jpg" /> <a asp-controller="Home" asp-action="EventSystemPage"> EventSystem</a></li>
+            @if (User.IsInRole("Admin"))
+            {
+                <li><img src="https://www.freeiconspng.com/thumbs/profile-icon-png/profile-icon-person-user-19.png" /> <a asp-controller="Account" asp-action="Index">Accounts</a></li>
+            }
+            <li><img src="https://cdn.icon-icons.com/icons2/2518/PNG/512/logout_icon_151219.png" /> <a asp-area="Identity" asp-page="/Account/Logout"> Logout</a></li>
+        </ul>
+        </div>
+        <div class="main_content">
+        <div class="header">
+            Welcome to the Admin Events
+            <button class="rounded button button1">
+                <div class="popup" onclick="myFunction()">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3239/3239958.png" />
+                    <span class="popuptext" id="myPopup">A New Notification</span>
+                </div>
+            </button>
+        </div>
+            <div class="info">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Location</th>
+                        <th scope="col">Organiser</th>
+                        <th scope="col">Start Date</th>
+                        <th scope="col">End Date</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">UFC Fight Night: Felder Vs Hooker</th>
+                        <td>Sports & Outdoors</td>
+                        <td>Auckland</td>
+                        <td>UFC</td>
+                        <td>31/05/23</td>
+                        <td>01/6/23</td>
+                        <td>
+                            <div class="row">
+                                <div class="column">
+                                    <button3 class="button3">
+                                        <img src="https://www.freeiconspng.com/thumbs/eye-icon/eye-of-a-human-vector-icon--shapes-icons--icons-download-14.png" />
+                                    </button3>
+                                </div>
+                                <div class="column">
+                                    <button3 class="button3"><img src="https://cdn-icons-png.flaticon.com/512/266/266146.png"></button3>
+                                </div>
+                                <div class="column">
+                                    <button3 class="button3">
+                                        <img src="https://cdn-icons-png.flaticon.com/512/1345/1345874.png">
+                                    </button3>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Ricky Gervais: Armageddon</th>
+                        <td>Comedy</td>
+                        <td>Wellington</td>
+                        <td>John Smith</td>
+                        <td>09/06/23</td>
+                        <td>14/06/23</td>
+                        <td>
+                            <div class="row">
+                                <div class="column">
+                                    <button3 class="button3">
+                                        <img src="https://www.freeiconspng.com/thumbs/eye-icon/eye-of-a-human-vector-icon--shapes-icons--icons-download-14.png" />
+                                    </button3>
+                                </div>
+                                <div class="column">
+                                    <button3 class="button3"><img src="https://cdn-icons-png.flaticon.com/512/266/266146.png"></button3>
+                                </div>
+                                <div class="column">
+                                    <button3 class="button3">
+                                        <img src="https://cdn-icons-png.flaticon.com/512/1345/1345874.png">
+                                    </button3>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Coachella 2023</th>
+                        <td>Festivals and Lifestyles</td>
+                        <td>Queenstown</td>
+                        <td>Maria Anders</td>
+                        <td>28/06/23</td>
+                        <td>28/07/23</td>
+                        <td>
+                            <div class="row">
+                                <div class="column">
+                                    <button3 class="button3">
+                                        <img src="https://www.freeiconspng.com/thumbs/eye-icon/eye-of-a-human-vector-icon--shapes-icons--icons-download-14.png" />
+                                    </button3>
+                                </div>
+                                <div class="column">
+                                    <button3 class="button3"><img src="https://cdn-icons-png.flaticon.com/512/266/266146.png"></button3>
+                                </div>
+                                <div class="column">
+                                    <button3 class="button3">
+                                        <img src="https://cdn-icons-png.flaticon.com/512/1345/1345874.png">
+                                    </button3>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Walking with Dinosaurs</th>
+                        <td>Family & Education</td>
+                        <td>Gisborne</td>
+                        <td>Magazzini</td>
+                        <td>30/06/23</td>
+                        <td>4/07/23</td>
+                        <td>
+                            <div class="row">
+                                <div class="column">
+                                    <button3 class="button3">
+                                        <img src="https://www.freeiconspng.com/thumbs/eye-icon/eye-of-a-human-vector-icon--shapes-icons--icons-download-14.png" />
+                                    </button3>
+                                </div>
+                                <div class="column">
+                                    <button3 class="button3"><img src="https://cdn-icons-png.flaticon.com/512/266/266146.png"></button3>
+                                </div>
+                                <div class="column">
+                                    <button3 class="button3">
+                                        <img src="https://cdn-icons-png.flaticon.com/512/1345/1345874.png">
+                                    </button3>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Bell Shakesphere 2023</th>
+                        <td>Festivals and Lifestyles</td>
+                        <td>Christchurch</td>
+                        <td>Island Trading</td>
+                        <td>2/07/23</td>
+                        <td>28/07/23</td>
+                        <td>
+                            <div class="row">
+                                <div class="column">
+                                    <button3 class="button3">
+                                        <img src="https://www.freeiconspng.com/thumbs/eye-icon/eye-of-a-human-vector-icon--shapes-icons--icons-download-14.png" />
+                                    </button3>
+                                </div>
+                                <div class="column">
+                                    <button3 class=button3><img src="https://cdn-icons-png.flaticon.com/512/266/266146.png"></button3>
+                                </div>
+                                <div class="column">
+                                    <button3 class="button3">
+                                        <img src="https://cdn-icons-png.flaticon.com/512/1345/1345874.png">
+                                    </button3>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Revelmode Cringemas 2023</th>
+                        <td>Charity & Causes</td>
+                        <td>Queenstown</td>
+                        <td>Centro comercial</td>
+                        <td>18/07/23</td>
+                        <td>25/07/23</td>
+                        <td>
+                            <div class="row">
+                                <div class="column">
+                                    <button3 class="button3">
+                                        <img src="https://www.freeiconspng.com/thumbs/eye-icon/eye-of-a-human-vector-icon--shapes-icons--icons-download-14.png" />
+                                    </button3>
+                                </div>
+                                <div class="column">
+                                    <button3 class="button3"><img src="https://cdn-icons-png.flaticon.com/512/266/266146.png"></button3>
+                                </div>
+                                <div class="column">
+                                    <button3 class="button3">
+                                        <img src="https://cdn-icons-png.flaticon.com/512/1345/1345874.png">
+                                    </button3>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+

@@ -1,0 +1,255 @@
+﻿@model Event
+
+                                @* Image is in the style *@
+<style>
+    .centered {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .bottom-left {
+        position: absolute;
+        bottom: 8px;
+        left: 16px;
+    }
+
+    h1,
+    h1 + p {
+        margin-left: 15px;
+        font-weight: 300;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    }
+
+        h1 + p a {
+            color: #333;
+        }
+
+            h1 + p a:hover {
+                text-decoration: none;
+            }
+
+    h2 {
+        margin: 5px 15px 0;
+        padding: 0;
+        font-weight: 300;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    }
+
+        h2 span {
+            margin-left: 1em;
+            color: #aaa;
+            font-size: 50%;
+        }
+
+    h3 {
+        margin-top: 10px;
+        padding: 0;
+        font-weight: 300;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    }
+
+        h3 span {
+            margin-left: 1em;
+            color: #aaa;
+            font-size: 85%;
+        }
+
+    h4 {
+        margin: 5px 5px 0;
+        margin-top: -10px;
+        padding: 0;
+        font-weight: 300;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    }
+
+        h4 span {
+            margin-left: 1em;
+            color: #aaa;
+            font-size: 85%;
+        }
+
+    h5 {
+        margin-top: 75px padding: 0;
+        font-weight: 300;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    }
+
+        h5 span {
+            margin-left: 1em;
+            color: #aaa;
+            font-size: 20%;
+        }
+
+    h6 {
+        margin: 5px 5px 0;
+        padding: 0;
+        font-weight: 300;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    }
+
+        h6 span {
+            margin-left: 1em;
+            color: #aaa;
+            font-size: 50%;
+        }
+
+    p {
+        margin-left: 15px;
+        padding: 0;
+        font-weight: 300;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    }
+
+        p span {
+            margin-left: 1em;
+            color: #aaa;
+            font-size: 85%;
+        }
+
+    .example {
+        position: relative;
+        padding: 0;
+        width: 300px;
+        display: block;
+        cursor: pointer;
+        overflow: hidden;
+    }
+
+    .center {
+        margin: auto;
+        width: 50%;
+        padding: 10px;
+    }
+                                    @* Image *@
+    body {
+        position: relative;
+    }
+
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('@Model.Image');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        filter: brightness(40%) blur(2px); /* Add the desired filter effects */
+        z-index: -1;
+    }
+
+    .gradient-custom-3 {
+        /* fallback for old browsers */
+        background: #1A237E
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1)));
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1))
+    }
+
+    .gradient-custom-4 {
+        /* fallback for old browsers */
+        background: #1A237E
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1)));
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to right, rgba(0, 9, 75, 0.8), rgba(108, 11, 113, 1))
+    }
+
+    .container-overflow {
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    }
+
+    .border-botom {
+        margin-bottom: 10px;
+    }
+</style>
+<html>
+<body>
+    <section class="background-radial-gradient container overflow-hidden">
+    </section>
+    <div class="container-overflow px-7">
+        <div class="row">
+            <div class="col-4">
+                <div class="container">
+                    <center><img style=" margin-top: 30px; margin-bottom: 30px;" src="@Model.Image" height="150px" width="250px" /></center>
+                </div>
+            </div>
+                                @* Event Category Name, Event Name *@
+            <div style="margin-top: 80px; margin-left: -50px;" class="col-8 text-white">
+                <p class="text-white"> @Model.EventCategory.CategoryName</p>
+                <h1 class="text-white">@Model.Name</h1>
+            </div>
+        </div>
+        <p></p>
+        <nav style="box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 26px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;" class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li style="margin-left: 50px;" class="nav-item">
+                        <a class="nav-link text-black" href="#section1">Event Dates</a>
+                    </li>
+                    <li style="margin-left: 50px;" class="nav-item text-black">
+                        <a class="nav-link text-black" href="#section2">About</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container-overflow">
+            <div class="row gx-3">
+                <div class="container-overflow px-7">
+                    <div class="col-12">
+                        <div style="margin-bottom: -32px;" class="p-3 border bg-white">
+                            <div id="section1"></div>
+                            <center><h3 style="margin-top: 20px;" class="border-dark border-bottom"></h3></center>
+                            <div class=" container row gx-3">
+                                <div style=" margin-top: 20px; margin-left: 20px;" class="col-7 ">
+                                    <center><h4 <a name="event section" style="margin-top: 10px; margin-bottom: 15px;" class="border-dark border-bottom"></a>Event Dates</h4></center>
+                                    <div style="box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 26px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;" class="container-fluid bg-light">
+                                        <div class="col-12">
+                                            <div class="row mb-3 border border-dark">
+                                                @* Start date *@
+                                                <div class="col-md-1">
+                                                    <h5 style="margin-top: 25px;">@Model.StartDateTime.ToString("dd/MM")</h5>
+                                                </div>
+                                                  @* Event Name, Organizer Name Event Category Name *@
+                                                <div class="col-md-8">
+                                                    <h6 class="text-muted">@Model.Name</h6>
+                                                    <h6>@Model.Organizer.Name</h6>
+                                                    <h6 class="text-muted">@Model.EventCategory.CategoryName</h6>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <p></p>
+                                                    <a class="btn gradient-custom-3 text-white" asp-area="" asp-controller="ESTicketsPage" asp-action="Index" asp-route-id="@Model.EventId">Purchase Tickets ></a>
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <center style="margin-top: 30px" class="border-dark border-bottom"></center>
+                            <div id="section2"></div>
+                            <div class="col-12">
+                                <div style="margin-left: 100px;" class="col-1">
+                                    <h1 style="margin-top: 50px;" class="border-bottom border-dark"> About</h1>
+                                </div>
+                            @* Event Description *@
+                                <div style="margin-top: 40px;margin-left: 80px;" class="row col-5">
+                                    <p>@Model.Description</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p></p>
+</body>
+</html>

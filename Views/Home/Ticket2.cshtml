@@ -1,0 +1,75 @@
+﻿@model event_booking.Models.EventUser
+
+@{
+    ViewData["Title"] = "Ticket2";
+}
+<div>
+    <h4 class="display-4">Order Successful!</h4>
+</div>
+<hr />
+<h5>Receipt</h5>
+<div class="row">
+    <div class="col">
+        <time datetime="{{CURRENT_DATE}}"></time>
+        <p>Order No: SL#@ViewData["PurchaseId"]EFNZ198</p>
+    </div>
+    <div class="col">
+        <strong><p>Billed To</p></strong>
+        <p>@(ViewData["FirstName"] + " " + ViewData["LastName"])</p>
+        <p>@ViewData["Email"]</p>
+    </div>
+</div>
+
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Tickets</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Sub-Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">Adult</th>
+            <td>$50.00</td>
+            <td>1</td>
+            <td>$50.00</td>
+        </tr>
+        <tr>
+            <th scope="row">Total</th>
+            <td></td>
+            <td></td>
+            <td>$50.00</td>
+        </tr>
+    </tbody>
+</table>
+
+<br />
+<div>
+    <h4 class="display-4">Download</h4>
+</div>
+
+<table>
+    <tr>
+        <th>No</th>
+        <th>Ticket Type</th>
+        <th>Name</th>
+        <th>E-Ticket</th>
+    </tr>
+    <tr>
+        <td>900137</td>
+        <td>Adult</td>
+        <td>@(ViewData["FirstName"] + " " + ViewData["LastName"])</td>
+        <td>View E-Ticket</td>// make link to e-ticket
+    </tr>
+</table>
+<script>
+    // JavaScript code to set the current date in the <time> element
+    var currentDate = new Date();
+    var dateString = currentDate.toISOString().split('T')[0];
+    document.querySelector("time").setAttribute("datetime", dateString);
+    document.querySelector("time").textContent = dateString;
+</script>
